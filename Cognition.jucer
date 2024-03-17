@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="y9c6Es" name="Cognition" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+  <MAINGROUP id="yL5iNJ" name="Cognition">
+    <GROUP id="{45DF1DF2-4F77-6803-563A-0CEE8E2F407A}" name="Source">
+      <GROUP id="{D538BB3B-EF02-B01D-5632-71731929E9AF}" name="core">
+        <FILE id="sZLCYQ" name="uiVizWidget.h" compile="0" resource="0" file="Source/uiVizWidget.h"/>
+        <FILE id="pHT2ro" name="uiVizWidgetBase.h" compile="0" resource="0"
+              file="Source/uiVizWidgetBase.h"/>
+        <FILE id="q16oh5" name="uiVizWidgetBassGuitar.h" compile="0" resource="0"
+              file="Source/uiVizWidgetBassGuitar.h"/>
+        <FILE id="WkLllv" name="uiVizWidgetGuitar.h" compile="0" resource="0"
+              file="Source/uiVizWidgetGuitar.h"/>
+        <FILE id="UtyQy2" name="uiVizWidgetMusical.h" compile="0" resource="0"
+              file="Source/uiVizWidgetMusical.h"/>
+        <FILE id="NM6bcg" name="uiVizWigetStringedInstrument.h" compile="0"
+              resource="0" file="Source/uiVizWigetStringedInstrument.h"/>
+      </GROUP>
+      <FILE id="zVZ9lV" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="s4tFob" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="WKn39c" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Cognition"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Cognition"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Cognition"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Cognition"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <XCODE_IPHONE targetFolder="Builds/iOS">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Cognition"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Cognition"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_IPHONE>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Cognition"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Cognition"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>
