@@ -26,6 +26,10 @@ public:
 
     }
 
+    uiVizWigetStringedInstrument(juce::String persistentId, juce::String widgetXML) : uiVizWidgetMusical(persistentId, widgetXML) {
+        loadState(widgetXML);
+    }      
+
     ~uiVizWigetStringedInstrument() override
     {
     }

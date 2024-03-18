@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "uiVizWidget.h"
+#include "uiVizTheory.h"
 
 //==============================================================================
 /*
@@ -19,12 +20,17 @@
 class uiVizWidgetMusical  : public uiVizWidget
 {
 public:
+    
     uiVizWidgetMusical()
     {
         // In your constructor, you should add any child components, and
         // initialise any special settings that your component needs.
 
     }
+
+    uiVizWidgetMusical(juce::String persistentId, juce::String widgetXML) : uiVizWidget(persistentId, widgetXML) {
+        loadState(widgetXML);
+    }    
 
     ~uiVizWidgetMusical() override
     {
@@ -40,8 +46,459 @@ public:
         uiVizWidget::resized();
     }
 
+
+
+
+    enum class TheoryMode {
+        KEY_CENTRIC,    // One distinct color for each DEGREE
+        DEGREE_CENTRIC  // One distinct color for each KEY     (degrees are portrayed in BRIGHTNESS)
+    };
+
+    enum class TheoryVizColorMode {
+        NONE,
+        KEYS,
+        DEGREES,
+        SCALES
+    };
+
+    enum class TheoryVizColorAlternateMode {
+        NONE,
+        ALTERNATE_KEYS_DEGREES
+    };
+
+    enum class TheoryVizLabelMode {
+        NONE,
+        KEYS,
+        DEGREES,
+        // KEYS_AND_DEGREES, have a toggle somewhere which when enabled shows the inverse of the selected somewhere else (ie if Keys selected, show Kegrees and visa versa)
+        SCALES
+    };
+
+    enum class TheoryVizNoteMode {
+        DEFAULT,
+        SHARP,
+        FLAT
+    };
+
+    enum class TheoryVizLabelAlternateMode {
+        NONE,
+        ALTERNATE_KEYS_DEGREES
+    };
+
+    enum class TheoryVizShapeMode {
+        MINIMAL,
+        CIRCLE,
+        TABLE,
+        DOTS,
+        SQUARES
+    };
+
+    enum class TheoryVizOrientationMode {
+        VERTICAL,
+        HORIZONTAL,
+        UNSET
+    };
+
+    juce::String getTheoryVizOrientationModeString(TheoryVizOrientationMode val) {
+        switch(val) {
+            case TheoryVizOrientationMode::VERTICAL: return "VERTICAL";
+            case TheoryVizOrientationMode::HORIZONTAL: return "HORIZONTAL";
+            default: return "UNSET";
+        }
+    };
+
+    TheoryVizOrientationMode getTheoryVizOrientationModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "VERTICAL") return TheoryVizOrientationMode::VERTICAL;
+        if (val == "HORIZONTAL") return TheoryVizOrientationMode::HORIZONTAL;
+        return TheoryVizOrientationMode::UNSET;
+    };
+
+    enum class TheoryVizInstrumentDrawMode {
+        LEFT,
+        RIGHT,
+        UNSET
+    };
+
+    juce::String getTheoryVizInstrumentDrawModeString(TheoryVizInstrumentDrawMode val) {
+        switch(val) {
+            case TheoryVizInstrumentDrawMode::LEFT: return "LEFT";
+            case TheoryVizInstrumentDrawMode::RIGHT: return "RIGHT";
+            default: return "UNSET";
+        }
+    };
+
+    TheoryVizInstrumentDrawMode getTheoryVizInstrumentDrawModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "LEFT") return TheoryVizInstrumentDrawMode::LEFT;
+        if (val == "RIGHT") return TheoryVizInstrumentDrawMode::RIGHT;
+        return TheoryVizInstrumentDrawMode::UNSET;
+    };
+
+    enum class TheoryVizInstrumentTheoryContentMode {
+        NOTE,
+        CHORD,
+        SCALE,
+        UNSET
+    };
+
+    juce::String getTheoryVizInstrumentTheoryContentModeString(TheoryVizInstrumentTheoryContentMode val) {
+        switch(val) {
+            case TheoryVizInstrumentTheoryContentMode::NOTE: return "NOTE";
+            case TheoryVizInstrumentTheoryContentMode::CHORD: return "CHORD";
+            case TheoryVizInstrumentTheoryContentMode::SCALE: return "SCALE";
+            default: return "UNSET";
+        }
+    };
+
+    TheoryVizInstrumentTheoryContentMode getTheoryVizInstrumentTheoryContentModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "NOTE") return TheoryVizInstrumentTheoryContentMode::NOTE;
+        if (val == "CHORD") return TheoryVizInstrumentTheoryContentMode::CHORD;
+        if (val == "SCALE") return TheoryVizInstrumentTheoryContentMode::SCALE;
+        return TheoryVizInstrumentTheoryContentMode::UNSET;
+    };
+
+    enum class TheoryVizInstrumentChordViewMode {
+        UNSET,
+        STRINGED_CHORD_DIAGRAM
+    };
+
+    juce::String getTheoryVizInstrumentChordViewModeString(TheoryVizInstrumentChordViewMode val) {
+        switch(val) {
+            case TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM: return "STRINGED_CHORD_DIAGRAM";
+            default: return "UNSET";
+        }
+    };
+
+    TheoryVizInstrumentChordViewMode getTheoryVizInstrumentChordViewModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "STRINGED_CHORD_DIAGRAM") return TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM;
+        return TheoryVizInstrumentChordViewMode::UNSET;
+    };
+
+    virtual vector<TheoryVizShapeMode> getMusicalWidgetAvailableShapeModes() {
+        // For the menu popout to call...
+        return  vector<TheoryVizShapeMode>();
+    }
+
+    juce::String getTheoryVizColorModeString(TheoryVizColorMode val) {
+        switch(val) {
+            case TheoryVizColorMode::NONE: return "NONE";
+            case TheoryVizColorMode::KEYS: return "KEYS";
+            case TheoryVizColorMode::DEGREES: return "DEGREES";
+            case TheoryVizColorMode::SCALES: return "SCALES";
+            default: return "KEYS";
+        }
+    };
+
+    TheoryVizColorMode getTheoryVizColorModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "NONE") return TheoryVizColorMode::NONE;
+        if (val == "KEYS") return TheoryVizColorMode::KEYS;
+        if (val == "DEGREES") return TheoryVizColorMode::DEGREES;
+        if (val == "SCALES") return TheoryVizColorMode::SCALES;
+        return TheoryVizColorMode::NONE;
+    };
+
+    juce::String getTheoryVizColorAlternateModeString(TheoryVizColorAlternateMode val) {
+        switch(val) {
+            case TheoryVizColorAlternateMode::NONE: return "NONE";
+            case TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES: return "ALTERNATE_KEYS_DEGREES";
+            default: return "NONE";
+        }
+    };
+
+    TheoryVizColorAlternateMode getTheoryVizColorAlternateModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "NONE") return TheoryVizColorAlternateMode::NONE;
+        if (val == "ALTERNATE_KEYS_DEGREES") return TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES;
+        return TheoryVizColorAlternateMode::NONE;
+    };
+
+    juce::String getTheoryVizLabelModeString(TheoryVizLabelMode val) {
+        switch(val) {
+            case TheoryVizLabelMode::NONE: return "NONE";
+            case TheoryVizLabelMode::KEYS: return "KEYS";
+            case TheoryVizLabelMode::DEGREES: return "DEGREES";
+            case TheoryVizLabelMode::SCALES: return "SCALES";
+            default: return "KEYS";
+        }
+    };
+
+    TheoryVizLabelMode getTheoryVizLabelModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "NONE") return TheoryVizLabelMode::NONE;
+        if (val == "KEYS") return TheoryVizLabelMode::KEYS;
+        if (val == "DEGREES") return TheoryVizLabelMode::DEGREES;
+        if (val == "SCALES") return TheoryVizLabelMode::SCALES;
+        return TheoryVizLabelMode::NONE;
+    };
+
+    juce::String getTheoryVizNoteModeString(TheoryVizNoteMode val) {
+        switch(val) {
+            case TheoryVizNoteMode::DEFAULT: return "DEFAULT";
+            case TheoryVizNoteMode::SHARP: return "SHARP";
+            case TheoryVizNoteMode::FLAT: return "FLAT";
+            default: return "DEFAULT";
+        }
+    };
+
+    TheoryVizNoteMode getTheoryVizNoteModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "DEFAULT") return TheoryVizNoteMode::DEFAULT;
+        if (val == "SHARP") return TheoryVizNoteMode::SHARP;
+        if (val == "FLAT") return TheoryVizNoteMode::FLAT;
+        return TheoryVizNoteMode::DEFAULT;
+    };
+
+    juce::String getTheoryVizLabelAlternateModeString(TheoryVizLabelAlternateMode val) {
+        switch(val) {
+            case TheoryVizLabelAlternateMode::NONE: return "NONE";
+            case TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES: return "ALTERNATE_KEYS_DEGREES";
+            default: return "NONE";
+        }
+    };
+
+    TheoryVizLabelAlternateMode getTheoryVizLabelAlternateModeEnum(juce::String val) {
+        val = val.toUpperCase();
+        if (val == "NONE") return TheoryVizLabelAlternateMode::NONE;
+        if (val == "ALTERNATE_KEYS_DEGREES") return TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES;
+        return TheoryVizLabelAlternateMode::NONE;
+    };
+    
+
+
+   TheoryMode getTheoryMode() {
+       return mTheoryMode;
+   }
+   
+   void setTheoryMode(TheoryMode theoryMode) {
+       mTheoryMode = theoryMode;
+   }
+   
+   TheoryVizColorMode getTheoryVizColorMode() {
+       return mTheoryVizColorMode;
+   }
+   
+   void setTheoryVizColorMode(TheoryVizColorMode theoryVizColorMode) {
+       mTheoryVizColorMode = theoryVizColorMode;
+   }
+   
+   TheoryVizColorAlternateMode getTheoryVizColorAlternateMode() {
+       return mTheoryVizColorAlternateMode;
+   }
+   
+   void setTheoryVizColorAlternateMode(TheoryVizColorAlternateMode theoryVizColorAlternateMode) {
+       mTheoryVizColorAlternateMode = theoryVizColorAlternateMode;
+   }
+
+   TheoryVizLabelMode getTheoryVizLabelMode() {
+       return mTheoryVizLabelMode;
+   }
+   
+   void setTheoryVizLabelMode(TheoryVizLabelMode theoryVizLabelMode) {
+       mTheoryVizLabelMode = theoryVizLabelMode;
+   }
+   
+   TheoryVizNoteMode getTheoryVizNoteMode() {
+       return mTheoryVizNoteMode;
+   }
+   
+   virtual void setTheoryVizNoteMode(TheoryVizNoteMode theoryVizNoteMode) {
+       mTheoryVizNoteMode = theoryVizNoteMode;
+   }
+
+   TheoryVizLabelAlternateMode getTheoryVizLabelAlternateMode() {
+       return mTheoryVizLabelAlternateMode;
+   }
+   
+   void setTheoryVizLabelAlternateMode(TheoryVizLabelAlternateMode theoryVizLabelAlternateMode) {
+       mTheoryVizLabelAlternateMode = theoryVizLabelAlternateMode;
+   }
+   
+   TheoryVizShapeMode getTheoryVizShapeMode() {
+       return mTheoryVizShapeMode;
+   }
+   
+   void setTheoryVizShapeMode(TheoryVizShapeMode theoryVizShapeMode) {
+       mTheoryVizShapeMode = theoryVizShapeMode;
+   }
+   
+   TheoryVizOrientationMode getTheoryVizOrientationMode() {
+       return mTheoryVizOrientationMode;
+   }
+   
+   void setTheoryVizOrientationMode(TheoryVizOrientationMode theoryVizOrientationMode) {
+       mTheoryVizOrientationMode = theoryVizOrientationMode;
+   }
+
+   TheoryVizInstrumentDrawMode getTheoryVizInstrumentDrawMode() {
+       return mTheoryVizInstrumentDrawMode;
+   }
+   
+   void setTheoryVizInstrumentDrawMode(TheoryVizInstrumentDrawMode theoryVizInstrumentDrawMode) {
+       mTheoryVizInstrumentDrawMode = theoryVizInstrumentDrawMode;
+   }
+
+   TheoryVizInstrumentTheoryContentMode getTheoryVizInstrumentTheoryContentMode() {
+       return mTheoryVizInstrumentTheoryContentMode;
+   }
+   
+   virtual void setTheoryVizInstrumentTheoryContentMode(TheoryVizInstrumentTheoryContentMode theoryVizInstrumentTheoryContentMode) {
+       mTheoryVizInstrumentTheoryContentMode = theoryVizInstrumentTheoryContentMode;
+   }
+
+   virtual TheoryVizInstrumentChordViewMode getTheoryVizInstrumentChordViewMode() {
+       return mTheoryVizInstrumentChordViewMode;
+   }
+   
+   virtual void setTheoryVizInstrumentChordViewMode(TheoryVizInstrumentChordViewMode theoryVizInstrumentChordViewMode) {
+       mTheoryVizInstrumentChordViewMode = theoryVizInstrumentChordViewMode;
+   }
+
+   bool isLefty() {
+       return getTheoryVizInstrumentDrawMode() == TheoryVizInstrumentDrawMode::LEFT;
+   }
+   
+   virtual void setIsLefty(bool val) {
+       setTheoryVizInstrumentDrawMode(val ? TheoryVizInstrumentDrawMode::LEFT : TheoryVizInstrumentDrawMode::RIGHT);
+   }
+
+   bool isBlackAndWhiteMode() {
+       return mIsBlackAndWhiteMode;
+   }
+   
+   virtual void setIsBlackAndWhiteMode(bool val) {
+       mIsBlackAndWhiteMode = val;
+   }
+
+   bool AlternateTheoryVizLabelMode() {
+       bool needsUpdate = false;
+       
+       switch(getTheoryVizLabelAlternateMode()) {
+               
+           case TheoryVizLabelAlternateMode::NONE:
+               needsUpdate = false;
+               break;
+               
+           case TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES:
+               setTheoryVizLabelMode(getTheoryVizLabelMode() == TheoryVizLabelMode::KEYS ? TheoryVizLabelMode::DEGREES : TheoryVizLabelMode::KEYS);
+               needsUpdate = true;
+               break;
+       }
+       
+       return needsUpdate;
+   }
+   
+   bool AlternateTheoryVizColorMode() {
+       bool needsUpdate = false;
+       
+       switch(getTheoryVizColorAlternateMode()) {
+               
+           case TheoryVizColorAlternateMode::NONE:
+               needsUpdate = false;
+               break;
+               
+           case TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES:
+               setTheoryVizColorMode(getTheoryVizColorMode() == TheoryVizColorMode::KEYS ? TheoryVizColorMode::DEGREES : TheoryVizColorMode::KEYS);
+               needsUpdate = true;
+               break;
+       }
+       
+       return needsUpdate;
+   }
+   
+   juce::String getUserDefinedChordName() {
+       return mUserDefinedChordName;
+   }
+
+   virtual void setUserDefinedChordName(juce::String val) {
+       if (val != "") {
+           mUserDefinedChordName = val;
+//           uiVizTextChangedArgs args(getWidgetId(), mUserDefinedChordName);
+//           ofNotifyEvent(userDefinedChordNameChanged, args);
+       } else {
+           mUserDefinedChordName = val;
+       }
+   }
+
+    bool getUserCanInvokeContextMenu() {
+        return mUserCanInvokeContextMenu;
+    }
+
+    void setUserCanInvokeContextMenu(bool val) {
+        mUserCanInvokeContextMenu = val;
+    }
+
+    bool getUserCanSetSelectedKey() {
+        return mUserCanSetSelectedKey;
+    }
+
+    void setUserCanSetSelectedKey(bool val) {
+        mUserCanSetSelectedKey = val;
+    }
+
+    bool getUserCanAddSelectedNote() {
+        return mUserCanAddSelectedNote;
+    }
+
+    void setUserCanAddSelectedNote(bool val) {
+        mUserCanAddSelectedNote = val;
+    }
+
+    bool getUserCanAddSelectedChord() {
+        return mUserCanAddSelectedChord;
+    }
+
+    void setUserCanAddSelectedChord(bool val) {
+        mUserCanAddSelectedChord = val;
+    }
+
+    bool getUserCanAddSelectedScale() {
+        return mGetUserCanAddSelectedScale;
+    }
+
+    void setUserCanAddSelectedScale(bool val) {
+        mGetUserCanAddSelectedScale = val;
+    }
+
+   /****** These are not permanenelty persisted for now ******/
+   bool getUserCanSetChordName() {
+       return mUserCanSetChordName;
+   }
+
+   void setUserCanSetChordName(bool val) {
+       mUserCanSetChordName = val;
+   }
+
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (uiVizWidgetMusical)
+
+   TheoryMode mTheoryMode = TheoryMode::KEY_CENTRIC;
+   TheoryVizColorMode mTheoryVizColorMode = TheoryVizColorMode::KEYS;
+   TheoryVizLabelMode mTheoryVizLabelMode = TheoryVizLabelMode::KEYS;
+   TheoryVizNoteMode mTheoryVizNoteMode = TheoryVizNoteMode::DEFAULT;
+   TheoryVizColorAlternateMode mTheoryVizColorAlternateMode = TheoryVizColorAlternateMode::NONE;
+   TheoryVizLabelAlternateMode mTheoryVizLabelAlternateMode = TheoryVizLabelAlternateMode::NONE;
+   TheoryVizShapeMode mTheoryVizShapeMode = TheoryVizShapeMode::CIRCLE;
+   TheoryVizOrientationMode mTheoryVizOrientationMode = TheoryVizOrientationMode::UNSET;
+   TheoryVizInstrumentDrawMode mTheoryVizInstrumentDrawMode = TheoryVizInstrumentDrawMode::UNSET;
+   TheoryVizInstrumentTheoryContentMode mTheoryVizInstrumentTheoryContentMode = TheoryVizInstrumentTheoryContentMode::UNSET;
+   TheoryVizInstrumentChordViewMode mTheoryVizInstrumentChordViewMode = TheoryVizInstrumentChordViewMode::UNSET;
+   bool mIsBlackAndWhiteMode = false;
+   juce::String mUserDefinedChordName = "";
+
+    bool mUserCanInvokeContextMenu = true;
+    bool mUserCanSetSelectedKey = true;
+    bool mUserCanAddSelectedNote = true;
+    bool mUserCanAddSelectedChord = true;
+    bool mGetUserCanAddSelectedScale = true;
+    bool mUserCanSetChordName = true;
+    
+
+
 };
 
 
@@ -69,8 +526,8 @@ private:
 //public:
 //    uiVizInstrumentRuleArgs(ofxXmlSettings rules) : rules(rules) {}
 //    ofxXmlSettings rules;
-//    string getXMLString() {
-//        string retVal = "";
+//    juce::String getXMLString() {
+//        juce::String retVal = "";
 //        TiXmlPrinter printer;
 //        TiXmlElement* rootElm = rules.doc.RootElement();
 //        if (rootElm != NULL) {
@@ -85,31 +542,31 @@ private:
 //
 //class uiVizTextChangedArgs : public ofEventArgs {
 //public:
-//    uiVizTextChangedArgs(string widgetId, string text)
+//    uiVizTextChangedArgs(juce::String widgetId, juce::String text)
 //    :widgetId(widgetId)
 //    ,text(text){}
 //    
-//    string widgetId;
-//    string text;
+//    juce::String widgetId;
+//    juce::String text;
 //};
 //
 //class uiVizNoteSelectedArgs : public ofEventArgs {
 //public:
-//    uiVizNoteSelectedArgs(string widgetId, vizNote note)
+//    uiVizNoteSelectedArgs(juce::String widgetId, vizNote note)
 //    :widgetId(widgetId)
 //    ,note(note){}
 //    
-//    string widgetId;
+//    juce::String widgetId;
 //    vizNote note;
 //};
 //
 //class uiVizChordSelectedArgs : public ofEventArgs {
 //public:
-//    uiVizChordSelectedArgs(string widgetId, vizChord chord)
+//    uiVizChordSelectedArgs(juce::String widgetId, vizChord chord)
 //    :widgetId(widgetId)
 //    ,chord(chord){}
 //    
-//    string widgetId;
+//    juce::String widgetId;
 //    vizChord chord;
 //};
 //
@@ -124,228 +581,7 @@ private:
 //    ofEvent<uiVizChordSelectedArgs>     chordSelected;
 //    ofEvent<uiVizTextChangedArgs>       userDefinedChordNameChanged;
 //    
-//    enum class TheoryMode {
-//        KEY_CENTRIC,    // One distinct color for each DEGREE
-//        DEGREE_CENTRIC  // One distinct color for each KEY     (degrees are portrayed in BRIGHTNESS)
-//    };
-//    
-//    enum class TheoryVizColorMode {
-//        NONE,
-//        KEYS,
-//        DEGREES,
-//        SCALES
-//    };
-//    
-//    enum class TheoryVizColorAlternateMode {
-//        NONE,
-//        ALTERNATE_KEYS_DEGREES
-//    };
-//    
-//    enum class TheoryVizLabelMode {
-//        NONE,
-//        KEYS,
-//        DEGREES,
-//        // KEYS_AND_DEGREES, have a toggle somewhere which when enabled shows the inverse of the selected somewhere else (ie if Keys selected, show Kegrees and visa versa)
-//        SCALES
-//    };
-//    
-//    enum class TheoryVizNoteMode {
-//        DEFAULT,
-//        SHARP,
-//        FLAT
-//    };
-//
-//    enum class TheoryVizLabelAlternateMode {
-//        NONE,
-//        ALTERNATE_KEYS_DEGREES
-//    };
-//    
-//    enum class TheoryVizShapeMode {
-//        MINIMAL,
-//        CIRCLE,
-//        TABLE,
-//        DOTS,
-//        SQUARES
-//    };
-//    
-//    enum class TheoryVizOrientationMode {
-//        VERTICAL,
-//        HORIZONTAL,
-//        UNSET
-//    };
-//    
-//    string getTheoryVizOrientationModeString(TheoryVizOrientationMode val) {
-//        switch(val) {
-//            case TheoryVizOrientationMode::VERTICAL: return "VERTICAL";
-//            case TheoryVizOrientationMode::HORIZONTAL: return "HORIZONTAL";
-//            default: return "UNSET";
-//        }
-//    };
-//    
-//    TheoryVizOrientationMode getTheoryVizOrientationModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "VERTICAL") return TheoryVizOrientationMode::VERTICAL;
-//        if (val == "HORIZONTAL") return TheoryVizOrientationMode::HORIZONTAL;
-//        return TheoryVizOrientationMode::UNSET;
-//    };
-//    
-//    enum class TheoryVizInstrumentDrawMode {
-//        LEFT,
-//        RIGHT,
-//        UNSET
-//    };
-//    
-//    string getTheoryVizInstrumentDrawModeString(TheoryVizInstrumentDrawMode val) {
-//        switch(val) {
-//            case TheoryVizInstrumentDrawMode::LEFT: return "LEFT";
-//            case TheoryVizInstrumentDrawMode::RIGHT: return "RIGHT";
-//            default: return "UNSET";
-//        }
-//    };
-//    
-//    TheoryVizInstrumentDrawMode getTheoryVizInstrumentDrawModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "LEFT") return TheoryVizInstrumentDrawMode::LEFT;
-//        if (val == "RIGHT") return TheoryVizInstrumentDrawMode::RIGHT;
-//        return TheoryVizInstrumentDrawMode::UNSET;
-//    };
-//    
-//    enum class TheoryVizInstrumentTheoryContentMode {
-//        NOTE,
-//        CHORD,
-//        SCALE,
-//        UNSET
-//    };
-//    
-//    string getTheoryVizInstrumentTheoryContentModeString(TheoryVizInstrumentTheoryContentMode val) {
-//        switch(val) {
-//            case TheoryVizInstrumentTheoryContentMode::NOTE: return "NOTE";
-//            case TheoryVizInstrumentTheoryContentMode::CHORD: return "CHORD";
-//            case TheoryVizInstrumentTheoryContentMode::SCALE: return "SCALE";
-//            default: return "UNSET";
-//        }
-//    };
-//    
-//    TheoryVizInstrumentTheoryContentMode getTheoryVizInstrumentTheoryContentModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "NOTE") return TheoryVizInstrumentTheoryContentMode::NOTE;
-//        if (val == "CHORD") return TheoryVizInstrumentTheoryContentMode::CHORD;
-//        if (val == "SCALE") return TheoryVizInstrumentTheoryContentMode::SCALE;
-//        return TheoryVizInstrumentTheoryContentMode::UNSET;
-//    };
-//
-//    enum class TheoryVizInstrumentChordViewMode {
-//        UNSET,
-//        STRINGED_CHORD_DIAGRAM
-//    };
-//    
-//    string getTheoryVizInstrumentChordViewModeString(TheoryVizInstrumentChordViewMode val) {
-//        switch(val) {
-//            case TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM: return "STRINGED_CHORD_DIAGRAM";
-//            default: return "UNSET";
-//        }
-//    };
-//    
-//    TheoryVizInstrumentChordViewMode getTheoryVizInstrumentChordViewModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "STRINGED_CHORD_DIAGRAM") return TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM;
-//        return TheoryVizInstrumentChordViewMode::UNSET;
-//    };
-//
-//    virtual vector<TheoryVizShapeMode> getMusicalWidgetAvailableShapeModes() {
-//        // For the menu popout to call...
-//        return  vector<TheoryVizShapeMode>();
-//    }
-// 
-//    uiVizWidgetMusical(string persistentId, string widgetXML) : uiVizWidget(persistentId, widgetXML) {
-//        init();
-//        loadState(widgetXML);
-//    }
-//    
-//    string getTheoryVizColorModeString(TheoryVizColorMode val) {
-//        switch(val) {
-//            case TheoryVizColorMode::NONE: return "NONE";
-//            case TheoryVizColorMode::KEYS: return "KEYS";
-//            case TheoryVizColorMode::DEGREES: return "DEGREES";
-//            case TheoryVizColorMode::SCALES: return "SCALES";
-//            default: return "KEYS";
-//        }
-//    };
-//    
-//    TheoryVizColorMode getTheoryVizColorModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "NONE") return TheoryVizColorMode::NONE;
-//        if (val == "KEYS") return TheoryVizColorMode::KEYS;
-//        if (val == "DEGREES") return TheoryVizColorMode::DEGREES;
-//        if (val == "SCALES") return TheoryVizColorMode::SCALES;
-//        return TheoryVizColorMode::NONE;
-//    };
-//
-//    string getTheoryVizColorAlternateModeString(TheoryVizColorAlternateMode val) {
-//        switch(val) {
-//            case TheoryVizColorAlternateMode::NONE: return "NONE";
-//            case TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES: return "ALTERNATE_KEYS_DEGREES";
-//            default: return "NONE";
-//        }
-//    };
-//    
-//    TheoryVizColorAlternateMode getTheoryVizColorAlternateModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "NONE") return TheoryVizColorAlternateMode::NONE;
-//        if (val == "ALTERNATE_KEYS_DEGREES") return TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES;
-//        return TheoryVizColorAlternateMode::NONE;
-//    };
-//
-//    string getTheoryVizLabelModeString(TheoryVizLabelMode val) {
-//        switch(val) {
-//            case TheoryVizLabelMode::NONE: return "NONE";
-//            case TheoryVizLabelMode::KEYS: return "KEYS";
-//            case TheoryVizLabelMode::DEGREES: return "DEGREES";
-//            case TheoryVizLabelMode::SCALES: return "SCALES";
-//            default: return "KEYS";
-//        }
-//    };
-//    
-//    TheoryVizLabelMode getTheoryVizLabelModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "NONE") return TheoryVizLabelMode::NONE;
-//        if (val == "KEYS") return TheoryVizLabelMode::KEYS;
-//        if (val == "DEGREES") return TheoryVizLabelMode::DEGREES;
-//        if (val == "SCALES") return TheoryVizLabelMode::SCALES;
-//        return TheoryVizLabelMode::NONE;
-//    };
-// 
-//    string getTheoryVizNoteModeString(TheoryVizNoteMode val) {
-//        switch(val) {
-//            case TheoryVizNoteMode::DEFAULT: return "DEFAULT";
-//            case TheoryVizNoteMode::SHARP: return "SHARP";
-//            case TheoryVizNoteMode::FLAT: return "FLAT";
-//            default: return "DEFAULT";
-//        }
-//    };
-//    
-//    TheoryVizNoteMode getTheoryVizNoteModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "DEFAULT") return TheoryVizNoteMode::DEFAULT;
-//        if (val == "SHARP") return TheoryVizNoteMode::SHARP;
-//        if (val == "FLAT") return TheoryVizNoteMode::FLAT;
-//        return TheoryVizNoteMode::DEFAULT;
-//    };
-//
-//    string getTheoryVizLabelAlternateModeString(TheoryVizLabelAlternateMode val) {
-//        switch(val) {
-//            case TheoryVizLabelAlternateMode::NONE: return "NONE";
-//            case TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES: return "ALTERNATE_KEYS_DEGREES";
-//            default: return "NONE";
-//        }
-//    };
-//    
-//    TheoryVizLabelAlternateMode getTheoryVizLabelAlternateModeEnum(string val) {
-//        val = ofToUpper(val);
-//        if (val == "NONE") return TheoryVizLabelAlternateMode::NONE;
-//        if (val == "ALTERNATE_KEYS_DEGREES") return TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES;
-//        return TheoryVizLabelAlternateMode::NONE;
-//    };
+
 //
 //
 //    uiVizWidgetElmBreadcrumb* getWidgetBreadCrumbBar() {
@@ -421,7 +657,7 @@ private:
 //    }
 //
 //     
-//    virtual bool loadState(string widgetXML) override {
+//    virtual bool loadState(juce::String widgetXML) override {
 //        uiVizWidget::loadState(widgetXML);
 //        
 //        ofxXmlSettings settings = ofxXmlSettings();
@@ -473,16 +709,16 @@ private:
 //        
 //       
 //        // Selected Key
-//        string selectedKeyName = settings.getAttribute("selectedKey", "name", getSelectedKey().getNoteName(), 0);
+//        juce::String selectedKeyName = settings.getAttribute("selectedKey", "name", getSelectedKey().getNoteName(), 0);
 //        if (selectedKeyName != "") {
 //            setSelectedKey(vizNote("<note name='" + selectedKeyName + "' octave='3' />"));
 //        }
 //
 //        // Selected Scale
-//        string scaleName = "";
+//        juce::String scaleName = "";
 //        if (settings.pushTag("selectedScale")) {
 //            scaleName = settings.getValue("name", "", 0);
-//            string scaleKey = settings.getValue("key", "", 0);
+//            juce::String scaleKey = settings.getValue("key", "", 0);
 //            if (scaleName != "") {
 //                if(scaleKey != "") {
 //                    vizScale scale = vizScale(scaleKey, scaleName);
@@ -549,7 +785,7 @@ private:
 //        if (rulesElm != NULL) {
 //            TiXmlPrinter printer;
 //            rulesElm->Accept( &printer );
-//            string rulesXML = printer.CStr();
+//            juce::String rulesXML = printer.CStr();
 //            setInstrumentRules(rulesXML, true);
 //        }
 //    }
@@ -565,7 +801,7 @@ private:
 //            for(TiXmlNode* child = selectedNotesElm->FirstChild(); child; child = child->NextSibling() ) {
 //                TiXmlPrinter printer;
 //                child->Accept( &printer );
-//                string elmXML = printer.CStr();
+//                juce::String elmXML = printer.CStr();
 //                vizNote note = vizNote(elmXML);
 //                addSelectedNote(note, true);
 //            }
@@ -583,7 +819,7 @@ private:
 //
 //            TiXmlPrinter printer;
 //            selectedScaleElm->Accept( &printer );
-//            string scaleXML = printer.CStr();
+//            juce::String scaleXML = printer.CStr();
 //
 //            vizScale scale = vizScale(scaleXML, "selectedScale", false);
 //
@@ -608,7 +844,7 @@ private:
 //            for(TiXmlNode* child = selectedChordsElm->FirstChild(); child; child = child->NextSibling() ) {
 //                TiXmlPrinter printer;
 //                child->Accept( &printer );
-//                string elmXML = printer.CStr();
+//                juce::String elmXML = printer.CStr();
 //                vizChord chord = vizChord(elmXML, false);
 //                addSelectedChord(chord, false, false);
 //               
@@ -758,209 +994,12 @@ private:
 //        return settings;
 //    }
 //    
-//    TheoryMode getTheoryMode() {
-//        return mTheoryMode;
-//    }
-//    
-//    void setTheoryMode(TheoryMode theoryMode) {
-//        mTheoryMode = theoryMode;
-//    }
-//    
-//    TheoryVizColorMode getTheoryVizColorMode() {
-//        return mTheoryVizColorMode;
-//    }
-//    
-//    void setTheoryVizColorMode(TheoryVizColorMode theoryVizColorMode) {
-//        mTheoryVizColorMode = theoryVizColorMode;
-//    }
-//    
-//    TheoryVizColorAlternateMode getTheoryVizColorAlternateMode() {
-//        return mTheoryVizColorAlternateMode;
-//    }
-//    
-//    void setTheoryVizColorAlternateMode(TheoryVizColorAlternateMode theoryVizColorAlternateMode) {
-//        mTheoryVizColorAlternateMode = theoryVizColorAlternateMode;
-//    }
+
 //
-//    TheoryVizLabelMode getTheoryVizLabelMode() {
-//        return mTheoryVizLabelMode;
-//    }
-//    
-//    void setTheoryVizLabelMode(TheoryVizLabelMode theoryVizLabelMode) {
-//        mTheoryVizLabelMode = theoryVizLabelMode;
-//    }
-//    
-//    TheoryVizNoteMode getTheoryVizNoteMode() {
-//        return mTheoryVizNoteMode;
-//    }
-//    
-//    virtual void setTheoryVizNoteMode(TheoryVizNoteMode theoryVizNoteMode) {
-//        mTheoryVizNoteMode = theoryVizNoteMode;
-//    }
-// 
-//    TheoryVizLabelAlternateMode getTheoryVizLabelAlternateMode() {
-//        return mTheoryVizLabelAlternateMode;
-//    }
-//    
-//    void setTheoryVizLabelAlternateMode(TheoryVizLabelAlternateMode theoryVizLabelAlternateMode) {
-//        mTheoryVizLabelAlternateMode = theoryVizLabelAlternateMode;
-//    }
-//    
-//    TheoryVizShapeMode getTheoryVizShapeMode() {
-//        return mTheoryVizShapeMode;
-//    }
-//    
-//    void setTheoryVizShapeMode(TheoryVizShapeMode theoryVizShapeMode) {
-//        mTheoryVizShapeMode = theoryVizShapeMode;
-//    }
-//    
-//    TheoryVizOrientationMode getTheoryVizOrientationMode() {
-//        return mTheoryVizOrientationMode;
-//    }
-//    
-//    void setTheoryVizOrientationMode(TheoryVizOrientationMode theoryVizOrientationMode) {
-//        mTheoryVizOrientationMode = theoryVizOrientationMode;
-//    }
-//
-//    TheoryVizInstrumentDrawMode getTheoryVizInstrumentDrawMode() {
-//        return mTheoryVizInstrumentDrawMode;
-//    }
-//    
-//    void setTheoryVizInstrumentDrawMode(TheoryVizInstrumentDrawMode theoryVizInstrumentDrawMode) {
-//        mTheoryVizInstrumentDrawMode = theoryVizInstrumentDrawMode;
-//    }
-//
-//    TheoryVizInstrumentTheoryContentMode getTheoryVizInstrumentTheoryContentMode() {
-//        return mTheoryVizInstrumentTheoryContentMode;
-//    }
-//    
-//    virtual void setTheoryVizInstrumentTheoryContentMode(TheoryVizInstrumentTheoryContentMode theoryVizInstrumentTheoryContentMode) {
-//        mTheoryVizInstrumentTheoryContentMode = theoryVizInstrumentTheoryContentMode;
-//    }
-//
-//    virtual virtual TheoryVizInstrumentChordViewMode getTheoryVizInstrumentChordViewMode() {
-//        return mTheoryVizInstrumentChordViewMode;
-//    }
-//    
-//    virtual void setTheoryVizInstrumentChordViewMode(TheoryVizInstrumentChordViewMode theoryVizInstrumentChordViewMode) {
-//        mTheoryVizInstrumentChordViewMode = theoryVizInstrumentChordViewMode;
-//    }
-//
-//    bool isLefty() {
-//        return getTheoryVizInstrumentDrawMode() == TheoryVizInstrumentDrawMode::LEFT;
-//    }
-//    
-//    virtual void setIsLefty(bool val) {
-//        setTheoryVizInstrumentDrawMode(val ? TheoryVizInstrumentDrawMode::LEFT : TheoryVizInstrumentDrawMode::RIGHT);
-//    }
-//
-//    bool isBlackAndWhiteMode() {
-//        return mIsBlackAndWhiteMode;
-//    }
-//    
-//    virtual void setIsBlackAndWhiteMode(bool val) {
-//        mIsBlackAndWhiteMode = val;
-//    }
-//
-//    bool AlternateTheoryVizLabelMode() {
-//        bool needsUpdate = false;
-//        
-//        switch(getTheoryVizLabelAlternateMode()) {
-//                
-//            case TheoryVizLabelAlternateMode::NONE:
-//                needsUpdate = false;
-//                break;
-//                
-//            case TheoryVizLabelAlternateMode::ALTERNATE_KEYS_DEGREES:
-//                setTheoryVizLabelMode(getTheoryVizLabelMode() == TheoryVizLabelMode::KEYS ? TheoryVizLabelMode::DEGREES : TheoryVizLabelMode::KEYS);
-//                needsUpdate = true;
-//                break;
-//        }
-//        
-//        return needsUpdate;
-//    }
-//    
-//    bool AlternateTheoryVizColorMode() {
-//        bool needsUpdate = false;
-//        
-//        switch(getTheoryVizColorAlternateMode()) {
-//                
-//            case TheoryVizColorAlternateMode::NONE:
-//                needsUpdate = false;
-//                break;
-//                
-//            case TheoryVizColorAlternateMode::ALTERNATE_KEYS_DEGREES:
-//                setTheoryVizColorMode(getTheoryVizColorMode() == TheoryVizColorMode::KEYS ? TheoryVizColorMode::DEGREES : TheoryVizColorMode::KEYS);
-//                needsUpdate = true;
-//                break;
-//        }
-//        
-//        return needsUpdate;
-//    }
-//    
-//    string getUserDefinedChordName() {
-//        return mUserDefinedChordName;
-//    }
-//
-//    virtual void setUserDefinedChordName(string val) {
-//        if (val != "") {
-//            mUserDefinedChordName = val;
-//            uiVizTextChangedArgs args(getWidgetId(), mUserDefinedChordName);
-//            ofNotifyEvent(userDefinedChordNameChanged, args);
-//        } else {
-//            mUserDefinedChordName = val;
-//        }
-//    }
-//
-//    /****** These are not permanenelty persisted for now ******/
-//    bool getUserCanSetChordName() {
-//        return mUserCanSetChordName;
-//    }
-//
-//    void setUserCanSetChordName(bool val) {
-//        mUserCanSetChordName = val;
-//    }
+
 //
 //
-//    bool getUserCanInvokeContextMenu() {
-//        return mUserCanInvokeContextMenu;
-//    }
-//
-//    void setUserCanInvokeContextMenu(bool val) {
-//        mUserCanInvokeContextMenu = val;
-//    }
-//
-//    bool getUserCanSetSelectedKey() {
-//        return mUserCanSetSelectedKey;
-//    }
-//
-//    void setUserCanSetSelectedKey(bool val) {
-//        mUserCanSetSelectedKey = val;
-//    }
-//
-//    bool getUserCanAddSelectedNote() {
-//        return mUserCanAddSelectedNote;
-//    }
-//
-//    void setUserCanAddSelectedNote(bool val) {
-//        mUserCanAddSelectedNote = val;
-//    }
-//
-//    bool getUserCanAddSelectedChord() {
-//        return mUserCanAddSelectedChord;
-//    }
-//
-//    void setUserCanAddSelectedChord(bool val) {
-//        mUserCanAddSelectedChord = val;
-//    }
-//
-//    bool getUserCanAddSelectedScale() {
-//        return mGetUserCanAddSelectedScale;
-//    }
-//
-//    void setUserCanAddSelectedScale(bool val) {
-//        mGetUserCanAddSelectedScale = val;
-//    }
+
 //    /****** ------------------------------------------- ******/
 //    
 //    virtual ~uiVizWidgetMusical() {
@@ -993,7 +1032,7 @@ private:
 //    }
 //    
 //    /* Selected Keys */
-//    bool isSelectedKey(string name) {
+//    bool isSelectedKey(juce::String name) {
 //        for(auto key:m_selectedKeys){
 //            if (key.getNoteName()==name) return true;
 //        }
@@ -1004,7 +1043,7 @@ private:
 //        return m_selectedKeys;
 //    }
 //    
-//    vizNote getSelectedKey(string name)  {
+//    vizNote getSelectedKey(juce::String name)  {
 //        for(auto key:m_selectedKeys){
 //            if (key.getNoteName()==name) return key;
 //        }
@@ -1039,7 +1078,7 @@ private:
 //        removeSelectedKey(key.getNoteName());
 //    }
 //    
-//    void removeSelectedKey(string name) {
+//    void removeSelectedKey(juce::String name) {
 //        m_selectedKeys.erase(std::remove_if(
 //                                            m_selectedKeys.begin(), m_selectedKeys.end(),
 //                                            [&](vizNote /*const*/ & key) {
@@ -1076,7 +1115,7 @@ private:
 //        m_hoveredKey = val;
 //    }
 //    
-//    bool isSelectedNoteExact(string name) {
+//    bool isSelectedNoteExact(juce::String name) {
 //        for(auto currNote:getSelectedNotes()){
 //            if (currNote.getNoteName() == name) return true;
 //        }
@@ -1142,7 +1181,7 @@ private:
 //        if(removeExactDuplicates) {
 //
 //            vizNote lowestRootNote = vizChord::findLowestRootNote(getSelectedKey(), selectedNotes);
-//            string lowestRootNoteName = lowestRootNote.getNoteNameNormalized();
+//            juce::String lowestRootNoteName = lowestRootNote.getNoteNameNormalized();
 //
 //            vector<vizNote> countedNotes;
 //
@@ -1179,14 +1218,14 @@ private:
 //        m_selectedNotes.clear();
 //    }
 //    
-//    vizNote getSelectedNote(string name, bool isExtended)  {
+//    vizNote getSelectedNote(juce::String name, bool isExtended)  {
 //        for(auto note:m_selectedNotes){
 //            if (note.isEnharmonicallyEquivalent(name) && note.getIsExtended() == isExtended) return note;
 //        }
 //        return vizNote(); // return empty
 //    }
 //
-//    vizNote getSelectedNote(string name, bool isExtended, int octave)  {
+//    vizNote getSelectedNote(juce::String name, bool isExtended, int octave)  {
 //        for(auto note:m_selectedNotes){
 //            if (note.isEnharmonicallyEquivalent(name) && note.getIsExtended() == isExtended && note.getNoteOctave() == octave) return note;
 //        }
@@ -1256,14 +1295,14 @@ private:
 //        addSelectedNote(note, normalize, false);
 //    }
 //
-//    virtual void addSelectedNote(string note, int octave, bool clearExisting) {
+//    virtual void addSelectedNote(juce::String note, int octave, bool clearExisting) {
 //        if (vizTheory::isValidKey(note)) {
 //            vizNote noteToAdd(note, octave, 1);
 //            addSelectedNote(noteToAdd, false, clearExisting);
 //        }
 //    }
 //    
-//    void removeSelectedNote(string name, bool isExtended) {
+//    void removeSelectedNote(juce::String name, bool isExtended) {
 //        m_selectedNotes.erase(std::remove_if(
 //                                              m_selectedNotes.begin(), m_selectedNotes.end(),
 //                                              [&](vizNote /*const*/ & note) {
@@ -1320,8 +1359,8 @@ private:
 //    
 //    vizChord getChordFromSelectedNotes(vizNote root, bool allowInversions, bool allowPolyChords, bool normalizeNotes) {
 //
-//        string chordName = getChordNameFromSelectedNotesPretty(root, allowInversions, allowPolyChords, normalizeNotes);
-//        string xml = "<chord><name>" + chordName + "</name>";
+//        juce::String chordName = getChordNameFromSelectedNotesPretty(root, allowInversions, allowPolyChords, normalizeNotes);
+//        juce::String xml = "<chord><name>" + chordName + "</name>";
 //        for (vizNote note:m_selectedNotes) {
 //            xml += note.getXML();
 //        }
@@ -1330,7 +1369,7 @@ private:
 //        return vizChord(xml, true);
 //    }
 //    
-//    string getChordNameFromSelectedNotesPretty(vizNote root, bool allowInversions, bool allowPolyChords, bool normalizeNotes) {
+//    juce::String getChordNameFromSelectedNotesPretty(vizNote root, bool allowInversions, bool allowPolyChords, bool normalizeNotes) {
 //        
 //        deque<MusicTheory::NotePtr> notes = getSelectedNotesDeque(false, normalizeNotes, true, true);
 //        
@@ -1338,8 +1377,8 @@ private:
 //        if (names.size() > 0) {
 //            for (int i=0; i< names.size(); i++) {
 //            
-//                string chordName = names[i];
-//                string chordRoot = vizTheory::extractRootFromChord(chordName);
+//                juce::String chordName = names[i];
+//                juce::String chordRoot = vizTheory::extractRootFromChord(chordName);
 //
 //                if (root.isEnharmonicallyEquivalent(chordRoot)) {
 //                    ofStringReplace(chordName, "M", "maj");
@@ -1353,19 +1392,19 @@ private:
 //        }
 //    }
 //    
-//    string getCalculatedChordName() {
+//    juce::String getCalculatedChordName() {
 //        return mCalculatedChordName;
 //    }
 //    
-//    virtual void setCalculatedChordName(string val) {
+//    virtual void setCalculatedChordName(juce::String val) {
 //        mCalculatedChordName = val;
 //    }
 //
-//    string getCalculatedScaleName() {
+//    juce::String getCalculatedScaleName() {
 //        return mCalculatedScaleName;
 //    }
 //
-//    virtual void setCalculatedScaleName(string val) {
+//    virtual void setCalculatedScaleName(juce::String val) {
 //        mCalculatedScaleName = val;
 //    }
 //    
@@ -1382,14 +1421,14 @@ private:
 //    }
 //    
 //    /* Selected Chords */
-//    bool isSelectedChord(string name) {
+//    bool isSelectedChord(juce::String name) {
 //        for(auto chord:m_selectedChords){
 //            if (chord.getChordName()==name) return true;
 //        }
 //        return false;
 //    }
 //    
-//    bool isSelectedChordRoot(string name) {
+//    bool isSelectedChordRoot(juce::String name) {
 //        for(auto chord:m_selectedChords){
 //            if (chord.getChordRoot()==name) return true;
 //        }
@@ -1429,7 +1468,7 @@ private:
 //        m_selectedChords.clear();
 //    }
 //    
-//    vizChord getSelectedChord(string name)  {
+//    vizChord getSelectedChord(juce::String name)  {
 //        for(auto chord:m_selectedChords){
 //            if (chord.getChordName()==name) return chord;
 //        }
@@ -1494,7 +1533,7 @@ private:
 //
 //    }
 //    
-//    void removeSelectedChord(string name) {
+//    void removeSelectedChord(juce::String name) {
 //        m_selectedChords.erase(std::remove_if(
 //                                              m_selectedChords.begin(), m_selectedChords.end(),
 //                                              [&](vizChord /*const*/ & chord) {
@@ -1601,7 +1640,7 @@ private:
 //
 //    }
 //    
-//    virtual void setSelectedScale(string val, bool includeInstrumentRules) {
+//    virtual void setSelectedScale(juce::String val, bool includeInstrumentRules) {
 //        vizScale scale;
 //        
 //        if (getSelectedKey().getNoteName() != "") {
@@ -1613,22 +1652,22 @@ private:
 //        setSelectedScale(scale, includeInstrumentRules);
 //    }
 //
-//    string getSelectedScaleName() {
+//    juce::String getSelectedScaleName() {
 //        return m_selectedScale.getName();
 //    }
 //    
-//    virtual string getSelectedScaleNamePretty() {
+//    virtual juce::String getSelectedScaleNamePretty() {
 //        return m_selectedScale.getNamePretty();
 //    }
 //
-//    string getScaleNameFromSelectedNotesPretty(vizNote root, bool normalizeNotes, bool includeKeyInName) {
+//    juce::String getScaleNameFromSelectedNotesPretty(vizNote root, bool normalizeNotes, bool includeKeyInName) {
 //        deque<MusicTheory::NotePtr> notes = getSelectedNotesDeque(false, normalizeNotes, false, false);
-//        string scaleName = MusicTheory::Scale::determineFromDictionary(notes);
+//        juce::String scaleName = MusicTheory::Scale::determineFromDictionary(notes);
 //
 //        std::vector<std::string> scaleNameParts = ofSplitString(scaleName, " ");
 //
 //        if (!includeKeyInName && scaleNameParts.size() > 1) {
-//            string pureScaleName = "";
+//            juce::String pureScaleName = "";
 //            for (int i=1; i<scaleNameParts.size(); i++) {
 //                pureScaleName.append(scaleNameParts[i] + "-");
 //            }
@@ -1721,7 +1760,7 @@ private:
 //    }
 //
 //
-//    bool fontColorRequiresInversion(string key) {
+//    bool fontColorRequiresInversion(juce::String key) {
 //        return key == "D" || key == "A" || key == "E" || key == "B" || key == "F#" || key == "Gb";
 //    }
 //
@@ -1737,7 +1776,7 @@ private:
 //        return ofColor(255, 255, 255, 180);
 //    }
 //
-//    ofColor getFaintFontColor(string key) {
+//    ofColor getFaintFontColor(juce::String key) {
 //        if (getTheme().IsDark) {
 //            return (fontColorRequiresInversion(key) ? ofColor(255, 255, 255, 160) : ofColor(255, 255, 255, 120));
 //        } else {
@@ -1745,15 +1784,15 @@ private:
 //        }
 //    }
 //    
-//    ofColor getMediumFontColor(string key) {
+//    ofColor getMediumFontColor(juce::String key) {
 //        return (fontColorRequiresInversion(key) ? ofColor(0, 0, 0, 170) : ofColor(255, 255, 255, 170));
 //    }
 //
-//    ofColor getHoveredFontColor(string key) {
+//    ofColor getHoveredFontColor(juce::String key) {
 //        return (fontColorRequiresInversion(key) ? ofColor(0, 0, 0, 180) : ofColor(255, 255, 255, 180));
 //    }
 //
-//    ofColor getSelectedFontColor(string key) {
+//    ofColor getSelectedFontColor(juce::String key) {
 //        if (getTheme().IsDark) {
 //            return (fontColorRequiresInversion(key) ? ofColor(0, 0, 0, 255) : ofColor(255, 255, 255, 255));
 //        } else {
@@ -1776,20 +1815,20 @@ private:
 //    }
 //
 //
-//    ofColor getFaintFontColor_Dark(string key) {
+//    ofColor getFaintFontColor_Dark(juce::String key) {
 //        return (fontColorRequiresInversion(key) ? ofColor(200, 200, 200, 60) : ofColor(0, 0, 0, 60));
 //    }
 //
-//    ofColor getHoveredFontColor_Dark(string key) {
+//    ofColor getHoveredFontColor_Dark(juce::String key) {
 //        return (fontColorRequiresInversion(key) ? ofColor(200, 200, 200, 180) : ofColor(0, 0, 0, 180));
 //    }
 //
-//    ofColor getSelectedFontColor_Dark(string key) {
+//    ofColor getSelectedFontColor_Dark(juce::String key) {
 //        return (fontColorRequiresInversion(key) ? ofColor(200, 200, 200, 200) : ofColor(0, 0, 0, 200));
 //    }
 //
 //
-//    void drawFontWithShadow(shared_ptr<ofxSmartFont> font, string text, int x, int y, ofColor color, ofColor shadowColor) {
+//    void drawFontWithShadow(shared_ptr<ofxSmartFont> font, juce::String text, int x, int y, ofColor color, ofColor shadowColor) {
 //        // Draw shadow 1st!
 //        
 //        int shadowOffset =
@@ -1807,7 +1846,7 @@ private:
 //
 //
 //
-//    ofColor getSliceColorForState(string selectedRoot, string sliceRoot, int sliceDegree, bool selected, bool isExtendedNote) {
+//    ofColor getSliceColorForState(juce::String selectedRoot, juce::String sliceRoot, int sliceDegree, bool selected, bool isExtendedNote) {
 //        ofColor color;
 //        switch (getTheoryVizColorMode()) {
 //                
@@ -1841,11 +1880,11 @@ private:
 //        
 //    }
 //
-//    ofColor getSliceColorForState(string selectedRoot, string sliceRoot, int sliceDegree, bool selected) {
+//    ofColor getSliceColorForState(juce::String selectedRoot, juce::String sliceRoot, int sliceDegree, bool selected) {
 //        return getSliceColorForState(selectedRoot, sliceRoot, sliceDegree, selected, false);
 //    }
 //
-//    ofColor getFontColorForState(string sliceRoot, bool isExtendedNote) {
+//    ofColor getFontColorForState(juce::String sliceRoot, bool isExtendedNote) {
 //        ofColor color;
 //        switch (getTheoryVizColorMode()) {
 //                
@@ -1883,11 +1922,11 @@ private:
 //        return color;
 //    }
 //    
-//    ofColor getFontColorForState(string selectedRoot) {
+//    ofColor getFontColorForState(juce::String selectedRoot) {
 //        return getFontColorForState(selectedRoot, false);
 //    }
 //
-//    ofColor getFontColorForState(string selectedRoot, int alpha) {
+//    ofColor getFontColorForState(juce::String selectedRoot, int alpha) {
 //        ofColor c = getFontColorForState(selectedRoot, false);
 //        return ofColor(c.r, c.g, c.b, alpha);
 //    }
@@ -1924,7 +1963,7 @@ private:
 //     */
 //    
 //    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
-//        string event = args.eventName;
+//        juce::String event = args.eventName;
 //        if (event == WIDGET_EVENT::RECEIVE_DRAG_AND_DROP_DATA) {
 //            populateTargetMusicalWidget(this, args.getXMLString(true));
 //        } else if (event == APP_WIDGET_EVENT::SET_SELECTED_KEY) {
@@ -1939,7 +1978,7 @@ private:
 //
 //    }
 //
-//    void onWidgetMouseContentDragReleased(ofMouseEventArgs &e, string dragData) override {
+//    void onWidgetMouseContentDragReleased(ofMouseEventArgs &e, juce::String dragData) override {
 //
 //        if (getTargetDropWidgetId() == getWidgetId()) {
 //            // Dragging around stuff in same widget, do something different (do nothing for now
@@ -1961,8 +2000,8 @@ private:
 //
 //    }
 //
-//    static string getTheoryTypeForDragData(string dragData) {
-//        string type = "";
+//    static juce::String getTheoryTypeForDragData(juce::String dragData) {
+//        juce::String type = "";
 //        ofxXmlSettings xml = ofxXmlSettings();
 //        if (xml.loadFromBuffer(dragData.c_str())) {
 //            TiXmlElement* rootElm = xml.doc.RootElement();
@@ -1972,11 +2011,11 @@ private:
 //    }
 //
 //
-//    static vizNote noteFromDragData(string dragData) {
+//    static vizNote noteFromDragData(juce::String dragData) {
 //        return vizNote(dragData);
 //    }
 //
-//    static vizChord chordFromDragData(string dragData) {
+//    static vizChord chordFromDragData(juce::String dragData) {
 //        vizChord draggedChordNormalized = vizChord(dragData, true);
 //        vizChord draggedChord = vizChord(dragData, false);
 //        if (draggedChordNormalized.getChordName() != "") {
@@ -1985,15 +2024,15 @@ private:
 //        return vizChord();
 //    }
 //
-//    static vizScale scaleFromDragData(string dragData) {
+//    static vizScale scaleFromDragData(juce::String dragData) {
 //        return vizScale(dragData, false);
 //    }
 //
-//    static void populateTargetMusicalWidget(uiVizWidgetMusical* musicalWidgetTarget, string dragData) {
+//    static void populateTargetMusicalWidget(uiVizWidgetMusical* musicalWidgetTarget, juce::String dragData) {
 //        // ofSystemAlertDialog("You dragged something from widgetId " + getWidgetId() + " to " + getTargetDropWidgetId() + "- do something cool here...");
 //
 //        if (musicalWidgetTarget != nullptr) {
-//            string type = getTheoryTypeForDragData(dragData);
+//            juce::String type = getTheoryTypeForDragData(dragData);
 //
 //            if (type == "note") {
 //                vizNote draggedNote = vizNote(dragData); // getDraggingNote(); //
@@ -2086,7 +2125,7 @@ private:
 //    virtual void onKeyChanged(vizNote note) {
 //    }
 //    
-//    virtual vector<string> getFilesForExternalDropOperation(string dragData) override {
+//    virtual vector<string> getFilesForExternalDropOperation(juce::String dragData) override {
 //        vector<string> dragFiles;
 //
 //        // We don't want to drag externally unless SHIFT key is held down or IsDefaultDragBehaviourForExternalDrop = true
@@ -2098,7 +2137,7 @@ private:
 //
 //        vizChord draggedChord = vizChord(dragData, false);
 //        if (draggedChord.getChordName() != "") {
-//            string savedFile = draggedChord.saveToMidiFile();
+//            juce::String savedFile = draggedChord.saveToMidiFile();
 //            if (savedFile != "") dragFiles.push_back(savedFile);
 //            foundChordOrScale = true;
 //        }
@@ -2107,16 +2146,16 @@ private:
 //
 //        vizScale draggedScale = vizScale(dragData, false); // getDraggingScale();
 //        if (draggedScale.getName() != "") {
-//            string savedFile = draggedScale.saveToMidiFile();
+//            juce::String savedFile = draggedScale.saveToMidiFile();
 //            if (savedFile != "") dragFiles.push_back(savedFile);
 //            foundChordOrScale = true;
 //        }
 //
 //        if (!foundChordOrScale) {
 //            vizNotes draggedNotes = vizNotes(dragData, false);
-//            string notesXML = draggedNotes.getXML();
+//            juce::String notesXML = draggedNotes.getXML();
 //            if (draggedNotes.getNotes().size() > 0) {
-//                string savedFile = draggedNotes.saveToMidiFile();
+//                juce::String savedFile = draggedNotes.saveToMidiFile();
 //                if (savedFile != "") dragFiles.push_back(savedFile);
 //            }
 //        }
@@ -2257,8 +2296,8 @@ private:
 //        return mInstrumentRules;
 //    }
 //
-//    string getInstrumentRulesXMLString() {
-//        string retVal = "";
+//    juce::String getInstrumentRulesXMLString() {
+//        juce::String retVal = "";
 //        TiXmlPrinter printer;
 //        TiXmlElement* rootElm = mInstrumentRules.doc.RootElement();
 //        if (rootElm != NULL) {
@@ -2277,10 +2316,10 @@ private:
 //
 //        TiXmlPrinter printer;
 //        rootElm->Accept( &printer );
-//        string newRulesXMLString = printer.CStr();
+//        juce::String newRulesXMLjuce::String = printer.CStr();
 //
 //        if (!mInstrumentRules.loadFromBuffer(newRulesXMLString)) {
-//            cout << "Error Loading new rules : \n" << newRulesXMLString << "\n";
+//            cout << "Error Loading new rules : \n" << newRulesXMLjuce::String << "\n";
 //        }
 //
 //        if(fireEvent) {
@@ -2289,7 +2328,7 @@ private:
 //        }
 //    }
 //
-//    void setInstrumentRules(string rules, bool fireEvent) {
+//    void setInstrumentRules(juce::String rules, bool fireEvent) {
 //        ofxXmlSettings rulesXML;
 //        if (rulesXML.loadFromBuffer(rules.c_str())) {
 //            setInstrumentRules(rulesXML, fireEvent);
@@ -2307,7 +2346,7 @@ private:
 //        }
 //
 //        if (overwite && rules != NULL) {
-//            string tagName = rules->Value();
+//            juce::String tagName = rules->Value();
 //            rulesTarget.removeTag(tagName, 0);
 //        }
 //
@@ -2348,45 +2387,45 @@ private:
 //
 //    }
 //
-//    void setInstrumentRule(string instrument, string tag, string value) {
+//    void setInstrumentRule(juce::String instrument, juce::String tag, juce::String value) {
 //        pushToInstrumentRulesTag(instrument);
 //        mInstrumentRules.tagExists(tag, 0) ? mInstrumentRules.setValue(tag, value, 0) : mInstrumentRules.addValue(tag, value);
 //    }
 //    
-//    void setInstrumentRule(string instrument, string tag, int value) {
+//    void setInstrumentRule(juce::String instrument, juce::String tag, int value) {
 //        pushToInstrumentRulesTag(instrument);
 //        mInstrumentRules.tagExists(tag, 0) ? mInstrumentRules.setValue(tag, value, 0) : mInstrumentRules.addValue(tag, value);
 //    }
 //    
-//    void setInstrumentRule(string instrument, string tag,  double value) {
+//    void setInstrumentRule(juce::String instrument, juce::String tag,  double value) {
 //        pushToInstrumentRulesTag(instrument);
 //        mInstrumentRules.tagExists(tag, 0) ? mInstrumentRules.setValue(tag, value, 0) : mInstrumentRules.addValue(tag, value);
 //    }
 //    
-//    string getInstrumentRule(string instrument, string tag, string defaultVal) {
+//    juce::String getInstrumentRule(juce::String instrument, juce::String tag, juce::String defaultVal) {
 //        pushToInstrumentRulesTag(instrument);
-//        string val = mInstrumentRules.getValue(tag, defaultVal, 0);
+//        juce::String val = mInstrumentRules.getValue(tag, defaultVal, 0);
 //        return val;
 //    }
 //    
-//    int getInstrumentRule(string instrument, string tag, int defaultVal) {
+//    int getInstrumentRule(juce::String instrument, juce::String tag, int defaultVal) {
 //        pushToInstrumentRulesTag(instrument);
 //        int val = mInstrumentRules.getValue(tag, defaultVal, 0);
 //        return val;
 //    }
 //    
-//    double getInstrumentRule(string instrument, string tag,  double defaultVal) {
+//    double getInstrumentRule(juce::String instrument, juce::String tag,  double defaultVal) {
 //        pushToInstrumentRulesTag(instrument);
 //        double val = mInstrumentRules.setValue(tag, defaultVal, 0);
 //        return val;
 //    }
 //    
-//    void deleteInstrumentRule(string instrument, string tag) {
+//    void deleteInstrumentRule(juce::String instrument, juce::String tag) {
 //        while (mInstrumentRules.popTag() > 0); // pop to top!
 //        mInstrumentRules.removeTag(tag, 0);
 //    }
 //
-//    void pushToInstrumentRulesTag(string instrument) {
+//    void pushToInstrumentRulesTag(juce::String instrument) {
 //        
 //        while (mInstrumentRules.popTag() > 0); // pop to top!
 //
@@ -2500,27 +2539,12 @@ private:
 //
 //
 //private:
-//    TheoryMode mTheoryMode = TheoryMode::KEY_CENTRIC;
-//    TheoryVizColorMode mTheoryVizColorMode = TheoryVizColorMode::KEYS;
-//    TheoryVizLabelMode mTheoryVizLabelMode = TheoryVizLabelMode::KEYS;
-//    TheoryVizNoteMode mTheoryVizNoteMode = TheoryVizNoteMode::DEFAULT;
-//    TheoryVizColorAlternateMode mTheoryVizColorAlternateMode = TheoryVizColorAlternateMode::NONE;
-//    TheoryVizLabelAlternateMode mTheoryVizLabelAlternateMode = TheoryVizLabelAlternateMode::NONE;
-//    TheoryVizShapeMode mTheoryVizShapeMode = TheoryVizShapeMode::CIRCLE;
-//    TheoryVizOrientationMode mTheoryVizOrientationMode = TheoryVizOrientationMode::UNSET;
-//    TheoryVizInstrumentDrawMode mTheoryVizInstrumentDrawMode = TheoryVizInstrumentDrawMode::UNSET;
-//    TheoryVizInstrumentTheoryContentMode mTheoryVizInstrumentTheoryContentMode = TheoryVizInstrumentTheoryContentMode::UNSET;
-//    TheoryVizInstrumentChordViewMode mTheoryVizInstrumentChordViewMode = TheoryVizInstrumentChordViewMode::UNSET;
+
 //    
-//    string mUserDefinedChordName = "";
-//    bool mUserCanSetChordName = true;
-//    bool mUserCanInvokeContextMenu = true;
-//    bool mUserCanSetSelectedKey = true;
-//    bool mUserCanAddSelectedNote = true;
-//    bool mUserCanAddSelectedChord = true;
-//    bool mGetUserCanAddSelectedScale = true;
+
+
 //
-//    bool mIsBlackAndWhiteMode = false;
+
 //    bool mShowHelpIcon = true;
 //    bool mShowSettingsIcon = true;
 //
@@ -2563,9 +2587,9 @@ private:
 //    bool mIsDefaultDragBehaviourForExternalDrop = false;
 //    int mGMInstrumentNumber = vizTheory::GeneralMidiInstrument::Acoustic_Grand_Piano;
 //    
-//    string mCalculatedChordName = "";
+//    juce::String mCalculatedChordName = "";
 //    bool mIsExtendedChordMode = false;
-//    string mCalculatedScaleName = "";
+//    juce::String mCalculatedScaleName = "";
 //    ofxXmlSettings mInstrumentRules = ofxXmlSettings();
 //
 //    int auditioningChordBPM = 120;
