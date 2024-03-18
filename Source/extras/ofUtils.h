@@ -10,7 +10,6 @@
 
 #pragma once
 
-
 #include <iostream>
 #include <string>
 #include <regex>
@@ -19,22 +18,19 @@
 #include <iterator>
 #include <regex>
 
-//#include "Poco/RegularExpression.h"
-//using Poco::RegularExpression;
-
-
 using namespace std;
 
 
 class ofVec2f {
 public:
+    ofVec2f() {} ;
     ofVec2f( int x, int y ) : x(x), y(y) {};
 
     /// \brief Stores the `x` component of the vector.
-    int x;
+    int x = 0;
 
     /// \brief Stores the `y` component of the vector.
-    int y;
+    int y = 0;
 };
 
 
@@ -94,7 +90,7 @@ private:
 /// \param value The value to convert to a string.
 /// \returns A string representing the value or an empty string on failure.
 template <class T>
-std::string ofToString(const T & value) {
+static std::string ofToString(const T & value) {
     std::ostringstream out;
     out << value;
     return out.str();
@@ -109,7 +105,7 @@ std::string ofToString(const T & value) {
 /// \param precision The precision to use when converting to a string.
 /// \returns The string representation of the value.
 template <class T>
-std::string ofToString(const T & value, int precision) {
+static std::string ofToString(const T & value, int precision) {
     std::ostringstream out;
     out << std::fixed << std::setprecision(precision) << value;
     return out.str();
@@ -125,7 +121,7 @@ std::string ofToString(const T & value, int precision) {
 /// \param fill The character to use when padding the converted string.
 /// \returns The string representation of the value.
 template <class T>
-std::string ofToString(const T & value, int width, char fill) {
+static std::string ofToString(const T & value, int width, char fill) {
     std::ostringstream out;
     out << std::fixed << std::setfill(fill) << std::setw(width) << value;
     return out.str();
@@ -142,7 +138,7 @@ std::string ofToString(const T & value, int width, char fill) {
 /// \param fill The character to use when padding the converted string.
 /// \returns The string representation of the value.
 template <class T>
-std::string ofToString(const T & value, int precision, int width, char fill) {
+static std::string ofToString(const T & value, int precision, int width, char fill) {
     std::ostringstream out;
     out << std::fixed << std::setfill(fill) << std::setw(width) << std::setprecision(precision) << value;
     return out.str();
@@ -157,7 +153,7 @@ std::string ofToString(const T & value, int precision, int width, char fill) {
 /// \param values The vector of values to be converted to a string.
 /// \returns a comma-delimited string representation of the intput values.
 template <class T>
-std::string ofToString(const std::vector<T> & values) {
+static std::string ofToString(const std::vector<T> & values) {
     std::stringstream out;
     int n = values.size();
     out << "{";
@@ -189,17 +185,9 @@ T ofTo(const std::string & str) {
 }
 
 //----------------------------------------
-//int ofToInt(const string & intString) {
-//    return ofTo<int>(intString);
-//}
-
-
-
-
-
-
-
-
+static int ofToInt(const string & intString) {
+    return ofTo<int>(intString);
+}
 
 //--------------------------------------------------
 // helper method to get locale from name
@@ -223,117 +211,119 @@ static std::locale getLocale(const string & locale) {
     return loc;
 }
 
-////--------------------------------------------------
-//string ofTrimFront(const string & src, const string & locale = "") {
-//    auto dst = src;
-//    std::locale loc = getLocale(locale);
-//    dst.erase(dst.begin(), std::find_if_not(dst.begin(), dst.end(), [&](char & c) { return std::isspace<char>(c, loc); }));
-//    return dst;
-//}
+//--------------------------------------------------
+static string ofTrimFront(const string & src, const string & locale = "") {
+    auto dst = src;
+    std::locale loc = getLocale(locale);
+    dst.erase(dst.begin(), std::find_if_not(dst.begin(), dst.end(), [&](char & c) { return std::isspace<char>(c, loc); }));
+    return dst;
+}
+
+//--------------------------------------------------
+static string ofTrimBack(const string & src, const string & locale = "") {
+    auto dst = src;
+    std::locale loc = getLocale(locale);
+    dst.erase(std::find_if_not(dst.rbegin(), dst.rend(), [&](char & c) { return std::isspace<char>(c, loc); }).base(), dst.end());
+    return dst;
+}
+
+//--------------------------------------------------
+static string ofTrim(const string & src, const string & locale = "") {
+    return ofTrimFront(ofTrimBack(src));
+}
+
+//--------------------------------------------------
+static void ofStringReplace(string & input, const string & searchStr, const string & replaceStr) {
+    auto pos = input.find(searchStr);
+    while (pos != std::string::npos) {
+        input.replace(pos, searchStr.size(), replaceStr);
+        pos += replaceStr.size();
+        std::string nextfind(input.begin() + pos, input.end());
+        auto nextpos = nextfind.find(searchStr);
+        if (nextpos == std::string::npos) {
+            break;
+        }
+        pos += nextpos;
+    }
+}
+
+//--------------------------------------------------
+static bool ofIsStringInString(const string & haystack, const string & needle) {
+    return haystack.find(needle) != std::string::npos;
+}
+
+//--------------------------------------------------
+static std::size_t ofStringTimesInString(const string & haystack, const string & needle) {
+    const size_t step = needle.size();
+
+    size_t count(0);
+    size_t pos(0);
+
+    while ((pos = haystack.find(needle, pos)) != std::string::npos) {
+        pos += step;
+        ++count;
+    }
+
+    return count;
+}
+
+//--------------------------------------------------
+static vector<string> ofSplitString(const string & source, const string & delimiter, bool ignoreEmpty = false, bool trim = true) {
+    vector<string> result;
+    if (delimiter.empty()) {
+        result.push_back(source);
+        return result;
+    }
+    string::const_iterator substart = source.begin(), subend;
+    while (true) {
+        subend = search(substart, source.end(), delimiter.begin(), delimiter.end());
+        string sub(substart, subend);
+        if (trim) {
+            sub = ofTrim(sub);
+        }
+        if (!ignoreEmpty || !sub.empty()) {
+            result.push_back(sub);
+        }
+        if (subend == source.end()) {
+            break;
+        }
+        substart = subend + delimiter.size();
+    }
+    return result;
+}
+
+//--------------------------------------------------
+static string ofJoinString(const vector<string> & stringElements, const string & delimiter) {
+    string str;
+    if (stringElements.empty()) {
+        return str;
+    }
+    auto numStrings = stringElements.size();
+    string::size_type strSize = delimiter.size() * (numStrings - 1);
+    for (const string & s : stringElements) {
+        strSize += s.size();
+    }
+    str.reserve(strSize);
+    str += stringElements[0];
+    for (decltype(numStrings) i = 1; i < numStrings; ++i) {
+        str += delimiter;
+        str += stringElements[i];
+    }
+    return str;
+}
 //
-////--------------------------------------------------
-//string ofTrimBack(const string & src, const string & locale = "") {
-//    auto dst = src;
-//    std::locale loc = getLocale(locale);
-//    dst.erase(std::find_if_not(dst.rbegin(), dst.rend(), [&](char & c) { return std::isspace<char>(c, loc); }).base(), dst.end());
-//    return dst;
-//}
-//
-////--------------------------------------------------
-//string ofTrim(const string & src, const string & locale = "") {
-//    return ofTrimFront(ofTrimBack(src));
-//}
 //
 //--------------------------------------------------
-//void ofStringReplace(string & input, const string & searchStr, const string & replaceStr) {
-//    auto pos = input.find(searchStr);
-//    while (pos != std::string::npos) {
-//        input.replace(pos, searchStr.size(), replaceStr);
-//        pos += replaceStr.size();
-//        std::string nextfind(input.begin() + pos, input.end());
-//        auto nextpos = nextfind.find(searchStr);
-//        if (nextpos == std::string::npos) {
-//            break;
-//        }
-//        pos += nextpos;
-//    }
-//}
+static string ofToLower(const string & src) {
+    const juce::String r(src);
+    return r.toLowerCase().toStdString();
+}
+//
+////--------------------------------------------------
+static string ofToUpper(const string & src) {
+    const juce::String r(src);
+    return r.toUpperCase().toStdString();
+}
 
-////--------------------------------------------------
-//bool ofIsStringInString(const string & haystack, const string & needle) {
-//    return haystack.find(needle) != std::string::npos;
-//}
-//
-////--------------------------------------------------
-//std::size_t ofStringTimesInString(const string & haystack, const string & needle) {
-//    const size_t step = needle.size();
-//
-//    size_t count(0);
-//    size_t pos(0);
-//
-//    while ((pos = haystack.find(needle, pos)) != std::string::npos) {
-//        pos += step;
-//        ++count;
-//    }
-//
-//    return count;
-//}
-//
-////--------------------------------------------------
-//vector<string> ofSplitString(const string & source, const string & delimiter, bool ignoreEmpty = false, bool trim = true) {
-//    vector<string> result;
-//    if (delimiter.empty()) {
-//        result.push_back(source);
-//        return result;
-//    }
-//    string::const_iterator substart = source.begin(), subend;
-//    while (true) {
-//        subend = search(substart, source.end(), delimiter.begin(), delimiter.end());
-//        string sub(substart, subend);
-//        if (trim) {
-//            sub = ofTrim(sub);
-//        }
-//        if (!ignoreEmpty || !sub.empty()) {
-//            result.push_back(sub);
-//        }
-//        if (subend == source.end()) {
-//            break;
-//        }
-//        substart = subend + delimiter.size();
-//    }
-//    return result;
-//}
-//
-////--------------------------------------------------
-//string ofJoinString(const vector<string> & stringElements, const string & delimiter) {
-//    string str;
-//    if (stringElements.empty()) {
-//        return str;
-//    }
-//    auto numStrings = stringElements.size();
-//    string::size_type strSize = delimiter.size() * (numStrings - 1);
-//    for (const string & s : stringElements) {
-//        strSize += s.size();
-//    }
-//    str.reserve(strSize);
-//    str += stringElements[0];
-//    for (decltype(numStrings) i = 1; i < numStrings; ++i) {
-//        str += delimiter;
-//        str += stringElements[i];
-//    }
-//    return str;
-//}
-//
-//
-////--------------------------------------------------
-string ofToLower(const juce::String & src) {
-    return src.toLowerCase();
-}
-//
-////--------------------------------------------------
-string ofToUpper(const juce::String & src) {
-    return src.toUpperCase();
-}
-//
-////--------------------------------------------------
-//
+//--------------------------------------------------
+

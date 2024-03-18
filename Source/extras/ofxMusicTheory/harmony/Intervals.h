@@ -11,6 +11,7 @@
 #ifndef _Intervals
 #define _Intervals
 
+#include "../../../extras/ofUtils.h"
 #include "Note.h"
 #include "Diatonic.h"
 //class NotePtr;
