@@ -575,7 +575,9 @@ class Interval {
     }
     
     
-    
+    // STOO - note - RegularExpression.match NOT TESTED
+    // vs Poco match ...
+    // Use this function at own risk!!
     static int fromRoman(string v){
         ofStringReplace(v, " ", "");
         

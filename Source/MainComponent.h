@@ -2,7 +2,7 @@
 
 #include <JuceHeader.h>
 #include "uiVizWidgetGuitar.h"
-#include "extras/ofxMusicTheory/ofxMusicTheory.h"
+
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all

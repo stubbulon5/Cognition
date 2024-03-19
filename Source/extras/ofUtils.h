@@ -168,7 +168,13 @@ static std::string ofToString(const std::vector<T> & values) {
 }
 
 
-
+//----------------------------------------
+static int ofHexToInt(const string& intHexString) {
+    int x = 0;
+    istringstream cur(intHexString);
+    cur >> std::hex >> x;
+    return x;
+}
 
 
 
