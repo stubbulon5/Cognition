@@ -165,75 +165,75 @@ public:
 //    }
 //
 //
-//    ofColor TitleFontColor_withAlpha(float alpha) {
-//        return ofColor(TitleFontColor.r, TitleFontColor.g, TitleFontColor.b, TitleFontColor.a * alpha);
+//    juce::Colour TitleFontColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleFontColor.r, TitleFontColor.g, TitleFontColor.b, TitleFontColor.a * alpha);
 //    }
 //
 //    string getTitleFontColorHex() {
 //        return "#" + getHexFromInt(TitleFontColor.r) +  getHexFromInt(TitleFontColor.g) + getHexFromInt(TitleFontColor.b) + getHexFromInt(TitleFontColor.a);
 //    }
 //
-//    void setTitleFontColor(ofColor val) {
+//    void setTitleFontColor(juce::Colour val) {
 //        setColorFromSource(TitleFontColor, val);
 //    }
 //
 //    void setTitleFontColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setTitleFontColor(val);
 //    }
 //    
-//    ofColor TitleColor_withAlpha(float alpha) {
-//        return ofColor(TitleColor.r, TitleColor.g, TitleColor.b, TitleColor.a * alpha);
+//    juce::Colour TitleColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleColor.r, TitleColor.g, TitleColor.b, TitleColor.a * alpha);
 //    }
 //
 //    string getTitleColorHex() {
 //        return "#" + getHexFromInt(TitleColor.r) +  getHexFromInt(TitleColor.g) + getHexFromInt(TitleColor.b) + getHexFromInt(TitleColor.a);
 //    }
 //
-//    void setTitleColor(ofColor val) {
+//    void setTitleColor(juce::Colour val) {
 //        setColorFromSource(TitleColor, val);
 //    }
 //
 //    void setTitleColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setTitleColor(val);
 //    }
 //
-//    ofColor TitleGradientColor1_withAlpha(float alpha) {
-//        return ofColor(TitleGradientColor1.r, TitleGradientColor1.g, TitleGradientColor1.b, TitleGradientColor1.a * alpha);
+//    juce::Colour TitleGradientColor1_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleGradientColor1.r, TitleGradientColor1.g, TitleGradientColor1.b, TitleGradientColor1.a * alpha);
 //    }
 //
 //    string getTitleGradientColor1Hex() {
 //        return "#" + getHexFromInt(TitleGradientColor1.r) +  getHexFromInt(TitleGradientColor1.g) + getHexFromInt(TitleGradientColor1.b) + getHexFromInt(TitleGradientColor1.a);
 //    }
 //
-//    ofColor TitleGradientColor2_withAlpha(float alpha) {
-//        return ofColor(TitleGradientColor2.r, TitleGradientColor2.g, TitleGradientColor2.b, TitleGradientColor2.a * alpha);
+//    juce::Colour TitleGradientColor2_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleGradientColor2.r, TitleGradientColor2.g, TitleGradientColor2.b, TitleGradientColor2.a * alpha);
 //    }
 //
 //    string getTitleGradientColor2Hex() {
 //        return "#" + getHexFromInt(TitleGradientColor2.r) +  getHexFromInt(TitleGradientColor2.g) + getHexFromInt(TitleGradientColor2.b) + getHexFromInt(TitleGradientColor2.a);
 //    }
 //
-//    ofColor TitleGradientColor3_withAlpha(float alpha) {
-//        return ofColor(TitleGradientColor3.r, TitleGradientColor3.g, TitleGradientColor3.b, TitleGradientColor3.a * alpha);
+//    juce::Colour TitleGradientColor3_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleGradientColor3.r, TitleGradientColor3.g, TitleGradientColor3.b, TitleGradientColor3.a * alpha);
 //    }
 //
 //    string getTitleGradientColor3Hex() {
 //        return "#" + getHexFromInt(TitleGradientColor3.r) +  getHexFromInt(TitleGradientColor3.g) + getHexFromInt(TitleGradientColor3.b) + getHexFromInt(TitleGradientColor3.a);
 //    }
 //
-//    ofColor TitleGradientColor4_withAlpha(float alpha) {
-//        return ofColor(TitleGradientColor4.r, TitleGradientColor4.g, TitleGradientColor4.b, TitleGradientColor4.a * alpha);
+//    juce::Colour TitleGradientColor4_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TitleGradientColor4.r, TitleGradientColor4.g, TitleGradientColor4.b, TitleGradientColor4.a * alpha);
 //    }
 //
 //    string getTitleGradientColor4Hex() {
 //        return "#" + getHexFromInt(TitleGradientColor4.r) +  getHexFromInt(TitleGradientColor4.g) + getHexFromInt(TitleGradientColor4.b) + getHexFromInt(TitleGradientColor4.a);
 //    }
 //
-//    void setTitleGradientColors(ofColor color1, ofColor color2, ofColor color3, ofColor color4) {
+//    void setTitleGradientColors(juce::Colour color1, juce::Colour color2, juce::Colour color3, juce::Colour color4) {
 //        TitleGradientColor1 = color1;
 //        TitleGradientColor2 = color2;
 //        TitleGradientColor3 = color3;
@@ -243,10 +243,10 @@ public:
 //
 //    void setTitleGradientColors(string RGBAHexColor1, string RGBAHexColor2, string RGBAHexColor3, string RGBAHexColor4) {
 //        if (RGBAHexColor1 == "" && RGBAHexColor2 == "" && RGBAHexColor3 == "" && RGBAHexColor4 == "") return;
-//        ofColor color1 = getColor_fromRGBAHex(RGBAHexColor1);
-//        ofColor color2 = getColor_fromRGBAHex(RGBAHexColor2);
-//        ofColor color3 = getColor_fromRGBAHex(RGBAHexColor3);
-//        ofColor color4 = getColor_fromRGBAHex(RGBAHexColor4);
+//        juce::Colour color1 = getColor_fromRGBAHex(RGBAHexColor1);
+//        juce::Colour color2 = getColor_fromRGBAHex(RGBAHexColor2);
+//        juce::Colour color3 = getColor_fromRGBAHex(RGBAHexColor3);
+//        juce::Colour color4 = getColor_fromRGBAHex(RGBAHexColor4);
 //        setTitleGradientColors(color1, color2, color3, color4);
 //    }
 //
@@ -254,39 +254,39 @@ public:
 //        return mTitleGradientSet;
 //    }
 //
-//    ofColor TypographyPrimaryColor_withAlpha(float alpha) {
-//        return ofColor(TypographyPrimaryColor.r, TypographyPrimaryColor.g, TypographyPrimaryColor.b, TypographyPrimaryColor.a * alpha);
+//    juce::Colour TypographyPrimaryColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TypographyPrimaryColor.r, TypographyPrimaryColor.g, TypographyPrimaryColor.b, TypographyPrimaryColor.a * alpha);
 //    }
 //
 //    string getTypographyPrimaryColorHex() {
 //        return "#" + getHexFromInt(TypographyPrimaryColor.r) +  getHexFromInt(TypographyPrimaryColor.g) + getHexFromInt(TypographyPrimaryColor.b) + getHexFromInt(TypographyPrimaryColor.a);
 //    }
 //
-//    ofColor TypographySecondaryColor_withAlpha(float alpha) {
-//        return ofColor(TypographySecondaryColor.r, TypographySecondaryColor.g, TypographySecondaryColor.b, TypographySecondaryColor.a * alpha);
+//    juce::Colour TypographySecondaryColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TypographySecondaryColor.r, TypographySecondaryColor.g, TypographySecondaryColor.b, TypographySecondaryColor.a * alpha);
 //    }
 //
 //    string getTypographySecondaryColorHex() {
 //        return "#" + getHexFromInt(TypographySecondaryColor.r) +  getHexFromInt(TypographySecondaryColor.g) + getHexFromInt(TypographySecondaryColor.b) + getHexFromInt(TypographySecondaryColor.a);
 //    }
 //
-//    ofColor TypographyTertiaryColor_withAlpha(float alpha) {
-//        return ofColor(TypographyTertiaryColor.r, TypographyTertiaryColor.g, TypographyTertiaryColor.b, TypographyTertiaryColor.a * alpha);
+//    juce::Colour TypographyTertiaryColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TypographyTertiaryColor.r, TypographyTertiaryColor.g, TypographyTertiaryColor.b, TypographyTertiaryColor.a * alpha);
 //    }
 //
 //    string getTypographyTertiaryColorHex() {
 //        return "#" + getHexFromInt(TypographyTertiaryColor.r) +  getHexFromInt(TypographyTertiaryColor.g) + getHexFromInt(TypographyTertiaryColor.b) + getHexFromInt(TypographyTertiaryColor.a);
 //    }
 //
-//    ofColor TypographyQuaternaryColor_withAlpha(float alpha) {
-//        return ofColor(TypographyQuaternaryColor.r, TypographyQuaternaryColor.g, TypographyQuaternaryColor.b, TypographyQuaternaryColor.a * alpha);
+//    juce::Colour TypographyQuaternaryColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(TypographyQuaternaryColor.r, TypographyQuaternaryColor.g, TypographyQuaternaryColor.b, TypographyQuaternaryColor.a * alpha);
 //    }
 //
 //    string getTypographyQuaternaryColorHex() {
 //        return "#" + getHexFromInt(TypographyQuaternaryColor.r) +  getHexFromInt(TypographyQuaternaryColor.g) + getHexFromInt(TypographyQuaternaryColor.b) + getHexFromInt(TypographyQuaternaryColor.a);
 //    }
 //
-//    void setTypographyColors(ofColor primary, ofColor secondary, ofColor tertiary, ofColor quaternary) {
+//    void setTypographyColors(juce::Colour primary, juce::Colour secondary, juce::Colour tertiary, juce::Colour quaternary) {
 //        TypographyPrimaryColor = primary;
 //        TypographySecondaryColor = secondary;
 //        TypographyTertiaryColor = tertiary;
@@ -294,290 +294,290 @@ public:
 //    }
 //
 //    void setTypographyColors(string RGBAHexPrimary, string RGBAHexSecondary, string RGBAHexTertiary, string RGBAHexQuaternary) {
-//        ofColor primary = getColor_fromRGBAHex(RGBAHexPrimary);
-//        ofColor secondary = getColor_fromRGBAHex(RGBAHexSecondary);
-//        ofColor tertiary = getColor_fromRGBAHex(RGBAHexTertiary);
-//        ofColor quaternary = getColor_fromRGBAHex(RGBAHexQuaternary);
+//        juce::Colour primary = getColor_fromRGBAHex(RGBAHexPrimary);
+//        juce::Colour secondary = getColor_fromRGBAHex(RGBAHexSecondary);
+//        juce::Colour tertiary = getColor_fromRGBAHex(RGBAHexTertiary);
+//        juce::Colour quaternary = getColor_fromRGBAHex(RGBAHexQuaternary);
 //        setTypographyColors(primary, secondary, tertiary, quaternary);
 //    }
 //
-//    ofColor SelectionForegroundColor_withAlpha(float alpha) {
-//        return ofColor(SelectionForegroundColor.r, SelectionForegroundColor.g, SelectionForegroundColor.b, SelectionForegroundColor.a * alpha);
+//    juce::Colour SelectionForegroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(SelectionForegroundColor.r, SelectionForegroundColor.g, SelectionForegroundColor.b, SelectionForegroundColor.a * alpha);
 //    }
 //
 //    string getSelectionForegroundColorHex() {
 //        return "#" + getHexFromInt(SelectionForegroundColor.r) +  getHexFromInt(SelectionForegroundColor.g) + getHexFromInt(SelectionForegroundColor.b) + getHexFromInt(SelectionForegroundColor.a);
 //    }
 //
-//    ofColor SelectionBackgroundColor_withAlpha(float alpha) {
-//        return ofColor(SelectionBackgroundColor.r, SelectionBackgroundColor.g, SelectionBackgroundColor.b, SelectionBackgroundColor.a * alpha);
+//    juce::Colour SelectionBackgroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(SelectionBackgroundColor.r, SelectionBackgroundColor.g, SelectionBackgroundColor.b, SelectionBackgroundColor.a * alpha);
 //    }
 //
 //    string getSelectionBackgroundColorHex() {
 //        return "#" + getHexFromInt(SelectionBackgroundColor.r) +  getHexFromInt(SelectionBackgroundColor.g) + getHexFromInt(SelectionBackgroundColor.b) + getHexFromInt(SelectionBackgroundColor.a);
 //    }
 //
-//    void setSelectionColors(ofColor foreground, ofColor background) {
+//    void setSelectionColors(juce::Colour foreground, juce::Colour background) {
 //        SelectionForegroundColor = foreground;
 //        SelectionBackgroundColor = background;
 //    }
 //
 //    void setSelectionColors(string RGBAHexForeground, string RGBAHexBackground) {
-//        ofColor foreground = getColor_fromRGBAHex(RGBAHexForeground);
-//        ofColor background = getColor_fromRGBAHex(RGBAHexBackground);
+//        juce::Colour foreground = getColor_fromRGBAHex(RGBAHexForeground);
+//        juce::Colour background = getColor_fromRGBAHex(RGBAHexBackground);
 //        setSelectionColors(foreground, background);
 //    }
 //
-//    ofColor HoverForegroundColor_withAlpha(float alpha) {
-//        return ofColor(HoverForegroundColor.r, HoverForegroundColor.g, HoverForegroundColor.b, HoverForegroundColor.a * alpha);
+//    juce::Colour HoverForegroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(HoverForegroundColor.r, HoverForegroundColor.g, HoverForegroundColor.b, HoverForegroundColor.a * alpha);
 //    }
 //
 //    string getHoverForegroundColorHex() {
 //        return "#" + getHexFromInt(HoverForegroundColor.r) +  getHexFromInt(HoverForegroundColor.g) + getHexFromInt(HoverForegroundColor.b) + getHexFromInt(HoverForegroundColor.a);
 //    }
 //
-//    ofColor HoverBackgroundColor_withAlpha(float alpha) {
-//        return ofColor(HoverBackgroundColor.r, HoverBackgroundColor.g, HoverBackgroundColor.b, HoverBackgroundColor.a * alpha);
+//    juce::Colour HoverBackgroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(HoverBackgroundColor.r, HoverBackgroundColor.g, HoverBackgroundColor.b, HoverBackgroundColor.a * alpha);
 //    }
 //
 //    string getHoverBackgroundColorHex() {
 //        return "#" + getHexFromInt(HoverBackgroundColor.r) +  getHexFromInt(HoverBackgroundColor.g) + getHexFromInt(HoverBackgroundColor.b) + getHexFromInt(HoverBackgroundColor.a);
 //    }
 //
-//    void setHoverColors(ofColor foreground, ofColor background) {
+//    void setHoverColors(juce::Colour foreground, juce::Colour background) {
 //        HoverForegroundColor = foreground;
 //        HoverBackgroundColor = background;
 //    }
 //
 //    void setHoverColors(string RGBAHexForeground, string RGBAHexBackground) {
-//        ofColor foreground = getColor_fromRGBAHex(RGBAHexForeground);
-//        ofColor background = getColor_fromRGBAHex(RGBAHexBackground);
+//        juce::Colour foreground = getColor_fromRGBAHex(RGBAHexForeground);
+//        juce::Colour background = getColor_fromRGBAHex(RGBAHexBackground);
 //        setHoverColors(foreground, background);
 //    }
 //
-//    ofColor WidgetColor_withAlpha(float alpha) {
-//        return ofColor(WidgetColor.r, WidgetColor.g, WidgetColor.b, WidgetColor.a * alpha);
+//    juce::Colour WidgetColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetColor.r, WidgetColor.g, WidgetColor.b, WidgetColor.a * alpha);
 //    }
 //
 //    string getWidgetColorHex() {
 //        return "#" + getHexFromInt(WidgetColor.r) +  getHexFromInt(WidgetColor.g) + getHexFromInt(WidgetColor.b) + getHexFromInt(WidgetColor.a);
 //    }
 //
-//    void setWidgetColor(ofColor val) {
+//    void setWidgetColor(juce::Colour val) {
 //        setColorFromSource(WidgetColor, val);
 //    }
 //
 //    void setWidgetColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetColor(val);
 //    }
 //
-//    ofColor WidgetContentColor_withAlpha(float alpha) {
-//        return ofColor(WidgetContentColor.r, WidgetContentColor.g, WidgetContentColor.b, WidgetContentColor.a * alpha);
+//    juce::Colour WidgetContentColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetContentColor.r, WidgetContentColor.g, WidgetContentColor.b, WidgetContentColor.a * alpha);
 //    }
 //
 //    string getWidgetContentColorHex() {
 //        return "#" + getHexFromInt(WidgetContentColor.r) +  getHexFromInt(WidgetContentColor.g) + getHexFromInt(WidgetContentColor.b) + getHexFromInt(WidgetContentColor.a);
 //    }
 //
-//    void setWidgetContentColor(ofColor val) {
+//    void setWidgetContentColor(juce::Colour val) {
 //        setColorFromSource(WidgetContentColor, val);
 //    }
 //
 //    void setWidgetContentColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetContentColor(val);
 //    }
 //
-//    ofColor WidgetAccent1Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAccent1Color.r, WidgetAccent1Color.g, WidgetAccent1Color.b, WidgetAccent1Color.a * alpha);
+//    juce::Colour WidgetAccent1Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAccent1Color.r, WidgetAccent1Color.g, WidgetAccent1Color.b, WidgetAccent1Color.a * alpha);
 //    }
 //
 //    string getWidgetAccent1ColorHex() {
 //        return "#" + getHexFromInt(WidgetAccent1Color.r) +  getHexFromInt(WidgetAccent1Color.g) + getHexFromInt(WidgetAccent1Color.b) + getHexFromInt(WidgetAccent1Color.a);
 //    }
 //
-//    void setWidgetAccent1Color(ofColor val) {
+//    void setWidgetAccent1Color(juce::Colour val) {
 //        setColorFromSource(WidgetAccent1Color, val);
 //    }
 //
 //    void setWidgetAccent1Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAccent1Color(val);
 //    }
 //
-//    ofColor WidgetAccent2Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAccent2Color.r, WidgetAccent2Color.g, WidgetAccent2Color.b, WidgetAccent2Color.a * alpha);
+//    juce::Colour WidgetAccent2Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAccent2Color.r, WidgetAccent2Color.g, WidgetAccent2Color.b, WidgetAccent2Color.a * alpha);
 //    }
 //
 //    string getWidgetAccent2ColorHex() {
 //        return "#" + getHexFromInt(WidgetAccent2Color.r) +  getHexFromInt(WidgetAccent2Color.g) + getHexFromInt(WidgetAccent2Color.b) + getHexFromInt(WidgetAccent2Color.a);
 //    }
 //
-//    void setWidgetAccent2Color(ofColor val) {
+//    void setWidgetAccent2Color(juce::Colour val) {
 //        setColorFromSource(WidgetAccent2Color, val);
 //    }
 //
 //    void setWidgetAccent2Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAccent2Color(val);
 //    }
 //
-//    ofColor WidgetAccent3Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAccent3Color.r, WidgetAccent3Color.g, WidgetAccent3Color.b, WidgetAccent3Color.a * alpha);
+//    juce::Colour WidgetAccent3Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAccent3Color.r, WidgetAccent3Color.g, WidgetAccent3Color.b, WidgetAccent3Color.a * alpha);
 //    }
 //
 //    string getWidgetAccent3ColorHex() {
 //        return "#" + getHexFromInt(WidgetAccent3Color.r) +  getHexFromInt(WidgetAccent3Color.g) + getHexFromInt(WidgetAccent3Color.b) + getHexFromInt(WidgetAccent3Color.a);
 //    }
 //
-//    void setWidgetAccent3Color(ofColor val) {
+//    void setWidgetAccent3Color(juce::Colour val) {
 //        setColorFromSource(WidgetAccent3Color, val);
 //    }
 //
 //    void setWidgetAccent3Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAccent3Color(val);
 //    }
 //
-//    ofColor WidgetAccent4Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAccent4Color.r, WidgetAccent4Color.g, WidgetAccent4Color.b, WidgetAccent4Color.a * alpha);
+//    juce::Colour WidgetAccent4Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAccent4Color.r, WidgetAccent4Color.g, WidgetAccent4Color.b, WidgetAccent4Color.a * alpha);
 //    }
 //
 //    string getWidgetAccent4ColorHex() {
 //        return "#" + getHexFromInt(WidgetAccent4Color.r) +  getHexFromInt(WidgetAccent4Color.g) + getHexFromInt(WidgetAccent4Color.b) + getHexFromInt(WidgetAccent4Color.a);
 //    }
 //
-//    void setWidgetAccent4Color(ofColor val) {
+//    void setWidgetAccent4Color(juce::Colour val) {
 //        setColorFromSource(WidgetAccent4Color, val);
 //    }
 //
 //    void setWidgetAccent4Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAccent4Color(val);
 //    }
 //
 //    // Eg text
-//    ofColor WidgetAccentHighContrast1Color_withAlpha(float alpha) {
+//    juce::Colour WidgetAccentHighContrast1Color_withAlpha(float alpha) {
 //        return WidgetAccent1Color_withAlpha(alpha);
 //    }
 //
 //    // Eg text
-//    ofColor WidgetAccentHighContrast2Color_withAlpha(float alpha) {
+//    juce::Colour WidgetAccentHighContrast2Color_withAlpha(float alpha) {
 //        return WidgetAccent2Color_withAlpha(alpha);
 //    }
 //
 //    // Eg highlight BEHIND text
-//    ofColor WidgetAccentLowContrast1Color_withAlpha(float alpha) {
+//    juce::Colour WidgetAccentLowContrast1Color_withAlpha(float alpha) {
 //        return WidgetAccent3Color_withAlpha(alpha);
 //    }
 //
 //    // Eg highlight BEHIND text
-//    ofColor WidgetAccentLowContrast2Color_withAlpha(float alpha) {
+//    juce::Colour WidgetAccentLowContrast2Color_withAlpha(float alpha) {
 //        return WidgetAccent4Color_withAlpha(alpha);
 //    }
 //    
-//    ofColor WidgetAlternating1Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAlternating1Color.r, WidgetAlternating1Color.g, WidgetAlternating1Color.b, WidgetAlternating1Color.a * alpha);
+//    juce::Colour WidgetAlternating1Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAlternating1Color.r, WidgetAlternating1Color.g, WidgetAlternating1Color.b, WidgetAlternating1Color.a * alpha);
 //    }
 //
 //    string getWidgetAlternating1ColorHex() {
 //        return "#" + getHexFromInt(WidgetAlternating1Color.r) +  getHexFromInt(WidgetAlternating1Color.g) + getHexFromInt(WidgetAlternating1Color.b) + getHexFromInt(WidgetAlternating1Color.a);
 //    }
 //
-//    void setWidgetAlternating1Color(ofColor val) {
+//    void setWidgetAlternating1Color(juce::Colour val) {
 //        setColorFromSource(WidgetAlternating1Color, val);
 //    }
 //
 //    void setWidgetAlternating1Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAlternating1Color(val);
 //    }
 //
-//    ofColor WidgetAlternating2Color_withAlpha(float alpha) {
-//        return ofColor(WidgetAlternating2Color.r, WidgetAlternating2Color.g, WidgetAlternating2Color.b, WidgetAlternating2Color.a * alpha);
+//    juce::Colour WidgetAlternating2Color_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(WidgetAlternating2Color.r, WidgetAlternating2Color.g, WidgetAlternating2Color.b, WidgetAlternating2Color.a * alpha);
 //    }
 //
 //    string getWidgetAlternating2ColorHex() {
 //        return "#" + getHexFromInt(WidgetAlternating2Color.r) +  getHexFromInt(WidgetAlternating2Color.g) + getHexFromInt(WidgetAlternating2Color.b) + getHexFromInt(WidgetAlternating2Color.a);
 //    }
 //
-//    void setWidgetAlternating2Color(ofColor val) {
+//    void setWidgetAlternating2Color(juce::Colour val) {
 //        setColorFromSource(WidgetAlternating2Color, val);
 //    }
 //
 //    void setWidgetAlternating2Color(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetAlternating2Color(val);
 //    }
 //
-//    ofColor getWidgetModalBackgroundColor() {
-//        return ofColor(WidgetModalBackgroundColor.r, WidgetModalBackgroundColor.g, WidgetModalBackgroundColor.b, WidgetModalBackgroundColor.a);
+//    juce::Colour getWidgetModalBackgroundColor() {
+//        return juce::Colour::fromRGBA(WidgetModalBackgroundColor.r, WidgetModalBackgroundColor.g, WidgetModalBackgroundColor.b, WidgetModalBackgroundColor.a);
 //    }
 //
 //    string getWidgetModalBackgroundColorHex() {
 //        return "#" + getHexFromInt(WidgetModalBackgroundColor.r) +  getHexFromInt(WidgetModalBackgroundColor.g) + getHexFromInt(WidgetModalBackgroundColor.b) + getHexFromInt(WidgetModalBackgroundColor.a);
 //    }
 //
-//    void setWidgetModalBackgroundColor(ofColor val) {
+//    void setWidgetModalBackgroundColor(juce::Colour val) {
 //        setColorFromSource(WidgetModalBackgroundColor, val);
 //    }
 //
 //    void setWidgetModalBackgroundColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setWidgetModalBackgroundColor(val);
 //    }
 //
-//    ofColor ElementForegroundColor_withAlpha(float alpha) {
-//        return ofColor(ElementForegroundColor.r, ElementForegroundColor.g, ElementForegroundColor.b, ElementForegroundColor.a * alpha);
+//    juce::Colour ElementForegroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(ElementForegroundColor.r, ElementForegroundColor.g, ElementForegroundColor.b, ElementForegroundColor.a * alpha);
 //    }
 //    
 //    string getElementForegroundColorHex() {
 //        return "#" + getHexFromInt(ElementForegroundColor.r) +  getHexFromInt(ElementForegroundColor.g) + getHexFromInt(ElementForegroundColor.b) + getHexFromInt(ElementForegroundColor.a);
 //    }
 //
-//    void setElementForegroundColor(ofColor val) {
+//    void setElementForegroundColor(juce::Colour val) {
 //        setColorFromSource(ElementForegroundColor, val);
 //    }
 //
 //    void setElementForegroundColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setElementForegroundColor(val);
 //    }
 //    
-//    ofColor ElementBackgroundColor_withAlpha(float alpha) {
-//        return ofColor(ElementBackgroundColor.r, ElementBackgroundColor.g, ElementBackgroundColor.b, ElementBackgroundColor.a * alpha);
+//    juce::Colour ElementBackgroundColor_withAlpha(float alpha) {
+//        return juce::Colour::fromRGBA(ElementBackgroundColor.r, ElementBackgroundColor.g, ElementBackgroundColor.b, ElementBackgroundColor.a * alpha);
 //    }
 //
 //    string getElementBackgroundColorHex() {
 //        return "#" + getHexFromInt(ElementBackgroundColor.r) +  getHexFromInt(ElementBackgroundColor.g) + getHexFromInt(ElementBackgroundColor.b) + getHexFromInt(ElementBackgroundColor.a);
 //    }
 //
-//    static string getHexFromColor(ofColor c) {
+//    static string getHexFromColor(juce::Colour c) {
 //        return "#" + getHexFromInt(c.r) +  getHexFromInt(c.g) + getHexFromInt(c.b) + getHexFromInt(c.a);
 //    }
 //
-//    static string getHexFromColor(ofColor c, float alpha) {
+//    static string getHexFromColor(juce::Colour c, float alpha) {
 //        return "#" + getHexFromInt(c.r) +  getHexFromInt(c.g) + getHexFromInt(c.b) + getHexFromInt(255*alpha);
 //    }
 //
-//    void setElementBackgroundColor(ofColor val) {
+//    void setElementBackgroundColor(juce::Colour val) {
 //        setColorFromSource(ElementBackgroundColor, val);
 //    }
 //
 //    void setElementBackgroundColor(string RGBAHex) {
 //        if (RGBAHex == "") return;
-//        ofColor val = getColor_fromRGBAHex(RGBAHex);
+//        juce::Colour val = getColor_fromRGBAHex(RGBAHex);
 //        setElementBackgroundColor(val);
 //    }
 //
@@ -587,7 +587,7 @@ public:
 //        WidgetColor.a = widgetColor_a;
 //    }
 //    
-//    void setColorFromSource(ofColor& targetColor, ofColor sourceColor) {
+//    void setColorFromSource(ofColor& targetColor, juce::Colour sourceColor) {
 //        targetColor.r = sourceColor.r;
 //        targetColor.g = sourceColor.g;
 //        targetColor.b = sourceColor.b;

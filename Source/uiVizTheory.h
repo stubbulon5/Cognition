@@ -17,6 +17,7 @@
 #include "extras/ofxMusicTheory/ofxMusicTheory.h"
 #include "extras/ofUtils.h"
 #include "extras/uiVizWidgetTheme.h"
+#include "uiVizTheoryMidi.h"
 
 //
 //// Sound stuff
@@ -38,8 +39,6 @@
 
 //--------------------------------------------------------------
 class vizTheory {
-
-public:
 
 public:
     enum DegreeName {
@@ -504,25 +503,25 @@ public:
         return newKey;
     }
     
-    static ofColor getColorForKey(string key) {
+    static juce::Colour getColorForKey(string key) {
         int degree = getPositionInCircleOfFifthsForKey(key);
         return getDefaultScaleDegreeColor(max(0, degree-1));
     }
 
-    static ofColor getColorForKey(string key, int brightness) {
-        ofColor keyColor = getColorForKey(key);
-        keyColor.setBrightness(brightness);
-        return keyColor; 
+    static juce::Colour getColorForKey(string key, int brightness) {
+        juce::Colour keyColor = getColorForKey(key);
+        keyColor.withBrightness(brightness);
+        return keyColor;
     }    
     
-    static ofColor getColorForChord(string chordShorthand) {
-        if (ofToLower(chordShorthand) == "unknown" || chordShorthand == "") return ofColor::black;
+    static juce::Colour getColorForChord(string chordShorthand) {
+        if (ofToLower(chordShorthand) == "unknown" || chordShorthand == "") return juce::Colours::black;
         MusicTheory::ChordPtr chord = MusicTheory::Chord::fromShorthand(chordShorthand);
         
         if (chord != nullptr) {
             return getColorForKey(chord->getRoot()->getDiatonicName());
         } else {
-            return ofColor::black;
+            return juce::Colours::black;
         }
     }
     
@@ -533,16 +532,16 @@ public:
      with brightness to portray the degree relative to the selected key. Put
      another way, c is always red, d yellow, etc but the brightness will vary
      *-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*/
-    // ofColor getColorForKey_DegreeBrightness(string key, int degree) {
+    // juce::Colour getColorForKey_DegreeBrightness(string key, int degree) {
     
-    static ofColor getColorForDegree_KeyBrightness(int degree, string key, bool highlighted) {
+    static juce::Colour getColorForDegree_KeyBrightness(int degree, string key, bool highlighted) {
         degree = std::min(degree, 12);
         degree = std::max(degree, 1);
-        ofColor color = getColorForKey(key);
+        juce::Colour color = getColorForKey(key);
         int degreeForKey = getPositionInCircleOfFifthsForKey(key);
         float brightness = getBrightnessForDegree(degree, highlighted);
-        ofColor c = ofColor::fromHsb(color.getHue(), color.getSaturation(), brightness);
-        return c;    
+        juce::Colour c = juce::Colour::fromHSV(color.getHue(), color.getSaturation(), brightness, 255);
+        return c;
     }
     
     /*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
@@ -552,10 +551,10 @@ public:
      and can be used by the end user to HARMONIZE, since the colors
      follow the hue circle and the notes follow the circle of fifths
      *-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*/
-    static ofColor getColorForKey_DegreeBrightness(string key, int degree, bool highlighted) {
-        ofColor color = getColorForKey(key);
+    static juce::Colour getColorForKey_DegreeBrightness(string key, int degree, bool highlighted) {
+        juce::Colour color = getColorForKey(key);
         float brightness = getBrightnessForDegree(degree, highlighted);
-        ofColor c = ofColor::fromHsb(color.getHue(), color.getSaturation(), brightness);
+        juce::Colour c = juce::Colour::fromHSV(color.getHue(), color.getSaturation(), brightness, 255);
         return c;
     }
     
@@ -568,7 +567,7 @@ public:
     static float getBrightnessForDegree(int degree, bool highlighted) {
         
         int interval = degree - 1;
-        ofColor c;
+        juce::Colour c;
         
         float brightness = 0;
         
@@ -628,7 +627,7 @@ public:
      Idea being, the end user can focus on the CHARACTERISTICS of the scale rather than harmony.
      (harmony focus is viewing how the key colours blend!!!!)
      *-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*/
-    static ofColor getColorForDegree_ScaleFocus(int degree, bool highlighted) {
+    static juce::Colour getColorForDegree_ScaleFocus(int degree, bool highlighted) {
         degree = std::min(degree, 12);
         degree = std::max(degree, 1);
         
@@ -639,7 +638,7 @@ public:
         // Todo : user must pass in the scale, already loaded...
 
         float brightness = getBrightnessForDegree(degree, highlighted);
-        ofColor c = ofColor::fromHsb(0, 0, 255 - brightness);
+        juce::Colour c = juce::Colour::fromHSV(0, 0, 255 - brightness, 255);
         
         return c;
     }
@@ -666,44 +665,36 @@ public:
     virtual bool isChordType() { return false; }
     virtual bool isScaleType() { return false; }
 
-    ofxXmlSettings getInstrumentRules() {
+
+    juce::XmlDocument* getInstrumentRules() {
         return mInstrumentRules;
     }
 
-    string getInstrumentRulesXMLString() {
-        string retVal = "";
-        TiXmlPrinter printer;
-        TiXmlElement* rootElm = mInstrumentRules.doc.RootElement();
-        if (rootElm != NULL) {
-            rootElm->Accept( &printer );
-            retVal = printer.CStr();    
-        }
-        return retVal;    
+    juce::String getInstrumentRulesXMLString() {
+        return mInstrumentRules->getDocumentElement()->toString();
+   
     } 
 
-    void setInstrumentRules(ofxXmlSettings rules) {
-        
-        TiXmlElement* rootElm = rules.doc.RootElement();
-        if (rootElm == NULL)  {
-            return;
-        } 
-
-        TiXmlPrinter printer;
-        rootElm->Accept( &printer );
-        string newRulesXMLString = printer.CStr();    
-
-        if (!mInstrumentRules.loadFromBuffer(newRulesXMLString)) {
-            cout << "Error Loading new rules : \n" << newRulesXMLString << "\n";
+    void setInstrumentRules(juce::XmlDocument* rules) {
+        if (const auto child = rules->getDocumentElement())
+        {
+            auto copy = std::make_unique<juce::XmlDocument> (*rules->getDocumentElement());
+            mInstrumentRules = copy.release();
+        } else
+        {
+            cout << "Error Loading new rules\n";
         }   
+        
+        // if this doesn't work - try reloading the xml string each time!
     }
 
     void setInstrumentRules(string rules) {
-        ofxXmlSettings rulesXML;  
-        if (rulesXML.loadFromBuffer(rules.c_str())) {
-            setInstrumentRules(rulesXML);
-        }            
-    }       
+        if (!mInstrumentRules->parse(rules)) {
+            cout << "Error Loading new rules : \n" << rules << "\n";
+        }
+    }
 
+    /*
     void setInstrumentRule(string instrument, string tag, string value) {
         pushToInstrumentRulesTag(instrument);
         mInstrumentRules.tagExists(tag, 0) ? mInstrumentRules.setValue(tag, value, 0) : mInstrumentRules.addValue(tag, value);
@@ -743,86 +734,80 @@ public:
         TiXmlElement* rulesElm = rules.doc.RootElement();
         uiVizShared::appendXMLToTarget(rulesElm, xml, true);
     }
+*/
+//    bool getFboNeedsUpdate() {
+//        return fboNeedsUpdate;
+//    }
+//
+//    void setFboNeedsUpdate(bool val) {
+//        fboNeedsUpdate = val;
+//    }
 
-    bool getFboNeedsUpdate() {
-        return fboNeedsUpdate;
-    }
-
-    void setFboNeedsUpdate(bool val) {
-        fboNeedsUpdate = val;
-    }
-
-    void setFbo(ofFbo val) {
-        fbo = val;
-        fboNeedsUpdate = false;
-    }
-
-    ofFbo getFbo() {
-        return fbo;
-    }    
-
-	virtual void saveFboToFile(string fileName, int width, int height) { 
-		ofPixels pixels;
-        pixels.allocate(width, height,  OF_IMAGE_COLOR_ALPHA);
-		fbo.readToPixels(pixels);
-		ofSaveImage(pixels, fileName, OF_IMAGE_QUALITY_BEST);     
-	}
-
-	virtual void saveFboToBuffer(ofBuffer &buffer, int width, int height) { 
-		ofPixels pixels;
-        pixels.allocate(width, height,  OF_IMAGE_COLOR_ALPHA);
-		fbo.readToPixels(pixels);
-
-        ofImage image;
-        image.setFromPixels(pixels);
-        image.save(buffer, OF_IMAGE_FORMAT_PNG, OF_IMAGE_QUALITY_BEST);
-	}    
+//    void setFbo(ofFbo val) {
+//        fbo = val;
+//        fboNeedsUpdate = false;
+//    }
+//
+//    ofFbo getFbo() {
+//        return fbo;
+//    }    
+//
+//	virtual void saveFboToFile(string fileName, int width, int height) { 
+//		ofPixels pixels;
+//        pixels.allocate(width, height,  OF_IMAGE_COLOR_ALPHA);
+//		fbo.readToPixels(pixels);
+//		ofSaveImage(pixels, fileName, OF_IMAGE_QUALITY_BEST);     
+//	}
+//
+//	virtual void saveFboToBuffer(ofBuffer &buffer, int width, int height) { 
+//		ofPixels pixels;
+//        pixels.allocate(width, height,  OF_IMAGE_COLOR_ALPHA);
+//		fbo.readToPixels(pixels);
+//
+//        ofImage image;
+//        image.setFromPixels(pixels);
+//        image.save(buffer, OF_IMAGE_FORMAT_PNG, OF_IMAGE_QUALITY_BEST);
+//	}    
 
 
 private:
 
-    ofxXmlSettings mInstrumentRules = ofxXmlSettings();
-    ofFbo fbo;
-    bool fboNeedsUpdate = true;
+    juce::XmlDocument* mInstrumentRules = new juce::XmlDocument("");
+//    ofFbo fbo;
+//    bool fboNeedsUpdate = true;
 
-    void pushToInstrumentRulesTag(string instrument) {
-        
-        
-        while (mInstrumentRules.popTag() > 0); // pop to top!
-
-/*
-        if (!mInstrumentRules.bDocLoaded) {
-            mInstrumentRules = ofxXmlSettings();
-        }
-
-        // Pop to root
-        while(mInstrumentRules.getPushLevel() > 0) {
-            mInstrumentRules.popTag();
-        }
-        */
-        if (!mInstrumentRules.pushTag("rules")) {
-            mInstrumentRules.addTag("rules");
-            mInstrumentRules.pushTag("rules");
-        }
-        
-        if (!mInstrumentRules.pushTag(instrument)) {
-            mInstrumentRules.addTag(instrument);
-            mInstrumentRules.pushTag(instrument);
-        }
-    }
+    
+//    void pushToInstrumentRulesTag(string instrument) {
+//        
+//        
+//        while (mInstrumentRules.popTag() > 0); // pop to top!
+//
+///*
+//        if (!mInstrumentRules.bDocLoaded) {
+//            mInstrumentRules = ofxXmlSettings();
+//        }
+//
+//        // Pop to root
+//        while(mInstrumentRules.getPushLevel() > 0) {
+//            mInstrumentRules.popTag();
+//        }
+//        */
+//        if (!mInstrumentRules.pushTag("rules")) {
+//            mInstrumentRules.addTag("rules");
+//            mInstrumentRules.pushTag("rules");
+//        }
+//        
+//        if (!mInstrumentRules.pushTag(instrument)) {
+//            mInstrumentRules.addTag(instrument);
+//            mInstrumentRules.pushTag(instrument);
+//        }
+//    }
 
     string getXMLString() {
-
-        TiXmlElement* rootElm = mInstrumentRules.doc.RootElement();
-        if (rootElm == NULL)  {
-            return "";
-        } 
-
-        TiXmlPrinter printer;
-        rootElm->Accept( &printer );
-        return printer.CStr();    
+        
+        mInstrumentRules->getDocumentElement()->toString();
     }
-
+    
 };
 
 //--------------------------------------------------------------
@@ -833,7 +818,7 @@ public:
     virtual bool isChordType() override { return false; }
     virtual bool isScaleType() override { return false; }
 
-    vizNote(string noteName, int noteOctave, int noteDegree, vector<string> noteTags, ofColor noteColor) :
+    vizNote(string noteName, int noteOctave, int noteDegree, vector<string> noteTags, juce::Colour noteColor) :
     mNoteName(noteName)
     ,mNoteOctave(noteOctave)
     ,mNoteDegree(noteDegree)
@@ -851,7 +836,7 @@ public:
     ,mNoteOctave(noteOctave)
     ,mNoteDegree(noteDegree)
     ,mNoteTags(noteTags)
-    ,mNoteColor(ofColor::white){
+    ,mNoteColor(juce::Colours::white){
         
         mt_Note = MusicTheory::Note::create(mNoteName);
         mt_Note->setOctave(noteOctave);
@@ -864,7 +849,7 @@ public:
     ,mNoteOctave(noteOctave)
     ,mNoteDegree(noteDegree)
     ,mNoteTags(vector<string>{""})
-    ,mNoteColor(ofColor::white){
+    ,mNoteColor(juce::Colours::white){
         
         mt_Note = MusicTheory::Note::create(mNoteName);
         mt_Note->setOctave(noteOctave);
@@ -873,18 +858,24 @@ public:
     }
     
     vizNote(string xml)  {
-        ofxXmlSettings noteXML = ofxXmlSettings();
-        noteXML.loadFromBuffer(xml);
+        juce::XmlDocument noteXMLDoc = juce::XmlDocument(xml);
+//        ofxXmlSettings noteXML = ofxXmlSettings();
+//        noteXML.loadFromBuffer(xml);
         
-        if (!noteXML.tagExists("note")) return;
+        std::unique_ptr<juce::XmlElement> noteXML = noteXMLDoc.getDocumentElement();
+        if (noteXML->getTagName() != "note") return;
         
-        mNoteName = noteXML.getAttribute("note", "name", "C");
-        mNoteOctave = noteXML.getAttribute("note", "octave", 3);
+        mNoteName = noteXML->getStringAttribute("name", "C").toStdString();
+        mNoteOctave = noteXML->getIntAttribute("octave", 3);
         mt_Note = MusicTheory::Note::create(mNoteName);
         mt_Note->setOctave(mNoteOctave);
         mNoteColor = vizTheory::getColorForKey(mNoteName);
         mPositionInChromaticScale = vizTheory::getPositionInChromaticScaleForKey(mNoteName);
-        mMidiNote = vizMidiNote(mt_Note->toInt(), 100, 0.0f, vizMidiNote::getNoteValue(vizMidiNote::NoteValueName::quarterNote));           
+        mMidiNote = vizMidiNote(mt_Note->toInt(), 100, 0.0f, vizMidiNote::getNoteValue(vizMidiNote::NoteValueName::quarterNote));  
+        
+        
+        
+        
     }
     
     
@@ -949,11 +940,11 @@ public:
         
     }
     
-    ofColor getNoteColor() {
+    juce::Colour getNoteColor() {
         return mNoteColor;
     }
     
-    void setNoteColor(ofColor val) {
+    void setNoteColor(juce::Colour val) {
         mNoteColor = val;;
     }
     
@@ -994,7 +985,7 @@ public:
         octave += additionalOctaves;
 
         string noteName = calculateNoteOffset(offsetFromNote, useSharp);
-        ofColor c = vizTheory::getColorForKey(noteName);
+        juce::Colour c = vizTheory::getColorForKey(noteName);
         return vizNote(noteName, octave, offsetFromNote, vector<string>{}, c);
     }
     
@@ -1013,11 +1004,11 @@ public:
         return vizTheory::getNoteInChromaticScaleForDegree(degree, useSharp);
     }
     
-    ofColor calculateNoteKeyColor(int offsetFromNote) {
+    juce::Colour calculateNoteKeyColor(int offsetFromNote) {
         return vizTheory::getColorForKey(calculateNoteOffset(offsetFromNote, true));
     }
     
-    ofColor calculateLabelColor(ofColor color) {
+    juce::Colour calculateLabelColor(juce::Colour color) {
         return color;
     }
     
@@ -1025,11 +1016,12 @@ public:
         return mt_Note;
     }
     
+    
     ofxXmlSettings* appendToXMLNode(ofxXmlSettings* noteXML, int index) {
         
         if (getNote() != nullptr) {
             noteXML->addTag("note");
-            // string noteName, int noteOctave, int noteDegree, vector<string> noteTags, ofColor noteColor
+            // string noteName, int noteOctave, int noteDegree, vector<string> noteTags, juce::Colour noteColor
             noteXML->setAttribute("note", "name", getNoteName(), index);
             noteXML->setAttribute("note", "octave", getNoteOctave(), index);
         }
@@ -1142,7 +1134,7 @@ private:
     int mNoteOctave;
     int mNoteDegree;
     vector<string> mNoteTags;
-    ofColor mNoteColor;
+    juce::Colour mNoteColor;
     MusicTheory::NotePtr mt_Note;
     int mPositionInChromaticScale = 0;
     vizMidiNote mMidiNote;
@@ -1248,7 +1240,7 @@ public:
     }
     
     
-    vizChord() : mChordName(""), mChordTags(vector<string>{""}), mChordColor(ofColor::white) { }
+    vizChord() : mChordName(""), mChordTags(vector<string>{""}), mChordColor(juce::Colours::white) { }
 
     vector<vizNote> getNormalizedNotesForChord() {
         
@@ -1512,11 +1504,11 @@ public:
         }
     }
     
-    ofColor getChordColor() {
+    juce::Colour getChordColor() {
         return mChordColor;
     }
     
-    void setChordColor(ofColor color) {
+    void setChordColor(juce::Colour color) {
         mChordColor = color;
     }
 
@@ -1815,7 +1807,7 @@ private:
     bool mIsUserDefinedPoints = false;
     string mUserDefinedName = "";
     vector<string> mChordTags;
-    ofColor mChordColor;
+    juce::Colour mChordColor;
     MusicTheory::ChordPtr mt_Chord;
     bool mIsPlaying = false;
    
@@ -2228,58 +2220,6 @@ private:
     ofxXmlSettings mInstrumentRules = ofxXmlSettings();
     
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //--------------------------------------------------------------

@@ -19,11 +19,11 @@
                 file="Source/extras/ofxMusicTheory/ofxMusicTheory.h"/>
         </GROUP>
         <FILE id="i0ZxVC" name="ofUtils.h" compile="0" resource="0" file="Source/extras/ofUtils.h"/>
-        <FILE id="b5sGV2" name="uiVizWidgetTheme.h" compile="0" resource="0"
-              file="Source/extras/uiVizWidgetTheme.h"/>
       </GROUP>
       <GROUP id="{D538BB3B-EF02-B01D-5632-71731929E9AF}" name="core">
         <FILE id="iy3HG5" name="uiVizTheory.h" compile="0" resource="0" file="Source/uiVizTheory.h"/>
+        <FILE id="PFmewg" name="uiVizTheoryMidi.h" compile="0" resource="0"
+              file="Source/uiVizTheoryMidi.h"/>
         <FILE id="sZLCYQ" name="uiVizWidget.h" compile="0" resource="0" file="Source/uiVizWidget.h"/>
         <FILE id="pHT2ro" name="uiVizWidgetBase.h" compile="0" resource="0"
               file="Source/uiVizWidgetBase.h"/>
