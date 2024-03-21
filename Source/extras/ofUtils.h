@@ -333,3 +333,25 @@ static string ofToUpper(const string & src) {
 
 //--------------------------------------------------
 
+
+
+static string getXMLElementString(std::unique_ptr<juce::XmlElement> elm, const string tag) {
+    if (elm->hasTagName(tag)) {
+        return elm->getChildByName(tag)->getText().toStdString();
+    }
+    return "";
+}
+
+static int getXMLElementInt(std::unique_ptr<juce::XmlElement> elm, const string tag) {
+    if (elm->hasTagName(tag)) {
+        return elm->getChildByName(tag)->getText().getIntValue();
+    }
+    return 0;
+}
+
+static bool getXMLElementBool(std::unique_ptr<juce::XmlElement> elm, const string tag) {
+    if (elm->hasTagName(tag)) {
+        return elm->getChildByName(tag)->getText().getIntValue() == 1;
+    }
+    return false;
+}

@@ -23,7 +23,7 @@
 //// Sound stuff
 //#include "sdMidiShared.h"
 //#include "../uiViz/uiVizShared.h"
-//#include "ofxXmlSettings.h"
+//#include "juce::XmlDocument.h"
 //
 //#include "../core/midifile/include/Binasc.h"
 //#include "../core/midifile/include/MidiEvent.h"
@@ -729,8 +729,8 @@ public:
     }
 
 
-    void appendInstrumentRulesToXMLNode(ofxXmlSettings* xml, int index) {
-        ofxXmlSettings rules = getInstrumentRules();
+    void appendInstrumentRulesToXMLNode(juce::XmlDocument* xml, int index) {
+        juce::XmlDocument rules = getInstrumentRules();
         TiXmlElement* rulesElm = rules.doc.RootElement();
         uiVizShared::appendXMLToTarget(rulesElm, xml, true);
     }
@@ -784,7 +784,7 @@ private:
 //
 ///*
 //        if (!mInstrumentRules.bDocLoaded) {
-//            mInstrumentRules = ofxXmlSettings();
+//            mInstrumentRules = juce::XmlDocument();
 //        }
 //
 //        // Pop to root
@@ -859,7 +859,7 @@ public:
     
     vizNote(string xml)  {
         juce::XmlDocument noteXMLDoc = juce::XmlDocument(xml);
-//        ofxXmlSettings noteXML = ofxXmlSettings();
+//        juce::XmlDocument noteXML = juce::XmlDocument();
 //        noteXML.loadFromBuffer(xml);
         
         std::unique_ptr<juce::XmlElement> noteXML = noteXMLDoc.getDocumentElement();
@@ -871,11 +871,7 @@ public:
         mt_Note->setOctave(mNoteOctave);
         mNoteColor = vizTheory::getColorForKey(mNoteName);
         mPositionInChromaticScale = vizTheory::getPositionInChromaticScaleForKey(mNoteName);
-        mMidiNote = vizMidiNote(mt_Note->toInt(), 100, 0.0f, vizMidiNote::getNoteValue(vizMidiNote::NoteValueName::quarterNote));  
-        
-        
-        
-        
+        mMidiNote = vizMidiNote(mt_Note->toInt(), 100, 0.0f, vizMidiNote::getNoteValue(vizMidiNote::NoteValueName::quarterNote));
     }
     
     
@@ -1017,33 +1013,38 @@ public:
     }
     
     
-    ofxXmlSettings* appendToXMLNode(ofxXmlSettings* noteXML, int index) {
+    juce::XmlDocument* appendToXMLNode(juce::XmlDocument* noteXML, int index) {
         
         if (getNote() != nullptr) {
-            noteXML->addTag("note");
+            juce::XmlElement* elm = new juce::XmlElement("note");
+            elm->setAttribute("name", getNoteName());
+            elm->setAttribute("octave", getNoteOctave());
+            noteXML->getDocumentElement()->addChildElement(elm);
+            
             // string noteName, int noteOctave, int noteDegree, vector<string> noteTags, juce::Colour noteColor
-            noteXML->setAttribute("note", "name", getNoteName(), index);
-            noteXML->setAttribute("note", "octave", getNoteOctave(), index);
+//            noteXML->setAttribute("note", "name", getNoteName(), index);
+//            noteXML->setAttribute("note", "octave", getNoteOctave(), index);
         }
         
         return noteXML;
     }
     
-    void appendToXMLNode(ofxXmlSettings* noteXML) {
+    void appendToXMLNode(juce::XmlDocument* noteXML) {
         appendToXMLNode(noteXML, 0);
     }
     
-    ofxXmlSettings getXMLNode() {
-        ofxXmlSettings noteXML = ofxXmlSettings();
-        appendToXMLNode(&noteXML);
-        return noteXML;
+    juce::XmlDocument* getXMLNode() {
+        m_noteXML = new juce::XmlDocument("");
+        appendToXMLNode(m_noteXML);
+        return m_noteXML;
     }
     
     string getXML() {
         if (getNote() != nullptr) {
-            string strXML;
-            getXMLNode().copyXmlToString(strXML);
-            return strXML;
+//            string strXML;
+//            getXMLNode().copyXmlToString(strXML);
+//            return strXML;
+            return getXMLNode()->getDocumentElement()->toString().toStdString();
         }
         return "";
     }
@@ -1051,7 +1052,7 @@ public:
     void audition(int gmInstrument) {
         if (mNoteName == "") return;
         setIsPlaying(true);
-        sdMidiShared::playNote(getNote(), gmInstrument);
+        //sdMidiShared::playNote(getNote(), gmInstrument); JUCE TODO
         setIsPlaying(false);
     }
     
@@ -1129,6 +1130,7 @@ public:
     
     
 private:
+    juce::XmlDocument* m_noteXML;
     string mNoteName = "";
     bool mIsExtended = false;
     int mNoteOctave;
@@ -1174,18 +1176,17 @@ public:
         
     }
     
+    
+    
     vizChord(string xml, bool normalize)  {
-        ofxXmlSettings chordXML = ofxXmlSettings();
-        chordXML.loadFromBuffer(xml);
+        juce::XmlDocument chordXMLDoc = juce::XmlDocument(xml);
 
-        if (!chordXML.tagExists("chord")) return;
+        std::unique_ptr<juce::XmlElement> chordXML = chordXMLDoc.getDocumentElement();
+        if (chordXML->getTagName() != "chord") return;
 
-        chordXML.pushTag("chord");
-        
-        mChordName = chordXML.getValue("name", "");
-
-        mIsUserDefinedPoints = chordXML.getValue("userDefinedPoints", false);
-        mUserDefinedName = chordXML.getValue("userDefinedName", "");
+        mChordName = chordXML->getChildByName("name")->getText().toStdString();
+        mIsUserDefinedPoints = chordXML->getChildByName("userDefinedPoints")->getText().getIntValue() == 1;
+        mUserDefinedName = chordXML->getChildByName("userDefinedName")->getText().toStdString();
 
         if (!shorthandHasValidRoot(mChordName)) {
             return;
@@ -1193,36 +1194,69 @@ public:
 
         mt_Chord = MusicTheory::Chord::create(mChordName);
         
-        
-        int notes = chordXML.getNumTags("note");
-        
         vector<vizNote> chordNotes = vector<vizNote>();
-        
-        for(int i = 0; i < notes; i++){
-            string noteName = chordXML.getAttribute("note", "name", "C", i);
+        for (auto* noteElm : chordXML->getChildWithTagNameIterator("note")) {
+            string noteName = noteElm->getStringAttribute("name", "C").toStdString();
+            int noteOctave = noteElm->getIntAttribute("octave", 3);
             
             vizNote noteToAdd = vizNote(
                                         noteName,
-                                        chordXML.getAttribute("note", "octave", 3, i), 0, vector<string>{},
+                                        noteOctave,
+                                        0,
+                                        vector<string>{},
                                         vizTheory::getColorForKey(noteName)
                                         );
+            
             chordNotes.push_back(noteToAdd);
         }
         
+        
+        
+        
+        
+        
+        
+//        int notes = notesElm chordXML->getgetNumTags("note");
+//        
+//        vector<vizNote> chordNotes = vector<vizNote>();
+//        
+//        for(int i = 0; i < notes; i++){
+//            string noteName = chordXML.getAttribute("note", "name", "C", i);
+//            
+//            vizNote noteToAdd = vizNote(
+//                                        noteName,
+//                                        chordXML.getAttribute("note", "octave", 3, i), 0, vector<string>{},
+//                                        vizTheory::getColorForKey(noteName)
+//                                        );
+//            chordNotes.push_back(noteToAdd);
+//        }
+        
 
         // Rules
-        TiXmlElement* rootElm = chordXML.doc.RootElement();
-        TiXmlElement* rulesElm = rootElm->FirstChildElement("rules");
+        juce::XmlElement* rulesElm = chordXML->getChildByName("rules");
         if (rulesElm != NULL) {
             TiXmlPrinter printer;
             rulesElm->Accept( &printer );
             string rulesXMLStr = printer.CStr();
             
-            ofxXmlSettings rulesXML;
+            juce::XmlDocument rulesXML;
             if (rulesXML.loadFromBuffer(rulesXMLStr)) {
                 setInstrumentRules(rulesXML);
             }
         }
+        
+//        TiXmlElement* rootElm = chordXML.doc.RootElement();
+//        TiXmlElement* rulesElm = rootElm->FirstChildElement("rules");
+//        if (rulesElm != NULL) {
+//            TiXmlPrinter printer;
+//            rulesElm->Accept( &printer );
+//            string rulesXMLStr = printer.CStr();
+//            
+//            juce::XmlDocument rulesXML;
+//            if (rulesXML.loadFromBuffer(rulesXMLStr)) {
+//                setInstrumentRules(rulesXML);
+//            }
+//        }
 
 
         
@@ -1440,7 +1474,7 @@ public:
         
         if (getChord() != nullptr) {
             
-            ofxXmlSettings chordXML = ofxXmlSettings();
+            juce::XmlDocument chordXML = juce::XmlDocument();
             chordXML.addTag("chord");
             chordXML.pushTag("chord");
             chordXML.addValue("name", getChordName());
@@ -1472,11 +1506,11 @@ public:
     }
     
     
-    void appendToXMLNode(ofxXmlSettings* chordXML) {
+    void appendToXMLNode(juce::XmlDocument* chordXML) {
         appendToXMLNode(chordXML, 0);
     }
     
-    void appendToXMLNode(ofxXmlSettings* chordXML, int index) {
+    void appendToXMLNode(juce::XmlDocument* chordXML, int index) {
         
         if (getChord() != nullptr) {
             chordXML->addTag("chord");
@@ -1854,7 +1888,7 @@ public:
 
 
     vizScale(string xml, string topLevelTagName, bool normalize)  {
-        ofxXmlSettings scaleXML = ofxXmlSettings();
+        juce::XmlDocument scaleXML = juce::XmlDocument();
         scaleXML.loadFromBuffer(xml);
 
         if (!scaleXML.tagExists(topLevelTagName)) return;
@@ -1894,7 +1928,7 @@ public:
             rulesElm->Accept( &printer );
             string rulesXMLStr = printer.CStr();
             
-            ofxXmlSettings rulesXML;
+            juce::XmlDocument rulesXML;
             if (rulesXML.loadFromBuffer(rulesXMLStr)) {
                 setInstrumentRules(rulesXML);
             }
@@ -1922,7 +1956,7 @@ public:
 
         if (getName() != "" && getName() != "unknown") {
             
-            ofxXmlSettings scaleXML = ofxXmlSettings();
+            juce::XmlDocument scaleXML = juce::XmlDocument();
             scaleXML.addTag("scale");
             scaleXML.pushTag("scale");
             scaleXML.addValue("name", getName());
@@ -2217,7 +2251,7 @@ private:
     string mScaleNamePretty = "";
     vector<string> mChordTags;
     shared_ptr<MusicTheory::Scale> mt_Scale;
-    ofxXmlSettings mInstrumentRules = ofxXmlSettings();
+    juce::XmlDocument mInstrumentRules = juce::XmlDocument();
     
 };
 
@@ -2258,7 +2292,7 @@ public:
             }            
         }        
 
-        ofxXmlSettings notesXML = ofxXmlSettings();
+        juce::XmlDocument notesXML = juce::XmlDocument();
         notesXML.loadFromBuffer(xml);
 
         if (notesXML.pushTag("notes")) {
@@ -2323,7 +2357,7 @@ public:
         
         if (getNotes().size() > 0) {
             
-            ofxXmlSettings notesXML = ofxXmlSettings();
+            juce::XmlDocument notesXML = juce::XmlDocument();
             notesXML.addTag("notes");
             notesXML.pushTag("notes");    
             notesXML.addValue("name", getName());
@@ -2429,7 +2463,7 @@ private:
     vector<vizChord> mChords;
     vector<vizScale> mScales;        
     string mName = "unknown";
-    ofxXmlSettings mInstrumentRules = ofxXmlSettings();
+    juce::XmlDocument mInstrumentRules = juce::XmlDocument();
     
 };
 
