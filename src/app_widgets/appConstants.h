@@ -34,6 +34,7 @@ public:
     static const std::string WIDGET_CLASS_EVENT_LISTENER_MUSICAL;    
     static const std::string WIDGET_CLASS_MUSICAL_COMPOSER;
     static const std::string WIDGET_CLASS_CHORD_WHEEL;
+    static const std::string WIDGET_CLASS_CHORD_WHEEL_FOR_KEY;
     static const std::string WIDGET_CLASS_CHORD_PROGRESSION;    
     static const std::string WIDGET_CLASS_KEY_PICKER;
     static const std::string WIDGET_CLASS_KEY_PICKER_POPOUT;
@@ -62,6 +63,7 @@ public:
     
     static const int ICON_WIDGET_CLASS_CHORD_DESIGNER;
     static const int ICON_WIDGET_CLASS_CHORD_WHEEL;
+    static const int ICON_WIDGET_CLASS_CHORD_WHEEL_FOR_KEY;    
     static const int ICON_WIDGET_CLASS_KEY_PICKER;
     static const int ICON_WIDGET_CLASS_SCALE_PICKER;
     static const int ICON_WIDGET_CLASS_GUITAR;

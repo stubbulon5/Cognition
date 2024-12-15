@@ -106,6 +106,7 @@ const std::string APP_CONSTANTS::DEFAULT_LANGUAGE_XML = ""
     "<STRINGS>Strings</STRINGS>"
     "<KEY_PICKER>Key Picker</KEY_PICKER>"
     "<CHORD_WHEEL>Chord Wheel</CHORD_WHEEL>"
+    "<CHORD_WHEEL_FOR_KEY>Chord Wheel for Key</CHORD_WHEEL_FOR_KEY>"
     "<CHORD_PROGRESSION>Chord Progression</CHORD_PROGRESSION>"    
     "<CHORD_DESIGNER>Chord Designer</CHORD_DESIGNER>"
     "<SCALE_PICKER>Scale Picker</SCALE_PICKER>"
@@ -179,6 +180,7 @@ const std::string APP_CONSTANTS::DEFAULT_LANGUAGE_XML = ""
 #include "uiVizWidgetEventListenerMusical.h"
 #include "uiVizWidgetMusicalComposer.h"
 #include "uiVizWidgetChordWheel.h"
+#include "uiVizWidgetChordWheelForKey.h"
 #include "uiVizWidgetChordProgression.h"
 #include "uiVizWidgetChordBucket.h"
 #include "uiVizWidgetChordBucketSuggester.h"
@@ -205,6 +207,7 @@ const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL = "uiVizWidgetMusical";
 const std::string APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL = "uiVizWidgetEventListenerMusical";
 const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER = "uiVizWidgetMusicalComposer";
 const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL = "uiVizWidgetChordWheel";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY = "uiVizWidgetChordWheelForKey";
 const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION = "uiVizWidgetChordProgression";
 const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET = "uiVizWidgetChordBucket";
 const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER = "uiVizWidgetChordBucketSuggester";
@@ -233,6 +236,7 @@ const std::string APP_CONSTANTS::WIDGET_CLASS_TEXT_EDITOR = "uiVizWidgetTextEdit
 
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER = -5000;
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL = -5001;
+const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL_FOR_KEY = -5001;
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_KEY_PICKER = -5002;
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_SCALE_PICKER = -5003;
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_GUITAR = -5004;
@@ -252,6 +256,7 @@ uiVizWidgetManager::widget_map_type APP_CONSTANTS::getAppWidgetMap() {
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL] = &createWidget<uiVizWidgetEventListenerMusical>;
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER] = &createWidget<uiVizWidgetMusicalComposer>;
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL] = &createWidget<uiVizWidgetChordWheel>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY] = &createWidget<uiVizWidgetChordWheelForKey>;
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION] = &createWidget<uiVizWidgetChordProgression>;    
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET] = &createWidget<uiVizWidgetChordBucket>;
     appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER] = &createWidget<uiVizWidgetChordBucketSuggester>;
