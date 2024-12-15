@@ -1,7 +1,6 @@
 
 #pragma once
 #include "../uiViz/widget/uiVizWidgetEventListener.h"
-#include "uiVizWidgetMusicalHelper.h"
 #include "uiVizWidgetKeyPicker.h"
 
 class uiVizWidgetEventListenerMusical : public uiVizWidgetEventListener {
@@ -27,25 +26,25 @@ public:
 
 
         if(context.isInitialDraw) {
-        uiVizWidgetEventListener::onWidgetWasJustInitialized();
+            uiVizWidgetEventListener::onWidgetWasJustInitialized();
 
-        uiVizWidgetMenu* settingsMenu = getSettingsMenu();
-        if (settingsMenu != nullptr) {
-            settingsMenu->addOrUpdateMenuTab(
-                // ----------------------------------------------------------------------------
-                // Label mode menu
-                // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
-                keyPickerMenuItem
-                // {
-                //     uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
-                //     uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
-                //     uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
-                //     uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
-                // }
-                )
-            );
-        }                
+            uiVizWidgetMenu* settingsMenu = getSettingsMenu();
+            if (settingsMenu != nullptr) {
+                settingsMenu->addOrUpdateMenuTab(
+                    // ----------------------------------------------------------------------------
+                    // Label mode menu
+                    // ----------------------------------------------------------------------------
+                    uiVizWidgetMenuTab(uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
+                    keyPickerMenuItem
+                    // {
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                    // }
+                    )
+                );
+            }                
         }
 
         uiVizWidgetEventListener::draw(context);

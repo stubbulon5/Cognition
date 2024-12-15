@@ -1,3 +1,8 @@
+bin/Cognition_debug.app
+bin/Cognition.app
+**/obj
 .DS_Store
-Builds
-JuceLibraryCode
+bin/.DS_Store
+bin/libs-macOS/.DS_Store
+bin/libs-macOS/libs/
+.gitignore.swp

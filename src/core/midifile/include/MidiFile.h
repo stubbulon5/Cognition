@@ -1,7 +1,7 @@
 //
 // Programmer:    Craig Stuart Sapp <craig@ccrma.stanford.edu>
 // Creation Date: Fri Nov 26 14:12:01 PST 1999
-// Last Modified: Sat Apr 21 10:52:19 PDT 2018 Removed using namespace std;
+// Last Modified: Mon Jan 18 20:54:04 PST 2021 Added readSmf().
 // Filename:      midifile/include/MidiFile.h
 // Website:       http://midifile.sapp.org
 // Syntax:        C++11
@@ -16,18 +16,23 @@
 
 #include "MidiEventList.h"
 
-#include <vector>
-#include <string>
-#include <istream>
 #include <fstream>
+#include <istream>
+#include <string>
+#include <vector>
 
-#define TIME_STATE_DELTA       0
-#define TIME_STATE_ABSOLUTE    1
-
-#define TRACK_STATE_SPLIT      0
-#define TRACK_STATE_JOINED     1
 
 namespace smf {
+
+enum {
+    TRACK_STATE_SPLIT  = 0, // Tracks are separated into separate vector postions.
+    TRACK_STATE_JOINED = 1  // Tracks are merged into a single vector position,
+};                          // like a Type-0 MIDI file, but reversible.
+
+enum {
+    TIME_STATE_DELTA    = 0, // MidiMessage::ticks are in delta time format (like MIDI file).
+    TIME_STATE_ABSOLUTE = 1  // MidiMessage::ticks are in absolute time format (0=start time).
+};
 
 class _TickTime {
 	public:
@@ -49,15 +54,25 @@ class MidiFile {
 		MidiFile&      operator=                   (const MidiFile& other);
 		MidiFile&      operator=                   (MidiFile&& other);
 
-		// reading/writing functions:
+		// Reading/writing functions:
+
+		// Auto-detected SMF or ASCII-encoded SMF (decoded with Binasc class):
 		bool           read                        (const std::string& filename);
 		bool           read                        (std::istream& instream);
+		bool           readBase64                  (const std::string& base64data);
+		bool           readBase64                  (std::istream& instream);
+
+		// Only allow Standard MIDI File input:
+		bool           readSmf                     (const std::string& filename);
+		bool           readSmf                     (std::istream& instream);
+
 		bool           write                       (const std::string& filename);
 		bool           write                       (std::ostream& out);
-		bool           writeHex                    (const std::string& filename,
-		                                            int width = 25);
-		bool           writeHex                    (std::ostream& out,
-		                                            int width = 25);
+		bool           writeBase64                 (const std::string& out, int width = 0);
+		bool           writeBase64                 (std::ostream& out, int width = 0);
+		std::string    getBase64                   (int width = 0);
+		bool           writeHex                    (const std::string& filename, int width = 25);
+		bool           writeHex                    (std::ostream& out, int width = 25);
 		bool           writeBinasc                 (const std::string& filename);
 		bool           writeBinasc                 (std::ostream& out);
 		bool           writeBinascWithComments     (const std::string& filename);
@@ -165,6 +180,10 @@ class MidiFile {
 		MidiEvent*        addPitchBend            (int aTrack, int aTick,
 		                                           int aChannel, double amount);
 
+		// RPN settings:
+		void              setPitchBendRange       (int aTrack, int aTick,
+		                                           int aChannel, double range);
+
 		// Controller message adding convenience functions:
 		MidiEvent*        addSustain              (int aTrack, int aTick,
 		                                           int aChannel, int value);
@@ -202,6 +221,8 @@ class MidiFile {
 		                                           const std::string& text);
 		MidiEvent*         addTempo               (int aTrack, int aTick,
 		                                           double aTempo);
+		MidiEvent*         addKeySignature        (int aTrack, int aTick,
+		                                           int fifths, bool mode = 0);
 		MidiEvent*         addTimeSignature       (int aTrack, int aTick,
 		                                           int top, int bottom,
 		                                           int clocksPerClick = 24,
@@ -240,6 +261,7 @@ class MidiFile {
 		                                              double value);
 		static std::ostream& writeBigEndianDouble    (std::ostream& out,
 		                                              double value);
+		static std::string   getGMInstrumentName     (int patchIndex);
 
 	protected:
 		// m_events == Lists of MidiEvents for each MIDI file track.
@@ -250,9 +272,6 @@ class MidiFile {
 		// that are used as units for the delta times for MIDI events
 		// in MIDI file track data.
 		int m_ticksPerQuarterNote = 120;
-
-		// m_trackCount == the number of tracks in the file.
-		int m_trackCount = 1;
 
 		// m_theTrackState == state variable for whether the tracks
 		// are joined or split.
@@ -280,21 +299,27 @@ class MidiFile {
 		bool m_linkedEventsQ = false;
 
 	private:
-		int        extractMidiData                 (std::istream& inputfile,
-		                                            std::vector<uchar>& array,
-		                                            uchar& runningCommand);
-		ulong      readVLValue                     (std::istream& inputfile);
-		ulong      unpackVLV                       (uchar a = 0, uchar b = 0,
-		                                            uchar c = 0, uchar d = 0,
-		                                            uchar e = 0);
-		void       writeVLValue                    (long aValue,
-		                                            std::vector<uchar>& data);
-		int        makeVLV                         (uchar *buffer, int number);
-		static int ticksearch                      (const void* A, const void* B);
-		static int secondsearch                    (const void* A, const void* B);
-		void       buildTimeMap                    (void);
-		double     linearTickInterpolationAtSecond (double seconds);
-		double     linearSecondInterpolationAtTick (int ticktime);
+		int         extractMidiData                 (std::istream& inputfile,
+		                                             std::vector<uchar>& array,
+		                                             uchar& runningCommand);
+		ulong       readVLValue                     (std::istream& inputfile);
+		ulong       unpackVLV                       (uchar a = 0, uchar b = 0,
+		                                             uchar c = 0, uchar d = 0,
+		                                             uchar e = 0);
+		void        writeVLValue                    (long aValue,
+		                                             std::vector<uchar>& data);
+		int         makeVLV                         (uchar *buffer, int number);
+		static int  ticksearch                      (const void* A, const void* B);
+		static int  secondsearch                    (const void* A, const void* B);
+		void        buildTimeMap                    (void);
+		double      linearTickInterpolationAtSecond (double seconds);
+		double      linearSecondInterpolationAtTick (int ticktime);
+		std::string base64Encode                    (const std::string &input);
+		std::string base64Decode                    (const std::string &input);
+
+		static const std::string encodeLookup;
+		static const std::vector<int> decodeLookup;
+		static const char *GMinstrument[128];
 };
 
 } // end of namespace smf

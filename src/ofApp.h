@@ -21,7 +21,7 @@
 #include "app_widgets/uiVizWidgetScalePicker.h"
 #include "app_widgets/uiVizWidgetGuitar.h"
 #include "app_widgets/sdMidiShared.h"
-#include "app_widgets/sdFluidSynthShared.h"
+// #include "app_widgets/sdFluidSynthShared.h"
 
 
 class ofApp : public ofBaseApp{

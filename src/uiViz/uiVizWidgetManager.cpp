@@ -689,7 +689,7 @@ bool uiVizWidgetManager::removeWidgetByPersistentId(string persistentId) {
     return false;
 }
 
-bool uiVizWidgetManager::highlightWidget(string persistentId, bool highlight, bool clearOtherHighlights) {
+void uiVizWidgetManager::highlightWidget(string persistentId, bool highlight, bool clearOtherHighlights) {
     if (clearOtherHighlights) {
         uiVizWidgetManager::clearAllWidgetHighlights();
     }

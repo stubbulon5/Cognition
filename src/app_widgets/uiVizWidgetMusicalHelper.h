@@ -9,18 +9,22 @@
 #include "uiVizWidgetEventListenerMusical.h"
 
 class uiVizWidgetMusicalHelper :  public uiVizWidgetMusical {
-    
+
 public:
     uiVizWidgetMusicalHelper(string persistentId, string widgetXML) : uiVizWidgetMusical(persistentId, widgetXML) {
         init();
         loadState(widgetXML);
     }
 
-    static uiVizWidgetEventListenerMusical* getMusicalWidgetEventListenerConfigMusical(uiVizWidgetMusical* owner) {
-        if (mWidgetEventListenerConfigMusical == nullptr) {
-            mWidgetEventListenerConfigMusical = new uiVizWidgetEventListenerMusical(
-                getWidgetId() + "_EVENT_LISTENER_CONFIG_MUSICAL",
-                "<widget ownerWidgetId='" + getWidgetId() + "'><bounds minWidth='500' minHeight='200' width='500'/><appearance /></widget>"
+    static uiVizWidgetEventListenerMusical* getWidgetEventListenerMusicalConfig(uiVizWidgetMusical* owner) {
+        uiVizWidget* w = owner->getChildWidgetByPersistentId(owner->getWidgetId() + "_EVENT_LISTENER_CONFIG_MUSICAL");
+
+        if (w != nullptr) {
+            return dynamic_cast<uiVizWidgetEventListenerMusical*>(w);
+        } else {
+            uiVizWidgetEventListenerMusical *mWidgetEventListenerConfigMusical = new uiVizWidgetEventListenerMusical(
+                owner->getWidgetId() + "_EVENT_LISTENER_CONFIG_MUSICAL",
+                "<widget ownerWidgetId='" + owner->getWidgetId() + "'><bounds minWidth='500' minHeight='200' width='500'/><appearance /></widget>"
                 );
 
             mWidgetEventListenerConfigMusical->setSourceEventsList(
@@ -37,12 +41,11 @@ public:
 
             mWidgetEventListenerConfigMusical->setTargetEventsList(mWidgetEventListenerConfigMusical->getSourceEventsList());
             mWidgetEventListenerConfigMusical->setOwnerWidgetId(owner->getWidgetId());
+            return mWidgetEventListenerConfigMusical;
         }
-        return mWidgetEventListenerConfigMusical;
     };      
     
 private:
-    uiVizWidgetEventListenerMusical *mWidgetEventListenerConfigMusical = nullptr;
     void init() {
     }
     

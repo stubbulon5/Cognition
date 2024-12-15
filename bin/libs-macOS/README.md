@@ -7,7 +7,7 @@ https://medium.com/@donblas/fun-with-rpath-otool-and-install-name-tool-e3e41ae86
 
 You can check how libraries are linked by using otool, eg:
 ```
-otool -L bin/bloom_debug.app/Contents/MacOS/bloom_debug
+otool -L bin/Cognition_debug.app/Contents/MacOS/Cognition_debug
 ```
 
 

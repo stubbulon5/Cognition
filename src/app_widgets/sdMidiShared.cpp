@@ -12,6 +12,8 @@ unsigned int sdMidiShared::currentPgm;
 int sdMidiShared::note, sdMidiShared::velocity;
 int sdMidiShared::pan, sdMidiShared::bend, sdMidiShared::touch, sdMidiShared::polytouch;
 int sdMidiShared::gmInstrument = 1;
+TinyMidiPlayer sdMidiShared::tinyMidiPlayer = TinyMidiPlayer();
+
 /*
  static methods
  */
@@ -51,8 +53,7 @@ void sdMidiShared::configure() {
 		midiOut.openPort(0);
 	}
 
-
-	channel = 1;
+	channel = 0;
 	currentPgm = 0;
 	note = 0;
 	velocity = 0;
@@ -60,6 +61,9 @@ void sdMidiShared::configure() {
 	bend = 0;
 	touch = 0;
 	polytouch = 0;
+
+	tinyMidiPlayer.configure();
+
 }
 
 
@@ -72,10 +76,12 @@ void sdMidiShared::playNote(MusicTheory::NotePtr note,  int velocity, int midiIn
 	velocity = velocity;
 	if (gmInstrument != midiInstrument) {
 		gmInstrument = midiInstrument;
-		sdFluidSynthShared::programSelect(midiInstrument);
+		// sdFluidSynthShared::programSelect(midiInstrument);
+		tinyMidiPlayer.setInstrument(midiInstrument);
 	}
 
-	getMidiOut().sendNoteOn(channel, midiNote, velocity);
+	// getMidiOut().sendNoteOn(channel, midiNote, velocity);
+	tinyMidiPlayer.noteOn(channel, midiNote, velocity);
 }
 
 void sdMidiShared::playNote(MusicTheory::NotePtr note, int gmInstrument) {

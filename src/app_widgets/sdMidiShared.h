@@ -3,7 +3,7 @@
 #include "ofxMidi.h"
 #include "ofxMusicTheory.h"
 #include "uiVizTheoryMidi.h"
-#include "sdFluidSynthShared.h"
+#include "TinyMidiPlayer.h"
 
 class sdMidiShared {
 
@@ -24,5 +24,5 @@ private:
 	static unsigned int currentPgm;
 	static int note, velocity;
 	static int pan, bend, touch, polytouch, gmInstrument;
-
+	static TinyMidiPlayer tinyMidiPlayer;
 };

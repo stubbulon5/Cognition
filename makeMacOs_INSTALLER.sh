@@ -18,7 +18,7 @@ mkdir bin/${APP_NAME}.app/Contents/MacOS/data/ui/widgetHelp
 # Copy over contents...
 echo "Copying resources..."
 # data folder
-cp bin/data/"Arachno SoundFont - Version 1.0.sf2" bin/${APP_NAME}.app/Contents/MacOS/data 
+cp bin/data/gm.sf2 bin/${APP_NAME}.app/Contents/MacOS/data 
 cp bin/data/themes.xml bin/${APP_NAME}.app/Contents/MacOS/data 
   
 # data/fonts folder

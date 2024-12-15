@@ -981,7 +981,7 @@ public:
         return mSidebarWidth;
     }
 
-    int setSidebarWidth(int val) {
+    void setSidebarWidth(int val) {
         mSidebarWidth = val;
     }  
 

@@ -3249,7 +3249,7 @@ append so that when stuff is dragged, full rules persist!
             uiVizWidgetMenuTab(uiVizShared::lang("SETTINGS"), uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {uiVizWidgetMenuItem(uiVizShared::lang("SOUND"), 1, true, true), uiVizWidgetMenuItem(uiVizShared::lang("LEFT_HAND"), 2, true, false), uiVizWidgetMenuItem(uiVizShared::lang("FLIP_ORIENTATION"), 3, true, false), uiVizWidgetMenuItem(uiVizShared::lang("SWITCH_VIEW"), 4, true, false), uiVizWidgetMenuItem(uiVizShared::lang("EXPORT_PNG"), 5), uiVizWidgetMenuItem(uiVizShared::lang("EXPORT_XML"), 6)}),
 
             uiVizWidgetMenuTab(uiVizShared::lang("EVENT_LISTENER"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_SETTINGS, getWidgetEventListenerConfig()), 
-            uiVizWidgetMenuTab(uiVizShared::lang("EVENT_LISTENER"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_SETTINGS, uiVizWidgetMusicalHelper::getWidgetEventListenerMusicalConfig())
+            uiVizWidgetMenuTab(uiVizShared::lang("EVENT_LISTENER"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_SETTINGS, uiVizWidgetMusicalHelper::getWidgetEventListenerMusicalConfig(this)) // OR DO WE NEED ?? instrumentContextMenu
 
             // ----------------------------------------------------------------------------
             // Key Picker menu

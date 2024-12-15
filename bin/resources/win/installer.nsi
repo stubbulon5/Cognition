@@ -67,7 +67,7 @@ section "install"
 
     # Data folder
     setOutPath "$INSTDIR\\data"  
-    file "..\..\data\Arachno SoundFont - Version 1.0.sf2"
+    file "..\..\data\gm.sf2"
     file "..\..\data\themes.xml"    
       
     # Data\fonts folder

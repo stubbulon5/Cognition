@@ -6,6 +6,6 @@ ofxSvg
 ofxXmlSettings
 ofxSmartFont
 ofxGLEditor
-ofxFluidSynth
 ofxExternalDrop
 ofxOsc
+ofxTinyMidiPlayer

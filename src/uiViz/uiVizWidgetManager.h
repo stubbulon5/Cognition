@@ -47,7 +47,7 @@ public:
     static bool removeWidget(uiVizWidget &widget);
     static bool removeWidget(string widgetId);
     static bool removeWidgetByPersistentId(string persistentId);
-    static bool highlightWidget(string widgetId, bool highlight, bool clearOtherHighlights);
+    static void highlightWidget(string widgetId, bool highlight, bool clearOtherHighlights);
     static void clearAllWidgetHighlights();
 
     static int getCountOfWidgetClassType(string widgetClassType);

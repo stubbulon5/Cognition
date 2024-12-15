@@ -44,7 +44,7 @@ void ofApp::setup(){
     APP_CONSTANTS::BOOTSTRAP_APP();
     
 	// Fluidsynth initialize - make it configurable too...
-	sdFluidSynthShared::configure();
+	// sdFluidSynthShared::configure();
 
 	// Midi initialize - make it configurable too...
 	sdMidiShared::configure();

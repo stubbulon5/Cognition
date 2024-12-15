@@ -1926,6 +1926,8 @@ public:
 
     virtual ofFbo saveWidgetContentsToFbo() { 
         // Do something in descendant class
+        ofFbo fboCopy;
+        return fboCopy;
     }
 
     virtual ofFbo getContentDragIconFbo() {
