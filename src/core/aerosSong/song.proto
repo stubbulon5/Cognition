@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option optimize_for = LITE_RUNTIME;
+
+package Singul;
+
+////////////////////////////////////////////////////////////////////
+// IMPORTANT!!!
+//
+// Any change to the fields in message Song (add, remove or rename)
+// requires an update to CURRENT_META_VERSION in global.h
+//
+////////////////////////////////////////////////////////////////////
+message Song {
+  string title           = 1;
+
+  float bpm              = 2;
+  TimeSignature time_sig = 3;
+
+
+  //bool freeform                = 10; do not use anymore (it has been renamed to quantize_track_enabled)
+  int32 tpqn                     = 11; // Fixed to 24 for now, important to save for future version
+  int32 count_in                 = 12;
+  bool mode_2x2_enabled          = 13;
+  bool quantize_track_enabled    = 14;
+  int32 order_index              = 16;
+  bool stereo                    = 18;
+  int32 sync_tracks_option       = 19;
+
+  repeated bool locked           = 20;
+
+  bool  midi_select_enabled      = 21;
+  int32 midi_bank_msb            = 22;
+  int32 midi_program_number      = 23;
+
+  string os_version              = 97;
+  int32 meta_version             = 98;
+  repeated Part parts            = 99;
+}
+
+message Part {
+  repeated Track tracks  = 99;
+}
+
+message Track {
+  int32 volume           = 1;  // Volume that ranges from 0-127
+  bool muted             = 2;  // Mute Info Can be saved
+  int32 number_of_tick   = 3;  // Number of MIDI tick
+  int32 tick_offset      = 4;  // Offset from start of the part
+
+  AudioLoop loop_a       = 10; // Instrument #1 (left)
+  AudioLoop loop_b       = 11; // Instrument #2 (right)
+
+}
+
+message AudioLoop {
+  int32 number_of_frames   = 1;  // Total number of frames of the loop
+  string filename          = 2;  // Name of the file
+  bool undo                = 3;  // Is the AudioLoop in an "undo" state
+
+  float visual_gain        = 10;
+}
+
+message TimeSignature {
+  int32 numerator        = 1;
+  int32 denonimator      = 2;
+}
