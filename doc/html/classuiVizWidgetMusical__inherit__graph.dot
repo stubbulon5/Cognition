@@ -1,0 +1,30 @@
+digraph "uiVizWidgetMusical"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="uiVizWidgetMusical",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="uiVizWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="uiVizWidgetChordBucket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordBucket.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="uiVizWidgetChordDesigner",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordDesigner.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="uiVizWidgetChordRules",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordRules.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="uiVizWidgetChordWheel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordWheel.html",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="uiVizWidgetKeyPicker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetKeyPicker.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="uiVizWidgetScalePicker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetScalePicker.html",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="uiVizWidgetTutor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetTutor.html",tooltip=" "];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="uiVizWigetStringedInstrument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWigetStringedInstrument.html",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="uiVizWidgetBassGuitar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetBassGuitar.html",tooltip=" "];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="uiVizWidgetGuitar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetGuitar.html",tooltip=" "];
+}

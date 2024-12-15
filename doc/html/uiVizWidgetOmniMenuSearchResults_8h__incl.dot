@@ -1,0 +1,9 @@
+digraph "/Users/stuart.barnes/projects/of_v0.11.2_osx_release/apps/myApps/Cognition/src/app_widgets/uiVizWidgetOmniMenuSearchResults.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/Users/stuart.barnes\l/projects/of_v0.11.2\l_osx_release/apps/myApps\l/Cognition/src/app_widgets\l/uiVizWidgetOmniMenuSearchResults.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="../uiViz/widget/uiVizWidget.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

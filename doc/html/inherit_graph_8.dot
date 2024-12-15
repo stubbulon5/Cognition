@@ -1,0 +1,44 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="uiVizWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node14 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="uiVizWidgetAbout",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetAbout.html",tooltip=" "];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="uiVizWidgetGetStarted",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetGetStarted.html",tooltip=" "];
+  Node14 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="uiVizWidgetLicence",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetLicence.html",tooltip=" "];
+  Node14 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="uiVizWidgetMainMenu_old",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetMainMenu__old.html",tooltip=" "];
+  Node14 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="uiVizWidgetMusical",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetMusical.html",tooltip=" "];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="uiVizWidgetChordBucket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordBucket.html",tooltip=" "];
+  Node19 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="uiVizWidgetChordDesigner",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordDesigner.html",tooltip=" "];
+  Node19 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="uiVizWidgetChordRules",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordRules.html",tooltip=" "];
+  Node19 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="uiVizWidgetChordWheel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetChordWheel.html",tooltip=" "];
+  Node19 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="uiVizWidgetKeyPicker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetKeyPicker.html",tooltip=" "];
+  Node19 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="uiVizWidgetScalePicker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetScalePicker.html",tooltip=" "];
+  Node19 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="uiVizWidgetTutor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetTutor.html",tooltip=" "];
+  Node19 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="uiVizWigetStringedInstrument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWigetStringedInstrument.html",tooltip=" "];
+  Node27 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="uiVizWidgetBassGuitar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetBassGuitar.html",tooltip=" "];
+  Node27 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="uiVizWidgetGuitar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetGuitar.html",tooltip=" "];
+  Node14 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="uiVizWidgetOmniMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetOmniMenu.html",tooltip=" "];
+  Node14 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="uiVizWidgetOmniMenuSearch\lResults",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetOmniMenuSearchResults.html",tooltip=" "];
+  Node14 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="uiVizWidgetUnitTests",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classuiVizWidgetUnitTests.html",tooltip=" "];
+}
