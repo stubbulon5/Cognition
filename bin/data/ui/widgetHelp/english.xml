@@ -1,0 +1,150 @@
+<LANGUAGE>
+    <uiVizWidgetMusical>
+        Musical Widget
+    </uiVizWidgetMusical>
+    <uiVizWidgetMusicalComposer>
+        Musical Composer
+    </uiVizWidgetMusicalComposer>
+    <uiVizWidgetChordWheel>
+<![CDATA[
+<xxlarge><br/></xxlarge>
+<xlarge>Chord Wheel</xlarge><large><br/><br/></large>
+
+<large>The Chord Wheel displays the Diatonic Chord Scale for all keys. It's a powerful inspirational tool which can help in the arrangement and composition of chords.</large>
+<large><br/><br/></large>
+
+<large>In addition, you can change the scale (from Ionian / Major) to any other 7 note scales which changes the chords to work within that scale.</large>
+<large><br/><br/></large>
+
+<large>You can select one or more Keys to focus on by clicking on of the inner Keys. You can also change the labels to display the degree of the chord in the context of the scale if you prefer to think in degrees.</large>
+<large><br/><br/></large>
+
+<large>Like the other music widgets, you can drag chords from it (for instance to the Chord Bucket widget or the Guitar / Bass widgets), switch to view notes or degrees view and change colour</large>
+<large><br/><br/></large>
+
+<large><br/><br/><br/><br/>-</large>
+]]>
+    </uiVizWidgetChordWheel>
+    <uiVizWidgetChordProgression>
+        <![CDATA[
+        <xxlarge><br/></xxlarge>
+        <xlarge>Chord Progression</xlarge><large><br/><br/></large>
+        
+        <large>The Chord Progression TODO.....</large>
+        <large><br/><br/></large>
+        
+        <large>bla bla bla</large>
+        <large><br/><br/></large>
+                
+        <large><br/><br/><br/><br/>-</large>
+        ]]>
+    </uiVizWidgetChordProgression>    
+    <uiVizWidgetChordBucket>
+<![CDATA[
+<xxlarge><br/></xxlarge>
+<xlarge>Chord Bucket</xlarge><large><br/><br/></large>
+
+<large>The Chord Bucket is a storage area for chords. To get started, simply drag in chords from other music widgets like the Guitar, Bass, Chord Progression or even other Chord Buckets. It can easily display Guitar / Bass chord diagrams too.</large>
+<large><br/><br/></large>
+
+<large>Other features include the ability to play back the sequence of chords (including sequences/follow on notes from the Guitar /Bass), change the root Key in order to view relative chord degrees, export chords to HTML (to print for example)</large>
+<large><br/><br/></large>
+
+<large>You can right click chords to delete, edit or apply rules to them which can be handy when trying different inversions for example!</large>
+<large><br/><br/></large>
+
+<large>Like the other music widgets, you can drag chords from it and switch to view notes or degrees view and change colour</large>
+<large><br/><br/></large>
+
+<large><br/><br/><br/><br/>-</large>
+]]>        
+    </uiVizWidgetChordBucket>
+    <uiVizWidgetChordDesigner>
+        Chord Designer
+    </uiVizWidgetChordDesigner>
+    <uiVizWidgetChordRules>
+        Chord Rules
+    </uiVizWidgetChordRules>
+    <uiVizWidgetScalePicker>
+        Scale Picker
+    </uiVizWidgetScalePicker>
+    <uiVizWidgetScaleTable>
+        Scale Table
+    </uiVizWidgetScaleTable>
+    <uiVizWidgetChordTable>
+        Chord Table
+    </uiVizWidgetChordTable>    
+    <uiVizWidgetKeyPicker>
+        Circle of Fifths
+    </uiVizWidgetKeyPicker>
+    <uiVizWigetStringedInstrument>
+        Stringed Instrument
+    </uiVizWigetStringedInstrument>
+    <uiVizWidgetGuitar>
+<![CDATA[
+<xxlarge><br/></xxlarge>
+<xlarge>Guitar</xlarge><large><br/><br/></large>
+
+<large>The Guitar is a highly customizable tool for displaying chord and scale information. You can set create chord and scale diagrams, add rules to enforce chords inversions, enable / disable strings, set the tuning, etc.</large>
+<large><br/><br/></large>
+
+<large>You can manually arrange a chord by selecting a key and then clicking on the fretboard to add or remove notes. Click the "nut" to add an open string note. (this can be used regardless of the fret number!)</large>
+<large><br/><br/></large>
+    
+<large>You can even sequence "follow on" notes by holding SHIFT key when clicking the fretboard. In order to set the sequence number use the "UP" and "DOWN" arrows on your keyboard</large>
+<large><br/><br/></large>
+
+<large>Like the other music widgets, you can drag scales and chords to / from it (for instance to the Chord Bucket widget), switch to view notes or degrees view and change colour</large>
+<large><br/><br/></large>
+
+<large><br/><br/><br/><br/>-</large>
+]]>
+    </uiVizWidgetGuitar>
+    <uiVizWidgetBassGuitar>
+<![CDATA[
+<xxlarge><br/></xxlarge>
+<xlarge>Bass</xlarge><large><br/><br/></large>
+
+<large>The Bass is a highly customizable tool. You can set create chord and scale diagrams, add rules to enforce chords inversions, enable / disable strings, set the tuning, etc.</large>
+<large><br/><br/></large>
+
+<large>You can manually arrange a chord by selecting a key and then clicking on the fretboard to add or remove notes. Click the "nut" to add an open string note. (this can be used regardless of the fret number!)</large>
+<large><br/><br/></large>
+
+<large>You can even sequence "follow on" notes by holding SHIFT key when clicking the fretboard. In order to set the sequence number use the "UP" and "DOWN" arrows on your keyboard</large>
+<large><br/><br/></large>
+
+<large>Like the other music widgets, you can drag scales and chords to / from it (for instance to the Chord Bucket widget), switch to view notes or degrees view and change colour</large>
+<large><br/><br/></large>
+
+<large><br/><br/><br/><br/>-</large>
+]]>
+    </uiVizWidgetBassGuitar>
+    <uiVizWidgetTutor>
+        Tutor
+    </uiVizWidgetTutor>
+    <uiVizWidgetUnitTests>
+        Unit Tests
+    </uiVizWidgetUnitTests>
+    <uiVizWidgetMainMenu>
+        Main Menu
+    </uiVizWidgetMainMenu>
+    <uiVizWidgetOmniMenu>
+        Omni Menu
+    </uiVizWidgetOmniMenu>
+    <uiVizWidgetOmniMenuSearchResults>
+        Omni Menu Results
+    </uiVizWidgetOmniMenuSearchResults>
+    <uiVizWidgetOmniMenuLinks>
+        Omni Menu Links
+    </uiVizWidgetOmniMenuLinks>
+    <uiVizWidgetLicence>
+        Licence
+    </uiVizWidgetLicence>
+    <uiVizWidgetGetStarted>
+        Get Started
+    </uiVizWidgetGetStarted>
+    <uiVizWidgetNotifications>
+        Notifications
+    </uiVizWidgetNotifications>
+</LANGUAGE>    

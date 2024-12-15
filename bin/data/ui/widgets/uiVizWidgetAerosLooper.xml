@@ -1,0 +1,164 @@
+<widget>
+    <title></title>
+    <bounds minWidth="700" minHeight="620" />
+
+    <elements>
+        <element id="BTN_SAVE_SONG" class="uiVizWidgetElmButton">
+            <title>Save Song</title>
+            <bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" width="150" />
+            <appearance visible="0" />
+        </element>
+
+        <element id="IMG_LOGO" class="uiVizWidgetElmImage">
+            <bounds xExpr="0" yExpr="${PARENT.TOP}" widthExpr="671/2" heightExpr="478/2" />
+            <properties file="ui/images/aeros.png" />
+        </element>
+
+        <element id="BC_SD_CARD" class="uiVizWidgetElmBreadcrumb">
+            <isEnabled>0</isEnabled>
+            <items>
+                <item key="Item_A1">Aeros Looper</item>
+                <item key="Item_A2">Select an SD card to continue...</item>
+            </items>
+            <bounds xExpr="${IMG_LOGO.RIGHT}" yExpr="${PARENT.TOP}+${PADDING}+2" widthExpr="${PARENT.WIDTH}-${IMG_LOGO.WIDTH}-96/4+4-${PADDING}*4" heightExpr="30" />
+        </element>
+
+        <element id="IMG_SD_CARD" class="uiVizWidgetElmImage">
+            <bounds xExpr="${PARENT.RIGHT}-${PADDING}-2" yExpr="${BC_SD_CARD.Y}+2" widthExpr="96/4" heightExpr="${BC_SD_CARD.HEIGHT}-4" />
+            <properties file="ui/images/aeros_sd_card.png" />
+        </element>
+
+        <element id="BTN_SD_CARD" class="uiVizWidgetElmButton">
+            <bounds xExpr="${PARENT.RIGHT}-${PADDING}" yExpr="${BC_SD_CARD.Y}" widthExpr="96/4+4" heightExpr="${BC_SD_CARD.HEIGHT}" />
+        </element>
+
+
+    </elements>
+
+    <childWidgets>
+
+        <widget id="AEROS_SD_SONG_LIST" class="uiVizWidgetFileList">
+            <bounds xExpr="${IMG_LOGO.RIGHT}" yExpr="${BC_SD_CARD.BOTTOM}+${PADDING}" widthExpr="${PARENT.USABLE_WIDTH}-${IMG_LOGO.WIDTH}" heightExpr="188" />
+        </widget>
+
+        <widget id="TOOL_TABS" class="uiVizWidgetMenuCollection">
+            <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${IMG_LOGO.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}" />
+            <properties menuType="TAB" itemYExpression="${TOOL_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${TOOL_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${BTN_SAVE_SONG.HEIGHT}">
+                <items>
+
+                    <item tag="songInfo" label="Song Info" icon="ui/svg/ic_settings_48px.svg" isSelected="1">
+                        <widget id="SONG_INFO_TEXT_HOLDER" class="uiVizWidget">
+                            <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
+                            <elements>
+                                <element id="TXT_SONG_INFO" class="uiVizWidgetElmTextarea">
+                                    <title></title>
+                                    <bounds x="0" y="0" widthExpr="${PARENT.WIDTH}" heightExpr="${PARENT.HEIGHT}" />
+                                    <behaviour draggable="0" resizable="0" />
+                                    <appearance visible="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1"></appearance>
+                                    <properties isFormatted="1">
+                                        <value>
+                                            <large>
+                                                <br />
+                                            </large>
+                                            <xxlarge>
+                            Song info</xxlarge>
+                                            <large>
+                                                <br />
+                                            </large>
+                                            <xlarge>Please load a song!</xlarge>
+                                            <large>
+                                                <br />
+                                            </large>
+                                        </value>
+                                    </properties>
+                                </element>
+
+                                <element id="BTN_EDIT_SONG" class="uiVizWidgetElmButton">
+                                    <title>Edit</title>
+                                    <bounds xExpr="${PARENT.RIGHT}-${PADDING}" yExpr="${PARENT.TOP}+${PADDING}" />
+                                    <appearance visible="0" />
+                                </element>
+
+
+                            </elements>
+                        </widget>
+
+                    </item>
+
+                    <item tag="PARTS" label="Parts" icon="ui/svg/ic_music_note_48px.svg">
+                        <widget id="TABLE_PART" class="uiVizWidgetTable">
+                        <title style="NONE" />
+                        <appearance visible="0" />
+                        <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        <properties showColumnFilters="0" rowHeight="50" selectionMode="CELL">
+                        </properties>
+                        </widget>
+                    </item>              
+
+                    <item tag="about" label="About" icon="ui/svg/ic_info_outline_48px.svg">
+                        <widget id="ABOUT_TAB_TEXT_HOLDER" class="uiVizWidget">
+                            <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
+                            <elements>
+                                <element id="TXT_ABOUT" class="uiVizWidgetElmTextarea">
+                                    <title></title>
+                                    <bounds x="0" y="0" widthExpr="${PARENT.WIDTH}" heightExpr="${PARENT.HEIGHT}" />
+                                    <behaviour draggable="0" resizable="0" />
+                                    <appearance visible="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1"></appearance>
+                                    <properties isFormatted="1">
+                                        <value>
+                                            <large>
+                                                <br />
+                                            </large>
+                                            <xxlarge>
+                            Aeros SD card importer</xxlarge>
+                                            <large>
+                                                <br />
+                                            </large>
+
+                                            <xlarge>A word from the creator:</xlarge>
+                                            <large>
+                                                <br />
+                                            </large>
+                                            <large>Use at your own risk! Absolutely no warrany.</large>
+                                            <large>
+                                                <br />
+                                                <br />
+                                            </large>
+                                            <large>
+                                                <br />
+                                            </large>
+
+                                            <large>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                -
+                                            </large>
+                                        </value>
+                                    </properties>
+                                </element>
+
+                            </elements>
+                        </widget>
+
+                    </item>
+                </items>
+            </properties>
+        </widget>
+
+    </childWidgets>
+
+</widget>

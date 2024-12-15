@@ -1,0 +1,67 @@
+
+<widget>
+    <title style="NONE"></title>
+    <bounds width="500" height="300" minWidth="100" minHeight="100" />
+    
+    <elements>
+    <element id="OK" class="uiVizWidgetElmButton">
+    <title>OK</title>
+    <bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" />
+    </element>
+    
+    <element id="CANCEL" class="uiVizWidgetElmButton">
+    <title>Cancel</title>
+    <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.BOTTOM}" />
+    </element>
+    
+    </elements>
+    
+    <childWidgets>
+        <widget id="GETTING_STARTED_TABS" class="uiVizWidgetMenuCollection">
+            <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}"  />
+                <properties menuType="TAB" itemYExpression="${GETTING_STARTED_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${GETTING_STARTED_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${OK.HEIGHT}">
+                <items>
+
+                    <item tag="key" label="Key" icon="ui/svg/ic_bug_report_48px.svg" isSelected="1">
+                        <widget id="NOTES_TABLE" class="uiVizWidgetKeyPicker">
+                            <title style="NONE"/>
+                            <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        </widget>
+                    </item>
+
+                    <item tag="chord" label="Chord" icon="ui/svg/ic_bug_report_48px.svg" isSelected="1">
+                        <widget id="CHORD_TABLE" class="uiVizWidgetChordTable">
+                            <title style="NONE"/>
+                            <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        </widget>
+                    </item>    
+
+                    <item tag="scale" label="Scale" icon="ui/svg/ic_bug_report_48px.svg" isSelected="0">
+                        <widget id="SCALE_TABLE" class="uiVizWidgetScaleTable">
+                            <title style="NONE"/>
+                            <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        </widget>
+                    </item>
+                    
+                    <item tag="fretboardRules" label="Chord Rules" icon="ui/svg/ic_bug_report_48px.svg" isSelected="0">
+                        <widget id="FRETBOARD_RULES" class="uiVizWidgetChordRules">
+                            <title style="NONE"/>
+                            <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        </widget>
+                    </item>      
+                    
+                    <item tag="fretboardRules2" label="Scale Rules" icon="ui/svg/ic_bug_report_48px.svg" isSelected="0">
+                        <widget id="FRETBOARD_RULES" class="uiVizWidgetChordRules">
+                            <title style="NONE"/>
+                            <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        </widget>
+                    </item>                    
+
+                </items>
+            </properties>
+        </widget>
+    
+    </childWidgets>
+    
+    </widget>
+    

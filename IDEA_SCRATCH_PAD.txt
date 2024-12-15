@@ -1,0 +1,442 @@
+
+        
+        // TODO : port rest of uiVizWidget to use uiVizElm
+        // PORT KEYPICKER and CHORDPICKER...
+        
+        // TODO::
+        // 0.) Dragging / resizing when autohide title - if leave widget area
+        //      1.) Icons flicker!!!
+        // 1.) left resize
+        
+        // CONTENT DRAG mode... (eg dragging midi, etc)
+        
+        // TODO :: boost, throttle - not behaving as expected - actually it DOES work, but 2 snags:
+        // 1.) when it's altered at runtime - it always reverts back to old... --- use persistPrev
+        // 2.) when hovering title and moving off, it reverts to min (1st action, is hover then move off - no exit window etc)
+        
+        // Init / constructor memory leak - (remove "new" instantiation!)
+        // Widget ideas
+        /* *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+            Moments widget!
+            Modes widget!!!!
+            Rythym generator -- see bitwig for inspiration
+            Musical function !!!! manipulate realtime!
+            can use function INTO generator!!
+            ONLINE COLLAB / tuition - user image / icon (circle) where clicking user icon shows THIR tabbed dock (changing in real time!)
+            // PEER TO PEER ??
+            Test widget for Stringed instruments /
+            Progression widget
+            Harmony / transposer widget
+            Key change assistant
+            MIDI visualizer (color analyser)m
+        // *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+        // BLUES : degree - moody notes - highlight!!!
+        // stringed instrumentt widget :
+        // tuning (open string notes)
+        // number of strings...
+        // Dock - tabbed
+        // Chord picker animation, all color modes
+        // 2.) Create Maximize, Minimize SCALED icons
+        // When popout appears - framerate / performnce drops massively!
+        // Update Popout - top bottom left right
+        // Dragging from 1080 -> Retina, the UI is too big. Resizing the window then makes it right. Investigate!
+        // Selected state color
+        // Menu implementation
+        // 0.6) Do menu using ONE instance of uiVizWidget (using offsets!!)
+        // 3.) Animation scaling needs fixing when on hi-dpi displays - CLOSE
+        // 8.) When moving from really low dpi to high dpi the widgets gewt too small. solution : automatically tweak the m_userscale setting up or down (based on a calculation). have a usersetting to disable / enable this smart functionality!!!!
+        // 9.) uiVizDockedWidget.h  ---- add dockable behaviour (derrived oof uiVizWidget.h)
+
+        
+        // Bug : full hove rover widget title - if keep toggling viz minimized state, the animation slows down to a crawl! - relative to framerate - red herring? - does it at 60 to 20!.
+        
+        
+        // TODO:
+        // SETUP 2 widget colloections (user can add as many as they want)
+        // when creating a new one :
+        
+        
+        /*
+         
+         * * *
+         *   *
+         * + *
+         *   *
+         * * *
+         
+         Default
+         * * * * * * * * *
+         *       *       *
+         * Key   * Scale * -> Chords
+         *       *       *
+         * * * * * * * * *
+         |
+         ~~~
+         ~
+         
+         All in minimized state. When down arrow clicked (left right up down) the rest of the widget area fills with the maximized content!
+         
+         */
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cool ideas:
+
+when dragging a scale to chord bucket : iterate all possible chords!
+
+
+problems:
+0.) OPTIMIZATION : setSelectedScale method is toooooo slooowwww
+2.) layout for menu widget as a child (About us last tab)
+3.) DnD to deeply nested 
+3.) Omni links - layout bug
+5.) Recursive layout on deeply nested widget reference : ie "${PARENT.WIDTH}" [---->${PARENT.WIDTH}<----]  not working > 1 level deep!
+6.) create test / example area (of deeply nested widgets and DnD things - ef file manager and drop area)
+7.) then finish attributiuons
+
+8.) also add practie session widget (eg - day, content (ie file), duration, table / checklist / timer)
+9.) regresssion :set selected key no longer works!!! (fretbord)
+19:) regression: file browser breadcrumb no longer works
+
+
+8.)  fix menu autolayout / resize bug - MENU Widget - (try gutar)
+ -- ie resizr a WIDGET menu, the nclick to a text menu .... snap) 
+--- also resizing the actual widget allows contents to go out of boundss....
+
+9.) Roll out new "template" eg chord study etc
+
+
+1.) roll outsetSelectedKey
+chord and scale (uiVizWidgetMusical)
+
+2.) Roll out 
+
+IDEAS: ---------------------
+1.) optimize fretboard, nut and strings into VBO 
+2.) Mini 5 fret chord view!! context menu only invoked after rightclicked and dumped / not updated when not vis
+how much can be ported ti ios
+
+
+bug - B5 name not calculated on chords....
+
+
+
+
+// todo - connect triads ..... SWEET... 
+
+// AURAL degree game
+https://www.makeplayingcards.com/ - degrees relativitu - with a 
+https://www.qr-code-generator.com/a1/?ut_source=google_c&ut_medium=cpc&ut_campaign=en_top_kw&ut_content=qr_generator_exact&ut_term=qr%20code%20generator_e&gclid=CjwKCAjw_-D3BRBIEiwAjVMy7Dvy39F5sgG9iYde7KhSb5S46yPhomH8vxC7t5iB-PbMGryIEYW0qBoCKesQAvD_BwE
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Sequencer: (with 2 cols : col 1 config, col 2 draw : uiVizWidgetTrack)
+collection of uiVizWidgetTrack
+
+uiVizWidgetTrack
+    uiVizWidgetTrackAudio
+        vector<audioClip>   : audioClip : [start, end]
+    uiVizWidgetTrackVideo
+
+
+uiVizWidgetElmAudioClip
+    prperties:
+    audioClip
+    update - renders waveform / vbo
+    draws the vbo
+
+
+-----
+Donate ... not donated... 
+
+DONE::::: clicking openstring has stopped working again (actually - even dragging an open string chord doesnt show)
+
+
+TOMORROW:::::
+bug - when large ret range selected -  (and gragging from biggie) chord is rejected : trim range
+
+todo: when browsing up and down - store "original chord" if it doesnt match exactly to prior - 
+dont set it again and then when browsing up and down again, atttempt to find the original chord - 
+so it does not "continue to morph"  ------> look at embedded chord designet - it accomplished this
+
+dragging chord when a scale is there sometimes does not change mode!!
+
+c5 - doesn't work (when selecting and then unselecting higher 5th - it never reselectes it)
+
+creativity is just the start!
+
+chord bucket area - support pre-rendered fret diagrams
+
+
+--------------------q
+for tomo
+-------------------------
+change to flat and drag - results in sharp!
+changing flat / sharp should "rebind" control
+chords table, tunings table, strings table!! range table (ie start stop)
+13ths not calculated!! use chord designer ????? methods.....
+
+
+Basic sequencer (table)
+ shows a row for each musical widget which has - isSequenced = true
+ channel, instrument, volume
+
+ has BPM
+
+each row ccell has :
+chord or scale or key
+rythmic patterns
+
+BUG: Chord designer - when selecting 5th interval (1 octave up, it deselects 4th)
+
+// Testers
+FRET AND DEGREE TESTER
+
+
+TODO: 
+Element color pass - must use bg for bg and forground for forground - ALL elms
+Create a Theme preview widget XML which contails all elements!! (labels, button, sliders, etc) then use for theme preview too!!
+
+use it as a popout from the settings 
+
+----------------------
+Textbox prob - scrolling and text cursor backwards
+Widget elements set to Zero width disappear and never come back
+
+HARD ones:
+Scroll bug - general
+Tab func for about screen
+
+... then get started, with instrument picker
+
+
+calculateMinimum bounds (works by summing....)
+set minWidth, height
+
+
+Problems/Regression after  Scale tweaks
+
+- scale is fine after drop, but "diminishes / warps" when selecting fret ranges
+- MUST set chord and scale rules (update UI)
+- notes per string and note repetition dont seem to get set to rule after switching from chord to scale
+- when loading scale doesnt appear correctly (very likely the same issue as point 1)
+
+see c-major-problem.png
+
+left handed
+
+RESUME : 
+1.) update the ui with the rules
+TODO: Update Chord rules ui to reflect rules.... ie rules widget L169
+Staarting inversion  is always 1!!!
+2.) always 1 inversion
+4.) 4 notes per string.... rule
+
+
+usage scenarios:
+effortlessly find chord arrangements - disable strings, set fret range, inversions,
+enter fingerns manually
+explore exotic diatonic chord scales!
+
+open file format
+
+recognize degree patterns in string groups (create excercise)
+eg Dm is revers triangle shape biii, V, I (on 3rd)
+
+
+BUGZ - 
+
+Guitar title - 
+
+
+Adding points after setting key on fresh guitar not right!!
+
+----------------------------------------------
+
+C4 - results in invalid chord name.....
+
+
+
+hover NAMED chord and the ncalculated chord name
+the title is not updated!!
+
+
+-------------------------------------------------
+
+/*
+2 probs:
+1 - loadstate - extended notes from guitar chord
+2 - selecting notes does not use extended notes - revert back!
+*/
+
+guitar - to read from value too
+chord sub menu of guitar doesnt updte to custom (should update bi-directionally)
+
+add breadcrumbs
+show menu on load?
+
+
+TED GREENE VIBES:
+eg - user selects exotic chord from notes, store the points
+but if user changes tuning, and the chord is no longer valid, recalculate!!
+bizzare - only storing 1st val in xml dnd
+
+// then --- transmit to widget (mouse hover)
+// then mini guitar chord diagram
+
+--------- TODO : chord mode on guitar is still defaulting to 4 notes per string!
+--------- sync rules ui
+--------- chord table!!
+---- file browser windows
+-------- chord diagrams in the chord bucket
+
+// dragging unknown chord..... (for designer, should still transmit data)
+// built in sequencer menu item (chords or freeform)
+
+
+
+
+-------------------------- NEXT -----------------------------------
+FIRST : setting the key when dragg (to update menus on guitar - slows things down a LOT) move setKey elsewhere?
+---- TODOL saving fretpoints : when changing frets only permit points WITHIN the range!!!
+-- display user defined chord name in chord designed, chord bucket
+-- chord bucket show real chord shapes from ghuitar
+-- update rules menu
+-- some scenarios dragging chord to guitar doesnt work!! (from designer)
+
+logic priority:
+new property - userEnteredName
+
+when manually selecting points, keep 
+
+
+
+if it HAS fretpoints, add them and check the chord namem if it's ok, leave it
+if not, go through the regular calculation
+
+
+ODDITY: dragging guitar data to bass ---- weirdness :)
+
+
+
+Scales fret range rules - not working
+saved state on a chord apoplies a different rule as opposed to whats been saved in XML (loadState)
+(ie if strings are disabled and starting inversion)
+Think it's because a rule is out of sync with 
+
+
+                           <stringed>
+                                <notesPerString>1</notesPerString>
+                                <searchForExactChordMatch>1</searchForExactChordMatch>
+                                <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                            </stringed>
+
+needs to be persisted with the starting inversion!!!                            
+
+
+1.) Sync loaded XML -> rules widget (ie the UI)
+1.5) Clear up the rules names (it move stringed -> general)
+2.) sync string range -> rule !! (guitar)
+DONE: 3.) bug: changing key on guitar does not update the selected scale correctly!
+4.) Drag and drop ONTO scale picker - not responding!!
+
+---> this is causing bugs until done!! Implement syncronization on load with Rules menu
+Scale drag and drop rules
+Scale and chord picker drag and drop (-> guitar, chord bucket) - rules must be carried over
+apply rules persistence for scales....
+chord bucket - show correct note inversions / order ....
+Fire rules changed when dragged and dropped....
+Rename rules correctly to have insrument names... (and move stuff to general - see chord rules widget)
+Midi DND data - selectedNotesWithRuleApplied? ?
+refactor chord rules widget to show only rules relevent to scenario
+
+persist fret range with scale / chords 
+note repetition not working with scales
+
+rename rules properly
+move strings etc to rules
+
+DONE: Implement persist and resmusicaltore for SCALES
+DONE: rules data from chord bucket isnt working because of slices in bucket
+DONE: test dragging guitar to guiatar with riules
+DONE: rules in CHORD designer (drag data)
+
+
+
+Licence / credits
+DONE: Dynamic Link(mac is currently bre installed)
+Window Build
+Mac Load crash
+DONE: Mac Hi-res support
+Mac Browser white screen
+
+Audio settings (inside settings widget)
+Sound font Browser
+
+
+note length
+sort cache area
+remove .mid
+
+chord rules / duration
+consider different velocity for root
+
+
+CHORD RULES menu:
+Velocity editor (at note level)
+Inversion editor (Move notes around)
+Octave Editor (Set octaves)
+
+
+
+
+Implement next:
+Chord Rules widget
+Instrument rules widget
+
+Persist to XML
+
+todo:
+in vizWiddgetMusical class
+create 
+"generic", RULE_STARTING_INVERSION
+
+"stringed", RULE_NOTES_PER_STRING
+"stringed", RULE_STARTING_STRING
+ie:
+Generic : 
+stringed:
+in the chord rule widget - owner widget - check type - eg stringed : show applicable string related 
+options
+
+
+
+MASSIVE BUG:
+---------------------
+Drag data of guitar is not set correctly when dragging and dropping chords with extended notes (I think it's because of the add chord change - and set data)
+Easily fixable, to "re-calculate" just enter "setIsUserDefinedNotes" when dragging!!!!!
+
+
+---------------------
+
+Tough  bug:
+---------------
+
+Guitar fretboard - when loading (auto load), fret range selection 
+is gammy, and saving immegiately after loses it's value
+
+This does no thappen if you load manually!

@@ -1,0 +1,145 @@
+
+<widget>
+<title></title>
+<bounds minWidth="500" minHeight="450" />
+
+<elements>
+<element id="BTN_SAVE_SONG" class="uiVizWidgetElmButton">
+<title>Save Song</title>
+<bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" width="150"/>
+</element>        
+</elements>
+
+<childWidgets>
+    <widget id="TOOL_TABS" class="uiVizWidgetMenuCollection">
+        <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.USABLE_WIDTH}"  />
+            <properties menuType="TAB" itemYExpression="${TOOL_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${TOOL_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${BTN_SAVE_SONG.HEIGHT}">
+            <items>
+
+                <item tag="newSong" label="Song Info" icon="ui/svg/ic_settings_48px.svg" isSelected="1">
+                   <widget id="SONG_INFO_HOLDER" class="uiVizWidget">
+                        <elements>
+                            <element id="LBL_SONG_TITLE" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties><value><xxlarge>Song Title</xxlarge></value></properties>
+                            </element>                            
+
+                            <element id="TXT_TITLE" class="uiVizWidgetElmTextbox">
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${LBL_SONG_TITLE.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+
+
+                            <element id="LBL_2X2_ENABLED" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${LBL_SONG_TITLE.RIGHT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
+                                <properties><value><xxlarge>2x2 Mode</xxlarge></value></properties>
+                            </element>                                
+                            <element id="MODE_2X2_ENABLED" class="uiVizWidgetElmCheckbox">
+                                <bounds xExpr="${TXT_TITLE.RIGHT}+${PADDING}" yExpr="${LBL_SONG_TITLE.BOTTOM}" widthExpr="150" />
+                                <properties />
+                            </element>
+
+
+                            <element id="LBL_STEREO" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${MODE_2X2_ENABLED.RIGHT}" yExpr="${PARENT.TOP}" widthExpr="150" />
+                                <properties><value><xxlarge>Stereo</xxlarge></value></properties>
+                            </element>                                
+                            <element id="STEREO" class="uiVizWidgetElmCheckbox">
+                                <bounds xExpr="${MODE_2X2_ENABLED.RIGHT}" yExpr="${LBL_SONG_TITLE.BOTTOM}" widthExpr="150" />
+                                <properties />
+                            </element>                         
+
+
+                            <element id="LBL_TIME_SIG" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${TXT_TITLE.BOTTOM}+${PADDING}*4" widthExpr="${PARENT.USABLE_WIDTH}" />
+                                <properties><value><xxlarge>Time Signature</xxlarge></value></properties>
+                            </element>
+
+                            <element id="BTN_TIME_SIGNATURE_NUMERATOR" class="uiVizWidgetElmButton">
+                                <title>Numerator</title>
+                                <appearance/>    
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${LBL_TIME_SIG.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+                            <element id="BTN_TIME_SIGNATURE_DENOMINATOR" class="uiVizWidgetElmButton">
+                                <title>Denominator</title>
+                                <appearance/>    
+                                <bounds xExpr="${BTN_TIME_SIGNATURE_NUMERATOR.RIGHT}+${PADDING}" yExpr="${LBL_TIME_SIG.BOTTOM}"  widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+                            <element id="BTN_BPM" class="uiVizWidgetElmButton">
+                                <title>BPM</title>
+                                <appearance/>    
+                                <bounds xExpr="${BTN_TIME_SIGNATURE_DENOMINATOR.RIGHT}+${PADDING}" yExpr="${LBL_TIME_SIG.BOTTOM}"  widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}" />
+                                <properties />
+                            </element>
+
+                            
+                            <element id="LBL_RECORDING_OPTIONS" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${BTN_BPM.BOTTOM}+${PADDING}*4" widthExpr="(${PARENT.USABLE_WIDTH}/3)*2" />
+                                <properties><value><xxlarge>Recording Options</xxlarge></value></properties>
+                            </element>
+                            <element id="BTN_COUNT_IN" class="uiVizWidgetElmButton">
+                                <title>Count In</title>
+                                <appearance/>    
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${LBL_RECORDING_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+                            <element id="BTN_SYNC_TRACKS_OPTION" class="uiVizWidgetElmButton">
+                                <title>Sync Tracks</title>
+                                <appearance/>    
+                                <bounds xExpr="${BTN_COUNT_IN.RIGHT}+${PADDING}" yExpr="${LBL_RECORDING_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+                            <element id="LBL_QUANTIZE" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${LBL_RECORDING_OPTIONS.RIGHT}+${PADDING}" yExpr="${BTN_BPM.BOTTOM}+${PADDING}*4" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*3" />
+                                <properties><value><xxlarge>Quantize</xxlarge></value></properties>
+                            </element>                            
+                            <element id="QUANTIZE_TRACK_ENABLED" class="uiVizWidgetElmCheckbox">
+                                <bounds xExpr="${BTN_SYNC_TRACKS_OPTION.RIGHT}+${PADDING}" yExpr="${LBL_RECORDING_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+
+
+                            <element id="LBL_MIDI_OPTIONS" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${QUANTIZE_TRACK_ENABLED.BOTTOM}+${PADDING}*4" widthExpr="(${PARENT.USABLE_WIDTH}/3)*2" />
+                                <properties><value><xxlarge>Midi</xxlarge></value></properties>
+                            </element>    
+                            
+                            <element id="LBL_MIDI_SELECT_ENABLED" class="uiVizWidgetElmLabel">
+                                <bounds xExpr="${LBL_RECORDING_OPTIONS.RIGHT}+${PADDING}" yExpr="${QUANTIZE_TRACK_ENABLED.BOTTOM}+${PADDING}*4" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties><value><xxlarge>Midi Select</xxlarge></value></properties>
+                            </element>                            
+
+                            <element id="BTN_MIDI_BANK_MSB" class="uiVizWidgetElmButton">
+                                <title>Midi Bank Msb</title>
+                                <appearance/>    
+                                <bounds xExpr="${PARENT.LEFT}" yExpr="${LBL_MIDI_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+                            <element id="BTN_MIDI_PROGRAM_NUMBER" class="uiVizWidgetElmButton">
+                                <title>Midi Program</title>
+                                <appearance/>    
+                                <bounds xExpr="${BTN_MIDI_BANK_MSB.RIGHT}+${PADDING}" yExpr="${LBL_MIDI_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>
+
+                            <element id="CHK_MIDI_SELECT_ENABLED" class="uiVizWidgetElmCheckbox">
+                                <title></title>
+                                <appearance/>    
+                                <bounds xExpr="${BTN_MIDI_PROGRAM_NUMBER.RIGHT}+${PADDING}" yExpr="${LBL_MIDI_OPTIONS.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}/3-${PADDING}*2/3" />
+                                <properties />
+                            </element>                            
+                        </elements>
+
+                    </widget>
+
+                
+                </item>
+            </items>
+        </properties>
+    </widget>
+
+</childWidgets>
+
+</widget>

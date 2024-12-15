@@ -1,0 +1,220 @@
+
+<widget>
+<title></title>
+<bounds minWidth="400" minHeight="400" />
+
+<elements>
+<element id="OK" class="uiVizWidgetElmButton">
+<title>OK</title>
+<bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" />
+</element>
+
+<element id="IMG_LOGO" class="uiVizWidgetElmImage">
+<bounds xExpr="${PARENT.USABLE_WIDTH}/2-200" yExpr="${PARENT.TOP}" widthExpr="400" heightExpr="170" />
+<properties file="ui/images/cognition-logo-01.png" />
+</element>
+</elements>
+
+<childWidgets>
+    <widget id="ABOUT_TABS" class="uiVizWidgetMenuCollection">
+        <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${IMG_LOGO.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}"  />
+            <properties menuType="TAB" itemYExpression="${ABOUT_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${ABOUT_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${OK.HEIGHT}">
+            <items>
+
+
+                <item tag="sampleRecursive" label="Recursive!" icon="ui/svg/ic_bug_report_48px.svg">
+                    <widget id="ABOUT_TAB_R_A" class="uiVizWidget">
+                        <bounds  xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" minWidth="75" minHeight="75" />
+
+                        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+
+                            <appearance>
+                            <widgetColor color="#FF0000FF"/>
+                            </appearance>
+                            <elements>
+       
+                            <element id="ABOUT_TAB_R_A_L" class="uiVizWidgetElmBreadcrumb">
+                            <items><item key="Item_A1">Item A1</item><item key="Item_A2">Item A2</item><item key="Item_A3">Item A3</item></items>
+                            <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
+                            </element>                            
+                            
+                            <element id="ABOUT_TAB_R_A_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                            <title>Child A</title>
+                            <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_A_L.BOTTOM} + ${PADDING}" />
+                            </element>
+                        </elements>
+
+                        <childWidgets>
+
+                            <widget id="ABOUT_TAB_R_B" class="uiVizWidget">
+                                <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
+
+                                <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+
+                                    <appearance>
+                                    <widgetColor color="#00FF00FF"/>
+                                    </appearance>
+                                    <elements>
+            
+                                    <element id="ABOUT_TAB_R_B_L" class="uiVizWidgetElmBreadcrumb">
+                                    <items><item key="Item_B1">Item B1</item><item key="Item_B2">Item B2</item><item key="Item_B3">Item B3</item></items>
+                                    <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
+                                    </element>                            
+                                    
+                                    <element id="ABOUT_TAB_R_B_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                                    <title>Child B</title>
+                                    <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_B_L.BOTTOM} + ${PADDING}" />
+                                    </element>
+                                </elements>
+
+                                <childWidgets>
+
+                                    <widget id="ABOUT_TAB_R_C" class="uiVizWidget">
+                                            <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
+
+                                            <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+
+                                                <appearance>
+                                                <widgetColor color="#0000FFFF"/>
+                                                </appearance>
+                                                <elements>
+                        
+                                                <element id="ABOUT_TAB_R_C_L" class="uiVizWidgetElmBreadcrumb">
+                                                <items><item key="Item_C1">Item C1</item><item key="Item_C2">Item C2</item><item key="Item_C3">Item C3</item></items>
+                                                <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
+                                                </element>                            
+                                                
+                                                <element id="ABOUT_TAB_R_C_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                                                <title>Child C</title>
+                                                <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_C_L.BOTTOM} + ${PADDING}" />
+                                                </element>
+                                            </elements>
+
+                                            <childWidgets>
+
+                                                <widget id="ABOUT_TAB_SCALE_PICKER1" class="uiVizWidgetChordDesigner">
+                                                <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
+                                                </widget>
+
+                                            </childWidgets>
+
+                                        </widget>
+
+                                </childWidgets>
+
+                            </widget>
+
+
+                        </childWidgets>
+
+                    </widget>
+                </item>
+
+                <item tag="sampleWidget" label="Sample Widget" icon="ui/svg/ic_bug_report_48px.svg">
+
+                    <widget id="ABOUT_TAB_SCALE_PICKER1" class="uiVizWidgetScalePicker">
+                        <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
+                        <bounds x="477" y="235" width="400" height="400" maxWidth="26880" maxHeight="16800" minWidth="75" minHeight="75" />
+                        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+                        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+                        <properties>
+                            <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="DEGREES" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0">
+                                <selectedScale>
+                                    <name>ionian</name>
+                                    <prettyName>Ionian</prettyName>
+                                    <key>C</key>
+                                </selectedScale>
+                                <selectedKey name="C" />
+                                <selectedNotes>
+                                    <note name="C" octave="3" />
+                                    <note name="D" octave="3" />
+                                    <note name="E" octave="3" />
+                                    <note name="F" octave="3" />
+                                    <note name="G" octave="3" />
+                                    <note name="A" octave="3" />
+                                    <note name="B" octave="3" />
+                                </selectedNotes>
+                            </musicData>
+                        </properties>
+                        <elements />
+                    </widget>
+                </item>
+
+                <item tag="about" label="About" icon="ui/svg/ic_bug_report_48px.svg" isSelected="1">
+                   <widget id="ABOUT_TAB_TEXT_HOLDER" class="uiVizWidget">
+                        <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
+                        <elements>
+                            <element id="TXT_ABOUT" class="uiVizWidgetElmTextarea">
+                            <title>enter licence here...</title>
+                            <bounds x="0" y="0" widthExpr="${PARENT.WIDTH}" heightExpr="${PARENT.HEIGHT}" />
+                            <behaviour draggable="0" resizable="0" />
+                            <appearance visible="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1">
+                            </appearance>
+                            <properties isFormatted="1">
+                            <value><large><br/></large>
+                            <xxlarge>
+                            Cognition ${APP_VER}</xxlarge><large><br/></large>
+                            <xlarge>${REGISTERED_TO}</xlarge><large><br/><br/></large>
+
+                            <xlarge>A word from the creator:</xlarge><large><br/></large>
+                            <large>"Cognition came about as a culmination of two years of creative and technical trial and error. It all started with a passion and a curiosity: A passion for reading books about music theory and a curiosity about whether there was a better way to create and consume music theory in an instrument agnostic way; but then to ultimately apply this theory to the instrument of choice.</large><large><br/><br/></large>
+                            <large>It is my sincere hope that using this program will transport you to that sweet place where learning meets inspiration and your journey of musical discovery on your instrument never ends!"</large><large><br/><br/></large>
+                            <large><br/></large>
+
+                            <xlarge>Who are we?</xlarge><large><br/></large>
+                            <large>Stuart Barnes: "Data engineer, API and C++ engineer. Passion for music theory visualization. Inventor of Cognition."</large><large><br/><br/></large>
+                            <large>Phil Potter: "Low level C engineer, Linux geek and Final Fantasy nerd. Writes emulators in his spare time!"</large><large><br/><br/></large>
+
+                            <large><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-</large>
+                            </value>
+                            </properties>
+                            </element>                        
+                        
+                        </elements>
+                    </widget>
+
+                </item>
+                <item tag="attributions" label="Attributions" icon="ui/images/default_avatar.jpg">
+
+                    <widget id="ABOUT_TAB_ATTRIBUTIONS" class="uiVizWidgetTable">
+                        <title style="NONE"/>
+                        <appearance visible="0"/>
+                        <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
+                        <properties>
+                            <header><cell width="200"></cell><cell></cell><cell></cell><cell></cell></header>
+                            <rows>
+                                <row key="https://github.com/borg/ofxMusicTheory"><cell>ofxMusicTheory</cell><cell>Name</cell><cell>Link</cell></row>                               
+                            </rows>
+                        </properties>
+                    </widget>
+
+                </item>
+                <item tag="contact" label="Contact us" icon="ui/svg/ic_ac_unit_48px.svg">
+
+                    <widget id="ABOUT_TAB_CONTACT_MENU" class="uiVizWidgetMenu">
+                        <title titlestyle="NONE"/>
+                        <properties>
+                            <tabs>
+                                <tab tag="bugReport" label="Contact" icon="ui/svg/ic_bug_report_48px.svg">
+                                    <item id="1" tag="bug" label="Bug report"></item>
+                                    <item id="2" tag="feature"  label="Feature request"></item>
+                                    <item id="3" tag="contact"  label="Contact us"></item>
+                                </tab>
+                                <tab tag="licence" label="Licence" icon="ui/svg/ic_bug_report_48px.svg">
+                                    <widget id="ABOUT_LICENCE" class="uiVizWidgetLicence"/>
+                                </tab>   
+                                <tab tag="licence" label="Licence" icon="ui/svg/ic_bug_report_48px.svg">
+                                    <widget id="ABOUT_CONTACT_US" class="uiVizWidgetLicence"/>
+                                </tab>                                                       
+                            </tabs>
+                        </properties>
+                    </widget>
+
+            </item>
+            </items>
+        </properties>
+    </widget>
+
+</childWidgets>
+
+</widget>

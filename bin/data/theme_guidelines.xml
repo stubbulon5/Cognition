@@ -1,0 +1,66 @@
+<themes>
+<theme name="System" isDark="0">
+    <widgets>
+      <widgetColor 
+        desc="Widget chrome color"
+        color="#FFFFFFFF" />
+      <widgetContentColor 
+        desc="Misc. background color to be overlayed over widget chrome [widgetColor]. Eg. Table header row"
+        color="#FFFFFFEE" />
+      <widgetAccentColor 1,2 dark
+        desc="4 colours which should be complementary to each other and should have a decent contrast against [widgetColor]. These colors are critical in determining the overall color character and profile of the theme. IMPORTANT: color1 & color2 should be HIGH CONTRAST relative to [widgetColor] and color3 & color4 should be LOW CONTRAST relative to [widgetColor] character of the theme. C Eg a notification dot, or the application background gradient."
+        color1="#051937" color2="#004D7A" color3="#008793" color4="#A8EB12" />      
+      <widgetAlternatingColor
+        desc="Misc. background alternating colors to be overlayed over widget chrome [widgetColor]. Eg. Table rows"
+        color1="#D5D5D5FF" color2="#DDDDDDFF" />                
+      <widgetModalBackgroundColor
+        desc="Background color overlaid over screen when a modal widget is being displayed"
+        color="#000000B4" />
+      <widgetAlpha
+        desc="Alpha values for [widgetColor]"
+        hovered="0.900000" unhovered="0.700000" contentChrome="0.700000" />
+      <titleFontColor
+        desc="Font color overlaid over [titleColor]. Use a high contrast value"
+        color="#000000AA" />
+      <titleFontAlpha
+        desc="Alpha values for [titleFontColor]"
+        hovered="0.800000" unhovered="0.600000" />
+      <titleColor
+        desc="Widget Title chrome color"
+        color="#CCCCCCFF" />
+      <titleGradientColor
+        desc="Widget Title chrome gradient colors color1=topRight, color2=bottomRight, color3=bottomLeft, color4=topLeft"
+        color1="#FFFFFFFF" color2="#CCCCCCFF" color3="#CCCCCCFF" color4="#FFFFFFFF" />
+      <titleAlpha
+        desc="Alpha values for [titleColor]"
+        hovered="0.950000" unhovered="0.800000" />
+      <typographyColor
+        desc="Font color overlaid over primarily [widgetColor]. Use a high contrast value"
+        primary="#333333FF" secondary="#555555FF" tertiary="#AAAAAAFF" quaternary="#EEEEEEFF" />
+      <selection
+        desc="Selection foreground and background color overlaid over primarily [widgetColor]. Foreground and background colors should have a high contrast value. Eg. Table selected row text (foreground) and background"
+        foreground="#FFFFFFFF" background="#999999FF" />
+      <hover
+        desc="Hover foreground and background color overlaid over primarily [widgetColor]. Foreground and background colors should have a high contrast value. Eg. Table hovered row text (foreground) and background"
+        foreground="#FFFFFFFF" background="#AAAAAAFF" />  
+    </widgets>
+    <elements>
+      <appearance 
+        desc="Flag for whether the corners are rounded for the element."
+        roundedRectangle="1"/>
+      <foregroundColor 
+        desc="Foreground color for a widget element. Use high contrast againt element [backgroundColor] and full alpha is recommended. Eg Text in a TextBox or Slider drag element"
+        color="#333333FF" />
+      <backgroundColor 
+        desc="Background color for a widget element. Use high contrast againt [widgetColor] and full alpha is recommended. Eg background of a TextBox or the background of Slider element"
+        color="#CCCCCCFF" />
+      <foregroundAlpha 
+        desc="Hovered and unhovered foreground color for a widget element"
+        hovered="0.95" unhovered="0.9"/>
+      <backgroundAlpha 
+        desc="Hovered and unhovered background color for a widget element"
+        hovered="0.95" unhovered="0.9"/>
+    </elements>
+  </theme>
+  <!-- Nore theme nodes here ... -->
+</themes>
