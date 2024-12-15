@@ -1,0 +1,72 @@
+<widgets version="1.0.0" title="TODO (SAVED...)">
+    <widget id="GUITAR_828086" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0" />
+        <bounds xExpr="${PADDING}" yExpr="${CHORDWHEEL_550123.BOTTOM}+${PADDING}" width="289" height="434" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties>
+            <musicData drawMode="RIGHT" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isLefty="0" isBlackAndWhiteMode="0" isChordDiagramMode="1">
+                <selectedKey name="C" />
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="0" endFret="5" thickness="5" />
+                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" />
+                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" />
+                <string enabled="1" note="G" octave="3" startFret="0" endFret="5" thickness="3" />
+                <string enabled="1" note="B" octave="3" startFret="0" endFret="5" thickness="2" />
+                <string enabled="1" note="E" octave="4" startFret="0" endFret="5" thickness="2" />
+            </strings>
+        </properties>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="TEXTEDITOR_706297" class="uiVizWidgetTextEditor" shouldPersist="1">
+        <title style="TOP_STATIC" autohide="0" staticSize="20" />
+        <bounds xExpr="${PADDING}" yExpr="${CHORDWHEEL_550123.BOTTOM}+${PADDING}" width="297" height="428" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties doesRespondToFileDrop="1" lineWrap="1" lineNumbers="0">
+            <text>Info:&#x0A;&#x0A;Drag chords from the Chord Wheel to the guitar fretboard and then arrange the chord as you see fit (up and down the fretboard, remove certain strings, even change the guitar tuning!)&#x0A;&#x0A;Once done, drag the Chord from the Fretboard to the Chord Bucket on the right!&#x0A;</text>
+        </properties>
+        <elements />
+    </widget>
+    <widget id="CHORDBUCKET_165356" class="uiVizWidgetChordBucket" shouldPersist="1">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">Chord Bucket</title>
+        <bounds xExpr="${PADDING}" yExpr=40" width="718" height="618" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties showTopMenu="1" sideBarWidth="0" isSmallerDiagrams="0">
+            <musicData drawMode="RIGHT" chordViewMode="STRINGED_CHORD_DIAGRAM" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isLefty="0" isBlackAndWhiteMode="0" labelModeChord="DEGREES" colorModeEmbedded="KEYS" labelModeEmbedded="KEYS">
+                <selectedKey name="C" />
+            </musicData>
+        </properties>
+        <elements>
+            <element id="SLD_TEMPO" class="uiVizWidgetElmSlider" shouldPersist="1" min="1.000000" max="300.000000" steps="300" value="1.000000" showValueWhenDragging="1">
+                <title>TEMPO</title>
+                <bounds height="30" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" xExpr="${PARENT.LEFT}" yExpr="${PARENT.BOTTOM}" widthExpr="${PARENT.WIDTH}-${PADDING}*2" />
+                <behaviour draggable="0" resizable="0" />
+                <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" />
+                <properties />
+            </element>
+        </elements>
+    </widget>
+    <widget id="CHORDWHEEL_550123" class="uiVizWidgetChordWheel" shouldPersist="1">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">Ionian</title>
+        <bounds xExpr="${PADDING}" yExpr="40" height="353" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="1" aspectRatio="0.65" minimized="0" />
+        <properties>
+            <musicData drawMode="RIGHT" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isLefty="0" isBlackAndWhiteMode="0">
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key />
+                </selectedScale>
+            </musicData>
+        </properties>
+        <elements />
+    </widget>
+</widgets>

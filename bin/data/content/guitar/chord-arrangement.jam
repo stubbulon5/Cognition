@@ -1,0 +1,373 @@
+<widgets version="1.0.0" title="TODO (SAVED...)">
+    <widget id="GUITAR_1777" class="uiVizWidgetGuitar">
+        <title style="TOP_OVERLAY" autohide="0">Dm - 0 to 5 [Open D]</title>
+        <bounds height="238" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" xExpr="0" yExpr="${WINDOW.HEIGHT} - ${SELF.HEIGHT}" widthExpr="${WINDOW.WIDTH}" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties>
+            <musicData drawMode="RIGHT" instrumentContentMode="CHORD" orientation="HORIZONTAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0">
+                <selectedKey name="D" />
+                <selectedChords>
+                    <chord>
+                        <name>Dm</name>
+                        <note name="D" octave="2" />
+                        <note name="A" octave="2" />
+                        <note name="F" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="D" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3x|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|5x|" />
+                                <string enabled="1" note="D" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|0x|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                </selectedChords>
+                <selectedNotes>
+                    <note name="D" octave="2" />
+                    <note name="A" octave="2" />
+                    <note name="F" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="D" octave="4" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Open D">
+                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|" />
+                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|" />
+                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3|" />
+                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3x|" />
+                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|5x|" />
+                <string enabled="1" note="D" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|0x|" />
+            </strings>
+        </properties>
+        <elements />
+        <listenEvents>
+        <event source="CHORDBUCKET_686995" eventName="drag_and_drop_data_set" redirectEventName="receive_drag_and_drop_data" />
+        <event source="CHORDWHEEL_245276" eventName="set_hovered_chord" redirectEventName="receive_drag_and_drop_data" />
+        </listenEvents>        
+    </widget>
+    <widget id="CHORDWHEEL_245276" class="uiVizWidgetChordWheel">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">Phrygian</title>
+        <bounds x="433" y="51" width="629" height="408" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="1" aspectRatio="0.65" minimized="0" />
+        <properties>
+            <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0">
+                <selectedScale>
+                    <name>phrygian</name>
+                    <prettyName>Phrygian</prettyName>
+                    <key />
+                </selectedScale>
+                <selectedChords>
+                    <chord>
+                        <name>AM</name>
+                        <note name="A" octave="3" />
+                        <note name="C#" octave="4" />
+                        <note name="E" octave="4" />
+                    </chord>
+                </selectedChords>
+            </musicData>
+        </properties>
+        <elements />
+    </widget>
+    <widget id="CHORDBUCKET_686995" class="uiVizWidgetChordBucket">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">Chord Bucket</title>
+        <bounds x="1074" y="51" width="344" height="413" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties>
+            <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="DEGREES" labelAlternateMode="ALTERNATE_KEYS_DEGREES" noteMode="DEFAULT" labelShowOctave="0">
+                <selectedKey name="A" />
+                <selectedChords>
+                    <chord>
+                        <name>AM</name>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="A" octave="2" />
+                        <note name="E" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="Db" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|2x|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3x|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|4|" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="5" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>A</name>
+                        <userDefinedName>???</userDefinedName>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="A" octave="2" />
+                        <note name="A" octave="3" />
+                        <note name="D" octave="4" />
+                        <note name="Gb" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="9" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="9" thickness="4" fretPoints="|0|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|7x|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|8|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="9" thickness="2" fretPoints="|9|" />
+                                <string enabled="1" note="D" octave="4" startFret="0" endFret="9" thickness="2" fretPoints="|0|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>A</name>
+                        <userDefinedName>???</userDefinedName>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="A" octave="2" />
+                        <note name="E" octave="3" />
+                        <note name="B" octave="3" />
+                        <note name="Db" octave="4" />
+                        <note name="E" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="9" thickness="5" fretPoints="|7|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="9" thickness="4" fretPoints="|7|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|9|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|7|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="9" thickness="2" fretPoints="|7|" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="9" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>E</name>
+                        <userDefinedName>???</userDefinedName>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="D" octave="2" />
+                        <note name="E" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="Gb" octave="3" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="9" thickness="5" fretPoints="|0|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="9" thickness="4" fretPoints="|7|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|7|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|0|" />
+                                <string enabled="0" note="A" octave="3" startFret="0" endFret="9" thickness="2" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="9" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>DM</name>
+                        <note name="D" octave="2" />
+                        <note name="Gb" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="D" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="9" thickness="5" fretPoints="|0|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="9" thickness="4" fretPoints="|9|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|7|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|8x|" />
+                                <string enabled="0" note="A" octave="3" startFret="0" endFret="9" thickness="2" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="9" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>Bm</name>
+                        <note name="B" octave="2" />
+                        <note name="Gb" octave="3" />
+                        <note name="D" octave="3" />
+                        <note name="D" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="9" thickness="5" fretPoints="|9|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="9" thickness="4" fretPoints="|9|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|0|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="9" thickness="3" fretPoints="|8|" />
+                                <string enabled="0" note="A" octave="3" startFret="0" endFret="9" thickness="2" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="9" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>Gbm</name>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="Gb" octave="2" />
+                        <note name="Db" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="Db" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="8" thickness="5" fretPoints="|4|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="8" thickness="4" fretPoints="|4x|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="8" thickness="3" fretPoints="|7|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="8" thickness="3" fretPoints="|7x|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="8" thickness="2" fretPoints="|4x|" />
+                                <string enabled="0" note="D" octave="4" startFret="0" endFret="8" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>Dbm</name>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="Db" octave="3" />
+                        <note name="E" octave="3" />
+                        <note name="Ab" octave="3" />
+                        <note name="Db" octave="4" />
+                        <note name="E" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|4|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|2|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|2|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|4x|" />
+                                <string enabled="1" note="D" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|2|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>Am</name>
+                        <note name="A" octave="2" />
+                        <note name="E" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="C" octave="4" />
+                        <note name="E" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|2x|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3x|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|3|" />
+                                <string enabled="1" note="D" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|2x|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>Dm</name>
+                        <note name="D" octave="2" />
+                        <note name="A" octave="2" />
+                        <note name="F" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="D" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <general />
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3|" />
+                                <string enabled="1" note="F#" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|3x|" />
+                                <string enabled="1" note="A" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|5x|" />
+                                <string enabled="1" note="D" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|0x|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                    <chord>
+                        <name>CM7</name>
+                        <userDefinedPoints>1</userDefinedPoints>
+                        <note name="C" octave="3" />
+                        <note name="G" octave="3" />
+                        <note name="B" octave="3" />
+                        <note name="C" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                            </stringed>
+                            <strings tuning="Open D">
+                                <string enabled="1" note="D" octave="2" startFret="2" endFret="5" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="2" endFret="5" thickness="4" fretPoints="|3|" />
+                                <string enabled="1" note="D" octave="3" startFret="2" endFret="5" thickness="3" fretPoints="|5|" />
+                                <string enabled="1" note="F#" octave="3" startFret="2" endFret="5" thickness="3" fretPoints="|5|" />
+                                <string enabled="1" note="A" octave="3" startFret="2" endFret="5" thickness="2" fretPoints="|3x|" />
+                                <string enabled="1" note="D" octave="4" startFret="2" endFret="5" thickness="2" />
+                            </strings>
+                        </rules>
+                    </chord>
+                </selectedChords>
+            </musicData>
+        </properties>
+        <elements />
+    </widget>
+    <widget id="CHORDDESIGNER_960675" class="uiVizWidgetChordDesigner">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">Dm</title>
+        <bounds x="15" y="52" width="406" height="406" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties>
+            <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="DEGREES" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0">
+                <rules>
+                    <general>
+                        <showExtendedNoteNames>1</showExtendedNoteNames>
+                    </general>
+                </rules>
+                <selectedScale>
+                    <name>chromatic</name>
+                    <prettyName>Chromatic</prettyName>
+                    <key>C</key>
+                </selectedScale>
+                <selectedKey name="D" />
+                <selectedNotes>
+                    <note name="D" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="D" octave="4" />
+                    <note name="A" octave="4" />
+                </selectedNotes>
+            </musicData>
+        </properties>
+        <elements>
+            <element />
+        </elements>
+        <listenEvents>
+        <event source="GUITAR_1777" eventName="drag_and_drop_data_set" redirectEventName="receive_drag_and_drop_data" />
+        <event source="GUITAR_1777" eventName="add_selected_chord" redirectEventName="receive_drag_and_drop_data" />
+        <event source="GUITAR_1777" eventName="set_selected_key"  />
+        <event source="CHORDBUCKET_686995" eventName="drag_and_drop_data_set" redirectEventName="receive_drag_and_drop_data" />
+        <event source="CHORDWHEEL_245276" eventName="set_hovered_chord" redirectEventName="receive_drag_and_drop_data" />
+        </listenEvents>
+    </widget>
+</widgets>

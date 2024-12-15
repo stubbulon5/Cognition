@@ -1,0 +1,665 @@
+<widgets version="1.0.0" title="TODO (SAVED...)">
+    <widget id="GUITAR_1" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 0 to 5 [Standard]</title>
+        <bounds xExpr="${PADDING}*2" yExpr="40+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|1|3|" />
+                        <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|2|3|" />
+                        <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|3|" />
+                        <string enabled="1" note="G" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|4|" />
+                        <string enabled="1" note="B" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                        <string enabled="1" note="E" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|1|3|" />
+                            <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|2|3|" />
+                            <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|3|" />
+                            <string enabled="1" note="G" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|4|" />
+                            <string enabled="1" note="B" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                            <string enabled="1" note="E" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedChords>
+                    <chord>
+                        <name>DM</name>
+                        <note name="D" octave="3" />
+                        <note name="Gb" octave="3" />
+                        <note name="A" octave="3" />
+                        <note name="D" octave="4" />
+                        <note name="Gb" octave="4" />
+                        <rules>
+                            <stringed>
+                                <notesPerString>1</notesPerString>
+                                <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                            </stringed>
+                            <general>
+                                <searchForExactChordMatch>1</searchForExactChordMatch>
+                                <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                            </general>
+                            <strings tuning="Standard">
+                                <string enabled="1" note="E" octave="2" startFret="0" endFret="5" thickness="5" />
+                                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|5|" />
+                                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|4|" />
+                                <string enabled="1" note="G" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|2|" />
+                                <string enabled="1" note="B" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|3x|" />
+                                <string enabled="1" note="E" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|2x|" />
+                            </strings>
+                        </rules>
+                    </chord>
+                </selectedChords>
+                <selectedNotes>
+                    <note name="E" octave="2" />
+                    <note name="F" octave="2" />
+                    <note name="G" octave="2" />
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="0" endFret="5" thickness="5" fretPoints="|0|1|3|" />
+                <string enabled="1" note="A" octave="2" startFret="0" endFret="5" thickness="4" fretPoints="|0|2|3|" />
+                <string enabled="1" note="D" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|3|" />
+                <string enabled="1" note="G" octave="3" startFret="0" endFret="5" thickness="3" fretPoints="|0|2|4|" />
+                <string enabled="1" note="B" octave="3" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                <string enabled="1" note="E" octave="4" startFret="0" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_2" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 1 to 5 [Standard]</title>
+        <bounds xExpr="${GUITAR_1.RIGHT}+${PADDING}*4" yExpr="40+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="1" endFret="5" thickness="5" fretPoints="|1|3|5|" />
+                        <string enabled="1" note="A" octave="2" startFret="1" endFret="5" thickness="4" fretPoints="|2|3|5|" />
+                        <string enabled="1" note="D" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|3|5|" />
+                        <string enabled="1" note="G" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|4|5|" />
+                        <string enabled="1" note="B" octave="3" startFret="1" endFret="5" thickness="2" fretPoints="|3|5|" />
+                        <string enabled="1" note="E" octave="4" startFret="1" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="1" endFret="5" thickness="5" fretPoints="|1|3|5|" />
+                            <string enabled="1" note="A" octave="2" startFret="1" endFret="5" thickness="4" fretPoints="|2|3|5|" />
+                            <string enabled="1" note="D" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|3|5|" />
+                            <string enabled="1" note="G" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|4|5|" />
+                            <string enabled="1" note="B" octave="3" startFret="1" endFret="5" thickness="2" fretPoints="|3|5|" />
+                            <string enabled="1" note="E" octave="4" startFret="1" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="F" octave="2" />
+                    <note name="G" octave="2" />
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="1" endFret="5" thickness="5" fretPoints="|1|3|5|" />
+                <string enabled="1" note="A" octave="2" startFret="1" endFret="5" thickness="4" fretPoints="|2|3|5|" />
+                <string enabled="1" note="D" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|3|5|" />
+                <string enabled="1" note="G" octave="3" startFret="1" endFret="5" thickness="3" fretPoints="|2|4|5|" />
+                <string enabled="1" note="B" octave="3" startFret="1" endFret="5" thickness="2" fretPoints="|3|5|" />
+                <string enabled="1" note="E" octave="4" startFret="1" endFret="5" thickness="2" fretPoints="|1|3|5|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_3" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 2 to 6 [Standard]</title>
+        <bounds xExpr="${GUITAR_2.RIGHT}+${PADDING}*4" yExpr="40+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="2" endFret="6" thickness="5" fretPoints="|3|5|" />
+                        <string enabled="1" note="A" octave="2" startFret="2" endFret="6" thickness="4" fretPoints="|2|3|5|" />
+                        <string enabled="1" note="D" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|3|5|" />
+                        <string enabled="1" note="G" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|4|5|" />
+                        <string enabled="1" note="B" octave="3" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|6|" />
+                        <string enabled="1" note="E" octave="4" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="2" endFret="6" thickness="5" fretPoints="|3|5|" />
+                            <string enabled="1" note="A" octave="2" startFret="2" endFret="6" thickness="4" fretPoints="|2|3|5|" />
+                            <string enabled="1" note="D" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|3|5|" />
+                            <string enabled="1" note="G" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|4|5|" />
+                            <string enabled="1" note="B" octave="3" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|6|" />
+                            <string enabled="1" note="E" octave="4" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="G" octave="2" />
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="2" endFret="6" thickness="5" fretPoints="|3|5|" />
+                <string enabled="1" note="A" octave="2" startFret="2" endFret="6" thickness="4" fretPoints="|2|3|5|" />
+                <string enabled="1" note="D" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|3|5|" />
+                <string enabled="1" note="G" octave="3" startFret="2" endFret="6" thickness="3" fretPoints="|2|4|5|" />
+                <string enabled="1" note="B" octave="3" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|6|" />
+                <string enabled="1" note="E" octave="4" startFret="2" endFret="6" thickness="2" fretPoints="|3|5|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_4" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 3 to 7 [Standard]</title>
+        <bounds xExpr="${GUITAR_3.RIGHT}+${PADDING}*4" yExpr="40+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="3" endFret="7" thickness="5" fretPoints="|3|5|7|" />
+                        <string enabled="1" note="A" octave="2" startFret="3" endFret="7" thickness="4" fretPoints="|3|5|7|" />
+                        <string enabled="1" note="D" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|3|5|7|" />
+                        <string enabled="1" note="G" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|4|5|7|" />
+                        <string enabled="1" note="B" octave="3" startFret="3" endFret="7" thickness="2" fretPoints="|5|6|" />
+                        <string enabled="1" note="E" octave="4" startFret="3" endFret="7" thickness="2" fretPoints="|3|5|7|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="3" endFret="7" thickness="5" fretPoints="|3|5|7|" />
+                            <string enabled="1" note="A" octave="2" startFret="3" endFret="7" thickness="4" fretPoints="|3|5|7|" />
+                            <string enabled="1" note="D" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|3|5|7|" />
+                            <string enabled="1" note="G" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|4|5|7|" />
+                            <string enabled="1" note="B" octave="3" startFret="3" endFret="7" thickness="2" fretPoints="|5|6|" />
+                            <string enabled="1" note="E" octave="4" startFret="3" endFret="7" thickness="2" fretPoints="|3|5|7|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="G" octave="2" />
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                    <note name="B" octave="4" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="3" endFret="7" thickness="5" fretPoints="|3|5|7|" />
+                <string enabled="1" note="A" octave="2" startFret="3" endFret="7" thickness="4" fretPoints="|3|5|7|" />
+                <string enabled="1" note="D" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|3|5|7|" />
+                <string enabled="1" note="G" octave="3" startFret="3" endFret="7" thickness="3" fretPoints="|4|5|7|" />
+                <string enabled="1" note="B" octave="3" startFret="3" endFret="7" thickness="2" fretPoints="|5|6|" />
+                <string enabled="1" note="E" octave="4" startFret="3" endFret="7" thickness="2" fretPoints="|3|5|7|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_5" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 4 to 8 [Standard]</title>
+        <bounds xExpr="${GUITAR_4.RIGHT}+${PADDING}*4" yExpr="40+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="4" endFret="8" thickness="5" fretPoints="|5|7|8|" />
+                        <string enabled="1" note="A" octave="2" startFret="4" endFret="8" thickness="4" fretPoints="|5|7|8|" />
+                        <string enabled="1" note="D" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|5|7|" />
+                        <string enabled="1" note="G" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|4|5|7|" />
+                        <string enabled="1" note="B" octave="3" startFret="4" endFret="8" thickness="2" fretPoints="|5|6|8|" />
+                        <string enabled="1" note="E" octave="4" startFret="4" endFret="8" thickness="2" fretPoints="|5|7|8|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="4" endFret="8" thickness="5" fretPoints="|5|7|8|" />
+                            <string enabled="1" note="A" octave="2" startFret="4" endFret="8" thickness="4" fretPoints="|5|7|8|" />
+                            <string enabled="1" note="D" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|5|7|" />
+                            <string enabled="1" note="G" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|4|5|7|" />
+                            <string enabled="1" note="B" octave="3" startFret="4" endFret="8" thickness="2" fretPoints="|5|6|8|" />
+                            <string enabled="1" note="E" octave="4" startFret="4" endFret="8" thickness="2" fretPoints="|5|7|8|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                    <note name="B" octave="4" />
+                    <note name="C" octave="5" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="4" endFret="8" thickness="5" fretPoints="|5|7|8|" />
+                <string enabled="1" note="A" octave="2" startFret="4" endFret="8" thickness="4" fretPoints="|5|7|8|" />
+                <string enabled="1" note="D" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|5|7|" />
+                <string enabled="1" note="G" octave="3" startFret="4" endFret="8" thickness="3" fretPoints="|4|5|7|" />
+                <string enabled="1" note="B" octave="3" startFret="4" endFret="8" thickness="2" fretPoints="|5|6|8|" />
+                <string enabled="1" note="E" octave="4" startFret="4" endFret="8" thickness="2" fretPoints="|5|7|8|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_6" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 5 to 9 [Standard]</title>
+        <bounds xExpr="${PADDING}*2" yExpr="${GUITAR_1.BOTTOM}+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="5" endFret="9" thickness="5" fretPoints="|5|7|8|" />
+                        <string enabled="1" note="A" octave="2" startFret="5" endFret="9" thickness="4" fretPoints="|5|7|8|" />
+                        <string enabled="1" note="D" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                        <string enabled="1" note="G" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                        <string enabled="1" note="B" octave="3" startFret="5" endFret="9" thickness="2" fretPoints="|6|8|" />
+                        <string enabled="1" note="E" octave="4" startFret="5" endFret="9" thickness="2" fretPoints="|5|7|8|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="5" endFret="9" thickness="5" fretPoints="|5|7|8|" />
+                            <string enabled="1" note="A" octave="2" startFret="5" endFret="9" thickness="4" fretPoints="|5|7|8|" />
+                            <string enabled="1" note="D" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                            <string enabled="1" note="G" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                            <string enabled="1" note="B" octave="3" startFret="5" endFret="9" thickness="2" fretPoints="|6|8|" />
+                            <string enabled="1" note="E" octave="4" startFret="5" endFret="9" thickness="2" fretPoints="|5|7|8|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="A" octave="2" />
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                    <note name="B" octave="4" />
+                    <note name="C" octave="5" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="5" endFret="9" thickness="5" fretPoints="|5|7|8|" />
+                <string enabled="1" note="A" octave="2" startFret="5" endFret="9" thickness="4" fretPoints="|5|7|8|" />
+                <string enabled="1" note="D" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                <string enabled="1" note="G" octave="3" startFret="5" endFret="9" thickness="3" fretPoints="|5|7|9|" />
+                <string enabled="1" note="B" octave="3" startFret="5" endFret="9" thickness="2" fretPoints="|6|8|" />
+                <string enabled="1" note="E" octave="4" startFret="5" endFret="9" thickness="2" fretPoints="|5|7|8|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="GUITAR_7" class="uiVizWidgetGuitar" shouldPersist="1">
+        <title style="TOP_OVERLAY" autohide="0">C Ionian - 6 to 10 [Standard]</title>
+        <bounds xExpr="${GUITAR_6.RIGHT}+${PADDING}*4" yExpr="${GUITAR_1.BOTTOM}+${PADDING}*4" widthExpr="${WINDOW.WIDTH}/5-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties userCanInvokeContextMenu="0">
+            <musicData drawMode="RIGHT" instrumentContentMode="SCALE" orientation="VERTICAL" colorMode="KEYS" colorAlternateMode="NONE" labelMode="KEYS" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0" isChordDiagramMode="1">
+                <rules>
+                    <stringed>
+                        <notesPerString>1</notesPerString>
+                        <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                    </stringed>
+                    <general>
+                        <searchForExactChordMatch>1</searchForExactChordMatch>
+                        <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                    </general>
+                    <strings tuning="Standard">
+                        <string enabled="1" note="E" octave="2" startFret="6" endFret="10" thickness="5" fretPoints="|7|8|10|" />
+                        <string enabled="1" note="A" octave="2" startFret="6" endFret="10" thickness="4" fretPoints="|7|8|10|" />
+                        <string enabled="1" note="D" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                        <string enabled="1" note="G" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                        <string enabled="1" note="B" octave="3" startFret="6" endFret="10" thickness="2" fretPoints="|8|10|" />
+                        <string enabled="1" note="E" octave="4" startFret="6" endFret="10" thickness="2" fretPoints="|7|8|10|" />
+                    </strings>
+                </rules>
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                    <rules>
+                        <stringed>
+                            <notesPerString>1</notesPerString>
+                            <chordDiagramNumFrets>5</chordDiagramNumFrets>
+                        </stringed>
+                        <general>
+                            <searchForExactChordMatch>1</searchForExactChordMatch>
+                            <searchForExactChordMatchDirection>up</searchForExactChordMatchDirection>
+                        </general>
+                        <strings tuning="Standard">
+                            <string enabled="1" note="E" octave="2" startFret="6" endFret="10" thickness="5" fretPoints="|7|8|10|" />
+                            <string enabled="1" note="A" octave="2" startFret="6" endFret="10" thickness="4" fretPoints="|7|8|10|" />
+                            <string enabled="1" note="D" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                            <string enabled="1" note="G" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                            <string enabled="1" note="B" octave="3" startFret="6" endFret="10" thickness="2" fretPoints="|8|10|" />
+                            <string enabled="1" note="E" octave="4" startFret="6" endFret="10" thickness="2" fretPoints="|7|8|10|" />
+                        </strings>
+                    </rules>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="B" octave="2" />
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                    <note name="C" octave="4" />
+                    <note name="D" octave="4" />
+                    <note name="E" octave="4" />
+                    <note name="F" octave="4" />
+                    <note name="G" octave="4" />
+                    <note name="A" octave="4" />
+                    <note name="B" octave="4" />
+                    <note name="C" octave="5" />
+                    <note name="D" octave="5" />
+                </selectedNotes>
+            </musicData>
+            <strings tuning="Standard">
+                <string enabled="1" note="E" octave="2" startFret="6" endFret="10" thickness="5" fretPoints="|7|8|10|" />
+                <string enabled="1" note="A" octave="2" startFret="6" endFret="10" thickness="4" fretPoints="|7|8|10|" />
+                <string enabled="1" note="D" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                <string enabled="1" note="G" octave="3" startFret="6" endFret="10" thickness="3" fretPoints="|7|9|10|" />
+                <string enabled="1" note="B" octave="3" startFret="6" endFret="10" thickness="2" fretPoints="|8|10|" />
+                <string enabled="1" note="E" octave="4" startFret="6" endFret="10" thickness="2" fretPoints="|7|8|10|" />
+            </strings>
+        </properties>
+        <listenEvents>
+            <event source="SCALEPICKER" eventName="set_selected_scale" redirectEventName="set_selected_scale" />
+        </listenEvents>
+        <elements>
+            <element />
+            <element />
+            <element />
+        </elements>
+    </widget>
+    <widget id="SCALEPICKER" class="uiVizWidgetScalePicker" shouldPersist="1">
+        <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
+        <bounds xExpr="${GUITAR_7.RIGHT}+${PADDING}*4" yExpr="${GUITAR_1.BOTTOM}+${PADDING}*4" widthExpr="${WINDOW.WIDTH}*0.6-${PADDING}*4" heightExpr="${WINDOW.HEIGHT}/2-${PADDING}*2-40" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
+        <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
+        <appearance visible="1" shadow="1" roundedRectangle="1" lockAspectRatio="0" aspectRatio="1" minimized="0" />
+        <properties>
+            <musicData drawMode="RIGHT" colorMode="KEYS" colorAlternateMode="NONE" labelMode="DEGREES" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0">
+                <selectedScale>
+                    <name>ionian</name>
+                    <prettyName>Ionian</prettyName>
+                    <key>C</key>
+                </selectedScale>
+                <selectedKey name="C" />
+                <selectedNotes>
+                    <note name="C" octave="3" />
+                    <note name="D" octave="3" />
+                    <note name="E" octave="3" />
+                    <note name="F" octave="3" />
+                    <note name="G" octave="3" />
+                    <note name="A" octave="3" />
+                    <note name="B" octave="3" />
+                </selectedNotes>
+            </musicData>
+        </properties>
+        <elements />
+    </widget>
+</widgets>
