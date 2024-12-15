@@ -1,3 +1,6 @@
+.vscode/browse.db
+.vscode/browse.db-shm
+.vscode/browse.db-wal
 bin/Cognition_debug.app
 bin/Cognition.app
 **/obj

@@ -60,8 +60,16 @@ public:
         }
         else {
 
-            //settings.setInDevice(devices[0]);
-            auto& device = devices[0];
+            // Let's search for at least one output! (make this read from config / settings ui in due course)
+            int deviceIndex = 0;
+            for(int d=0; d<devices.size(); d++) {
+                if (devices[d].outputChannels > 0) {
+                    deviceIndex = d;
+                    break;
+                } 
+            }
+
+            auto& device = devices[deviceIndex];
             if (device.outputChannels == 0 && device.sampleRates.empty()) {
                 ofSystemAlertDialog("Can't initialize output device " + device.name);
                 _exit(0);
