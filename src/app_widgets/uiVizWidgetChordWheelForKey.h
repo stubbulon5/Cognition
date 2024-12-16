@@ -91,7 +91,7 @@ public:
 
         circleSlicesT1.clear();
         circleSlicesT2.clear();
-        circleSlicesT3.clear();
+        // circleSlicesT3.clear();
         
         chordWheelContextMenu->deleteThisWidget();
     }
@@ -210,40 +210,43 @@ public:
         
         switch(tier) {
             case 1:
-                distanceFromCentre = 0.75f;
+                distanceFromCentre = 0.84;
+                slice->label = slice->chord.getChordNameSimplified(true);
                 break;
             case 2:
-                distanceFromCentre = 0.86f;
+                distanceFromCentre = 0.75f;
+                slice->label = slice->chord.getChordNameRoman(slice->parentKey);
                 break;
-            case 3:
-                distanceFromCentre = 0.885f;
-                break;
+            // case 3:
+            //     distanceFromCentre = 0.885f;
+            //     slice->label = slice->chord.getChordNameRoman(slice->parentKey);
+            //     break;
         }
         
        
-        switch (getTheoryVizLabelMode()) {
-            case TheoryVizLabelMode::NONE:
-                slice->label = "   ";
-                break;
+        // switch (getTheoryVizLabelMode()) {
+        //     case TheoryVizLabelMode::NONE:
+        //         slice->label = "   ";
+        //         break;
             
-            case TheoryVizLabelMode::KEYS:
-                if (getSelectedChordsSize() > 0) {
-                    slice->label = slice->chord.getChordNameSimplified(true);
-                } else {
-                    // TODO - OPTION TO HAVE RELATIVE TO CHORD (of 1st selected ie.
-                    // getSelectedChordByIndex(0).getChordName()
-                    slice->label = slice->chord.getChordNameSimplified(true);
-                }
-                break;
+        //     case TheoryVizLabelMode::KEYS:
+        //         if (getSelectedChordsSize() > 0) {
+        //             slice->label = slice->chord.getChordNameSimplified(true);
+        //         } else {
+        //             // TODO - OPTION TO HAVE RELATIVE TO CHORD (of 1st selected ie.
+        //             // getSelectedChordByIndex(0).getChordName()
+        //             slice->label = slice->chord.getChordNameSimplified(true);
+        //         }
+        //         break;
             
-            case TheoryVizLabelMode::DEGREES:
-                if (getSelectedChordsSize() > 0) {
-                    slice->label = slice->chord.getChordNameRoman(slice->parentKey);
-                } else {
-                    slice->label = slice->chord.getChordNameSimplified(true);
-                }
-                break;
-        };
+        //     case TheoryVizLabelMode::DEGREES:
+        //         if (getSelectedChordsSize() > 0) {
+        //             slice->label = slice->chord.getChordNameRoman(slice->parentKey);
+        //         } else {
+        //             slice->label = slice->chord.getChordNameSimplified(true);
+        //         }
+        //         break;
+        // };
 
         
         ofRectangle rect = font->rect(slice->label);
@@ -278,10 +281,10 @@ public:
                 slice->circRadiusX_End = circRadiusX * TIER2_RADIUS_PERC;
                 slice->circRadiusY_End = circRadiusY * TIER2_RADIUS_PERC;
                 break;
-            case 3:
-                slice->circRadiusX_End = circRadiusX * TIER3_RADIUS_PERC;
-                slice->circRadiusY_End = circRadiusY * TIER3_RADIUS_PERC;
-                break;
+            // case 3:
+            //     slice->circRadiusX_End = circRadiusX * TIER3_RADIUS_PERC;
+            //     slice->circRadiusY_End = circRadiusY * TIER3_RADIUS_PERC;
+            //     break;
         }
         
 		slice->circX = circX;
@@ -312,17 +315,17 @@ public:
         
         float degreesPerSliceT1 = 360 / (float)chordsT1.size();
         float degreesPerSliceT2 = 360 / (float)chordsT2.size();
-        float degreesPerSliceT3 = 360 / (float)chordsT3.size();
+        // float degreesPerSliceT3 = 360 / (float)chordsT3.size();
 
         float circRadiusXT1 = circRadiusX * TIER1_RADIUS_PERC;
         float circRadiusYT1 = circRadiusY * TIER1_RADIUS_PERC;
         
-        float angleOffset = degreesPerSliceT2 / (float)2;
+        float angleOffset = 0;
         float circRadiusXT2 = circRadiusX * TIER2_RADIUS_PERC;
         float circRadiusYT2 = circRadiusY * TIER2_RADIUS_PERC;
         
-        float circRadiusXT3 = circRadiusX * TIER3_RADIUS_PERC;
-        float circRadiusYT3 = circRadiusY * TIER3_RADIUS_PERC;
+        // float circRadiusXT3 = circRadiusX * TIER3_RADIUS_PERC;
+        // float circRadiusYT3 = circRadiusY * TIER3_RADIUS_PERC;
 
         
         // DEFAULT STATE WITHOUT ALTERNATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -333,25 +336,25 @@ public:
             uiVizWidgetChordWheelForKeySlice *sliceT1 = &circleSlicesT1[i-1];
             
             
-            if (isSelectedChordRoot(sliceT1->originalParentKey)) {
-                sliceT1->chord = sliceT1->originalChord;
-                sliceT1->parentKey = sliceT1->originalParentKey;
-            }
+            // if (isSelectedChordRoot(sliceT1->originalParentKey)) {
+            //     sliceT1->chord = sliceT1->originalChord;
+            //     sliceT1->parentKey = sliceT1->originalParentKey;
+            // }
             setSliceProperties(sliceT1, i, currentAngleT1, mWheelOffest, degreesPerSliceT1, circX, circY, circRadiusXT1, circRadiusYT1, 1, false);
 
             
             // // T2
-            // for (int j = i*2-1; j <= i*2 ; j++) {
-            //     // The current degrees position T2
-            //     float currentAngleT2 = ((float)degreesPerSliceT2*j);
-            //     uiVizWidgetChordWheelForKeySlice *sliceT2 = &circleSlicesT2[j-1];
-                
-            //     if (isSelectedChordRoot(sliceT2->originalParentKey)) {
-            //         sliceT2->chord = sliceT2->originalChord;
-            //         sliceT2->parentKey = sliceT2->originalParentKey;
-            //     }
-            //     setSliceProperties(sliceT2, j, currentAngleT2, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, false);
+
+            // The current degrees position T2
+            float currentAngleT2 = ((float)degreesPerSliceT2*i);
+            uiVizWidgetChordWheelForKeySlice *sliceT2 = &circleSlicesT2[i-1];
+            
+            // if (isSelectedChordRoot(sliceT2->originalParentKey)) {
+            //     sliceT2->chord = sliceT2->originalChord;
+            //     sliceT2->parentKey = sliceT2->originalParentKey;
             // }
+            setSliceProperties(sliceT2, i, currentAngleT2, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, false);
+
 
             // // T3
             // // The current degrees position T3
@@ -362,6 +365,18 @@ public:
             // }
             // setSliceProperties(sliceT3, i, currentAngleT3, mWheelOffest, degreesPerSliceT3, circX, circY, circRadiusXT3, circRadiusYT3, 3, false);
         }
+
+            // for (int j = 1; j <= circleSlicesT2.size() ; j++) {
+            //     // The current degrees position T2
+            //     float currentAngleT2 = ((float)degreesPerSliceT2*j);
+            //     uiVizWidgetChordWheelForKeySlice *sliceT2 = &circleSlicesT2[j-1];
+                
+            //     // if (isSelectedChordRoot(sliceT2->originalParentKey)) {
+            //     //     sliceT2->chord = sliceT2->originalChord;
+            //     //     sliceT2->parentKey = sliceT2->originalParentKey;
+            //     // }
+            //     setSliceProperties(sliceT2, j, currentAngleT2, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, false);
+            // }        
 
         // ALTERNATED KEYS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         /*
@@ -454,12 +469,12 @@ public:
         */
 
 
-        // circleInner.setCircleResolution(360); // Can lower or remove to bump up performance
-        // circleInner.setFilled(true);
-        // circleInner.arc(circX, circY, circRadiusX/(float)3, circRadiusY/(float)3, 0, 360);
-		// vizElm_circleInner.update(circleInner);
+        circleInner.setCircleResolution(360); // Can lower or remove to bump up performance
+        circleInner.setFilled(true);
+        circleInner.arc(circX, circY, circRadiusX/(float)3, circRadiusY/(float)3, 0, 360);
+		vizElm_circleInner.update(circleInner);
 
-        // circleInnerPoint.set(circX, circY);
+        circleInnerPoint.set(circX, circY);
     }
 
     void drawSlice(int tier, int currentSlice, uiVizWidgetChordWheelForKeySlice &slice) {
@@ -481,29 +496,35 @@ public:
                         slice.isHovered = true;
                         setHoveredChord(slice.chord);
                         auditionChord(slice.chord);
-                        if (tier == 1 && getIsMousePressedAndReleasedOverWidget(false)) {
+                        // if (tier == 1 && getIsMousePressedAndReleasedOverWidget(false)) {
                             
-                           if(!matchesSelectedChordRoot(slice.chord)) {
+                        //    if(!matchesSelectedChordRoot(slice.chord)) {
                                
-                               int pos = vizTheory::getPositionInCircleOfFifthsForKey(slice.chord.getChordRoot());
-                               addSelectedChord(chordMatrixCurrent[pos-1][0], true, true);
+                        //        int pos = vizTheory::getPositionInCircleOfFifthsForKey(slice.chord.getChordRoot());
+                        //        addSelectedChord(chordMatrixCurrent[pos-1][0], true, true);
                                
-                            //    if (pos == 1 || pos == 4 || pos == 7 || pos == 10) {
-                            //         T1Alternator = 1;
-                            //     } else  if (pos == 2 || pos == 5 || pos == 8 || pos == 11) {
-                            //         T1Alternator = 2;
-                            //     }  else  if (pos == 3 || pos == 6 || pos == 9 || pos == 12) {
-                            //         T1Alternator = 3;
-                            //     }
+                        //     //    if (pos == 1 || pos == 4 || pos == 7 || pos == 10) {
+                        //     //         T1Alternator = 1;
+                        //     //     } else  if (pos == 2 || pos == 5 || pos == 8 || pos == 11) {
+                        //     //         T1Alternator = 2;
+                        //     //     }  else  if (pos == 3 || pos == 6 || pos == 9 || pos == 12) {
+                        //     //         T1Alternator = 3;
+                        //     //     }
                                 
-                            } else {
-                                removeSelectedChordRoot(slice.chord);
-                            }
+                        //     } else {
+                        //         removeSelectedChordRoot(slice.chord);
+                        //     }
 
-                            setNeedsUpdate(true);
-                        } else if (getIsMousePressedOverWidget(false)) {
+                        //     setNeedsUpdate(true);
+                        // } else if (getIsMousePressedOverWidget(false)) {
+                        //     setDraggingChord(slice.chord);
+                        // }
+
+
+                        if (getIsMousePressedOverWidget(false)) {
                             setDraggingChord(slice.chord);
                         }
+                        
                     }
 
                     // if (tier == 1 && matchesSelectedChordRoot(slice.chord))  {
@@ -579,19 +600,21 @@ public:
     }
     
     void draw(uiVizWidgetContext context) override {
-        
+                
         // Draw the slices
-        for(int i=1; i<=circleSlicesT3.size(); i++){
-            drawSlice(3, i, circleSlicesT3[i-1]);
-        }
-        
-        for(int i=1; i<=circleSlicesT2.size(); i++){
-            drawSlice(2, i, circleSlicesT2[i-1]);
-        }
-        
+        // for(int i=1; i<=circleSlicesT3.size(); i++){
+        //     drawSlice(3, i, circleSlicesT3[i-1]);
+        // }
+
         for(int i=1; i<=circleSlicesT1.size(); i++){
             drawSlice(1, i, circleSlicesT1[i-1]);
         }
+
+        for(int i=1; i<=circleSlicesT2.size(); i++){
+            drawSlice(2, i, circleSlicesT2[i-1]);
+        }        
+
+
         
 		vizElm_circleInner.setColor(getLargeLabelStateColor());
 		vizElm_circleInner.draw();
@@ -687,13 +710,13 @@ private:
     vector<vector<vizChord>> chordMatrixFlats;
     vector<vector<vizChord>> chordMatrixCurrent;
     
-    float TIER1_RADIUS_PERC = 0.6f;
-    float TIER2_RADIUS_PERC = 0.8f;
-    float TIER3_RADIUS_PERC = 1.0f;
+    float TIER1_RADIUS_PERC = 1.0f;
+    float TIER2_RADIUS_PERC = 0.7f;
+    // float TIER3_RADIUS_PERC = 0.6f;
 
     vector<uiVizWidgetChordWheelForKeySlice> circleSlicesT1;
     vector<uiVizWidgetChordWheelForKeySlice> circleSlicesT2;
-    vector<uiVizWidgetChordWheelForKeySlice> circleSlicesT3;
+    // vector<uiVizWidgetChordWheelForKeySlice> circleSlicesT3;
     
     shared_ptr<ofxSmartFont> font;
     
@@ -745,11 +768,11 @@ private:
         
         chordsT1.clear();
         chordsT2.clear();
-        chordsT3.clear();
+        // chordsT3.clear();
         
         circleSlicesT1.clear();
         circleSlicesT2.clear();
-        circleSlicesT3.clear();
+        // circleSlicesT3.clear();
         
             int key = 11;
             
@@ -769,6 +792,7 @@ private:
             vizChord currKeyVIIChord    = chordMatrixCurrent[key][6];
             
             uiVizWidgetChordWheelForKeySlice sliceT1_I, sliceT1_II, sliceT1_III, sliceT1_IV, sliceT1_V, sliceT1_VI, sliceT1_VII;
+            uiVizWidgetChordWheelForKeySlice sliceT2_I, sliceT2_II, sliceT2_III, sliceT2_IV, sliceT2_V, sliceT2_VI, sliceT2_VII;
             
             /***********
              * T1 RING *
@@ -850,12 +874,12 @@ private:
             circleSlicesT1.push_back(sliceT1_VII);
 
 
-
-
+            // Out of key chords
             for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
-                 string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
-                 vizChord c(noteName);
-                 uiVizWidgetChordWheelForKeySlice s;
+                string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
+                vizChord c(noteName);
+                uiVizWidgetChordWheelForKeySlice s;
+                chordsT1.push_back(c);
                 s.chord = c;
                 s.originalChord = c;
                 s.parentKey = curKey;
@@ -864,12 +888,8 @@ private:
                 s.nextKey = nextKey;
                 s.degree = vizTheory::DegreeName::majorSeventh;
                 s.originalDegree = vizTheory::DegreeName::majorSeventh;
-
                 circleSlicesT1.push_back(s);
-
-
             }
-
 
 
             // IV chord
@@ -882,7 +902,136 @@ private:
             sliceT1_IV.nextKey = nextKey;
             sliceT1_IV.degree = vizTheory::DegreeName::perfectFourth;
             sliceT1_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
-            circleSlicesT1.push_back(sliceT1_IV);            
+            circleSlicesT1.push_back(sliceT1_IV);           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /***********
+             * T2 RING *
+             ***********/
+            
+            // I chord
+            chordsT2.push_back(currKeyIChord);
+            sliceT2_I.chord = currKeyIChord;
+            sliceT2_I.originalChord = currKeyIChord;
+            sliceT2_I.parentKey = curKey;
+            sliceT2_I.originalParentKey = curKey;
+            sliceT2_I.prevKey = prevKey;
+            sliceT2_I.nextKey = nextKey;
+            sliceT2_I.degree = vizTheory::DegreeName::majorUnison;
+            sliceT2_I.originalDegree = vizTheory::DegreeName::majorUnison;
+            circleSlicesT2.push_back(sliceT2_I);
+
+            // V chord
+            chordsT2.push_back(currKeyVChord);
+            sliceT1_V.chord = currKeyVChord;
+            sliceT1_V.originalChord = currKeyVChord;
+            sliceT1_V.parentKey = curKey;
+            sliceT1_V.originalParentKey = curKey;
+            sliceT1_V.prevKey = prevKey;
+            sliceT1_V.nextKey = nextKey;
+            sliceT1_V.degree = vizTheory::DegreeName::perfectFifth;
+            sliceT1_V.originalDegree = vizTheory::DegreeName::perfectFifth;
+            circleSlicesT2.push_back(sliceT1_V);            
+            
+            
+            // II chord
+            chordsT2.push_back(currKeyIIChord);
+            sliceT2_II.chord = currKeyIIChord;
+            sliceT2_II.originalChord = currKeyIIChord;
+            sliceT2_II.parentKey = curKey;
+            sliceT2_II.originalParentKey = curKey;
+            sliceT2_II.prevKey = prevKey;
+            sliceT2_II.nextKey = nextKey;
+            sliceT2_II.degree = vizTheory::DegreeName::majorSecond;
+            sliceT2_II.originalDegree = vizTheory::DegreeName::majorSecond;
+            circleSlicesT2.push_back(sliceT2_II);
+
+            // VI chord
+            chordsT2.push_back(currKeyVIChord);
+            sliceT1_VI.chord = currKeyVIChord;
+            sliceT1_VI.originalChord = currKeyVIChord;
+            sliceT1_VI.parentKey = curKey;
+            sliceT1_VI.originalParentKey = curKey;
+            sliceT1_VI.prevKey = prevKey;
+            sliceT1_VI.nextKey = nextKey;
+            sliceT1_VI.degree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+            sliceT1_VI.originalDegree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+            circleSlicesT2.push_back(sliceT1_VI);            
+            
+            
+            // III chord
+            chordsT2.push_back(currKeyIIIChord);
+            sliceT2_III.chord = currKeyIIIChord;
+            sliceT2_III.originalChord = currKeyIIIChord;
+            sliceT2_III.parentKey = curKey;
+            sliceT2_III.originalParentKey = curKey;
+            sliceT2_III.prevKey = prevKey;
+            sliceT2_III.nextKey = nextKey;
+            sliceT2_III.degree = vizTheory::DegreeName::majorThird;
+            sliceT2_III.originalDegree = vizTheory::DegreeName::majorThird;
+            circleSlicesT2.push_back(sliceT2_III);
+
+            
+            // VII chord
+            chordsT2.push_back(currKeyVIIChord);
+            sliceT1_VII.chord = currKeyVIIChord;
+            sliceT1_VII.originalChord = currKeyVIIChord;
+            sliceT1_VII.parentKey = curKey;
+            sliceT1_VII.originalParentKey = curKey;
+            sliceT1_VII.prevKey = prevKey;
+            sliceT1_VII.nextKey = nextKey;
+            sliceT1_VII.degree = vizTheory::DegreeName::majorSeventh;
+            sliceT1_VII.originalDegree = vizTheory::DegreeName::majorSeventh;
+            circleSlicesT2.push_back(sliceT1_VII);
+
+
+            // Out of key chords
+            for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
+                string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
+                vizChord c(noteName);
+                uiVizWidgetChordWheelForKeySlice s;
+                chordsT2.push_back(c);
+                s.chord = c;
+                s.originalChord = c;
+                s.parentKey = curKey;
+                s.originalParentKey = curKey;
+                s.prevKey = prevKey;
+                s.nextKey = nextKey;
+                s.degree = vizTheory::DegreeName::majorSeventh;
+                s.originalDegree = vizTheory::DegreeName::majorSeventh;
+                circleSlicesT2.push_back(s);
+            }
+
+
+            // IV chord
+            chordsT2.push_back(currKeyIVChord);
+            sliceT2_IV.chord = currKeyIVChord;
+            sliceT2_IV.originalChord = currKeyIVChord;
+            sliceT2_IV.parentKey = curKey;
+            sliceT2_IV.originalParentKey = curKey;
+            sliceT2_IV.prevKey = prevKey;
+            sliceT2_IV.nextKey = nextKey;
+            sliceT2_IV.degree = vizTheory::DegreeName::perfectFourth;
+            sliceT2_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
+            circleSlicesT2.push_back(sliceT2_IV);     
+
+
+
+
+
 
         
         float degreesOffset = getAngleOffsetForSlice(1);
@@ -994,21 +1143,6 @@ private:
         setIsAutoUpdateWhenActive(true);
         initScale();
     }
-    
-    // TODO : thread and animate
-    
-    // TODO :
-    // ROTATE CHORDS I -> VII (and play) (rotate around selected keys!!!!)
-    // show mode name in white dot
-    // add other diatonic scales!!
-    
-    //todo:
-    //   add label mode and label menu items to musical widget class
-    
-    // bug clicking start and end fret when the same - causes glitch -0 buid in validation
-    // make alternate functions return bool.
-    
-    // only if bool, then perform update!
     
     void auditionChordsForMode(bool visually, bool audibly) {
         for (int key = 0; key < 1; key++) {
