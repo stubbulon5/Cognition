@@ -77,6 +77,8 @@
       <backgroundAlpha hovered="0.95" unhovered="0.9"/>
     </elements>
   </theme>  
+  
+  <!-- https://colorkit.co/color/222831/-->
   <theme name="Cognition" isDark="1" mainMenuColor="#484d55" popoutMenuColor="#1c2129">
     <widgets>
       <widgetColor color="#222831FF" />
