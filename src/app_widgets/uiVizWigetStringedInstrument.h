@@ -1870,7 +1870,7 @@ append so that when stuff is dragged, full rules persist!
         setTitle(key + " " + getSelectedScale().getNamePretty() + " - " + ofToString(getLowestStartingFret()) + " to " + ofToString(getHighestEndingFret()) + " [" + getTuningName(false) + "]");
 
         vizScale scale = vizScale(key, calculatedScaleName, getSelectedNotes());
-        vizScale scaleNormalized = vizScale(key, calculatedScaleName);
+        vizScale scaleNormalized = vizScale(key, calculatedScaleName, 3);
 
         if (scale.isScaleValid() || scaleNormalized.isScaleValid())
         {
@@ -2810,7 +2810,7 @@ append so that when stuff is dragged, full rules persist!
         {
             setSelectedKey(note, true);
             if(scalePickerMenuItem) {
-                vizScale scale = vizScale(note.getNoteName(), scalePickerMenuItem->getCalculatedScaleName());
+                vizScale scale = vizScale(note.getNoteName(), scalePickerMenuItem->getCalculatedScaleName(), 3);
                 setSelectedScale(scale, true);
             }
 
@@ -2866,7 +2866,7 @@ append so that when stuff is dragged, full rules persist!
 
     void onScalePickerMenuNoteSelected(uiVizNoteSelectedArgs &args)
     {
-        vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName());
+        vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName(), 3);
         setSelectedScale(scale, true);
         setNeedsUpdate(true);
     }

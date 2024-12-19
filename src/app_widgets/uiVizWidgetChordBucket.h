@@ -1117,7 +1117,7 @@ private:
     }
 
     void onScalePickerMenuNoteSelected(uiVizNoteSelectedArgs &args) {
-        vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName());
+        vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName(), 3);
         addChordsFromScale(scale);
     }
 

@@ -618,6 +618,18 @@ public:
             case vizTheory::DegreeName::dominantThirteenth :
                 brightness = 150.0f;
                 break;
+
+            case -100 :
+                brightness = 50.0f;
+                break;
+
+            case -200 :
+                brightness = 25.0f;
+                break;
+
+            case -300 :
+                brightness = 10.0f;
+                break;                                
         }
         
         return highlighted ? brightness + 10.0f : brightness;
@@ -1841,9 +1853,9 @@ public:
         resolvePrettyName() ;
     }
 
-    vizScale(string key, string scaleName) : mScaleName(scaleName) {
+    vizScale(string key, string scaleName, int octave) : mScaleName(scaleName) {
         if (ofToLower(mScaleName) == "unknown" || mScaleName == "") return;
-        mKey = vizNote(key, 3, 1);
+        mKey = vizNote(key, octave, 1);
         mt_Scale = MusicTheory::Scale::scaleFromDictionary(scaleName, mKey.getNote());
 
         if (mt_Scale == nullptr || mt_Scale->name == "" || mt_Scale->name == "unknown") return;
@@ -2198,7 +2210,7 @@ public:
         vector<string> scales = searchScales(context, maxResults);
         vector<vizScale> results;
         for (string scaleId:scales) {
-            results.push_back(vizScale("C", scaleId));
+            results.push_back(vizScale("C", scaleId, 3));
         }
         return results;     
     }    
@@ -2208,7 +2220,7 @@ public:
         if (!vizTheory::isValidKey(key)) results;
         vector<string> scales = searchScales(context, maxResults);        
         for (string scaleId:scales) {
-            results.push_back(vizScale(key, scaleId));
+            results.push_back(vizScale(key, scaleId, 3));
         }
         return results;     
     }       

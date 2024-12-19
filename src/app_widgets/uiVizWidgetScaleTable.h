@@ -80,7 +80,7 @@ public:
         if (args.sender.getPersistentId() == getPersistentId()) {
             if (args.eventName == WIDGET_EVENT::TABLE_CELL_SELECTED) {
                 uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
-                mSelectedScale = vizScale("C", eventRow->key);
+                mSelectedScale = vizScale("C", eventRow->key, 3);
                 setDragData(mSelectedScale.getXML());
             }
         }

@@ -50,7 +50,7 @@ public:
     }
 
     void onScalePickerNoteSelected(uiVizNoteSelectedArgs &args) {
-        vizScale scale = vizScale(scalePicker->getSelectedKey().getNoteName(), scalePicker->getCalculatedScaleName());
+        vizScale scale = vizScale(scalePicker->getSelectedKey().getNoteName(), scalePicker->getCalculatedScaleName(), 3);
         setSelectedScale(scale, true);
     }
 

@@ -426,7 +426,7 @@ public:
             string scaleKey = settings.getValue("key", "", 0);
             if (scaleName != "") {
                 if(scaleKey != "") {
-                    vizScale scale = vizScale(scaleKey, scaleName);
+                    vizScale scale = vizScale(scaleKey, scaleName, 3);
                     setSelectedScale(scale, true);
                 } else {
                     vizScale scale = vizScale(scaleName);
@@ -1546,7 +1546,7 @@ public:
         vizScale scale;
         
         if (getSelectedKey().getNoteName() != "") {
-            scale = vizScale(getSelectedKey().getNoteName(), val);
+            scale = vizScale(getSelectedKey().getNoteName(), val, 3);
         } else {
             scale = vizScale(val);
         }

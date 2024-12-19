@@ -107,9 +107,6 @@ public:
         //  float hue = std::min((float)255, (float)(255 / (double)360) * (degreesPerSlice*(currentSlice-1))); // mixed colours between shared chords
        float hue =  rawColor.getHue() + 255.0f * (255.0f / 360.0f / degreesPerSlice);
 
-
-        
-
         ofColor color = ofColor::fromHsb(hue, 255, 220 - tier*35);
 
         /*-*-*-*-*-*-*-*-*-* Default colours *-*-*-*-*-*-*-*-*-*/
@@ -121,10 +118,7 @@ public:
             slice->regularFontColor = ofColor::fromHsb(color.getHue(),  100, 180);
             //slice->selectedFontColor = ofColor::fromHsb(slice->selectedFontColor.getHue(), 255, 160);
             
-        } else {
-            // No chords are selected, make a pretty hue circle of all possible harmonies...
-            mUnfocusedChordBrightness = 155.0f;
-            
+        } else {            
             slice->regularColor = ofColor::fromHsb(color.getHue(), 100, 200);
             slice->regularFontColor = ofColor::fromHsb(color.getHue(),  100, 180);
 
@@ -146,21 +140,39 @@ public:
             vizChord selectedChord = getSelectedChordByIndex(selectedChordIndex);
             sliceChordRootName = slice->chord.getChordRoot();
             
-            int sliceInterval = -1;
 
-            if (slice->parentKey == selectedChord.getChordRoot()) {
-                sliceInterval = slice->degree;
-            } else if(slice->degree == vizTheory::DegreeName::majorUnison && slice->prevKey == selectedChord.getChordRoot()) { // V
-                sliceInterval = vizTheory::DegreeName::perfectFifth;
-            } else if(slice->degree == vizTheory::DegreeName::majorUnison && slice->nextKey == selectedChord.getChordRoot()) { // IV
-                sliceInterval = vizTheory::DegreeName::perfectFourth;
-            } else if(slice->degree == vizTheory::DegreeName::majorSecond && slice->prevKey == selectedChord.getChordRoot()) { // VI
-                sliceInterval = vizTheory::DegreeName::majorSixth;
+            // if (slice->parentKey == selectedChord.getChordRoot()) {
+            //     sliceInterval = slice->degree;
+            // } else if(slice->degree == vizTheory::DegreeName::majorUnison && slice->prevKey == selectedChord.getChordRoot()) { // V
+            //     sliceInterval = vizTheory::DegreeName::perfectFifth;
+            // } else if(slice->degree == vizTheory::DegreeName::majorUnison && slice->nextKey == selectedChord.getChordRoot()) { // IV
+            //     sliceInterval = vizTheory::DegreeName::perfectFourth;
+            // } else if(slice->degree == vizTheory::DegreeName::majorSecond && slice->prevKey == selectedChord.getChordRoot()) { // VI
+            //     sliceInterval = vizTheory::DegreeName::majorSixth;
+            // }
+
+            
+            int sliceInterval = -1;
+            
+
+            if (tier == 1) {
+                if(slice->degree == vizTheory::DegreeName::majorUnison || slice->degree == vizTheory::DegreeName::perfectFifth || slice->degree == vizTheory::DegreeName::perfectFourth) { // I IV V
+                    sliceInterval = vizTheory::DegreeName::majorUnison;
+                } else if(slice->degree == vizTheory::DegreeName::augmentedUnison_minorSecond || slice->degree == vizTheory::DegreeName::augmentedFifth_minorSixth || slice->degree == vizTheory::DegreeName::augmentedSecond_minorThird) { // II VI III
+                    sliceInterval = vizTheory::DegreeName::perfectFourth;
+                } else if(slice->degree == vizTheory::DegreeName::majorSeventh) { // VII
+                    sliceInterval = vizTheory::DegreeName::majorSeventh;
+                } else { // all else
+                    sliceInterval = -200;
+                }
+            } else {
+                sliceInterval = -300;
             }
+
 
             isHighlightedChord = (sliceInterval > -1);
 
-            if (isHighlightedChord) {
+            if (isHighlightedChord && tier == 1) {
                 // This chord "part of the family :-)
                 color = getSliceColorForState(selectedChord.getChordRoot(), slice->chord.getChordRoot(), sliceInterval + 1, isHighlightedChord);
 
@@ -248,8 +260,14 @@ public:
         //         break;
         // };
 
-        
-        ofRectangle rect = font->rect(slice->label);
+
+        ofRectangle rect;
+        if (tier == 1) {
+           rect = fontMediumLabel->rect(slice->label);
+        } else {
+            rect = font->rect(slice->label);
+        }
+
         float fontWidth = rect.width;
         float fontHeight = rect.height;
 
@@ -294,19 +312,14 @@ public:
 
     void update(uiVizWidgetContext context) override {
         
-        font = getSmallFontSizedForDimensions(getUsableWidth(), getUsableHeight());
+        font = getSmallFontSizedForDimensions(getUsableWidth() * 0.3, getUsableHeight()  * 0.3);
+        fontMediumLabel = getFontSizedForDimensions(getUsableWidth() * 0.8, getUsableHeight() * 0.8);        
         fontLargeLabel = getLargeFontSizedForDimensions(getUsableWidth(), getUsableHeight());
         fontScaleNameLabel = getFontSizedForDimensions(getUsableWidth() * 0.5f, getUsableHeight() * 0.5f);
         
         rectFontHitArea = font->rect("G#");
         circleInner.clear();
 
-
-        // Are we changing color?
-        if (getSelectedChordsSize() > 0 && mUnfocusedChordBrightness < 255.0f) {
-            mUnfocusedChordBrightness = scaleAnimation(getWidgetId() + "unfocused_slices", mUnfocusedChordBrightness, 255.0f, 1.0f);
-            setNeedsUpdate(true);
-        }
 
         float circX = scale(getUsableX() + getUsableWidth()/2.0f);
         float circY = scale(getUsableY() + getUsableHeight()/2.0f);
@@ -315,7 +328,6 @@ public:
         
         float degreesPerSliceT1 = 360 / (float)chordsT1.size();
         float degreesPerSliceT2 = 360 / (float)chordsT2.size();
-        // float degreesPerSliceT3 = 360 / (float)chordsT3.size();
 
         float circRadiusXT1 = circRadiusX * TIER1_RADIUS_PERC;
         float circRadiusYT1 = circRadiusY * TIER1_RADIUS_PERC;
@@ -323,151 +335,21 @@ public:
         float angleOffset = 0;
         float circRadiusXT2 = circRadiusX * TIER2_RADIUS_PERC;
         float circRadiusYT2 = circRadiusY * TIER2_RADIUS_PERC;
-        
-        // float circRadiusXT3 = circRadiusX * TIER3_RADIUS_PERC;
-        // float circRadiusYT3 = circRadiusY * TIER3_RADIUS_PERC;
-
-        
+                
         // DEFAULT STATE WITHOUT ALTERNATION -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         for (int i = 1; i <= circleSlicesT1.size() ; i++) {
             // T1
             // The current degrees position
             float currentAngleT1 = ((float)degreesPerSliceT1*i);
             uiVizWidgetChordWheelForKeySlice *sliceT1 = &circleSlicesT1[i-1];
-            
-            
-            // if (isSelectedChordRoot(sliceT1->originalParentKey)) {
-            //     sliceT1->chord = sliceT1->originalChord;
-            //     sliceT1->parentKey = sliceT1->originalParentKey;
-            // }
             setSliceProperties(sliceT1, i, currentAngleT1, mWheelOffest, degreesPerSliceT1, circX, circY, circRadiusXT1, circRadiusYT1, 1, false);
 
-            
-            // // T2
-
-            // The current degrees position T2
+            // T2
             float currentAngleT2 = ((float)degreesPerSliceT2*i);
             uiVizWidgetChordWheelForKeySlice *sliceT2 = &circleSlicesT2[i-1];
-            
-            // if (isSelectedChordRoot(sliceT2->originalParentKey)) {
-            //     sliceT2->chord = sliceT2->originalChord;
-            //     sliceT2->parentKey = sliceT2->originalParentKey;
-            // }
             setSliceProperties(sliceT2, i, currentAngleT2, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, false);
 
-
-            // // T3
-            // // The current degrees position T3
-            // float currentAngleT3 = ((float)degreesPerSliceT3*i);
-            // uiVizWidgetChordWheelForKeySlice *sliceT3 = &circleSlicesT3[i-1];
-            // if (isSelectedChordRoot(sliceT3->originalParentKey)) {
-            //     sliceT3->parentKey = sliceT3->originalParentKey;
-            // }
-            // setSliceProperties(sliceT3, i, currentAngleT3, mWheelOffest, degreesPerSliceT3, circX, circY, circRadiusXT3, circRadiusYT3, 3, false);
         }
-
-            // for (int j = 1; j <= circleSlicesT2.size() ; j++) {
-            //     // The current degrees position T2
-            //     float currentAngleT2 = ((float)degreesPerSliceT2*j);
-            //     uiVizWidgetChordWheelForKeySlice *sliceT2 = &circleSlicesT2[j-1];
-                
-            //     // if (isSelectedChordRoot(sliceT2->originalParentKey)) {
-            //     //     sliceT2->chord = sliceT2->originalChord;
-            //     //     sliceT2->parentKey = sliceT2->originalParentKey;
-            //     // }
-            //     setSliceProperties(sliceT2, j, currentAngleT2, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, false);
-            // }        
-
-        // ALTERNATED KEYS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        /*
-        for (int i=T1Alternator; i<=12; i=i+3) {
-            
-            int keyIndex = i - 1;
-            int nextKeyIndex = (keyIndex == 11) ?  0 : (keyIndex + 1);
-            int prevKeyIndex = (keyIndex == 0) ?  11 : (keyIndex - 1);
-            
-            string curKey = chordMatrixCurrent[keyIndex][0].getChordRoot();
-            string nextKey = chordMatrixCurrent[nextKeyIndex][0].getChordRoot();
-            string prevKey = chordMatrixCurrent[prevKeyIndex][0].getChordRoot();
-            
-            if (getSelectedChordsSize() == 0 || (getSelectedChordsSize() > 0 && (isSelectedChordRoot(curKey)))) {
-            
-                // T1 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-                vizChord currKeyIChord      = chordMatrixCurrent[keyIndex][0];    // curr I  (same as nextKeyIVChord in Ionian mode)
-                vizChord currKeyIIChord     = chordMatrixCurrent[keyIndex][1];    // curr II (same as prevKeyVIChord in Ionian mode)
-                vizChord currKeyIIIChord    = chordMatrixCurrent[keyIndex][2];
-                vizChord currKeyIVChord     = chordMatrixCurrent[keyIndex][3];
-                vizChord currKeyVChord      = chordMatrixCurrent[keyIndex][4];
-                vizChord currKeyVIChord     = chordMatrixCurrent[keyIndex][5];
-                vizChord currKeyVIIChord    = chordMatrixCurrent[keyIndex][6];
-
-                uiVizWidgetChordWheelForKeySlice *sliceT1_I = &circleSlicesT1[keyIndex];
-                sliceT1_I->chord = currKeyIChord;
-                sliceT1_I->parentKey = curKey;
-                sliceT1_I->prevKey = prevKey;
-                sliceT1_I->nextKey = nextKey;
-                sliceT1_I->degree = vizTheory::DegreeName::majorUnison;
-                setSliceProperties(sliceT1_I, i, (float)degreesPerSliceT1*i, mWheelOffest, degreesPerSliceT1, circX, circY, circRadiusXT1, circRadiusYT1, 1, true);
-
-                uiVizWidgetChordWheelForKeySlice *sliceT1_V = &circleSlicesT1[nextKeyIndex];
-                sliceT1_V->chord = currKeyVChord;
-                sliceT1_V->parentKey = curKey;
-                sliceT1_V->prevKey = prevKey;
-                sliceT1_V->nextKey = nextKey;
-                sliceT1_V->degree = vizTheory::DegreeName::perfectFifth;
-                setSliceProperties(sliceT1_V, i, (float)degreesPerSliceT1*(i+1), mWheelOffest, degreesPerSliceT1, circX, circY, circRadiusXT1, circRadiusYT1, 1, true);
-
-                uiVizWidgetChordWheelForKeySlice *sliceT1_IV = &circleSlicesT1[prevKeyIndex];
-                sliceT1_IV->chord = currKeyIVChord;
-                sliceT1_IV->parentKey = curKey;
-                sliceT1_IV->prevKey = prevKey;
-                sliceT1_IV->nextKey = nextKey;
-                sliceT1_IV->degree = vizTheory::DegreeName::perfectFourth;
-                setSliceProperties(sliceT1_IV, i, (float)degreesPerSliceT1*(i-1), mWheelOffest, degreesPerSliceT1, circX, circY, circRadiusXT1, circRadiusYT1, 1, true);
-
-
-                // T2 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-                int j = i*2-1;
-                int nextKeyIndex2 = (i == 12) ?  24 : (j + 1);
-                int nextKeyIndex3 = (i == 12) ?  1 : (j + 2);
-
-                uiVizWidgetChordWheelForKeySlice *sliceT2_II = &circleSlicesT2[j-1];
-                sliceT2_II->chord = currKeyIIChord;
-                sliceT2_II->parentKey = curKey;
-                sliceT2_II->prevKey = prevKey;
-                sliceT2_II->nextKey = nextKey;
-                sliceT2_II->degree = vizTheory::DegreeName::majorSecond;
-                setSliceProperties(sliceT2_II, j, (float)degreesPerSliceT2*j, mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, true);
-
-                uiVizWidgetChordWheelForKeySlice *sliceT2_III = &circleSlicesT2[nextKeyIndex2-1];
-                sliceT2_III->chord = currKeyIIIChord;
-                sliceT2_III->parentKey = curKey;
-                sliceT2_III->prevKey = prevKey;
-                sliceT2_III->nextKey = nextKey;
-                sliceT2_III->degree = vizTheory::DegreeName::majorThird;
-                setSliceProperties(sliceT2_III, j+1, (float)degreesPerSliceT2*(j+1), mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, true);
-
-                uiVizWidgetChordWheelForKeySlice *sliceT2_VI = &circleSlicesT2[nextKeyIndex3-1];
-                sliceT2_VI->chord = currKeyVIChord;
-                sliceT2_VI->parentKey = curKey;
-                sliceT2_VI->prevKey = prevKey;
-                sliceT2_VI->nextKey = nextKey;
-                sliceT2_VI->degree = vizTheory::DegreeName::majorSixth;
-                setSliceProperties(sliceT2_VI, j+2, (float)degreesPerSliceT2*(j+2), mWheelOffest + angleOffset, degreesPerSliceT2, circX, circY, circRadiusXT2, circRadiusYT2, 2, true);
-
-                // T3 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-                uiVizWidgetChordWheelForKeySlice *sliceT3_VII = &circleSlicesT3[keyIndex];
-                sliceT3_VII->chord = currKeyVIIChord;
-                sliceT3_VII->parentKey = curKey;
-                sliceT3_VII->prevKey = prevKey;
-                sliceT3_VII->nextKey = nextKey;
-                sliceT3_VII->degree = vizTheory::DegreeName::majorSeventh;
-                setSliceProperties(sliceT3_VII, i, (float)degreesPerSliceT3*i, mWheelOffest, degreesPerSliceT3, circX, circY, circRadiusXT3, circRadiusYT3, 3, true);
-            }
-        }
-
-        */
-
 
         circleInner.setCircleResolution(360); // Can lower or remove to bump up performance
         circleInner.setFilled(true);
@@ -542,7 +424,12 @@ public:
 
         ofPushStyle();
         ofSetColor(getLabelStateColor(slice));
-        font->draw(slice.label, slice.labelPoint.x, slice.labelPoint.y);
+        if(tier == 1) {
+            fontMediumLabel->draw(slice.label, slice.labelPoint.x, slice.labelPoint.y);
+        } else {
+            font->draw(slice.label, slice.labelPoint.x, slice.labelPoint.y);
+        }
+        
         ofPopStyle();  
     }
     
@@ -685,6 +572,22 @@ public:
         // T1Alternator = 1;
     }
 
+    virtual void addSelectedChord(vizChord &chord, bool onlyAddIfNotFound, bool includeInstrumentRules) override {
+        clearSelectedChords();
+
+        if(chord.isMinor()) {
+            uiVizWidgetMusical::setSelectedScale(vizScale(chord.getChordRoot(), "aeolian", 3), includeInstrumentRules);
+        } else {
+            uiVizWidgetMusical::setSelectedScale(vizScale(chord.getChordRoot(), "ionian", 3), includeInstrumentRules);
+        }
+
+        clearSelectedChords();
+        uiVizWidgetMusical::addSelectedChord(chord, onlyAddIfNotFound, includeInstrumentRules);
+        // uiVizWidgetMusical::setSelectedScale(chord.getChordRoot(), includeInstrumentRules);
+        initScale();
+        // T1Alternator = 1;
+    }    
+
     void setTheoryVizNoteMode(TheoryVizNoteMode theoryVizNoteMode) override {
         uiVizWidgetMusical::setTheoryVizNoteMode(theoryVizNoteMode);
         clearSelectedChords();
@@ -723,6 +626,7 @@ private:
     // try a font size for each tier
     
     shared_ptr<ofxSmartFont> fontLargeLabel;
+    shared_ptr<ofxSmartFont> fontMediumLabel;
     shared_ptr<ofxSmartFont> fontScaleNameLabel;
     
     
@@ -736,8 +640,6 @@ private:
 
 	float degreesOffset = 0;
     float mWheelOffest = 0;
-    float mUnfocusedChordBrightness = 155.0;
-    float mFocusedChordBrghtness = 100;
     
     enum MENU_GROUP_1 {
         MENU_TAB_THEORY_LABEL_MODE = 0,
@@ -752,7 +654,7 @@ private:
     // Set up the slices with Chord data (colors, Chords, etc)
     void initScale() {
         
-        setAspectRatio(0.65f);
+        setAspectRatio(1);
         setLockAspectRatio(true);
         
         switch(getTheoryVizNoteMode()) {
@@ -773,136 +675,138 @@ private:
         circleSlicesT1.clear();
         circleSlicesT2.clear();
         // circleSlicesT3.clear();
+    
+        string scaleRoot = getSelectedScale().getKey().getNoteName();
+        if (scaleRoot == "") scaleRoot = "C";
+
+        int key =  std::min(std::max(vizTheory::getPositionInCircleOfFifthsForKey(scaleRoot) - 1, 0), 11);
         
-            int key = 11;
-            
-            int nextKeyIndex = (key == 11) ?  0 : (key + 1);
-            int prevKeyIndex = (key == 0) ?  11 : (key - 1);
-            
-            string curKey = chordMatrixCurrent[key][0].getChordRoot();
-            string nextKey = chordMatrixCurrent[nextKeyIndex][0].getChordRoot();
-            string prevKey = chordMatrixCurrent[prevKeyIndex][0].getChordRoot();
-            
-            vizChord currKeyIChord      = chordMatrixCurrent[key][0];    // curr I  (same as nextKeyIVChord in Ionian mode)
-            vizChord currKeyIIChord     = chordMatrixCurrent[key][1];    // curr II (same as prevKeyVIChord in Ionian mode)
-            vizChord currKeyIIIChord    = chordMatrixCurrent[key][2];
-            vizChord currKeyIVChord     = chordMatrixCurrent[key][3];
-            vizChord currKeyVChord      = chordMatrixCurrent[key][4];
-            vizChord currKeyVIChord     = chordMatrixCurrent[key][5];
-            vizChord currKeyVIIChord    = chordMatrixCurrent[key][6];
-            
-            uiVizWidgetChordWheelForKeySlice sliceT1_I, sliceT1_II, sliceT1_III, sliceT1_IV, sliceT1_V, sliceT1_VI, sliceT1_VII;
-            uiVizWidgetChordWheelForKeySlice sliceT2_I, sliceT2_II, sliceT2_III, sliceT2_IV, sliceT2_V, sliceT2_VI, sliceT2_VII;
-            
-            /***********
-             * T1 RING *
-             ***********/
-            
-            // I chord
-            chordsT1.push_back(currKeyIChord);
-            sliceT1_I.chord = currKeyIChord;
-            sliceT1_I.originalChord = currKeyIChord;
-            sliceT1_I.parentKey = curKey;
-            sliceT1_I.originalParentKey = curKey;
-            sliceT1_I.prevKey = prevKey;
-            sliceT1_I.nextKey = nextKey;
-            sliceT1_I.degree = vizTheory::DegreeName::majorUnison;
-            sliceT1_I.originalDegree = vizTheory::DegreeName::majorUnison;
-            circleSlicesT1.push_back(sliceT1_I);
+        int nextKeyIndex = (key == 11) ?  0 : (key + 1);
+        int prevKeyIndex = (key == 0) ?  11 : (key - 1);
+        
+        string curKey = chordMatrixCurrent[key][0].getChordRoot();
+        string nextKey = chordMatrixCurrent[nextKeyIndex][0].getChordRoot();
+        string prevKey = chordMatrixCurrent[prevKeyIndex][0].getChordRoot();
+        
+        vizChord currKeyIChord      = chordMatrixCurrent[key][0];    // curr I  (same as nextKeyIVChord in Ionian mode)
+        vizChord currKeyIIChord     = chordMatrixCurrent[key][1];    // curr II (same as prevKeyVIChord in Ionian mode)
+        vizChord currKeyIIIChord    = chordMatrixCurrent[key][2];
+        vizChord currKeyIVChord     = chordMatrixCurrent[key][3];
+        vizChord currKeyVChord      = chordMatrixCurrent[key][4];
+        vizChord currKeyVIChord     = chordMatrixCurrent[key][5];
+        vizChord currKeyVIIChord    = chordMatrixCurrent[key][6];
+        
+        uiVizWidgetChordWheelForKeySlice sliceT1_I, sliceT1_II, sliceT1_III, sliceT1_IV, sliceT1_V, sliceT1_VI, sliceT1_VII;
+        uiVizWidgetChordWheelForKeySlice sliceT2_I, sliceT2_II, sliceT2_III, sliceT2_IV, sliceT2_V, sliceT2_VI, sliceT2_VII;
+        
+        /***********
+         * T1 RING *
+         ***********/
+        
+        // I chord
+        chordsT1.push_back(currKeyIChord);
+        sliceT1_I.chord = currKeyIChord;
+        sliceT1_I.originalChord = currKeyIChord;
+        sliceT1_I.parentKey = curKey;
+        sliceT1_I.originalParentKey = curKey;
+        sliceT1_I.prevKey = prevKey;
+        sliceT1_I.nextKey = nextKey;
+        sliceT1_I.degree = vizTheory::DegreeName::majorUnison;
+        sliceT1_I.originalDegree = vizTheory::DegreeName::majorUnison;
+        circleSlicesT1.push_back(sliceT1_I);
 
-            // V chord
-            chordsT1.push_back(currKeyVChord);
-            sliceT1_V.chord = currKeyVChord;
-            sliceT1_V.originalChord = currKeyVChord;
-            sliceT1_V.parentKey = curKey;
-            sliceT1_V.originalParentKey = curKey;
-            sliceT1_V.prevKey = prevKey;
-            sliceT1_V.nextKey = nextKey;
-            sliceT1_V.degree = vizTheory::DegreeName::perfectFifth;
-            sliceT1_V.originalDegree = vizTheory::DegreeName::perfectFifth;
-            circleSlicesT1.push_back(sliceT1_V);            
-            
-            
-            // II chord
-            chordsT1.push_back(currKeyIIChord);
-            sliceT1_II.chord = currKeyIIChord;
-            sliceT1_II.originalChord = currKeyIIChord;
-            sliceT1_II.parentKey = curKey;
-            sliceT1_II.originalParentKey = curKey;
-            sliceT1_II.prevKey = prevKey;
-            sliceT1_II.nextKey = nextKey;
-            sliceT1_II.degree = vizTheory::DegreeName::majorSecond;
-            sliceT1_II.originalDegree = vizTheory::DegreeName::majorSecond;
-            circleSlicesT1.push_back(sliceT1_II);
+        // V chord
+        chordsT1.push_back(currKeyVChord);
+        sliceT1_V.chord = currKeyVChord;
+        sliceT1_V.originalChord = currKeyVChord;
+        sliceT1_V.parentKey = curKey;
+        sliceT1_V.originalParentKey = curKey;
+        sliceT1_V.prevKey = prevKey;
+        sliceT1_V.nextKey = nextKey;
+        sliceT1_V.degree = vizTheory::DegreeName::perfectFifth;
+        sliceT1_V.originalDegree = vizTheory::DegreeName::perfectFifth;
+        circleSlicesT1.push_back(sliceT1_V);            
+        
+        
+        // II chord
+        chordsT1.push_back(currKeyIIChord);
+        sliceT1_II.chord = currKeyIIChord;
+        sliceT1_II.originalChord = currKeyIIChord;
+        sliceT1_II.parentKey = curKey;
+        sliceT1_II.originalParentKey = curKey;
+        sliceT1_II.prevKey = prevKey;
+        sliceT1_II.nextKey = nextKey;
+        sliceT1_II.degree = vizTheory::DegreeName::augmentedUnison_minorSecond;
+        sliceT1_II.originalDegree = vizTheory::DegreeName::augmentedUnison_minorSecond;
+        circleSlicesT1.push_back(sliceT1_II);
 
-            // VI chord
-            chordsT1.push_back(currKeyVIChord);
-            sliceT1_VI.chord = currKeyVIChord;
-            sliceT1_VI.originalChord = currKeyVIChord;
-            sliceT1_VI.parentKey = curKey;
-            sliceT1_VI.originalParentKey = curKey;
-            sliceT1_VI.prevKey = prevKey;
-            sliceT1_VI.nextKey = nextKey;
-            sliceT1_VI.degree = vizTheory::DegreeName::augmentedFifth_minorSixth;
-            sliceT1_VI.originalDegree = vizTheory::DegreeName::augmentedFifth_minorSixth;
-            circleSlicesT1.push_back(sliceT1_VI);            
-            
-            
-            // III chord
-            chordsT1.push_back(currKeyIIIChord);
-            sliceT1_III.chord = currKeyIIIChord;
-            sliceT1_III.originalChord = currKeyIIIChord;
-            sliceT1_III.parentKey = curKey;
-            sliceT1_III.originalParentKey = curKey;
-            sliceT1_III.prevKey = prevKey;
-            sliceT1_III.nextKey = nextKey;
-            sliceT1_III.degree = vizTheory::DegreeName::majorThird;
-            sliceT1_III.originalDegree = vizTheory::DegreeName::majorThird;
-            circleSlicesT1.push_back(sliceT1_III);
+        // VI chord
+        chordsT1.push_back(currKeyVIChord);
+        sliceT1_VI.chord = currKeyVIChord;
+        sliceT1_VI.originalChord = currKeyVIChord;
+        sliceT1_VI.parentKey = curKey;
+        sliceT1_VI.originalParentKey = curKey;
+        sliceT1_VI.prevKey = prevKey;
+        sliceT1_VI.nextKey = nextKey;
+        sliceT1_VI.degree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+        sliceT1_VI.originalDegree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+        circleSlicesT1.push_back(sliceT1_VI);            
+        
+        // III chord
+        chordsT1.push_back(currKeyIIIChord);
+        sliceT1_III.chord = currKeyIIIChord;
+        sliceT1_III.originalChord = currKeyIIIChord;
+        sliceT1_III.parentKey = curKey;
+        sliceT1_III.originalParentKey = curKey;
+        sliceT1_III.prevKey = prevKey;
+        sliceT1_III.nextKey = nextKey;
+        sliceT1_III.degree = vizTheory::DegreeName::augmentedSecond_minorThird;
+        sliceT1_III.originalDegree = vizTheory::DegreeName::augmentedSecond_minorThird;
+        circleSlicesT1.push_back(sliceT1_III);
 
-            
-            // VII chord
-            chordsT1.push_back(currKeyVIIChord);
-            sliceT1_VII.chord = currKeyVIIChord;
-            sliceT1_VII.originalChord = currKeyVIIChord;
-            sliceT1_VII.parentKey = curKey;
-            sliceT1_VII.originalParentKey = curKey;
-            sliceT1_VII.prevKey = prevKey;
-            sliceT1_VII.nextKey = nextKey;
-            sliceT1_VII.degree = vizTheory::DegreeName::majorSeventh;
-            sliceT1_VII.originalDegree = vizTheory::DegreeName::majorSeventh;
-            circleSlicesT1.push_back(sliceT1_VII);
+        
+        // VII chord
+        chordsT1.push_back(currKeyVIIChord);
+        sliceT1_VII.chord = currKeyVIIChord;
+        sliceT1_VII.originalChord = currKeyVIIChord;
+        sliceT1_VII.parentKey = curKey;
+        sliceT1_VII.originalParentKey = curKey;
+        sliceT1_VII.prevKey = prevKey;
+        sliceT1_VII.nextKey = nextKey;
+        sliceT1_VII.degree = vizTheory::DegreeName::majorSeventh;
+        sliceT1_VII.originalDegree = vizTheory::DegreeName::majorSeventh;
+        circleSlicesT1.push_back(sliceT1_VII);
 
 
-            // Out of key chords
-            for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
-                string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
-                vizChord c(noteName);
-                uiVizWidgetChordWheelForKeySlice s;
-                chordsT1.push_back(c);
-                s.chord = c;
-                s.originalChord = c;
-                s.parentKey = curKey;
-                s.originalParentKey = curKey;
-                s.prevKey = prevKey;
-                s.nextKey = nextKey;
-                s.degree = vizTheory::DegreeName::majorSeventh;
-                s.originalDegree = vizTheory::DegreeName::majorSeventh;
-                circleSlicesT1.push_back(s);
-            }
+        // Out of key chords
+        for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
+            string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
+            vizChord c(noteName);
+            uiVizWidgetChordWheelForKeySlice s;
+            chordsT1.push_back(c);
+            s.chord = c;
+            s.originalChord = c;
+            s.parentKey = curKey;
+            s.originalParentKey = curKey;
+            s.prevKey = prevKey;
+            s.nextKey = nextKey;
+            s.degree = vizTheory::DegreeName::majorSeventh;
+            s.originalDegree = vizTheory::DegreeName::majorSeventh;
+            circleSlicesT1.push_back(s);
+        }
 
 
-            // IV chord
-            chordsT1.push_back(currKeyIVChord);
-            sliceT1_IV.chord = currKeyIVChord;
-            sliceT1_IV.originalChord = currKeyIVChord;
-            sliceT1_IV.parentKey = curKey;
-            sliceT1_IV.originalParentKey = curKey;
-            sliceT1_IV.prevKey = prevKey;
-            sliceT1_IV.nextKey = nextKey;
-            sliceT1_IV.degree = vizTheory::DegreeName::perfectFourth;
-            sliceT1_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
-            circleSlicesT1.push_back(sliceT1_IV);           
+        // IV chord
+        chordsT1.push_back(currKeyIVChord);
+        sliceT1_IV.chord = currKeyIVChord;
+        sliceT1_IV.originalChord = currKeyIVChord;
+        sliceT1_IV.parentKey = curKey;
+        sliceT1_IV.originalParentKey = curKey;
+        sliceT1_IV.prevKey = prevKey;
+        sliceT1_IV.nextKey = nextKey;
+        sliceT1_IV.degree = vizTheory::DegreeName::perfectFourth;
+        sliceT1_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
+        circleSlicesT1.push_back(sliceT1_IV);           
 
 
 
@@ -918,115 +822,115 @@ private:
 
 
 
-            /***********
-             * T2 RING *
-             ***********/
-            
-            // I chord
-            chordsT2.push_back(currKeyIChord);
-            sliceT2_I.chord = currKeyIChord;
-            sliceT2_I.originalChord = currKeyIChord;
-            sliceT2_I.parentKey = curKey;
-            sliceT2_I.originalParentKey = curKey;
-            sliceT2_I.prevKey = prevKey;
-            sliceT2_I.nextKey = nextKey;
-            sliceT2_I.degree = vizTheory::DegreeName::majorUnison;
-            sliceT2_I.originalDegree = vizTheory::DegreeName::majorUnison;
-            circleSlicesT2.push_back(sliceT2_I);
+        /***********
+         * T2 RING *
+         ***********/
+        
+        // I chord
+        chordsT2.push_back(currKeyIChord);
+        sliceT2_I.chord = currKeyIChord;
+        sliceT2_I.originalChord = currKeyIChord;
+        sliceT2_I.parentKey = curKey;
+        sliceT2_I.originalParentKey = curKey;
+        sliceT2_I.prevKey = prevKey;
+        sliceT2_I.nextKey = nextKey;
+        sliceT2_I.degree = vizTheory::DegreeName::majorUnison;
+        sliceT2_I.originalDegree = vizTheory::DegreeName::majorUnison;
+        circleSlicesT2.push_back(sliceT2_I);
 
-            // V chord
-            chordsT2.push_back(currKeyVChord);
-            sliceT1_V.chord = currKeyVChord;
-            sliceT1_V.originalChord = currKeyVChord;
-            sliceT1_V.parentKey = curKey;
-            sliceT1_V.originalParentKey = curKey;
-            sliceT1_V.prevKey = prevKey;
-            sliceT1_V.nextKey = nextKey;
-            sliceT1_V.degree = vizTheory::DegreeName::perfectFifth;
-            sliceT1_V.originalDegree = vizTheory::DegreeName::perfectFifth;
-            circleSlicesT2.push_back(sliceT1_V);            
-            
-            
-            // II chord
-            chordsT2.push_back(currKeyIIChord);
-            sliceT2_II.chord = currKeyIIChord;
-            sliceT2_II.originalChord = currKeyIIChord;
-            sliceT2_II.parentKey = curKey;
-            sliceT2_II.originalParentKey = curKey;
-            sliceT2_II.prevKey = prevKey;
-            sliceT2_II.nextKey = nextKey;
-            sliceT2_II.degree = vizTheory::DegreeName::majorSecond;
-            sliceT2_II.originalDegree = vizTheory::DegreeName::majorSecond;
-            circleSlicesT2.push_back(sliceT2_II);
+        // V chord
+        chordsT2.push_back(currKeyVChord);
+        sliceT1_V.chord = currKeyVChord;
+        sliceT1_V.originalChord = currKeyVChord;
+        sliceT1_V.parentKey = curKey;
+        sliceT1_V.originalParentKey = curKey;
+        sliceT1_V.prevKey = prevKey;
+        sliceT1_V.nextKey = nextKey;
+        sliceT1_V.degree = vizTheory::DegreeName::perfectFifth;
+        sliceT1_V.originalDegree = vizTheory::DegreeName::perfectFifth;
+        circleSlicesT2.push_back(sliceT1_V);            
+        
+        
+        // II chord
+        chordsT2.push_back(currKeyIIChord);
+        sliceT2_II.chord = currKeyIIChord;
+        sliceT2_II.originalChord = currKeyIIChord;
+        sliceT2_II.parentKey = curKey;
+        sliceT2_II.originalParentKey = curKey;
+        sliceT2_II.prevKey = prevKey;
+        sliceT2_II.nextKey = nextKey;
+        sliceT2_II.degree = vizTheory::DegreeName::augmentedUnison_minorSecond;
+        sliceT2_II.originalDegree = vizTheory::DegreeName::augmentedUnison_minorSecond;
+        circleSlicesT2.push_back(sliceT2_II);
 
-            // VI chord
-            chordsT2.push_back(currKeyVIChord);
-            sliceT1_VI.chord = currKeyVIChord;
-            sliceT1_VI.originalChord = currKeyVIChord;
-            sliceT1_VI.parentKey = curKey;
-            sliceT1_VI.originalParentKey = curKey;
-            sliceT1_VI.prevKey = prevKey;
-            sliceT1_VI.nextKey = nextKey;
-            sliceT1_VI.degree = vizTheory::DegreeName::augmentedFifth_minorSixth;
-            sliceT1_VI.originalDegree = vizTheory::DegreeName::augmentedFifth_minorSixth;
-            circleSlicesT2.push_back(sliceT1_VI);            
-            
-            
-            // III chord
-            chordsT2.push_back(currKeyIIIChord);
-            sliceT2_III.chord = currKeyIIIChord;
-            sliceT2_III.originalChord = currKeyIIIChord;
-            sliceT2_III.parentKey = curKey;
-            sliceT2_III.originalParentKey = curKey;
-            sliceT2_III.prevKey = prevKey;
-            sliceT2_III.nextKey = nextKey;
-            sliceT2_III.degree = vizTheory::DegreeName::majorThird;
-            sliceT2_III.originalDegree = vizTheory::DegreeName::majorThird;
-            circleSlicesT2.push_back(sliceT2_III);
+        // VI chord
+        chordsT2.push_back(currKeyVIChord);
+        sliceT1_VI.chord = currKeyVIChord;
+        sliceT1_VI.originalChord = currKeyVIChord;
+        sliceT1_VI.parentKey = curKey;
+        sliceT1_VI.originalParentKey = curKey;
+        sliceT1_VI.prevKey = prevKey;
+        sliceT1_VI.nextKey = nextKey;
+        sliceT1_VI.degree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+        sliceT1_VI.originalDegree = vizTheory::DegreeName::augmentedFifth_minorSixth;
+        circleSlicesT2.push_back(sliceT1_VI);            
+        
+        
+        // III chord
+        chordsT2.push_back(currKeyIIIChord);
+        sliceT2_III.chord = currKeyIIIChord;
+        sliceT2_III.originalChord = currKeyIIIChord;
+        sliceT2_III.parentKey = curKey;
+        sliceT2_III.originalParentKey = curKey;
+        sliceT2_III.prevKey = prevKey;
+        sliceT2_III.nextKey = nextKey;
+        sliceT2_III.degree = vizTheory::DegreeName::augmentedSecond_minorThird;
+        sliceT2_III.originalDegree = vizTheory::DegreeName::augmentedSecond_minorThird;
+        circleSlicesT2.push_back(sliceT2_III);
 
-            
-            // VII chord
-            chordsT2.push_back(currKeyVIIChord);
-            sliceT1_VII.chord = currKeyVIIChord;
-            sliceT1_VII.originalChord = currKeyVIIChord;
-            sliceT1_VII.parentKey = curKey;
-            sliceT1_VII.originalParentKey = curKey;
-            sliceT1_VII.prevKey = prevKey;
-            sliceT1_VII.nextKey = nextKey;
-            sliceT1_VII.degree = vizTheory::DegreeName::majorSeventh;
-            sliceT1_VII.originalDegree = vizTheory::DegreeName::majorSeventh;
-            circleSlicesT2.push_back(sliceT1_VII);
-
-
-            // Out of key chords
-            for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
-                string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
-                vizChord c(noteName);
-                uiVizWidgetChordWheelForKeySlice s;
-                chordsT2.push_back(c);
-                s.chord = c;
-                s.originalChord = c;
-                s.parentKey = curKey;
-                s.originalParentKey = curKey;
-                s.prevKey = prevKey;
-                s.nextKey = nextKey;
-                s.degree = vizTheory::DegreeName::majorSeventh;
-                s.originalDegree = vizTheory::DegreeName::majorSeventh;
-                circleSlicesT2.push_back(s);
-            }
+        
+        // VII chord
+        chordsT2.push_back(currKeyVIIChord);
+        sliceT1_VII.chord = currKeyVIIChord;
+        sliceT1_VII.originalChord = currKeyVIIChord;
+        sliceT1_VII.parentKey = curKey;
+        sliceT1_VII.originalParentKey = curKey;
+        sliceT1_VII.prevKey = prevKey;
+        sliceT1_VII.nextKey = nextKey;
+        sliceT1_VII.degree = vizTheory::DegreeName::majorSeventh;
+        sliceT1_VII.originalDegree = vizTheory::DegreeName::majorSeventh;
+        circleSlicesT2.push_back(sliceT1_VII);
 
 
-            // IV chord
-            chordsT2.push_back(currKeyIVChord);
-            sliceT2_IV.chord = currKeyIVChord;
-            sliceT2_IV.originalChord = currKeyIVChord;
-            sliceT2_IV.parentKey = curKey;
-            sliceT2_IV.originalParentKey = curKey;
-            sliceT2_IV.prevKey = prevKey;
-            sliceT2_IV.nextKey = nextKey;
-            sliceT2_IV.degree = vizTheory::DegreeName::perfectFourth;
-            sliceT2_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
-            circleSlicesT2.push_back(sliceT2_IV);     
+        // Out of key chords
+        for (int outsideKey=0; outsideKey<= 4; outsideKey++) {
+            string noteName = vizTheory::getNoteInCircleOfFifthsWithOffset(currKeyIChord.getChordRoot(), 6+outsideKey, false);
+            vizChord c(noteName);
+            uiVizWidgetChordWheelForKeySlice s;
+            chordsT2.push_back(c);
+            s.chord = c;
+            s.originalChord = c;
+            s.parentKey = curKey;
+            s.originalParentKey = curKey;
+            s.prevKey = prevKey;
+            s.nextKey = nextKey;
+            s.degree = -100;
+            s.originalDegree = -100;
+            circleSlicesT2.push_back(s);
+        }
+
+
+        // IV chord
+        chordsT2.push_back(currKeyIVChord);
+        sliceT2_IV.chord = currKeyIVChord;
+        sliceT2_IV.originalChord = currKeyIVChord;
+        sliceT2_IV.parentKey = curKey;
+        sliceT2_IV.originalParentKey = curKey;
+        sliceT2_IV.prevKey = prevKey;
+        sliceT2_IV.nextKey = nextKey;
+        sliceT2_IV.degree = vizTheory::DegreeName::perfectFourth;
+        sliceT2_IV.originalDegree = vizTheory::DegreeName::perfectFourth;
+        circleSlicesT2.push_back(sliceT2_IV);     
 
 
 

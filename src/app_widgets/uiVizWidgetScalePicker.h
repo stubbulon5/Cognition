@@ -651,7 +651,7 @@ public:
         }
 
         if (ofToLower(scale) != "unknown" && scale != "") {
-            vizScale dragScale = vizScale(getSelectedKey().getNoteName(), scale);
+            vizScale dragScale = vizScale(getSelectedKey().getNoteName(), scale, 3);
             dragScale.setInstrumentRules(getInstrumentRules());
             setDraggingScale(dragScale);
         } else {
