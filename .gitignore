@@ -9,3 +9,4 @@ bin/.DS_Store
 bin/libs-macOS/.DS_Store
 bin/libs-macOS/libs/
 .gitignore.swp
+bin/Cognition_debug*

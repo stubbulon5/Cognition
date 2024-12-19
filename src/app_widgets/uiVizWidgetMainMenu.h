@@ -333,7 +333,7 @@ private:
     uiVizWidgetOmniMenuLinks *omniMenu = nullptr;
     uiVizWidgetMenu *helpMenu = nullptr;    
     uiVizWidgetLicence *licenceMenu = nullptr;
-    uiVizWidgetNotifications* notificationMenu;
+    uiVizWidgetNotifications* notificationMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
     uiVizIcon mainMenuIcon = uiVizIcon("", uiVizCoord::vizBounds(0,0,0,0), 1.0f, uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
 
@@ -344,6 +344,7 @@ private:
     const string MENU_DEBUG = "DEBUG";
     
     bool loaded = false;
+    uiVizWidgetTheme theme;
 
     void overrideAlpha() {
         getTheme().UnhoveredWidgetAlpha = getTheme().HoveredWidgetAlpha;
@@ -352,12 +353,27 @@ private:
     virtual void onWidgetThemeChanged(uiVizWidgetEventArgs args) override {
         uiVizWidgetMenuCollection::onWidgetThemeChanged(args);
         overrideAlpha();
+        applyMenuThemeColor();
     }                  
+
+    void applyMenuThemeColor() {
+        theme = getViz()->getThemeManager()->getThemeForMainMenu();
+        setTheme(theme);
+
+        if (fileMenu != nullptr) fileMenu->setTheme(theme);
+        if (omniMenu  != nullptr) omniMenu->setTheme(theme);
+        if (helpMenu != nullptr) helpMenu->setTheme(theme);
+        if (licenceMenu != nullptr) licenceMenu->setTheme(theme);
+        if (notificationMenu != nullptr) notificationMenu->setTheme(theme);
+
+    }
 
     void initWidget() override {
         overrideAlpha();
-        //setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
-        //setIgnoreThemeChanges(true);   
+        applyMenuThemeColor();
+        
+        setIsSystemWidget(true);
+        // setIgnoreThemeChanges(true);   
         
         if (!loaded) {
             fileMenu = new uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_FILE", "<widget></widget>", getWidgetId()
@@ -376,8 +392,11 @@ private:
                     })
                 });
 
+            fileMenu->setTheme(theme);
+
             omniMenu = new uiVizWidgetOmniMenuLinks(getWidgetId() + "_MAIN_MENU_OMNI", "<widget><bounds width=\"460\" height=\"300\"/></widget>");
             ofAddListener(omniMenu->cellSelected, this,  &uiVizWidgetMainMenu::onOmniMenuCellCelected);
+            omniMenu->setTheme(theme);
             
             helpMenu = new uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_HELP", "<widget></widget>", getWidgetId()
                 , uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
@@ -393,12 +412,14 @@ private:
                         uiVizWidgetMenuItem("About (modal)", 4)                                                
                     })
                 });
+            helpMenu->setTheme(theme);
 
             licenceMenu = new uiVizWidgetLicence(getWidgetId() + "_LICENCE", R"(
                 <widget>
                 <bounds width="300" height="300" minWidth="75" minHeight="75"  />
                 </widget>
             )");
+            licenceMenu->setTheme(theme);
 
 
 
@@ -411,6 +432,7 @@ private:
                 </widget>
             )");
             ofAddListener(notificationMenu->notificationItemsChanged, this,  &uiVizWidgetMainMenu::onNotificationItemsChanged);  
+            notificationMenu->setTheme(theme);
 
             /* Let the fun begin... */
             setMenuCollection({
@@ -444,24 +466,8 @@ private:
             loaded = true;
         }
 
-        // aerosLooper();
 
     }
-
-    // void aerosLooper()  {
-    //     // Temp while testing / developing Aeros Util
-    //     uiVizWidgetAerosLooper* w = new uiVizWidgetAerosLooper("APP_AEROS", "");
-    //     uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/uiVizWidgetAerosLooper.xml", *w);
-
-    //     // uiVizWidgetAerosLooperSong* w = new uiVizWidgetAerosLooperSong("APP_AEROS", "");
-    //     // uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/uiVizWidgetAerosLooperSong.xml", *w);
-
-    //     w->setTitleStyle(uiVizWidget::TitleStyle::TOP_STATIC);
-    //     w->setWidgetSize(600, 600, false);
-    //     w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
-    //     uiVizWidgetManager::showModal(w, true); 
-    //     //uiVizWidgetManager::addWidget(*w, false);         
-    // }
 };
 
 

@@ -9,3 +9,4 @@ ofxGLEditor
 ofxExternalDrop
 ofxOsc
 ofxTinyMidiPlayer
+ofxAnimatable

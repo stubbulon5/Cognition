@@ -552,8 +552,6 @@ public:
         mPopoutFromWidget = obj;
         if (mPopoutFromWidget) setPopoutOpenerWidget(mPopoutFromWidget);        
 
-
-// popout bug froim stringed
         setSize(getWidth(), getHeight());       
         updateWidgetPopoutArrow();
         setShowingAsPopout(true);
@@ -565,7 +563,7 @@ public:
 
     virtual void popoutFrom(uiVizWidgetBase* obj, PopoutDirection popoutDirection, bool ignoreTheme = false) {
         uiVizWidgetTheme theme = uiVizWidgetTheme();
-        if(obj && obj->parent()) theme = getViz()->getThemeManager()->getContrastingSystemTheme(obj->parent()->getTheme(), true);
+        if(obj && obj->parent()) theme = getViz()->getThemeManager()->getThemeForPopout();
         popoutFrom(obj, popoutDirection, ignoreTheme ? uiVizWidgetTheme() : theme);
     }
 
@@ -5195,7 +5193,8 @@ public:
         // Show it!
         if (contextMenuWidget != nullptr) {
             contextMenuWidget->setPopoutWidgetDirection(PopoutDirection::NONE);
-            contextMenuWidget->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));
+            // contextMenuWidget->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));
+            contextMenuWidget->setTheme(getViz()->getThemeManager()->getThemeForPopout());
             
             contextMenuWidget->setWidgetPosition(x, y, false);
             contextMenuWidget->setShowingAsPopout(true);

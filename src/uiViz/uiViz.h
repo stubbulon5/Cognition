@@ -101,9 +101,11 @@ public:
                 populateElementTheme(*this, settings);
                 settings.popTag(); //elemets
             }
-            
+        
             settings.popTag(); //theme
-            
+            setMainMenuColor(settings.getAttribute("theme", "mainMenuColor", ""));
+            setPopoutMenuColor(settings.getAttribute("theme", "popoutMenuColor", ""));
+
             return true;
         }
         return false;
@@ -112,12 +114,18 @@ public:
     void populateWidgetTheme(uiVizWidgetTheme& fallback, ofxXmlSettings& settings) {
         
         setWidgetColor(settings.getAttribute("widgetColor", "color", ""));
+
         setWidgetContentColor(settings.getAttribute("widgetContentColor", "color", ""));
 
         setWidgetAccent1Color(settings.getAttribute("widgetAccentColor", "color1", ""));
         setWidgetAccent2Color(settings.getAttribute("widgetAccentColor", "color2", ""));
         setWidgetAccent3Color(settings.getAttribute("widgetAccentColor", "color3", ""));
         setWidgetAccent4Color(settings.getAttribute("widgetAccentColor", "color4", ""));
+
+        setBackgroundColor1(settings.getAttribute("backgroundColor", "color1", ""));
+        setBackgroundColor2(settings.getAttribute("backgroundColor", "color2", ""));
+        setBackgroundColor3(settings.getAttribute("backgroundColor", "color3", ""));
+        setBackgroundColor4(settings.getAttribute("backgroundColor", "color4", ""));        
 
         setWidgetAlternating1Color(settings.getAttribute("widgetAlternatingColor", "color1", ""));
         setWidgetAlternating2Color(settings.getAttribute("widgetAlternatingColor", "color2", ""));
@@ -398,6 +406,40 @@ public:
         setWidgetColor(val);
     }
 
+    string getMainMenuColorHex() {
+        return "#" + getHexFromInt(MainMenuColor.r) +  getHexFromInt(MainMenuColor.g) + getHexFromInt(MainMenuColor.b) + getHexFromInt(MainMenuColor.a);
+    }     
+
+    void setMainMenuColor(ofColor val) {
+        setColorFromSource(MainMenuColor, val);        
+    }
+
+    void setMainMenuColor(string RGBAHex) {
+        if (RGBAHex == "") {
+            setMainMenuColor(WidgetColor);
+            return;
+        }
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setMainMenuColor(val);
+    }
+
+    string getPopoutMenuColorHex() {
+        return "#" + getHexFromInt(PopoutMenuColor.r) +  getHexFromInt(PopoutMenuColor.g) + getHexFromInt(PopoutMenuColor.b) + getHexFromInt(PopoutMenuColor.a);
+    }     
+
+    void setPopoutMenuColor(ofColor val) {
+        setColorFromSource(PopoutMenuColor, val);        
+    }
+
+    void setPopoutMenuColor(string RGBAHex) {
+        if (RGBAHex == "") {
+            setPopoutMenuColor(WidgetColor);
+            return;
+        }    
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setPopoutMenuColor(val);
+    }
+
     ofColor WidgetContentColor_withAlpha(float alpha) {
         return ofColor(WidgetContentColor.r, WidgetContentColor.g, WidgetContentColor.b, WidgetContentColor.a * alpha);
     }
@@ -479,13 +521,85 @@ public:
     }        
 
     void setWidgetAccent4Color(ofColor val) {
-        setColorFromSource(WidgetAccent4Color, val);                        
+        setColorFromSource(WidgetAccent4Color, val);                
     }
 
     void setWidgetAccent4Color(string RGBAHex) {
         if (RGBAHex == "") return;        
         ofColor val = getColor_fromRGBAHex(RGBAHex);
         setWidgetAccent4Color(val);
+    }
+    // Background
+    ofColor BackgroundColor1_withAlpha(float alpha) {
+        return ofColor(BackgroundColor1.r, BackgroundColor1.g, BackgroundColor1.b, BackgroundColor1.a * alpha);
+    }
+
+    string getBackgroundColor1Hex() {
+        return "#" + getHexFromInt(BackgroundColor1.r) +  getHexFromInt(BackgroundColor1.g) + getHexFromInt(BackgroundColor1.b) + getHexFromInt(BackgroundColor1.a);
+    }          
+
+    void setBackgroundColor1(ofColor val) {
+        setColorFromSource(BackgroundColor1, val);
+    }
+
+    void setBackgroundColor1(string RGBAHex) {
+        if (RGBAHex == "") return;        
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setBackgroundColor1(val);
+    }
+
+    ofColor BackgroundColor2_withAlpha(float alpha) {
+        return ofColor(BackgroundColor2.r, BackgroundColor2.g, BackgroundColor2.b, BackgroundColor2.a * alpha);
+    }
+
+    string getBackgroundColor2Hex() {
+        return "#" + getHexFromInt(BackgroundColor2.r) +  getHexFromInt(BackgroundColor2.g) + getHexFromInt(BackgroundColor2.b) + getHexFromInt(BackgroundColor2.a);
+    }        
+
+    void setBackgroundColor2(ofColor val) {
+        setColorFromSource(BackgroundColor2, val);        
+    }
+
+    void setBackgroundColor2(string RGBAHex) {
+        if (RGBAHex == "") return;        
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setBackgroundColor2(val);
+    }
+
+    ofColor BackgroundColor3_withAlpha(float alpha) {
+        return ofColor(BackgroundColor3.r, BackgroundColor3.g, BackgroundColor3.b, BackgroundColor3.a * alpha);
+    }
+
+    string getBackgroundColor3Hex() {
+        return "#" + getHexFromInt(BackgroundColor3.r) +  getHexFromInt(BackgroundColor3.g) + getHexFromInt(BackgroundColor3.b) + getHexFromInt(BackgroundColor3.a);
+    }        
+
+    void setBackgroundColor3(ofColor val) {
+        setColorFromSource(BackgroundColor3, val);                
+    }
+
+    void setBackgroundColor3(string RGBAHex) {
+        if (RGBAHex == "") return;        
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setBackgroundColor3(val);
+    }
+
+    ofColor BackgroundColor4_withAlpha(float alpha) {
+        return ofColor(BackgroundColor4.r, BackgroundColor4.g, BackgroundColor4.b, BackgroundColor4.a * alpha);
+    }
+
+    string getBackgroundColor4Hex() {
+        return "#" + getHexFromInt(BackgroundColor4.r) +  getHexFromInt(BackgroundColor4.g) + getHexFromInt(BackgroundColor4.b) + getHexFromInt(BackgroundColor4.a);
+    }        
+
+    void setBackgroundColor4(ofColor val) {
+        setColorFromSource(BackgroundColor4, val);                
+    }
+
+    void setBackgroundColor4(string RGBAHex) {
+        if (RGBAHex == "") return;        
+        ofColor val = getColor_fromRGBAHex(RGBAHex);
+        setBackgroundColor4(val);
     }
 
     // Eg text
@@ -712,7 +826,8 @@ public:
     ofColor HoverForegroundColor = ofColor(255, 255, 255, 255);
     ofColor HoverBackgroundColor = ofColor(170, 170, 170, 255);
 
-
+    ofColor MainMenuColor = ofColor(255, 255, 255, 255);
+    ofColor PopoutMenuColor = ofColor(255, 255, 255, 255);
     ofColor WidgetColor = ofColor(255, 255, 255, 255);
     ofColor WidgetContentColor = ofColor(255, 255, 255, 170);
 
@@ -720,6 +835,11 @@ public:
     ofColor WidgetAccent2Color = ofColor(5, 25, 55, 255);
     ofColor WidgetAccent3Color = ofColor(0, 137, 147, 255);
     ofColor WidgetAccent4Color = ofColor(168, 235, 18, 255);
+
+    ofColor BackgroundColor1 = ofColor(0, 77, 122, 255);
+    ofColor BackgroundColor2 = ofColor(5, 25, 55, 255);
+    ofColor BackgroundColor3 = ofColor(0, 137, 147, 255);
+    ofColor BackgroundColor4 = ofColor(168, 235, 18, 255);    
 
     ofColor WidgetAlternating1Color = ofColor(213, 213, 213, 255);
     ofColor WidgetAlternating2Color = ofColor(221, 221, 221, 238);
@@ -849,6 +969,22 @@ public:
         }
         return theme;
     }
+
+    uiVizWidgetTheme getThemeForMainMenu() {
+        uiVizWidgetTheme theme = getDefaultTheme();
+        theme.setWidgetColor(theme.MainMenuColor);
+        theme.setTitleGradientColors(theme.MainMenuColor, theme.MainMenuColor, theme.MainMenuColor, theme.MainMenuColor);
+        theme.setTitleColor(theme.MainMenuColor);
+        return theme;
+    }    
+
+    uiVizWidgetTheme getThemeForPopout() {
+        uiVizWidgetTheme theme = getDefaultTheme();
+        theme.setWidgetColor(theme.PopoutMenuColor);
+        theme.setTitleGradientColors(theme.PopoutMenuColor, theme.PopoutMenuColor, theme.PopoutMenuColor, theme.PopoutMenuColor);
+        theme.setTitleColor(theme.PopoutMenuColor);
+        return theme;
+    }    
     
     uiVizWidgetTheme getLessOpacity(uiVizWidgetTheme theme, bool includingElements) {
         theme = getLessOpacity(theme, includingElements, 0.97f);
@@ -947,13 +1083,19 @@ public:
             }
         }
 
-        themeManager.loadThemesFromFile("themes.xml");
-        uiVizWidgetTheme theme = themeManager.getThemeByName(SETTING_themeName);
-        themeManager.setDefaultTheme(theme);
-        
+        loadTheme(SETTING_themeName, false);
+
         init();
     }
     
+    void loadTheme(string themeName, bool reInit = true) {
+        themeManager.loadThemesFromFile("themes.xml");
+        uiVizWidgetTheme theme = themeManager.getThemeByName(themeName);
+        themeManager.setDefaultTheme(theme);    
+
+        if (reInit) init();
+    }
+
     void init() {
         
         setResolutionMultiplier();

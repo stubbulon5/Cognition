@@ -38,14 +38,6 @@ public:
         uiVizWidgetElmCheckbox* CHK_OSC_SEND = getCheckbox("CHK_OSC_SEND");
         uiVizWidgetElmCheckbox* CHK_OSC_RECEIVE = getCheckbox("CHK_OSC_RECEIVE");            
 
- 
-
-
-
-
-
-
-
         if (event == "OK." + WIDGET_EVENT::CLICK) {
             uiVizShared::setUserScale(SLD_UI_SCALE->getValue());
             uiVizShared::setUserExperience(SLD_EXPERIENCE->getValue(), true);
@@ -156,6 +148,7 @@ public:
                 
             case uiVizIconCache::IconTag::WIDGET_THEMES: {
                 selectedTheme = uiVizShared::getViz()->getThemeManager()->getThemeByName(args.menuItem->label);
+                uiVizShared::getViz()->loadTheme(selectedTheme.Name, true);
                 uiVizWidgetManager::setTheme(selectedTheme);
                 }
                 break;   
