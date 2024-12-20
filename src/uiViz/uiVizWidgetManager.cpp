@@ -6,6 +6,7 @@
 //
 
 #include "uiVizWidgetManager.h"
+#include "uiVizBG.h"
 #include "widget/uiVizWidgetDebug.h"
 #include "widget/uiVizWidgetEventListener.h"
 #include "widget/uiVizWidgetClipboardMenu.h"
@@ -46,6 +47,8 @@ calculator_t calculator;
 
 bool popoutMovedToFront = false;
 int popoutCount = 0;
+
+uiVizBG *vizBG = nullptr;
 
 string prev_eventSenderType, prev_eventSenderId, prev_eventTargetId, prev_eventName, prev_eventXML;
 
@@ -327,11 +330,11 @@ void uiVizWidgetManager::drawWidget(uiVizWidget &widget, int widgetZIndex) {
 }
 
 void uiVizWidgetManager::drawWidgets() {
+    vizBG->draw();
    /*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
     MOVE THE ACTIVE WIDGET TO THE FRONT IF NEEDED
     THIS ACTUALLY MEANS MOVING IT TO THE BACK OF THE VECTOR...
     *-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*/
-
     if (uiVizShared::getViz()->getIsPopoutVisible()) {
         vector<string> popoutWidgetIds = uiVizShared::getViz()->getPopoutWidgetIds();
         if (!popoutMovedToFront || popoutCount != popoutWidgetIds.size()) {
@@ -1026,6 +1029,7 @@ void uiVizWidgetManager::setTheme(uiVizWidgetTheme theme) {
 }
 
 void uiVizWidgetManager::initWidgetManager(string applicationName, string applicationVersion, string fileExtension) {
+    vizBG = new uiVizBG();
     applicationProperties = uiVizWidgetManager::ApplicationProperties(applicationName, applicationVersion, fileExtension);
     currentProjectProperties = uiVizWidgetManager::ProjectProperties("Untitled Project", "untitled", "", "");
     currentProjectProperties.fileName = "untitled.jam";

@@ -43,18 +43,5 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        void drawUILayoutHome();
-    
-        //------------------------------ SETTINGS --------------------------------
-        void loadSettings();
-        void saveSettings();
-        void loadWidgets(bool clearExisting);
-    
-        //------------------------------ UI --------------------------------
-        void initPlayArea();
-    
-        int widgetMode = 1;
-        bool titleAutoHide = true;
-    
-		uiVizBG *vizBG;
+        void initAquamarine();
 };

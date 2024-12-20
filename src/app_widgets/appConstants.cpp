@@ -1,13 +1,5 @@
 #include "appConstants.h"
 
-/*
- Note on versioning:
-    Changing Major version will cause licence invalidation and require users to
-    upgrade / purchase a new licence. Change Major version only when this is the desired result.
- 
-    Changing Minor version can cause forced upgrades, but without
- */
-
 const std::string APP_CONSTANTS::APPLICATION_NAME = "cognition";
 const std::string APP_CONSTANTS::APPLICATION_VERSION = "1.0.0"; /* Major.Minor.Patch*/
 const std::string APP_CONSTANTS::APPLICATION_FILE_EXTENSION = "jam";
