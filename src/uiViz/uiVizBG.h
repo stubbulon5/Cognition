@@ -7,21 +7,30 @@
 
 //------------------------------ UI VIZ BG CLASS --------------------------------
 #pragma once
-class uiVizBG {
+class uiVizBG
+{
 
 public:
-	uiVizBG() {
+    uiVizBG()
+    {
         uiVizWidgetTheme theme = uiVizShared::getViz()->getThemeManager()->getDefaultTheme();
+        setTheme(theme);
+    }
+
+    ~uiVizBG()
+    {
+    }
+
+    void setTheme(uiVizWidgetTheme theme)
+    {
         bgCol1 = theme.BackgroundColor1_withAlpha(1.0f);
         bgCol2 = theme.BackgroundColor2_withAlpha(1.0f);
         bgCol3 = theme.BackgroundColor3_withAlpha(1.0f);
         bgCol4 = theme.BackgroundColor4_withAlpha(1.0f);
-	}
+    }
 
-	~uiVizBG() {
-	}
-
-	void draw() {
+    void draw()
+    {
         ofMesh temp;
         temp.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
         temp.addVertex(ofPoint(0, 0));
@@ -33,13 +42,8 @@ public:
         temp.addVertex(ofPoint(ofGetWindowWidth(), ofGetWindowHeight()));
         temp.addColor(bgCol4);
         temp.draw();
-	}
+    }
 
 private:
-	ofColor bgCol1, bgCol2, bgCol3, bgCol4;
-    uiVizWidgetTheme theme;
+    ofColor bgCol1, bgCol2, bgCol3, bgCol4;
 };
-
-
-
-

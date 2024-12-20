@@ -923,6 +923,7 @@ public:
         
         //for (int i = 0; i < mMenuTabs.size(); i++) {
             uiVizWidgetTabSlice* tabSlice = &tabSlices[tabIndex];
+            if (!tabSlice || tabSlice == nullptr) return;
             tabSlice->menuTab = tab;
             
             vector<uiVizWidgetMenuSlice> menuSlices = vector<uiVizWidgetMenuSlice>();

@@ -5,23 +5,12 @@
 // UI Stuff
 #include "ofxXmlSettings.h"
 //#include "ofxVST3.h"
-#include "uiViz/uiVizBG.h"
 #include "uiViz/uiVizShared.h"
 #include "uiViz/uiVizWidgetManager.h"
 #include "uiViz/widget/uiVizWidget.h"
-#include "uiViz/widget/uiVizWidgetWindowTitle.h"
-#include "uiViz/widget/uiVizWidgetCollection.h"
-#include "uiViz/widget/uiVizWidgetSettings.h"
 
-#include "app_widgets/uiVizWidgetKeyPicker.h"
-#include "app_widgets/uiVizWidgetChordWheel.h"
-#include "app_widgets/uiVizWidgetChordDesigner.h"
-#include "app_widgets/uiVizWidgetChordBucket.h"
-#include "app_widgets/uiVizWidgetChordBucketSuggester.h"
-#include "app_widgets/uiVizWidgetScalePicker.h"
-#include "app_widgets/uiVizWidgetGuitar.h"
 #include "app_widgets/sdMidiShared.h"
-// #include "app_widgets/sdFluidSynthShared.h"
+#include "app_widgets/appConstants.h"
 
 
 class ofApp : public ofBaseApp{

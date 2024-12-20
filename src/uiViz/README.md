@@ -136,36 +136,20 @@ Very, very NB, you must run mingw32.exe when carrying out these instructions!!
 * https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk
 
 
-## Ubuntu - QT
-
-# 1.) git clone bloom repo to myApps folder
-# 2.) Create project with projectGenerator
-# 3.) Create symlinks
-cd /home/zabba/projects/of_v0.10.1_linux64gcc6_release/apps/myApps/bloom-linux/src
-ln -s ../../bloom/src/uiViz ./uiViz
-ln -s ../../bloom/src/app_widgets ./app_widgets
-cd /home/zabba/projects/of_v0.10.1_linux64gcc6_release/apps/myApps/bloom-linux/bin
-ln -s ../../bloom/bin/data ./data
-
-## Ubuntu - VSCode
-Install VSCode + C++ extension
-Ctrl-shift-B
-For Autocomplete, make sure
-
-# macOS / xcode tips
-If machine becomes unresponsive during compile / constant indexing, try the following mitigation:
-```
-rm -rf ~/Library/Developer/Xcode/DerivedData
-```
-
 # Documentation setup (Doxygen and GraphViz)
 Instructions followed from https://www.youtube.com/watch?v=LZ5E4vEhsKs
+https://www.doxygen.nl/manual/starting.html
 Install tools:
 ```
+# macOs
+brew install doxygen
+brew install graphviz
+
+# Linux
  sudo apt-get install doxygen
  sudo apt-get install graphviz
  ```
- Edit doc/Doxyfile
+ ## Generating documentation:
 ``` 
  cd doc/ && doxygen
 x-www-browser file://`pwd`/html/index.html

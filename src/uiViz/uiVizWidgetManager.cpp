@@ -1002,6 +1002,7 @@ void uiVizWidgetManager::showSaveDialog(string proposedFilePath, string proposed
 
 void uiVizWidgetManager::setTheme(uiVizWidgetTheme theme) {
     uiVizShared::getViz()->getThemeManager()->setDefaultTheme(theme);
+    vizBG->setTheme(theme);
     uiVizWidgetTheme themeForSystem = uiVizShared::getViz()->getThemeManager()->getThemeByName(theme.Name, true);
     uiVizWidgetTheme contrastingThemeForSystem = uiVizShared::getViz()->getThemeManager()->getContrastingSystemTheme(theme, true);
     

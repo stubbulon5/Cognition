@@ -1,6 +1,6 @@
 # Cognition
 
-Source code for Cognition - Music Visualization application written on top of the awesome [openFrameworks](https://openframeworks.cc/)
+Source code for Cognition - Music Visualization application written on top of the awesome [openFrameworks](https://openframeworks.cc/) and using my UI Framework passion project ofxAquamarine.
 
 ## Set-up
 ### The openFrameworks setup guides reside [here](https://openframeworks.cc/download/)
@@ -45,38 +45,27 @@ and
 makeWin_INSTALLER.bat
 ```
 
-WINDOWS
-Building with MSYS2 on Windows (mingw32.exe) :
-Follow instructions: https://github.com/FluidSynth/fluidsynth/wiki/BuildingWithCMake#building-with-msys2-on-windows
-
-
 # Documentation setup (Doxygen and GraphViz)
 Instructions followed from https://www.youtube.com/watch?v=LZ5E4vEhsKs
+https://www.doxygen.nl/manual/starting.html
 Install tools:
 ```
-sudo apt-get install doxygen
-sudo apt-get install graphviz
-```
-Edit doc/Doxyfile
+# macOs
+brew install doxygen
+brew install graphviz
 
-# App Documentation
+# Linux
+ sudo apt-get install doxygen
+ sudo apt-get install graphviz
+ ```
+
+# Generate App Documentation
 ``` 
 cd doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ..
 ```
 
-# Aquamarine UI Documentation
+
+# Generate  Aquamarine UI Documentation
 ``` 
 cd src/uiViz/doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ../../../
 ```
-
-# Performance Profiling
-``` 
-source /opt/intel/vtune_amplifier_2019/amplxe-vars.sh && /opt/intel/vtune_amplifier_2019/bin64/amplxe-gui --path-to-open bin/profiling/Cognition/Cognition.amplxeproj
-``` 
-
-
-
-elm colors
-todo clear hover (it alpha transitionaing)
-cursor navigation with table plus enter het for select
-

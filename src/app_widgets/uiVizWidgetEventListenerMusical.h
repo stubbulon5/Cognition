@@ -8,7 +8,7 @@ class uiVizWidgetEventListenerMusical : public uiVizWidgetEventListener {
 public:
     
     uiVizWidgetEventListenerMusical(string persistentId, string widgetXML) : uiVizWidgetEventListener(persistentId, widgetXML) {
-
+        initWidget();
     }
     
     virtual ~uiVizWidgetEventListenerMusical() {
