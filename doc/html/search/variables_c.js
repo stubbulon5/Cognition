@@ -1,7 +1,0 @@
-var searchData=
-[
-  ['offset_0',['offset',['../classuiVizWigetStringedInstrumentString.html#a67c79bd3c8503d33d43dc61793e27d15',1,'uiVizWigetStringedInstrumentString']]],
-  ['originalchord_1',['originalChord',['../classuiVizWidgetChordProgressionSlice.html#a5a3c961d54d0e22f6e1b92590254b63e',1,'uiVizWidgetChordProgressionSlice::originalChord'],['../classuiVizWidgetChordWheelSlice.html#aec63566e52e15409bd11ace6d48718d0',1,'uiVizWidgetChordWheelSlice::originalChord'],['../classuiVizWidgetChordWheelForKeySlice.html#a5db30825f1b270a7b30b9b987fb213e7',1,'uiVizWidgetChordWheelForKeySlice::originalChord']]],
-  ['originaldegree_2',['originalDegree',['../classuiVizWidgetChordProgressionSlice.html#a3a08fa8f8ef950728ebdee0c1966ffb0',1,'uiVizWidgetChordProgressionSlice::originalDegree'],['../classuiVizWidgetChordWheelSlice.html#a7f166c6da655fc8669ba7a6497e5de04',1,'uiVizWidgetChordWheelSlice::originalDegree'],['../classuiVizWidgetChordWheelForKeySlice.html#a31e02b104fe2b8ca1302cd4293a4d848',1,'uiVizWidgetChordWheelForKeySlice::originalDegree']]],
-  ['originalparentkey_3',['originalParentKey',['../classuiVizWidgetChordProgressionSlice.html#a4351d17981cb4f758c767792696d1af9',1,'uiVizWidgetChordProgressionSlice::originalParentKey'],['../classuiVizWidgetChordWheelSlice.html#af2ee1b64169195c8932544712605795f',1,'uiVizWidgetChordWheelSlice::originalParentKey'],['../classuiVizWidgetChordWheelForKeySlice.html#a301979f577bcf8782b793a2230cbaf1b',1,'uiVizWidgetChordWheelForKeySlice::originalParentKey']]]
-];
