@@ -3,14 +3,6 @@
 #include "ofxAquamarine.h"
 #include "WidgetStringedInstrument.h"
 
-
-//------------------------------ Guitar fretboard --------------------------------
-
-/****************************************************icons******************************
- 
- 
- ***********************************************************************************/
-
 class WidgetGuitar : public WidgetStringedInstrument {
     
 public:
