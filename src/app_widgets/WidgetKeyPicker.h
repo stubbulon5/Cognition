@@ -1,8 +1,4 @@
-//
-//  WidgetKeyPicker.h
-//  bloom-macos
-//
-//
+
 #pragma once
 #include "ofxAquamarine.h"
 #include "WidgetMusical.h"
