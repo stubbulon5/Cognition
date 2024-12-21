@@ -19,14 +19,14 @@ public:
 
     virtual void onChildWidgetsLoaded() override {
         if (!loaded) {
-            GETTING_STARTED_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GETTING_STARTED_TABS"));
-            GENERAL_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GENERAL_TAB_TABLE"));            
-            GUITAR_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GUITAR_TAB_TABLE"));
-            BASS_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "BASS_TAB_TABLE"));
+            GETTING_STARTED_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "GETTING_STARTED_TABS"));
+            GENERAL_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "GENERAL_TAB_TABLE"));            
+            GUITAR_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "GUITAR_TAB_TABLE"));
+            BASS_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "BASS_TAB_TABLE"));
 
 
-            settingsWidget = dynamic_cast<uiVizWidget*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(APP_CONSTANTS::WIDGET_CLASS, "getStartedSettings", "ui/widgets/getStartedSettings.xml"));
-            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*settingsWidget, getWidgetId(), false);
+            settingsWidget = dynamic_cast<uiVizWidget*>(Aquamarine::WidgetManager::loadWidgetFromFile(APP_CONSTANTS::WIDGET_CLASS, "getStartedSettings", "ui/widgets/getStartedSettings.xml"));
+            Aquamarine::WidgetManager::addWidgetForPopout(*settingsWidget, getWidgetId(), false);
             settingsWidget->setShouldCloseIfOtherWidgetClicked(true);
 
             SETTINGS = getButton("SETTINGS");

@@ -42,7 +42,7 @@ public:
     
     virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         // To be overridden in derived classes
-        //uiVizWidgetManager::load("layout-3.xml", true);
+        //WidgetManager::load("layout-3.xml", true);
     }
 
     

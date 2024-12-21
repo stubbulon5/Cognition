@@ -680,7 +680,7 @@ private:
                 </widget>
                 )");
 
-            uiVizWidgetManager::addWidgetForPopout(*AEROS_DIALOG, getWidgetId(), true);
+            WidgetManager::addWidgetForPopout(*AEROS_DIALOG, getWidgetId(), true);
         }
 
         if (!TBL_NUMBER_PICKER) {
@@ -693,7 +693,7 @@ private:
             TBL_NUMBER_PICKER->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
             TBL_NUMBER_PICKER->setCellSelectionColor(ofColor::red);
             TBL_NUMBER_PICKER->setCellLabelSelectedColor(ofColor::blue);
-            uiVizWidgetManager::addWidgetForPopout(*TBL_NUMBER_PICKER, getWidgetId(), true);
+            WidgetManager::addWidgetForPopout(*TBL_NUMBER_PICKER, getWidgetId(), true);
         }
 
 

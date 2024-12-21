@@ -234,7 +234,7 @@ public:
 
             AEROS_SD_CARD_LOCATIONS->setIsVisible(false);
 
-            //uiVizWidgetManager::showModal(AEROS_DIALOG, true); 
+            //WidgetManager::showModal(AEROS_DIALOG, true); 
 
             ofDirectory dir(ofFilePath::join(selectedRootPath, "songs"));
             if(!dir.exists()) {
@@ -498,7 +498,7 @@ private:
                 </widget>
                 )");
 
-            uiVizWidgetManager::addWidgetForPopout(*AEROS_SD_CARD_LOCATIONS, getWidgetId(), true);
+            WidgetManager::addWidgetForPopout(*AEROS_SD_CARD_LOCATIONS, getWidgetId(), true);
             AEROS_SD_CARD_LOCATIONS->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));            
             AEROS_SD_CARD_LOCATIONS->setRowBGColor(ofColor(0,0,0,0));
             AEROS_SD_CARD_LOCATIONS->setRowAltBGColor(ofColor(0,0,0,0));
@@ -514,19 +514,19 @@ private:
                 </widget>
                 )");
 
-             uiVizWidgetManager::addWidgetForPopout(*AEROS_DIALOG, getWidgetId(), true);
+             WidgetManager::addWidgetForPopout(*AEROS_DIALOG, getWidgetId(), true);
 
         }
 
         if (!AEROS_SONG) {
             AEROS_SONG = new uiVizWidgetAerosLooperSong("APP_AEROS_SONG", "");
-            uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/uiVizWidgetAerosLooperSong.xml", *AEROS_SONG);
+            WidgetManager::loadWidgetFromFileToExisting("ui/widgets/uiVizWidgetAerosLooperSong.xml", *AEROS_SONG);
             AEROS_SONG->setTitleStyle(uiVizWidget::TitleStyle::TOP_STATIC);
             AEROS_SONG->setWidgetSize(500, 300, false);
             AEROS_SONG->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));
             AEROS_SONG->getTheme().UnhoveredWidgetAlpha = 0.95f;
             AEROS_SONG->getTheme().HoveredWidgetAlpha = 0.95f;
-            uiVizWidgetManager::addWidgetForPopout(*AEROS_SONG, getWidgetId(), true);
+            WidgetManager::addWidgetForPopout(*AEROS_SONG, getWidgetId(), true);
         }
 
         if(!FILE_EXPLORER) {
@@ -539,7 +539,7 @@ private:
                 )"
             );  
 
-            uiVizWidgetManager::addWidgetForPopout(*FILE_EXPLORER, getWidgetId(), true);
+            WidgetManager::addWidgetForPopout(*FILE_EXPLORER, getWidgetId(), true);
             FILE_EXPLORER->setWidth(500);
             FILE_EXPLORER->setHeight(300);
             FILE_EXPLORER->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));

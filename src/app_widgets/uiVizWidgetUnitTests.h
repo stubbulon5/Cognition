@@ -65,7 +65,7 @@ public:
             getViz()->scale(getUsableWidth() - getViz()->getNonScaledPadding()*2.0f)
             );
         
-        setContentBoundsScaled(Aquamarine::uiVizCoord::vizBounds(
+        setContentBoundsScaled(Aquamarine::Coord::vizBounds(
             r.x,
             r.y,
             r.width,
@@ -82,9 +82,9 @@ public:
     */
     
     void clearExistingWidgets() {
-        for(uiVizWidget &widget:Aquamarine::uiVizWidgetManager::getWidgets()){
+        for(uiVizWidget &widget:Aquamarine::WidgetManager::getWidgets()){
             if (widget.getWidgetId() != this->getWidgetId()) {
-                Aquamarine::uiVizWidgetManager::removeWidget(widget);
+                Aquamarine::WidgetManager::removeWidget(widget);
             }
         }
     }
@@ -152,13 +152,13 @@ public:
     }
     
     uiVizWidgetGuitar* addGuitar1() {
-        uiVizWidgetGuitar* w = dynamic_cast<uiVizWidgetGuitar*>(Aquamarine::uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_GUITAR, "GUITAR1", R"(
+        uiVizWidgetGuitar* w = dynamic_cast<uiVizWidgetGuitar*>(Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_GUITAR, "GUITAR1", R"(
             <widget>
             <bounds x="0" height="192" maxWidth="2304" maxHeight="1440" minWidth="75" minHeight="75" yExpr="${WINDOW.HEIGHT} - ${GUITAR1.HEIGHT}" widthExpr="${WINDOW.WIDTH}" />
             </widget>
         )"));
                                                                 
-        Aquamarine::uiVizWidgetManager::addWidget(*w, false, getWidgetId());
+        Aquamarine::WidgetManager::addWidget(*w, false, getWidgetId());
                                                                 
         return w;
     }
@@ -206,7 +206,7 @@ private:
        }
 
         
-        //uiVizWidgetManager::addWidget(*contextMenu, false);
+        //WidgetManager::addWidget(*contextMenu, false);
         setIsAutoUpdateWhenActive(true);
         
     }

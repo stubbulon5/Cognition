@@ -57,7 +57,7 @@ public:
 
             Aquamarine::uiVizWidgetTableCell cell(
                 widgetClassTypeRaw, 
-                Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClassType), 
+                Aquamarine::WidgetManager::getWidgetPrettyName(widgetClassType), 
                 "center"
             );
 
@@ -69,7 +69,7 @@ public:
                     if (widgetClassTypeVals.size() > 2) {
                         string numStrings  = widgetClassTypeVals[2];
                         cell.setMetadata("NUM_STRINGS", numStrings);
-                        cell.label = Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClassType) + " ("+numStrings+")";
+                        cell.label = Aquamarine::WidgetManager::getWidgetPrettyName(widgetClassType) + " ("+numStrings+")";
                     }
                 } else if(widgetClassType == APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET) {
                     if (widgetClassTypeVals.size() > 2) {
@@ -121,7 +121,7 @@ public:
 
                     img = Aquamarine::uiVizIcon(
                         cacheData.imagePath, 
-                        Aquamarine::uiVizCoord::vizBounds(0, 0, 600, 600), 
+                        Aquamarine::Coord::vizBounds(0, 0, 600, 600), 
                         1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR , ofColor::white, -1
                     );
                     mImgCacheMap[cell.key] = img;
@@ -137,7 +137,7 @@ public:
         
         ofPushStyle();
         ofSetColor(cell.cellSlice.isHovered() ? getCellLabelSelectedColor() : getCellLabelColor());
-        Aquamarine::uiVizCoord::vizPoint p = getAlignmentPointForCellLabel(cell, absoluteScaledLabelX, absoluteScaledLabelY + scale(35), scaledWidth, scaledHeight);
+        Aquamarine::Coord::vizPoint p = getAlignmentPointForCellLabel(cell, absoluteScaledLabelX, absoluteScaledLabelY + scale(35), scaledWidth, scaledHeight);
         getFont()->draw(cell.label, p.x, p.y);
         ofPopStyle();
     }      
@@ -147,7 +147,7 @@ public:
         while (it != widgetsToCache.end()) {
             string widgetClass = it->first;
 
-            uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(widgetClass, "WIDGET_ICON_CACHE", R"(
+            uiVizWidget* w = Aquamarine::WidgetManager::loadWidget(widgetClass, "WIDGET_ICON_CACHE", R"(
                 <widget><bounds width="200" height="200" maxWidth="200" maxHeight="200"/>
                     <properties>
                         <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="NONE" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0"/>
@@ -155,10 +155,10 @@ public:
                 </widget>
             )");  
         
-            Aquamarine::uiVizWidgetManager::addWidget(*w, false);
+            Aquamarine::WidgetManager::addWidget(*w, false);
             string f = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), widgetClass+".png");
             w->saveWidgetContentsToImageFile(f, Aquamarine::uiVizWidgetContext::THUMBNAIL);
-            Aquamarine::uiVizWidgetManager::removeWidget(*w);
+            Aquamarine::WidgetManager::removeWidget(*w);
             it++;
         }
     }
@@ -199,11 +199,11 @@ public:
         string p = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), fileName);
         if (!forceCache && ofFile::doesFileExist(p, false)) {
             //cout <<ofToDataPath(p, true); 
-            cacheData = Aquamarine::uiVizWidgetCacheData(p, widgetClass, Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClass));
+            cacheData = Aquamarine::uiVizWidgetCacheData(p, widgetClass, Aquamarine::WidgetManager::getWidgetPrettyName(widgetClass));
             return cacheData;
         }
 
-        uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(widgetClass, "MUSICAL_WIDGET_ICON_CACHE", R"(
+        uiVizWidget* w = Aquamarine::WidgetManager::loadWidget(widgetClass, "MUSICAL_WIDGET_ICON_CACHE", R"(
             <widget>
                 <properties>
                     <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="NONE" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0"/>
@@ -214,7 +214,7 @@ public:
         w->setX(width*-1);
         w->setY(height*-1);
         w->setWidgetSize(width, height, false);
-        Aquamarine::uiVizWidgetManager::addWidget(*w, false);
+        Aquamarine::WidgetManager::addWidget(*w, false);
 
 
         if (dynamic_cast<uiVizWidgetMusical*>(w)) {
@@ -224,7 +224,7 @@ public:
         string f = ofToDataPath(p, true);
         w->saveWidgetContentsToImageFile(f, Aquamarine::uiVizWidgetContext::THUMBNAIL);
         cacheData = Aquamarine::uiVizWidgetCacheData(f, widgetClass, w->getWidgetPrettyName());
-        Aquamarine::uiVizWidgetManager::removeWidget(*w);
+        Aquamarine::WidgetManager::removeWidget(*w);
         return cacheData;
     }    
 
@@ -235,9 +235,9 @@ public:
             Aquamarine::uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
             if (eventCell) {
                 string classType = ofSplitString(eventCell->key, "|")[0];
-                string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+                string widgetPersistentId = Aquamarine::WidgetManager::getSuggestedNewWidgetPersistentId(classType);
                 
-                uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+                uiVizWidget* w = Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                     <widget>
                     <bounds width="250" height="250" minWidth="75" minHeight="75"  />
                     </widget>
@@ -267,19 +267,19 @@ public:
                         b->setSize(500, 400);
                         b->setTheoryVizInstrumentChordViewMode(uiVizWidgetMusical::TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM);
                     }                              
-                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_SOUND_PLAYER || classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_VIDEO_PLAYER) {
+                } else if (classType == Aquamarine::WidgetManager::WIDGET_CLASS_SOUND_PLAYER || classType == Aquamarine::WidgetManager::WIDGET_CLASS_VIDEO_PLAYER) {
                     
                     Aquamarine::uiVizWidgetMediaPlayerBase* player = dynamic_cast<Aquamarine::uiVizWidgetMediaPlayerBase*>(w);
                     if (player != nullptr) {
                         player->setDoesRespondToFileDrop(true);    
                     }
 
-                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_IMAGE_VIEW) {
+                } else if (classType == Aquamarine::WidgetManager::WIDGET_CLASS_IMAGE_VIEW) {
                     Aquamarine::uiVizWidgetImageView* img = dynamic_cast<Aquamarine::uiVizWidgetImageView*>(w);
                     if (img != nullptr) {
                         img->setDoesRespondToFileDrop(true);    
                     }                    
-                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_TEXT_EDITOR) {
+                } else if (classType == Aquamarine::WidgetManager::WIDGET_CLASS_TEXT_EDITOR) {
                    Aquamarine::uiVizWidgetTextEditor* txt = dynamic_cast<Aquamarine::uiVizWidgetTextEditor*>(w);
                     if (txt != nullptr) {
                         txt->setDoesRespondToFileDrop(true);    
@@ -288,7 +288,7 @@ public:
 
 
 
-                Aquamarine::uiVizWidgetManager::addWidget(*w, true);
+                Aquamarine::WidgetManager::addWidget(*w, true);
 
                 // Populate it with drag data (if any)
                 string dragData = eventCell->getMetadata("DRAG_DATA");
@@ -301,7 +301,7 @@ public:
                     ofMouseEventArgs e(ofMouseEventArgs::Type::Dragged, 0, 0, OF_MOUSE_BUTTON_LEFT, 0);                    
                     w->onWidgetMouseContentDragReleased(e, dragData);
                 }
-                Aquamarine::uiVizWidgetManager::centerWidget(w);
+                Aquamarine::WidgetManager::centerWidget(w);
             }
         } else if(omniSearchBox && args.sender.getPersistentId() == omniSearchBox->getPersistentId() && args.eventName == Aquamarine::WIDGET_EVENT::VALUE_CHANGED) {
 
@@ -339,7 +339,7 @@ public:
                     string widgetName = widgetClass;
                     //ofStringReplace(widgetName, "uiVizWidget", "");
                     if (ofIsStringInString(ofToLower(widgetClass), searchVal) 
-                        && widgetClass != Aquamarine::uiVizWidgetManager::WIDGET_CLASS_DEBUG
+                        && widgetClass != Aquamarine::WidgetManager::WIDGET_CLASS_DEBUG
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT
@@ -367,7 +367,7 @@ public:
     }    
     
 private:
-    Aquamarine::uiVizWidgetManager::widget_map_type widgetMap;
+    Aquamarine::WidgetManager::widget_map_type widgetMap;
     vector<Aquamarine::uiVizWidgetTableRow> rows = vector<Aquamarine::uiVizWidgetTableRow>();
     Aquamarine::uiVizWidgetElmTextbox *omniSearchBox = nullptr;
     vector<string> searchHints = {"C Major", "Gb Minor", "D#m", "Ionian Scale", "Minor Scale"};   
@@ -480,7 +480,7 @@ private:
     void initWidget() override {  
 
         widgetsToCache = widgetsToCacheInitial;
-        widgetMap = Aquamarine::uiVizWidgetManager::getWidgetMap();
+        widgetMap = Aquamarine::WidgetManager::getWidgetMap();
 
         populateLinks();
 

@@ -85,11 +85,11 @@ struct Licence {
                 LICENCE_str = licence_parts[2];
             }
             
-            licence.allowedAppMajorVersion = Aquamarine::uiVizWidgetManager::getAppMajorVersion(LICENCE_valid_until_version);
-            licence.allowedAppMinorVersion = Aquamarine::uiVizWidgetManager::getAppMinorVersion(LICENCE_valid_until_version);
+            licence.allowedAppMajorVersion = Aquamarine::WidgetManager::getAppMajorVersion(LICENCE_valid_until_version);
+            licence.allowedAppMinorVersion = Aquamarine::WidgetManager::getAppMinorVersion(LICENCE_valid_until_version);
             
-            int currentAppMajorVersion = Aquamarine::uiVizWidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
-            int currentAppMinorVersion = Aquamarine::uiVizWidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
+            int currentAppMajorVersion = Aquamarine::WidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
+            int currentAppMinorVersion = Aquamarine::WidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
             
             if (licence.allowedAppMajorVersion < currentAppMajorVersion ||
                 (licence.allowedAppMajorVersion == currentAppMajorVersion && licence.allowedAppMinorVersion < currentAppMinorVersion)) {
@@ -162,17 +162,17 @@ struct Licence {
         
         string licence_raw_xml =
         "<licence>"
-        "<username>" + Aquamarine::uiVizShared::encodeForXML(username) + "</username>"
-        "<password>" + Aquamarine::uiVizShared::encodeForXML(password) + "</password>"
-        "<issued_licence>" + Aquamarine::uiVizShared::encodeForXML(issued_licence) + "</issued_licence>"
-        "<machineid>" + Aquamarine::uiVizShared::encodeForXML(Aquamarine::uiVizShared::getMachineId()) + "</machineid>"
-        "<token>" + Aquamarine::uiVizShared::encodeForXML(token) + "</token>"
+        "<username>" + Aquamarine::Shared::encodeForXML(username) + "</username>"
+        "<password>" + Aquamarine::Shared::encodeForXML(password) + "</password>"
+        "<issued_licence>" + Aquamarine::Shared::encodeForXML(issued_licence) + "</issued_licence>"
+        "<machineid>" + Aquamarine::Shared::encodeForXML(Aquamarine::Shared::getMachineId()) + "</machineid>"
+        "<token>" + Aquamarine::Shared::encodeForXML(token) + "</token>"
         "<reauthorize>" + ofToString(reauthorize_epoch) + "</reauthorize>"
         "</licence>";
         
-        string encryptedLicenceXML = Aquamarine::uiVizShared::XOR_Encryption(licence_raw_xml, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string encryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(licence_raw_xml, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         //cout << "\n\nencrypted:" << encryptedLicenceXML;
-        //string decryptedLicenceXML = Aquamarine::uiVizShared::XOR_Encryption(encryptedLicenceXML, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        //string decryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(encryptedLicenceXML, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         //cout << "\n\ndecrypted:" << decryptedLicenceXML;
         ofBuffer encXMLBuff(encryptedLicenceXML.c_str(), encryptedLicenceXML.length());
         ofBufferToFile(APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE(), encXMLBuff);
@@ -180,7 +180,7 @@ struct Licence {
     
     static Licence getLicence() {
         string licenceEnc = Licence::loadLicenceFromFile();
-        string licenceXML = Aquamarine::uiVizShared::XOR_Encryption(licenceEnc, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string licenceXML = Aquamarine::Shared::XOR_Encryption(licenceEnc, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         
         bool verified = false;
         if (licenceXML.size() > 10) {
@@ -271,7 +271,7 @@ public:
         if (keyIcon.getIsVisible()) {
             mUIIconScale = scaleAnimationForUI(getWidgetId() + "_main_menu_left_in", mUIIconScale, 2.0f, 1.0f);
             keyIcon.setScaledPos(scale(getUsableX()), scale(getUsableY()));
-            Aquamarine::uiVizCoord::vizBounds iconBounds = keyIcon.getScaledBounds();
+            Aquamarine::Coord::vizBounds iconBounds = keyIcon.getScaledBounds();
             keyIcon.scaleSvg(mUIIconScale, mUIIconScale);
             keyIcon.drawSvg();
         } 
@@ -360,7 +360,7 @@ private:
         keyIcon.setIsVisible(false);
         
         if (!loaded) {
-            Aquamarine::uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/licence.xml", *this);
+            Aquamarine::WidgetManager::loadWidgetFromFileToExisting("ui/widgets/licence.xml", *this);
             loaded = true;            
         }
         

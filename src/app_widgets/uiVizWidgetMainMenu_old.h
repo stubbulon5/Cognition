@@ -117,7 +117,7 @@ public:
     }
     
     void clearExistingWidgets() {
-        uiVizWidgetManager::removeAllWidgetsExcept(this);
+        WidgetManager::removeAllWidgetsExcept(this);
     }
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
@@ -195,7 +195,7 @@ public:
                     case 4:
                         addDeveloperTools(); break;
                     case 5:
-                        uiVizWidgetManager::drawDebugInfo(args.menuItem->isSelected); break;
+                        WidgetManager::drawDebugInfo(args.menuItem->isSelected); break;
                 }
                 break;
                 
@@ -249,256 +249,256 @@ public:
     void centerWidget(uiVizWidget* w) {
         w->setX_Expr("${WINDOW.WIDTH}/2 - ${SELF.USABLE_WIDTH}/2");
         w->setY_Expr("${WINDOW.HEIGHT}/2 - ${SELF.USABLE_HEIGHT}/2");
-        uiVizWidgetManager::recalculateWidgetExpressions(*w);
+        WidgetManager::recalculateWidgetExpressions(*w);
         w->clearWidgetLayoutExpressions();
     }
     
     uiVizWidgetKeyPicker* addKeyPicker(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "KEY_PICKER" + ofToString(exitingCount + 1);
         
-        uiVizWidgetKeyPicker* w = dynamic_cast<uiVizWidgetKeyPicker*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetKeyPicker* w = dynamic_cast<uiVizWidgetKeyPicker*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="250" height="250" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }
                                                                       
     uiVizWidgetChordDesigner* addChordDesigner(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_CHORD_DESIGNER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "CHORD_DESIGNER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetChordDesigner* w = dynamic_cast<uiVizWidgetChordDesigner*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetChordDesigner* w = dynamic_cast<uiVizWidgetChordDesigner*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }
 
     uiVizWidgetScalePicker* addScalePicker(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_SCALE_PICKER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "SCALE_PICKER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetScalePicker* w = dynamic_cast<uiVizWidgetScalePicker*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetScalePicker* w = dynamic_cast<uiVizWidgetScalePicker*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
-        //uiVizWidgetManager::showModal(w, true);     
+        //WidgetManager::showModal(w, true);     
         return w;
     }
 
     uiVizWidgetVideoPlayer* addVideoPlayer(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_VIDEO_PLAYER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_VIDEO_PLAYER;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "VIDEO_PLAYER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetVideoPlayer* w = dynamic_cast<uiVizWidgetVideoPlayer*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetVideoPlayer* w = dynamic_cast<uiVizWidgetVideoPlayer*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties file="/home/zabba/Downloads/caring-is-creepy.mp4" doesRespondToFileDrop="1" />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         w->play();
         return w;
     }  
 
     uiVizWidgetVideoGrabber* addVideoGrabber(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_VIDEO_GRABBER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_VIDEO_GRABBER;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "VIDEO_GRABBER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetVideoGrabber* w = dynamic_cast<uiVizWidgetVideoGrabber*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetVideoGrabber* w = dynamic_cast<uiVizWidgetVideoGrabber*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties file="/home/zabba/Downloads/caring-is-creepy.mp4" doesRespondToFileDrop="1" />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         w->play();
         return w;
     }        
 
     uiVizWidgetSoundPlayer* addSoundPlayer(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_SOUND_PLAYER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_SOUND_PLAYER;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "SOUND_PLAYER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetSoundPlayer* w = dynamic_cast<uiVizWidgetSoundPlayer*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetSoundPlayer* w = dynamic_cast<uiVizWidgetSoundPlayer*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties file="/home/zabba/Downloads/sample.mp3" doesRespondToFileDrop="1" />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         w->play();
         return w;
     }   
 
     uiVizWidgetImageView* addImageView(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_IMAGE_VIEW;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_IMAGE_VIEW;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "IMAGE_VIEW" + ofToString(exitingCount + 1);
 
-        uiVizWidgetImageView* w = dynamic_cast<uiVizWidgetImageView*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetImageView* w = dynamic_cast<uiVizWidgetImageView*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties file="/home/zabba/Desktop/shins1.jpg" doesRespondToFileDrop="1" />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }       
 
 
     uiVizWidgetFileExplorer* addFileExplorer(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_EXPLORER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_FILE_EXPLORER;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "FILE_EXPLORER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetFileExplorer* w = dynamic_cast<uiVizWidgetFileExplorer*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetFileExplorer* w = dynamic_cast<uiVizWidgetFileExplorer*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties path="/home/zabba/projects/Batch-BQ-to-S3-Exporter"/>
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }  
 
     uiVizWidgetFileLoad* addFileLoad(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_LOAD;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_FILE_LOAD;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "FILE_LOAD" + ofToString(exitingCount + 1);
 
-        uiVizWidgetFileLoad* w = dynamic_cast<uiVizWidgetFileLoad*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetFileLoad* w = dynamic_cast<uiVizWidgetFileLoad*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties path="/home/zabba/projects/Batch-BQ-to-S3-Exporter"/>
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         w->setPathSelectedCallback([&](string filePath) {
-            uiVizWidgetManager::load(filePath, false, w);
+            WidgetManager::load(filePath, false, w);
         });
         return w;
     }  
 
 
     uiVizWidgetFileSave* addFileSave(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_SAVE;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_FILE_SAVE;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "FILE_SAVE" + ofToString(exitingCount + 1);
 
-        uiVizWidgetFileSave* w = dynamic_cast<uiVizWidgetFileSave*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetFileSave* w = dynamic_cast<uiVizWidgetFileSave*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        <properties path="/home/zabba/projects/Batch-BQ-to-S3-Exporter"/>
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }   
 
     uiVizWidgetTextEditor* addTextEditor(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_TEXT_EDITOR;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_TEXT_EDITOR;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "FILE_SAVE" + ofToString(exitingCount + 1);
 
-        uiVizWidgetTextEditor* w = dynamic_cast<uiVizWidgetTextEditor*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetTextEditor* w = dynamic_cast<uiVizWidgetTextEditor*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }         
 
     uiVizWidgetThemeEditor* addThemeEditor(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_THEME_EDITOR;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_THEME_EDITOR;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "THEME_EDITOR" + ofToString(exitingCount + 1);
 
-        uiVizWidgetThemeEditor* w = dynamic_cast<uiVizWidgetThemeEditor*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetThemeEditor* w = dynamic_cast<uiVizWidgetThemeEditor*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }                  
     
     uiVizWidgetChordWheel* addChordWheel(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "CHORD_WHEEL" + ofToString(exitingCount + 1);
 
-        uiVizWidgetChordWheel* w = dynamic_cast<uiVizWidgetChordWheel*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetChordWheel* w = dynamic_cast<uiVizWidgetChordWheel*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="600" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }
 
     uiVizWidgetChordBucket* addChordBucket(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "CHORD_BUCKET" + ofToString(exitingCount + 1);
 
-        uiVizWidgetChordBucket* w = dynamic_cast<uiVizWidgetChordBucket*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetChordBucket* w = dynamic_cast<uiVizWidgetChordBucket*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="320" height="500" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }
                                                                               
     uiVizWidgetGuitar* addGuitar(bool docked, int strings) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_GUITAR;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "GUITAR" + ofToString(exitingCount + 1);
         
-        uiVizWidgetGuitar* w = dynamic_cast<uiVizWidgetGuitar*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetGuitar* w = dynamic_cast<uiVizWidgetGuitar*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
                <bounds height="200" minWidth="75" minHeight="75"  />
             </widget>
@@ -507,7 +507,7 @@ public:
         strings = std::min(strings, 6);
         strings = std::max(strings, 8);
                                                                 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         if (!docked) centerWidget(w);
                                                                 
         if (docked) {
@@ -522,10 +522,10 @@ public:
 
     uiVizWidgetBassGuitar* addBassGuitar(bool docked, int strings) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_BASS_GUITAR;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "BASS_GUITAR" + ofToString(exitingCount + 1);
 
-        uiVizWidgetBassGuitar* w = dynamic_cast<uiVizWidgetBassGuitar*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetBassGuitar* w = dynamic_cast<uiVizWidgetBassGuitar*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
                <bounds height="200" minWidth="75" minHeight="75"  />
             </widget>
@@ -534,7 +534,7 @@ public:
         strings = std::min(strings, 4);
         strings = std::max(strings, 4);
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         if (!docked) centerWidget(w);
 
         if (docked) {
@@ -546,11 +546,11 @@ public:
     }
 
     uiVizWidgetMatrix* addMatrix(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_MATRIX;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_MATRIX;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "MATRIX" + ofToString(exitingCount + 1);
 
-        uiVizWidgetMatrix* w = dynamic_cast<uiVizWidgetMatrix*>(uiVizWidgetManager::loadWidget(uiVizWidgetManager::WIDGET_CLASS_MATRIX, widgetPersistentId, R"(
+        uiVizWidgetMatrix* w = dynamic_cast<uiVizWidgetMatrix*>(WidgetManager::loadWidget(WidgetManager::WIDGET_CLASS_MATRIX, widgetPersistentId, R"(
         <widget>
             <bounds height="200" width="300" minWidth="75" minHeight="75"  />
             <properties autoResizeHeight="1" autoResizeWidth="1">
@@ -589,58 +589,58 @@ public:
             </properties>
         </widget>
             )"));            
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }    
 
     uiVizWidgetSequencer* addSequencer(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_SEQUENCER;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_SEQUENCER;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "SEQUENCER" + ofToString(exitingCount + 1);
 
-        uiVizWidgetSequencer* w = dynamic_cast<uiVizWidgetSequencer*>(uiVizWidgetManager::loadWidget(uiVizWidgetManager::WIDGET_CLASS_SEQUENCER, widgetPersistentId, R"(
+        uiVizWidgetSequencer* w = dynamic_cast<uiVizWidgetSequencer*>(WidgetManager::loadWidget(WidgetManager::WIDGET_CLASS_SEQUENCER, widgetPersistentId, R"(
         <widget>
             <bounds height="200" width="800" minWidth="75" minHeight="75"  />
             <properties>
             </properties>
         </widget>
             )"));            
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }       
 
     uiVizWidgetPianoRoll* addPianoRoll(bool docked) {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_PIANO_ROLL;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_PIANO_ROLL;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "PIANO_ROLL" + ofToString(exitingCount + 1);
 
-        uiVizWidgetPianoRoll* w = dynamic_cast<uiVizWidgetPianoRoll*>(uiVizWidgetManager::loadWidget(uiVizWidgetManager::WIDGET_CLASS_PIANO_ROLL, widgetPersistentId, R"(
+        uiVizWidgetPianoRoll* w = dynamic_cast<uiVizWidgetPianoRoll*>(WidgetManager::loadWidget(WidgetManager::WIDGET_CLASS_PIANO_ROLL, widgetPersistentId, R"(
         <widget>
             <bounds height="200" minWidth="75" minHeight="75"  />
             <properties>
             </properties>
         </widget>
             )"));            
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }   
 
     uiVizWidgetScaleTable* addScaleTable(bool docked) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "SCALE_TABLE" + ofToString(exitingCount + 1);
 
-        uiVizWidgetScaleTable* w = dynamic_cast<uiVizWidgetScaleTable*>(uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE, widgetPersistentId, R"(
+        uiVizWidgetScaleTable* w = dynamic_cast<uiVizWidgetScaleTable*>(WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE, widgetPersistentId, R"(
         <widget>
             <bounds height="200" minWidth="75" minHeight="75"  />
             <properties>
             </properties>
         </widget>
             )"));            
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         centerWidget(w);
         return w;
     }       
@@ -651,10 +651,10 @@ public:
 /*
         for(int i=1; i<=2; i++) {
             // Infinite loop
-            uiVizWidgetManager::load(ofToDataPath("big.jam", true), true);
+            WidgetManager::load(ofToDataPath("big.jam", true), true);
 
         }*/
-       // uiVizWidgetManager::removeAllWidgets();
+       // WidgetManager::removeAllWidgets();
 
 /*
         addScalePicker(false);
@@ -683,20 +683,20 @@ public:
 
     void addDeveloperTools() {
 
-        uiVizWidgetUnitTests* w = dynamic_cast<uiVizWidgetUnitTests*>(uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS, "UNIT_TESTS", R"(
+        uiVizWidgetUnitTests* w = dynamic_cast<uiVizWidgetUnitTests*>(WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS, "UNIT_TESTS", R"(
             <widget>
                <bounds height="200" height="200" minWidth="75" minHeight="75"  />
             </widget>
             )"));
                                                                       
-        uiVizWidgetManager::addWidget(*w, false);
+        WidgetManager::addWidget(*w, false);
         centerWidget(w);
 
     }
           
     void newProject() {
         clearExistingWidgets();
-        uiVizWidgetManager::initWidgetManager(
+        WidgetManager::initWidgetManager(
             APP_CONSTANTS::APPLICATION_NAME,
             APP_CONSTANTS::APPLICATION_VERSION,
             APP_CONSTANTS::APPLICATION_FILE_EXTENSION
@@ -705,17 +705,17 @@ public:
     }
                                                                       
     void saveProject(bool saveAs) {
-        uiVizWidgetManager::ProjectProperties existingProject = uiVizWidgetManager::getCurrentProjectProperties();
+        WidgetManager::ProjectProperties existingProject = WidgetManager::getCurrentProjectProperties();
         string proposedFileName = "";
-        string currFileName = uiVizWidgetManager::getCurrentProjectProperties().fileName;
+        string currFileName = WidgetManager::getCurrentProjectProperties().fileName;
         
         if (saveAs || currFileName == "untitled.jam") {
 
-            string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_SAVE;
-            int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+            string classType = WidgetManager::WIDGET_CLASS_FILE_SAVE;
+            int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
             string widgetPersistentId = "PROJECT_SAVE" + ofToString(exitingCount + 1);
 
-            uiVizWidgetFileSave* w = dynamic_cast<uiVizWidgetFileSave*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            uiVizWidgetFileSave* w = dynamic_cast<uiVizWidgetFileSave*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                         <widget>
                                         <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                         </widget>
@@ -723,10 +723,10 @@ public:
 
             w->setSavePathSelectedCallback([&, w](string filePath) {
   
-                uiVizShared::removeFileExtension(filePath);
+                Shared::removeFileExtension(filePath);
                 filePath += ".jam";
 
-                if (uiVizWidgetManager::save(filePath)) {
+                if (WidgetManager::save(filePath)) {
                     // Success...
                 }
             });
@@ -734,17 +734,17 @@ public:
             string recentDir = uiVizWidgetFileLocationsList::getMostRecentDirectory();
             w->setSize(deScale(ofGetWindowWidth()*0.7f), deScale(ofGetWindowHeight()*0.7f));            
             w->setPath(recentDir);
-            uiVizWidgetManager::showModal(w, true);     
+            WidgetManager::showModal(w, true);     
 
             //ofFileDialogResult r = ofSystemSaveDialog(existingProject.fileName, "Save Project (.jam file)");
             //RegularExpression rex(".*.[jam|JAM]");
             
         } else {
-            proposedFileName = uiVizWidgetManager::getCurrentProjectProperties().absolutePath;
+            proposedFileName = WidgetManager::getCurrentProjectProperties().absolutePath;
         }
         
         if (proposedFileName != "") {
-            if (uiVizWidgetManager::save(proposedFileName)) {
+            if (WidgetManager::save(proposedFileName)) {
                     // Success...
             }
         }
@@ -754,13 +754,13 @@ public:
         string classType = APP_CONSTANTS::WIDGET_CLASS_LICENCE;
         string widgetPersistentId = "LICENCE";
 
-        uiVizWidgetLicence* w = dynamic_cast<uiVizWidgetLicence*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetLicence* w = dynamic_cast<uiVizWidgetLicence*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="250" height="450" minWidth="75" minHeight="75"  />
             </widget>
         )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
 
         uiVizWidgetElmTextbox* TXT_LICENCE = w->getTextbox("TXT_LICENCE");
         if (TXT_LICENCE) TXT_LICENCE->setValue("1.0.0-9999999-ABCDEFGHJI", true);
@@ -777,7 +777,7 @@ public:
 
     void settings() {
         
-        string classType = uiVizWidgetManager::WIDGET_CLASS_SETTINGS;
+        string classType = WidgetManager::WIDGET_CLASS_SETTINGS;
         string widgetPersistentId = "APP_SETTINGS";
 
         /*
@@ -806,14 +806,14 @@ public:
         int z = 0;
         for (TitleStyle titleStyle : TitleStyleVector) {
             z++;
-            uiVizWidgetSettings* w = dynamic_cast<uiVizWidgetSettings*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId + ofToString(z), R"(
+            uiVizWidgetSettings* w = dynamic_cast<uiVizWidgetSettings*>(WidgetManager::loadWidget(classType, widgetPersistentId + ofToString(z), R"(
                <widget>
                <bounds width="150" height="150" minWidth="75" minHeight="75"  />
                </widget>
                )"));
 
             w->setTitleStyle(titleStyle);
-            uiVizWidgetManager::addWidget(*w, true);
+            WidgetManager::addWidget(*w, true);
             w->setWidgetBounds(x, y, 150, 150);
             x += 160;
             if (x >= 750) { x = 0; y += 200; }
@@ -821,14 +821,14 @@ public:
         }
         */
 
-            uiVizWidgetSettings* w = dynamic_cast<uiVizWidgetSettings*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            uiVizWidgetSettings* w = dynamic_cast<uiVizWidgetSettings*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                    <widget>
                    <bounds width="150" height="150" minWidth="75" minHeight="75"  />
                    </widget>
                    )"));
         
-            uiVizWidgetManager::addWidget(*w, false);
-            //uiVizWidgetManager::showModal(w, true);     
+            WidgetManager::addWidget(*w, false);
+            //WidgetManager::showModal(w, true);     
             centerWidget(w);
                                                                         
     }
@@ -836,8 +836,8 @@ public:
     void about() {
         /*
         string xml = getWidgetXMLFromFile("about.xml");
-        uiVizWidget* w = uiVizWidgetManager::loadWidget(uiVizWidgetManager::WIDGET_CLASS, "ABOUT_APP", xml);
-        uiVizWidgetManager::addWidget(*w, true);
+        uiVizWidget* w = WidgetManager::loadWidget(WidgetManager::WIDGET_CLASS, "ABOUT_APP", xml);
+        WidgetManager::addWidget(*w, true);
         
         w->setTitleStyle(uiVizWidget::TitleStyle::NONE);
         
@@ -852,8 +852,8 @@ public:
 
 
         // Chords used
-        uiVizWidgetChordBucket* chordBucket = dynamic_cast<uiVizWidgetChordBucket*>( uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET, "CHORD_BUCKET", "<widget><bounds width='500' height='500'/></widget>"));
-        uiVizWidgetManager::addWidget(*chordBucket, false);
+        uiVizWidgetChordBucket* chordBucket = dynamic_cast<uiVizWidgetChordBucket*>( WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET, "CHORD_BUCKET", "<widget><bounds width='500' height='500'/></widget>"));
+        WidgetManager::addWidget(*chordBucket, false);
         gp_parser::Parser p = gp_parser::Parser(ofFilePath::getAbsolutePath("The Shins - Caring Is Creepy.gp5", true).c_str());
 
         gp_parser::Track guitarTrack = p.tracks[0];
@@ -870,7 +870,7 @@ public:
         }
 
         //
-        uiVizWidget* w = uiVizWidgetManager::loadWidget(uiVizWidgetManager::WIDGET_CLASS, "LYRICS", R"(
+        uiVizWidget* w = WidgetManager::loadWidget(WidgetManager::WIDGET_CLASS, "LYRICS", R"(
         <widget><bounds width='500' height='500'/>
         <elements>
         <element id="TXT_LYRICS_AUTHOR" class="uiVizWidgetElmTextarea">
@@ -882,7 +882,7 @@ public:
         </elements>        
         </widget>
         )");
-        uiVizWidgetManager::addWidget(*w, true);
+        WidgetManager::addWidget(*w, true);
         w->getTextarea("TXT_LYRICS_AUTHOR")->setValue("<xlarge>" + p.artist + " - " +  p.title + "</xlarge><br/><large>" + p.album + "</large>");
         w->getTextarea("TXT_LYRICS")->setValue(p.lyric.lyric);
 
@@ -897,7 +897,7 @@ public:
 
         if (r.getPath() != "" && rex.match(r.getName())) {
           clearExistingWidgets();
-          if (uiVizWidgetManager::load(r.filePath, false)) {
+          if (WidgetManager::load(r.filePath, false)) {
               setActiveWidget();
               popoutMenuShouldHide();
               return r.getName();
@@ -907,32 +907,32 @@ public:
         */
 
 
-        string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_LOAD;
-        int exitingCount = uiVizWidgetManager::getCountOfWidgetClassType(classType);
+        string classType = WidgetManager::WIDGET_CLASS_FILE_LOAD;
+        int exitingCount = WidgetManager::getCountOfWidgetClassType(classType);
         string widgetPersistentId = "PROJECT_LOAD" + ofToString(exitingCount + 1);
 
-        uiVizWidgetFileLoad* w = dynamic_cast<uiVizWidgetFileLoad*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        uiVizWidgetFileLoad* w = dynamic_cast<uiVizWidgetFileLoad*>(WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                                        <widget>
                                        <bounds width="400" height="400" minWidth="75" minHeight="75"  />
                                        </widget>
                                        )"));
 
         w->setPathSelectedCallback([w](string filePath) {
-            uiVizWidgetManager::load(filePath, true, w);
+            WidgetManager::load(filePath, true, w);
         });
 
 
         string recentDir = uiVizWidgetFileLocationsList::getMostRecentDirectory();
         w->setSize(deScale(ofGetWindowWidth()*0.7f), deScale(ofGetWindowHeight()*0.7f));
         w->setPath(recentDir);
-        uiVizWidgetManager::showModal(w, true);     
+        WidgetManager::showModal(w, true);     
     }
                                                                       
     
 private:
     uiVizWidgetMenu *contextMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
-    uiVizIcon mainMenuIcon = uiVizIcon("", uiVizCoord::vizBounds(0,0,0,0), 1.0f, uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
+    uiVizIcon mainMenuIcon = uiVizIcon("", Coord::vizBounds(0,0,0,0), 1.0f, uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
     bool mMenuHasBeenHovered = false;
     float mUICurrentMenuLeft = 0.0f;
     
@@ -980,7 +980,7 @@ private:
             // ----------------------------------------------------------------------------
             // Omni Menu
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+            uiVizWidgetMenuTab(Aquamarine::Shared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
                             12345,
                             omniMenuMenuItem
                             ),          
@@ -1048,7 +1048,7 @@ private:
             contextMenu->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
             contextMenu->setIgnoreThemeChanges(true);
             
-            uiVizWidgetManager::addWidget(*contextMenu, false);
+            WidgetManager::addWidget(*contextMenu, false);
             setIsAutoUpdateWhenActive(true);
 
             contextMenu->setIsVisible(false);
@@ -1067,7 +1067,7 @@ private:
             if (getViz()->getAutoLoadMostRecentProject()) {
                 string mostRecentProject = uiVizWidgetFileLocationsList::getMostRecentProject();
                 if (mostRecentProject != "") { 
-                    uiVizWidgetManager::load(mostRecentProject, true, this);
+                    WidgetManager::load(mostRecentProject, true, this);
                 }
             }
 

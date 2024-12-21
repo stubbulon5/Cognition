@@ -756,7 +756,7 @@ public:
     void appendInstrumentRulesToXMLNode(ofxXmlSettings* xml, int index) {
         ofxXmlSettings rules = getInstrumentRules();
         TiXmlElement* rulesElm = rules.doc.RootElement();
-        Aquamarine::uiVizShared::appendXMLToTarget(rulesElm, xml, true);
+        Aquamarine::Shared::appendXMLToTarget(rulesElm, xml, true);
     }
 
     bool getFboNeedsUpdate() {

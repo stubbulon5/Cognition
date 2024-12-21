@@ -78,7 +78,7 @@ private:
             popout->setTitleStyle(TitleStyle::BOTTOM_STATIC);
             popout->setShowWidgetPin(true);
 
-            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*popout, getWidgetId(), false);
+            Aquamarine::WidgetManager::addWidgetForPopout(*popout, getWidgetId(), false);
 
             this->handleMousePressed([this](ofMouseEventArgs e) {
                 getkeyPicker()->popoutFrom(this, PopoutDirection::DOWN);

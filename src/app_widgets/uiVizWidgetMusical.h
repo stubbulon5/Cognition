@@ -564,7 +564,7 @@ public:
     void appendInstrumentRulesToXMLNode(ofxXmlSettings* xml, int index) {
         ofxXmlSettings rules = getInstrumentRules();
         TiXmlElement* rulesElm = rules.doc.RootElement();
-        Aquamarine::uiVizShared::appendXMLToTarget(rulesElm, xml, true);
+        Aquamarine::Shared::appendXMLToTarget(rulesElm, xml, true);
     }
 
     virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) {
@@ -1883,8 +1883,8 @@ public:
         //cout << "[" << getPersistentId() << "->" << widgetTarget->getPersistentId() << 
         //    "] RECEIVING DRAG DATA:\n" << dragData;   
 
-        uiVizWidget* widgetTarget = Aquamarine::uiVizWidgetManager::getWidget(getTargetDropWidgetId());
-        uiVizWidgetMusical* musicalWidgetTarget = dynamic_cast<uiVizWidgetMusical*>(Aquamarine::uiVizWidgetManager::getWidget(getTargetDropWidgetId()));
+        uiVizWidget* widgetTarget = Aquamarine::WidgetManager::getWidget(getTargetDropWidgetId());
+        uiVizWidgetMusical* musicalWidgetTarget = dynamic_cast<uiVizWidgetMusical*>(Aquamarine::WidgetManager::getWidget(getTargetDropWidgetId()));
         if (musicalWidgetTarget == NULL) return;
 
         populateTargetMusicalWidget(musicalWidgetTarget, dragData);
@@ -1948,7 +1948,7 @@ public:
                     musicalWidgetTarget->setIsUserEditing(false);
                     musicalWidgetTarget->setSelectedKey(draggedNote);
                     musicalWidgetTarget->onKeyChanged(draggedNote);
-                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::WidgetManager::setCurrentProjectIsDirty(true);
                 }
             }
 
@@ -1983,7 +1983,7 @@ public:
                     }
                     
                     musicalWidgetTarget->setNeedsUpdate(true);
-                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::WidgetManager::setCurrentProjectIsDirty(true);
                 }                
             }            
 
@@ -2009,7 +2009,7 @@ public:
                     musicalWidgetTarget->setSelectedScale(draggedScale, true);
 
                     musicalWidgetTarget->setNeedsUpdate(true);
-                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::WidgetManager::setCurrentProjectIsDirty(true);
                 }                  
             }
           
@@ -2245,7 +2245,7 @@ public:
             rulesTarget.removeTag(tagName, 0);
         }
 
-        Aquamarine::uiVizShared::appendXMLToTarget(rules, &rulesTarget, true);
+        Aquamarine::Shared::appendXMLToTarget(rules, &rulesTarget, true);
 
         rulesTarget.popTag();
         setInstrumentRules(rulesTarget, fireEvent);  
@@ -2392,9 +2392,9 @@ public:
     }    
 
 
-    virtual void titleIconClicked(int iconTag, Aquamarine::uiVizCoord::vizBounds deScaledClickBounds) override {
+    virtual void titleIconClicked(int iconTag, Aquamarine::Coord::vizBounds deScaledClickBounds) override {
 
-        Aquamarine::uiVizCoord::vizBounds iconBounds = getPopoutScaledBoundsForTitleIcon(iconTag);            
+        Aquamarine::Coord::vizBounds iconBounds = getPopoutScaledBoundsForTitleIcon(iconTag);            
 
         if (iconTag == Aquamarine::uiVizIconCache::IconTag::WIDGET_HELP) {
             if (mWidgetTextEditorHelp == nullptr) {
@@ -2404,7 +2404,7 @@ public:
                 </widget>
                 )");   
 
-                Aquamarine::uiVizWidgetManager::addWidgetForPopout(*mWidgetTextEditorHelp, getWidgetId(), true);
+                Aquamarine::WidgetManager::addWidgetForPopout(*mWidgetTextEditorHelp, getWidgetId(), true);
             }
             
             mWidgetTextEditorHelp->setTitle("Help");  

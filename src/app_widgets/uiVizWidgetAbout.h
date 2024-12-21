@@ -42,8 +42,8 @@ public:
 
 
         if (!loaded) {
-            ABOUT_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TABS"));
-            ABOUT_TAB_ATTRIBUTIONS = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TAB_ATTRIBUTIONS"));
+            ABOUT_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "ABOUT_TABS"));
+            ABOUT_TAB_ATTRIBUTIONS = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::WidgetManager::getWidgetByPersistentId(this, "ABOUT_TAB_ATTRIBUTIONS"));
         }  
 
     }       

@@ -219,7 +219,7 @@ public:
                 settings.pushTag("notifications");
             }
             settings.setAttribute(notificationType, "dateLastChecked", ofToString(ofGetUnixTime()), 0);    
-            settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );        
+            settings.saveFile(Aquamarine::Shared::getSettingsFileFullPath() );        
         }        
     }
 
@@ -241,7 +241,7 @@ public:
                 if (existingId == id) { 
                     settings.setAttribute("item", "acknowledged", "1", j);  
                     if (deleteItem) settings.setAttribute("item", "deleted", "1", j);                       
-                    settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );
+                    settings.saveFile(Aquamarine::Shared::getSettingsFileFullPath() );
                     return true;
                 }
             }
@@ -279,7 +279,7 @@ public:
                 settings.setAttribute("item", "deleted", "0", itemCount);  
                 settings.setAttribute("item", "dateAdded", ofToString(ofGetUnixTime()), itemCount);
                 settings.setAttribute("item", "datePublished", pubDate, itemCount);                          
-                settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );                
+                settings.saveFile(Aquamarine::Shared::getSettingsFileFullPath() );                
             }
         }
     }
@@ -301,7 +301,7 @@ public:
             for(int j=from; j<total; j++) {
                 settings.removeTag("item", j);
             }
-            settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );                
+            settings.saveFile(Aquamarine::Shared::getSettingsFileFullPath() );                
 
         }
     }     
@@ -314,7 +314,7 @@ public:
                 Aquamarine::uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
                 if (!eventRow || !eventCell) return;
 
-                Aquamarine::uiVizCoord::vizPoint p = getTableRowAndColForEvent(args.eventXML);
+                Aquamarine::Coord::vizPoint p = getTableRowAndColForEvent(args.eventXML);
 
                 string type = eventRow->getMetadata("TYPE");
                 string id = eventRow->getMetadata("ID");

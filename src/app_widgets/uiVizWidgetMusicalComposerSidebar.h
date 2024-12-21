@@ -90,7 +90,7 @@ private:
                 </widget>
                 )");
 
-            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*scaleTable, getWidgetId(), false);
+            Aquamarine::WidgetManager::addWidgetForPopout(*scaleTable, getWidgetId(), false);
 
         }   
 
@@ -103,7 +103,7 @@ private:
                 </widget>
                 )");
 
-            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*chordDesigner, getWidgetId(), true);
+            Aquamarine::WidgetManager::addWidgetForPopout(*chordDesigner, getWidgetId(), true);
 
         }
 
@@ -114,7 +114,7 @@ private:
                 </widget>
                 )");
 
-             Aquamarine::uiVizWidgetManager::addWidgetForPopout(*keyPicker, getWidgetId(), true);
+             Aquamarine::WidgetManager::addWidgetForPopout(*keyPicker, getWidgetId(), true);
         }                                 
 
         if(!b1) {

@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
-#include "../uiViz/uiVizShared.h"
-#include "../uiViz/uiVizWidgetManager.h"
+#include "../uiViz/Shared.h"
+#include "../uiViz/WidgetManager.h"
 
+// #include "ofxAquamarine.h"
 
 
 //------------------------------ APP CONSTANTS --------------------------------
@@ -69,7 +70,7 @@ public:
     static const int ICON_WIDGET_CLASS_GUITAR;
     static const int ICON_WIDGET_CLASS_CHORD_BUCKET;
     
-    static Aquamarine::uiVizWidgetManager::widget_map_type getAppWidgetMap();
+    static Aquamarine::WidgetManager::widget_map_type getAppWidgetMap();
     
     static std::map<std::string, Aquamarine::uiVizIcon*> getIconCacheMap(float scale);
 
@@ -87,6 +88,5 @@ public:
     static const std::string ADD_SELECTED_NOTE;    
     static const std::string SET_SELECTED_SCALE;
     static const std::string SET_HOVERED_CHORD;
-
 };
 

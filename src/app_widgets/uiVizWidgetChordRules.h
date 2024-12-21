@@ -202,7 +202,7 @@ public:
         switch(getTheoryVizInstrumentTheoryContentMode()) {
             case TheoryVizInstrumentTheoryContentMode::CHORD: {
                 SLD_notesPerString->setIsVisible(false);
-                title = Aquamarine::uiVizShared::lang("CHORD_RULES");
+                title = Aquamarine::Shared::lang("CHORD_RULES");
                 setTitle(title);
                 break;
             }
@@ -212,7 +212,7 @@ public:
                 CHK_strictExtendedNotes->setIsVisible(false);
                 SLD_startingInversion->setIsVisible(false);
                 CHK_exactOctaveMatch->setIsVisible(false);
-                title = Aquamarine::uiVizShared::lang("SCALE_RULES"); 
+                title = Aquamarine::Shared::lang("SCALE_RULES"); 
                 setTitle(title);             
                 break;
             }            
@@ -423,7 +423,7 @@ private:
             SLD_notesPerString->setValue(rule_notesPerString, false);
         } 
 
-       if (title == "") title = Aquamarine::uiVizShared::lang("CHORD_RULES");
+       if (title == "") title = Aquamarine::Shared::lang("CHORD_RULES");
        setTitle(title);
     }
     

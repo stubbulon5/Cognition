@@ -34,13 +34,13 @@ public:
                     // ----------------------------------------------------------------------------
                     // Label mode menu
                     // ----------------------------------------------------------------------------
-                    Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
+                    Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
                     keyPickerMenuItem
                     // {
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                    //     uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), 1), 
+                    //     uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), 1, false, true), 
+                    //     uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), 1), 
+                    //     uiVizWidgetMenuItem(Aquamarine::Shared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
                     // }
                     )
                 );
@@ -109,11 +109,11 @@ public:
     //             // ----------------------------------------------------------------------------
     //             // Label mode menu
     //             // ----------------------------------------------------------------------------
-    //             uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+    //             uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+    //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), 1), 
+    //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), 1, false, true), 
+    //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), 1), 
+    //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
     //             })
     //         );
     //     }        

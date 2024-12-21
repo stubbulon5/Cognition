@@ -42,7 +42,7 @@ public:
     }
     
     void clearExistingWidgets() {
-        Aquamarine::uiVizWidgetManager::removeAllWidgetsExcept(this);
+        Aquamarine::WidgetManager::removeAllWidgetsExcept(this);
     }
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
@@ -59,12 +59,12 @@ public:
         string classType = APP_CONSTANTS::WIDGET_CLASS_GET_STARTED;
         string widgetPersistentId = "GET_STARTED";
 
-        uiVizWidgetGetStarted* w = dynamic_cast<uiVizWidgetGetStarted*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/getStarted.xml"));
+        uiVizWidgetGetStarted* w = dynamic_cast<uiVizWidgetGetStarted*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/getStarted.xml"));
 
         w->setGetStartedCallback([w, this](string XML) {
             cout << XML;
-            Aquamarine::uiVizWidgetManager::removeAllWidgetsExceptMultiple({this, w});
-            Aquamarine::uiVizWidgetManager::initWidgetManager(
+            Aquamarine::WidgetManager::removeAllWidgetsExceptMultiple({this, w});
+            Aquamarine::WidgetManager::initWidgetManager(
                 APP_CONSTANTS::APPLICATION_NAME,
                 APP_CONSTANTS::APPLICATION_VERSION,
                 APP_CONSTANTS::APPLICATION_FILE_EXTENSION,
@@ -80,13 +80,13 @@ public:
             string value = mWidgetXML.getAttribute("new", "value", "");
             if (type == "file") {
                 string filePath = ofToDataPath(value, true);
-                if (Aquamarine::uiVizWidgetManager::load(filePath, true, w)) {
+                if (Aquamarine::WidgetManager::load(filePath, true, w)) {
 
-                    for(uiVizWidget &widget:Aquamarine::uiVizWidgetManager::getWidgets()) {
+                    for(uiVizWidget &widget:Aquamarine::WidgetManager::getWidgets()) {
                         // do things here
                         
                     }
-                    Aquamarine::uiVizWidgetManager::setProjectProperties("Untitled Project", "untitled.jam");                
+                    Aquamarine::WidgetManager::setProjectProperties("Untitled Project", "untitled.jam");                
 
                 }
                 
@@ -95,20 +95,20 @@ public:
 // content ideas -- triads (3x inversions - see book)
             }
         });
-        Aquamarine::uiVizWidgetManager::showModal(w, true);  
+        Aquamarine::WidgetManager::showModal(w, true);  
     }
                                                                       
     void saveProject(bool saveAs) {
-        Aquamarine::uiVizWidgetManager::ProjectProperties existingProject = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties();
+        Aquamarine::WidgetManager::ProjectProperties existingProject = Aquamarine::WidgetManager::getCurrentProjectProperties();
         string proposedFileName = "";
-        string currFileName = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties().fileName;
+        string currFileName = Aquamarine::WidgetManager::getCurrentProjectProperties().fileName;
         
         if (saveAs || currFileName == "untitled.jam") {
 
-            string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_FILE_SAVE;
-            string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+            string classType = Aquamarine::WidgetManager::WIDGET_CLASS_FILE_SAVE;
+            string widgetPersistentId = Aquamarine::WidgetManager::getSuggestedNewWidgetPersistentId(classType);
 
-            Aquamarine::uiVizWidgetFileSave* w = dynamic_cast<Aquamarine::uiVizWidgetFileSave*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            Aquamarine::uiVizWidgetFileSave* w = dynamic_cast<Aquamarine::uiVizWidgetFileSave*>(Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
                 <widget>
                 <bounds widthExpr="${WINDOW.WIDTH}/2" heightExpr="${WINDOW.HEIGHT}/2" minWidth="75" minHeight="75"  />
                 </widget>
@@ -118,10 +118,10 @@ public:
 
             w->setSavePathSelectedCallback([&, w](string filePath) {
   
-                filePath = Aquamarine::uiVizShared::removeFileExtension(filePath);
+                filePath = Aquamarine::Shared::removeFileExtension(filePath);
                 filePath += ".jam";
 
-                if (Aquamarine::uiVizWidgetManager::save(filePath)) {
+                if (Aquamarine::WidgetManager::save(filePath)) {
                     // Success...
                 }
             });
@@ -129,17 +129,17 @@ public:
             string recentDir = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentDirectory();
             
             w->setPath(recentDir);
-            Aquamarine::uiVizWidgetManager::showModal(w, true);     
+            Aquamarine::WidgetManager::showModal(w, true);     
 
             //ofFileDialogResult r = ofSystemSaveDialog(existingProject.fileName, "Save Project (.jam file)");
             //RegularExpression rex(".*.[jam|JAM]");
             
         } else {
-            proposedFileName = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties().absolutePath;
+            proposedFileName = Aquamarine::WidgetManager::getCurrentProjectProperties().absolutePath;
         }
         
         if (proposedFileName != "") {
-            if (Aquamarine::uiVizWidgetManager::save(proposedFileName)) {
+            if (Aquamarine::WidgetManager::save(proposedFileName)) {
                     // Success...
             }
         }
@@ -147,23 +147,23 @@ public:
 
                                                      
     void loadProject() {
-        string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_FILE_LOAD;
-        string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+        string classType = Aquamarine::WidgetManager::WIDGET_CLASS_FILE_LOAD;
+        string widgetPersistentId = Aquamarine::WidgetManager::getSuggestedNewWidgetPersistentId(classType);
 
-        Aquamarine::uiVizWidgetFileLoad* w = dynamic_cast<Aquamarine::uiVizWidgetFileLoad*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        Aquamarine::uiVizWidgetFileLoad* w = dynamic_cast<Aquamarine::uiVizWidgetFileLoad*>(Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds widthExpr="${WINDOW.WIDTH}/2" heightExpr="${WINDOW.HEIGHT}/2" minWidth="75" minHeight="75"  />
             </widget>
             )"));
 
         w->setPathSelectedCallback([w](string filePath) {
-            Aquamarine::uiVizWidgetManager::load(filePath, true, w);
+            Aquamarine::WidgetManager::load(filePath, true, w);
         });
 
 
         string recentDir = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentDirectory();
         w->setPath(recentDir);
-        Aquamarine::uiVizWidgetManager::showModal(w, true);     
+        Aquamarine::WidgetManager::showModal(w, true);     
     }    
 
     void licence() {
@@ -171,16 +171,16 @@ public:
         string widgetPersistentId = "LICENCE";
 
         uiVizWidgetLicence* w = dynamic_cast<uiVizWidgetLicence*>(
-            Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="300" height="450" minWidth="75" minHeight="75"  />
             </widget>
         )"));
 
-        Aquamarine::uiVizWidgetManager::addWidget(*w, true);
+        Aquamarine::WidgetManager::addWidget(*w, true);
         w->setWidgetSize(600, 500, false);
 
-      //  Aquamarine::uiVizWidgetManager::showModal(w, true);     
+      //  Aquamarine::WidgetManager::showModal(w, true);     
 
 
                                                                   
@@ -191,16 +191,16 @@ public:
     }
 
     void settings() {
-        string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_SETTINGS;
+        string classType = Aquamarine::WidgetManager::WIDGET_CLASS_SETTINGS;
         string widgetPersistentId = "APP_SETTINGS";
-        Aquamarine::uiVizWidgetSettings* w = dynamic_cast<Aquamarine::uiVizWidgetSettings*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        Aquamarine::uiVizWidgetSettings* w = dynamic_cast<Aquamarine::uiVizWidgetSettings*>(Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="150" height="150" minWidth="75" minHeight="75"  />
             </widget>
             )"));
     
-        Aquamarine::uiVizWidgetManager::addWidget(*w, false);  
-        Aquamarine::uiVizWidgetManager::centerWidget(w);                                                     
+        Aquamarine::WidgetManager::addWidget(*w, false);  
+        Aquamarine::WidgetManager::centerWidget(w);                                                     
     }
 
     void tutorials() {
@@ -210,14 +210,14 @@ public:
     void about(int displayType) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_ABOUT;
         string widgetPersistentId = "APP_ABOUT";        
-        uiVizWidgetAbout* w = dynamic_cast<uiVizWidgetAbout*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
+        uiVizWidgetAbout* w = dynamic_cast<uiVizWidgetAbout*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
         w->setTitleStyle(uiVizWidget::TitleStyle::TOP_STATIC);
         w->setWidgetSize(600, 600, false);
         w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
 
         switch(displayType) {
             case 1: { // Regular
-                Aquamarine::uiVizWidgetManager::addWidget(*w, false); 
+                Aquamarine::WidgetManager::addWidget(*w, false); 
                 w->setIsVisible(true);  
                 w->setWidgetSize(600, 500, false);   
                  w->setWidgetPosition(300, 300, false);                                                         
@@ -225,7 +225,7 @@ public:
             }
 
             case 2: { // Popout
-                Aquamarine::uiVizWidgetManager::addWidget(*w, false); 
+                Aquamarine::WidgetManager::addWidget(*w, false); 
                 w->setWidgetSize(600, 500, false);                                             
                 w->popoutFrom(200, 300, PopoutDirection::RIGHT);
                 w->setIsResizable(true);                
@@ -233,7 +233,7 @@ public:
             }
 
             case 3: { // Modal
-                Aquamarine::uiVizWidgetManager::showModal(w, true); 
+                Aquamarine::WidgetManager::showModal(w, true); 
                 break;
             }                        
 
@@ -285,7 +285,7 @@ public:
                 break;
             }
         } else if (args.menuTag == MENU_DEBUG) {
-            Aquamarine::uiVizWidgetManager::drawDebugInfo(true); 
+            Aquamarine::WidgetManager::drawDebugInfo(true); 
         }
 
     }
@@ -293,7 +293,7 @@ public:
 
     virtual void onMenuItemUnselected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) override {
         if (args.menuTag == MENU_DEBUG) {
-            Aquamarine::uiVizWidgetManager::drawDebugInfo(false); 
+            Aquamarine::WidgetManager::drawDebugInfo(false); 
         }
     }    
 
@@ -320,7 +320,7 @@ private:
     uiVizWidgetLicence *licenceMenu = nullptr;
     uiVizWidgetNotifications* notificationMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
-    Aquamarine::uiVizIcon mainMenuIcon = Aquamarine::uiVizIcon("", Aquamarine::uiVizCoord::vizBounds(0,0,0,0), 1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
+    Aquamarine::uiVizIcon mainMenuIcon = Aquamarine::uiVizIcon("", Aquamarine::Coord::vizBounds(0,0,0,0), 1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
 
     const string MENU_FILE = "FILE";
     const string MENU_ADD = "ADD";
@@ -439,7 +439,7 @@ private:
             if (getViz()->getAutoLoadMostRecentProject()) {
                 string mostRecentProject = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentProject();
                 if (mostRecentProject != "") { 
-                    loadedLastProj = Aquamarine::uiVizWidgetManager::load(mostRecentProject, true, this);
+                    loadedLastProj = Aquamarine::WidgetManager::load(mostRecentProject, true, this);
 
                 }
             }

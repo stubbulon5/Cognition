@@ -1,5 +1,5 @@
 //
-//  uiVizShared.cpp
+//  Shared.cpp
 //  bloom-macos
 //
 //  Created by Stuart Barnes on 19/08/2018.
