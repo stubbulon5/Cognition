@@ -63,6 +63,7 @@ public:
 
         w->setGetStartedCallback([w, this](string XML) {
             cout << XML;
+            
             Aquamarine::WidgetManager::removeAllWidgetsExceptMultiple({this, w});
             Aquamarine::WidgetManager::initWidgetManager(
                 APP_CONSTANTS::APPLICATION_NAME,

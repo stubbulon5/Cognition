@@ -1,9 +1,10 @@
+
 {
     "version": "0.2.0",
     "configurations": [
         {
             "name": "C++ Launch",
-            "type": "lldb",
+            "type": "cppdbg",
             "request": "launch",
             "args": [],
             "stopAtEntry": false,
@@ -40,7 +41,7 @@
         },
         {
             "name": "C++ Attach",
-            "type": "lldb",
+            "type": "cppdbg",
             "request": "attach",
             "program": "enter program name, for example ${workspaceRoot}/a.out",
             "processId": "${command:pickProcess}",

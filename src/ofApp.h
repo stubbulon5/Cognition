@@ -8,7 +8,6 @@
 #include "app_widgets/MidiShared.h"
 #include "app_widgets/appConstants.h"
 
-
 class ofApp : public ofBaseApp{
 	public:
 		void setup();

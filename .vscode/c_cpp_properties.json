@@ -163,7 +163,7 @@
                 "path": [
                     "${workspaceRoot}/../../../libs",
                     "${workspaceRoot}/../../../addons",
-                    "${workspaceRoot}/../../../libs/openFrameworks"    
+                    "${workspaceRoot}/../../../libs/openFrameworks"
                 ]
             },
             "intelliSenseMode": "clang-x64",

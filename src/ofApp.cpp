@@ -1,5 +1,6 @@
 #include "ofApp.h"
 
+
 void ofApp::setup(){
 
     //---------- SETTINGS ----------
@@ -35,7 +36,7 @@ void ofApp::setup(){
         settings.getValue("settings:autoLoadMostRecentProject", true),
         settings.getValue("settings:themeName", "Aqumarine")
     );
-
+    
     Aquamarine::Shared::langLoadXML(APP_CONSTANTS::DEFAULT_LANGUAGE_XML);
     APP_CONSTANTS::BOOTSTRAP_APP();
     
@@ -55,6 +56,14 @@ void ofApp::initAquamarine() {
     /* Add the main menu */
     Aquamarine::Widget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
     Aquamarine::WidgetManager::addWidget(*mainMenuWidget, false);
+
+    Aquamarine::Widget* picker = Aquamarine::WidgetManager::loadWidget(Aquamarine::WidgetManager::WIDGET_CLASS_COLOR_PICKER, "COLOR", "<widget></widget>");
+
+    picker->setWidgetSize(350, 350, false);
+    Aquamarine::WidgetManager::addWidget(*picker, false);    
+
+
+
 }
 
 //------------------------------ DRAW & UPDATE--------------------------------
@@ -62,7 +71,6 @@ void ofApp::update() {
 }
 
 void ofApp::draw() {
-	// vizBG->draw();
     Aquamarine::WidgetManager::drawWidgets();
 }
 

@@ -2,6 +2,7 @@
 #include <string>
 #include "../viz/Shared.h"
 #include "../viz/WidgetManager.h"
+#include "ofxAquamarine.h"
 
 // #include "ofxAquamarine.h"
 
