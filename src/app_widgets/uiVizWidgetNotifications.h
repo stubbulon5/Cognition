@@ -1,6 +1,5 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetSettings.h"
+#include "ofxAquamarine.h"
 
 class uiVizWidgetNotifications : public Aquamarine::uiVizWidgetTable {
     
@@ -32,6 +31,7 @@ public:
     }    
     
     virtual ~uiVizWidgetNotifications() {
+        
     }
 
     bool populateLinks() {
@@ -344,12 +344,6 @@ public:
             }
         }
     }    
-//delete logic 
-//refresh in title 
-//dot anim - alternat 4x colours and fade from 0-1 apha
-// generecise
-
-// theme change
 
     virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
 

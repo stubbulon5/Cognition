@@ -9,7 +9,7 @@
 
 // Sound stuff
 #include "sdMidiShared.h"
-#include "../uiViz/uiVizShared.h"
+#include "ofxAquamarine.h"
 #include "ofxXmlSettings.h"
 
 #include "../core/midifile/include/Binasc.h"

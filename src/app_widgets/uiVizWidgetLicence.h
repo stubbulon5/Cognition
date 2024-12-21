@@ -5,7 +5,7 @@
 //  Created by Stuart Barnes on 12/04/2019.
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "appConstants.h"
 
 
@@ -104,75 +104,6 @@ struct Licence {
                 licence.isValid = false;
                 return false;
             }
-
-            /*
-            if (exceeded_epoch_check date) {
-            
-            if(check_was_valid) {
-            licence.isValid = true;
-            refresh empoch refresh date to today + 14
-            }
-            
-            if ()
-            }
-            */
-            
-            // check in with server here...
-            //things to check:
-            // username and password match
-            // licence >= current app ver num
-            // not deployed to more than 5 machines (machine id)
-            
-            // if expired last checked, (eg 14 days) check in online...
-            // ensure not comprimised
-            // update last checked and persist
-            
-            // else check
-            
-            /* PSEUDO CODE:
-            
-            
-            // Check all fields of XML file to see if they have a value
-            
-            
-            // Decode the Licence field to something like [valid_version]-[epochdate_expire]-[random_10_char_string]
-            // Check that epochdate_expire >= currentDate
-            // Check that valid_version >= getAppVersion
-            -> if not, open url to previous versions or purchase new licence
-            -. (download page, with prev versions)
-            
-            // Validate last checked in date
-            if (lastCheckedInDate+14 > currentDate) {
-            
-            do httprequest to https://www.harmonyjam.com/check_update
-            post : licence, username and password, machineid
-            -> on server if (username && password is authenticated) {
-            get_current_licence field for this user record (old licences are moved to previous_licences [] array)
-            
-            // if valid {
-            log: machineid, date,
-            return : 200 <response status = "ok"/>
-            } else
-            
-            <response status="error">
-            <messge>Login failed</messge>
-            </response>
-            
-            <response status="too_many_registered_machines">
-            <messge>Too many machines registered with licence. Please de-register some:</messge>
-            <registered_machines>
-            <machine id="1234567890" name="my macbook"/>
-            <machine id="1234567890" name="my desktop"/>
-            <machine id="1234567890" name="my ubuntu machine"/>
-            </registered_machines>
-            </response>
-            
-            
-            }
-            
-            
-            
-            */
         }
         return true;
 

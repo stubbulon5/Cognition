@@ -4,7 +4,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetMusical.h"
 
 //------------------------------ Key Picker widget --------------------------------

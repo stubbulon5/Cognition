@@ -1,14 +1,7 @@
-//
-//  uiVizWidgetMusical.h
-//  bloom-macos
-//
-//
+
 #pragma once
-// UI stuff
-#include "../uiViz/widget/uiVizWidget.h"
-#include "../uiViz/widget/uiVizWidgetMenu.h"
-#include "../uiViz/widget/system/uiVizWidgetDialog.h"
-#include "../uiViz/widget/uiVizWidgetEventListener.h"
+
+#include "ofxAquamarine.h"
 
 #include "uiVizTheory.h"
 #include "appConstants.h"

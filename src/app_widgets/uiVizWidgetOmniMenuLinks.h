@@ -1,9 +1,5 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetMediaPlayerBase.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
-
+#include "ofxAquamarine.h"
 
 
 

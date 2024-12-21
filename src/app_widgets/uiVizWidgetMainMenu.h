@@ -26,25 +26,7 @@
 #include "uiVizWidgetNotifications.h"
 
 
-#include "../uiViz/widget/uiVizWidgetSettings.h"
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
-#include "../uiViz/widget/uiVizWidgetMatrix.h"
-#include "../uiViz/widget/uiVizWidgetSequencer.h"
-#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
-#include "../uiViz/widget/uiVizWidgetVideoPlayer.h"
-#include "../uiViz/widget/uiVizWidgetVideoGrabber.h"
-#include "../uiViz/widget/uiVizWidgetSoundPlayer.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/system/uiVizWidgetFileExplorer.h"
-#include "../uiViz/widget/system/uiVizWidgetFileLoad.h"
-#include "../uiViz/widget/system/uiVizWidgetFileSave.h"
-#include "../uiViz/widget/system/uiVizWidgetThemeEditor.h"
-
-#include "../uiViz/widget/uiVizWidgetMenuCollection.h"
-
-
-// #include "ofxAquamarine.h"
+#include "ofxAquamarine.h"
 
 
 class uiVizWidgetMainMenu : public Aquamarine::uiVizWidgetMenuCollection {

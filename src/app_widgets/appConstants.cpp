@@ -39,7 +39,7 @@ void APP_CONSTANTS::BOOTSTRAP_APP() {
       APP_CONSTANTS::APPLICATION_NAME,
       APP_CONSTANTS::APPLICATION_VERSION,
       APP_CONSTANTS::APPLICATION_FILE_EXTENSION,
-      false
+      true
     );
     
     Aquamarine::uiVizWidgetManager::bootstrapWidgetMap(APP_CONSTANTS::getAppWidgetMap());

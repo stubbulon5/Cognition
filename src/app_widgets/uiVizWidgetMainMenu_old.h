@@ -22,21 +22,7 @@
 #include "uiVizWidgetScaleTable.h"
 #include "uiVizWidgetOmniMenu.h"
 
-#include "../uiViz/widget/uiVizWidgetSettings.h"
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
-#include "../uiViz/widget/uiVizWidgetMatrix.h"
-#include "../uiViz/widget/uiVizWidgetSequencer.h"
-#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
-#include "../uiViz/widget/uiVizWidgetVideoPlayer.h"
-#include "../uiViz/widget/uiVizWidgetVideoGrabber.h"
-#include "../uiViz/widget/uiVizWidgetSoundPlayer.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/system/uiVizWidgetFileExplorer.h"
-#include "../uiViz/widget/system/uiVizWidgetFileLoad.h"
-#include "../uiViz/widget/system/uiVizWidgetFileSave.h"
-#include "../uiViz/widget/system/uiVizWidgetThemeEditor.h"
-
+#include "ofxAquamarine.h"
 #include "../core/gp_parser/gp_parser.h"
 
 
@@ -713,7 +699,9 @@ public:
         uiVizWidgetManager::initWidgetManager(
             APP_CONSTANTS::APPLICATION_NAME,
             APP_CONSTANTS::APPLICATION_VERSION,
-            APP_CONSTANTS::APPLICATION_FILE_EXTENSION);
+            APP_CONSTANTS::APPLICATION_FILE_EXTENSION
+            true,
+        );
     }
                                                                       
     void saveProject(bool saveAs) {
@@ -992,7 +980,7 @@ private:
             // ----------------------------------------------------------------------------
             // Omni Menu
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab(uiVizShared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+            uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
                             12345,
                             omniMenuMenuItem
                             ),          

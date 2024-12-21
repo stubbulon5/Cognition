@@ -1,5 +1,5 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetOmniMenuSearchResults.h"
 #include "uiVizWidgetOmniMenuLinks.h"
 
