@@ -1,5 +1,5 @@
 //
-//  uiVizTheory.h
+//  Theory.h
 //  bloom-macos
 //
 //
@@ -8,7 +8,7 @@
 #include "ofxMusicTheory.h"
 
 // Sound stuff
-#include "sdMidiShared.h"
+#include "MidiShared.h"
 #include "ofxAquamarine.h"
 #include "ofxXmlSettings.h"
 
@@ -18,7 +18,7 @@
 #include "../core/midifile/include/MidiFile.h"
 #include "../core/midifile/include/MidiMessage.h"
 
-#include "uiVizTheoryMidi.h"
+#include "TheoryMidi.h"
 #include "appConstants.h"
 
 
@@ -1074,7 +1074,7 @@ public:
     void audition(int gmInstrument) {
         if (mNoteName == "") return;
         setIsPlaying(true);
-        sdMidiShared::playNote(getNote(), gmInstrument);
+        MidiShared::playNote(getNote(), gmInstrument);
         setIsPlaying(false);
     }
     
@@ -1562,7 +1562,7 @@ public:
                     int velocity = (mNotes[i].isEnharmonicallyEquivalent(rootName) ? 100 : 90); // 100 : 80);
                     if (seq > 0) velocity = velocity - 5; // softer notes for sequenced....
                     mNotes[i].setIsPlaying(true);
-                    sdMidiShared::playNote(mNotes[i].getNote(), velocity, gmInstrument);
+                    MidiShared::playNote(mNotes[i].getNote(), velocity, gmInstrument);
                     ofSleepMillis(noteDuration);
                     mNotes[i].setIsPlaying(false);
                     notesPlayed++;      

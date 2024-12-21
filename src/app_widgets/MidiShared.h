@@ -2,10 +2,10 @@
 #pragma once
 #include "ofxMidi.h"
 #include "ofxMusicTheory.h"
-#include "uiVizTheoryMidi.h"
+#include "TheoryMidi.h"
 #include "TinyMidiPlayer.h"
 
-class sdMidiShared {
+class MidiShared {
 
 public:
 

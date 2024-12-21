@@ -40,7 +40,7 @@ void ofApp::setup(){
     APP_CONSTANTS::BOOTSTRAP_APP();
     
 	// Midi initialize - make it configurable too...
-	sdMidiShared::configure();
+	MidiShared::configure();
 
     ofSetWindowTitle("cognition");
     ofSetWindowShape(ofGetScreenWidth() * 0.8f, ofGetScreenHeight() * 0.8f);
@@ -127,5 +127,5 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 //--------------------------------------------------------------
 void ofApp::exit() {
     // clean up
-    sdMidiShared::closePort();
+    MidiShared::closePort();
 }

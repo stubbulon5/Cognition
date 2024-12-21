@@ -1,5 +1,5 @@
 //
-//  uiVizTheory.h
+//  Theory.h
 //  bloom-macos
 //
 //

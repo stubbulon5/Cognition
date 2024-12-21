@@ -5,7 +5,7 @@
 // UI Stuff
 #include "ofxXmlSettings.h"
 #include "ofxAquamarine.h"
-#include "app_widgets/sdMidiShared.h"
+#include "app_widgets/MidiShared.h"
 #include "app_widgets/appConstants.h"
 
 

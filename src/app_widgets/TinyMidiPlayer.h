@@ -6,7 +6,7 @@
 //
 #include "ofxTinyMidiPlayer.h"
 #include "ofMain.h"
-// #include "uiVizTheory.h"
+// #include "Theory.h"
 
 class TinyMidiPlayer {
 

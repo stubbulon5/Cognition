@@ -4,20 +4,20 @@
 //
 //  Created by Stuart Barnes on 19/08/2018.
 //
-#include "sdMidiShared.h"
+#include "MidiShared.h"
 
-ofxMidiOut sdMidiShared::midiOut;
-int sdMidiShared::channel;
-unsigned int sdMidiShared::currentPgm;
-int sdMidiShared::note, sdMidiShared::velocity;
-int sdMidiShared::pan, sdMidiShared::bend, sdMidiShared::touch, sdMidiShared::polytouch;
-int sdMidiShared::gmInstrument = 1;
-TinyMidiPlayer sdMidiShared::tinyMidiPlayer = TinyMidiPlayer();
+ofxMidiOut MidiShared::midiOut;
+int MidiShared::channel;
+unsigned int MidiShared::currentPgm;
+int MidiShared::note, MidiShared::velocity;
+int MidiShared::pan, MidiShared::bend, MidiShared::touch, MidiShared::polytouch;
+int MidiShared::gmInstrument = 1;
+TinyMidiPlayer MidiShared::tinyMidiPlayer = TinyMidiPlayer();
 
 /*
  static methods
  */
-void sdMidiShared::configure() {
+void MidiShared::configure() {
 
 	#if VIZ_DEBUG_LEVEL >= 2 && VIZ_DEBUG_LEVEL < 3
 		std::cout << "***************************** MIDI PORTS  ***************************** " << std::endl;
@@ -67,11 +67,11 @@ void sdMidiShared::configure() {
 }
 
 
-ofxMidiOut sdMidiShared::getMidiOut() {
+ofxMidiOut MidiShared::getMidiOut() {
 	return midiOut;
 }
 
-void sdMidiShared::playNote(MusicTheory::NotePtr note,  int velocity, int midiInstrument) {
+void MidiShared::playNote(MusicTheory::NotePtr note,  int velocity, int midiInstrument) {
 	int midiNote = note->toInt();
 	velocity = velocity;
 	if (gmInstrument != midiInstrument) {
@@ -84,20 +84,20 @@ void sdMidiShared::playNote(MusicTheory::NotePtr note,  int velocity, int midiIn
 	tinyMidiPlayer.noteOn(channel, midiNote, velocity);
 }
 
-void sdMidiShared::playNote(MusicTheory::NotePtr note, int gmInstrument) {
-	sdMidiShared::playNote(note, 80, gmInstrument);
+void MidiShared::playNote(MusicTheory::NotePtr note, int gmInstrument) {
+	MidiShared::playNote(note, 80, gmInstrument);
 }
 
-void sdMidiShared::playChord(MusicTheory::ChordPtr chord, int gmInstrument) {
+void MidiShared::playChord(MusicTheory::ChordPtr chord, int gmInstrument) {
 	deque<MusicTheory::NotePtr> chordNotes = chord->getAllNotes();
 
 	for (int i = 0; i < chordNotes.size(); i++) {
 		// Is this a good enough approach or do we need to buffer the notes and send as a batch somehow?
-		sdMidiShared::playNote(chordNotes[i], gmInstrument);
+		MidiShared::playNote(chordNotes[i], gmInstrument);
 	}
 }
 
-void sdMidiShared::closePort() {
+void MidiShared::closePort() {
     midiOut.closePort();
 }
 

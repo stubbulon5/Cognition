@@ -3,11 +3,11 @@
 
 #include "ofxAquamarine.h"
 
-#include "uiVizTheory.h"
+#include "Theory.h"
 #include "appConstants.h"
 
 // Sound stuff
-#include "sdMidiShared.h"
+#include "MidiShared.h"
 
 
 //------------------------------ EVENT ARGS  (Rules) --------------------------------
