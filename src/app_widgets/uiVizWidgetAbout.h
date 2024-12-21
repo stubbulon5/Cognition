@@ -4,11 +4,10 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetLicence.h"
-#include "uiVizWidgetMenuCollection.h"
 
-class uiVizWidgetAbout : public uiVizWidget {
+class uiVizWidgetAbout : public Aquamarine::uiVizWidget {
     
 public:
     
@@ -31,7 +30,7 @@ public:
     virtual void onChildWidgetsLoaded() override {
         uiVizWidget* w = getChildWidgetByPersistentId("ABOUT_TAB_TEXT_HOLDER");
         if (w) {
-            uiVizWidgetElmTextarea* TXT_ABOUT = w->getTextarea("TXT_ABOUT");
+            Aquamarine::uiVizWidgetElmTextarea* TXT_ABOUT = w->getTextarea("TXT_ABOUT");
             if(TXT_ABOUT) {
                 string replaceText = TXT_ABOUT->getValue();
                 Licence licence = Licence::getLicence();
@@ -43,8 +42,8 @@ public:
 
 
         if (!loaded) {
-            ABOUT_TABS = dynamic_cast<uiVizWidgetMenuCollection*>(uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TABS"));
-            ABOUT_TAB_ATTRIBUTIONS = dynamic_cast<uiVizWidgetTable*>(uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TAB_ATTRIBUTIONS"));
+            ABOUT_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TABS"));
+            ABOUT_TAB_ATTRIBUTIONS = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "ABOUT_TAB_ATTRIBUTIONS"));
         }  
 
     }       
@@ -59,7 +58,7 @@ public:
        // ofRemoveListener(ABOUT_TABS->widgetEventReceived, this, &uiVizWidgetAbout::onAboutTabsEventReceived);                  
     }
     
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string parentWidgetId = args.sender.getParentPersistentId();
         string event = args.getFullEventName();
 
@@ -67,7 +66,7 @@ public:
             //cout << "zzz";
             //add content
         } else if (args.sender.matchesWidgetOrChildOf(this)) {
-            if (event == "OK." + WIDGET_EVENT::CLICK) {
+            if (event == "OK." + Aquamarine::WIDGET_EVENT::CLICK) {
                 closeThisWidget();
             }            
         }
@@ -76,8 +75,8 @@ public:
 
     
 private:
-    uiVizWidgetMenuCollection* ABOUT_TABS;
-    uiVizWidgetTable* ABOUT_TAB_ATTRIBUTIONS;
+    Aquamarine::uiVizWidgetMenuCollection* ABOUT_TABS;
+    Aquamarine::uiVizWidgetTable* ABOUT_TAB_ATTRIBUTIONS;
     bool loaded = false;
 
     void initWidget() override {

@@ -1,6 +1,6 @@
 
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetKeyPicker.h"
 
 
@@ -78,7 +78,7 @@ private:
             popout->setTitleStyle(TitleStyle::BOTTOM_STATIC);
             popout->setShowWidgetPin(true);
 
-            uiVizWidgetManager::addWidgetForPopout(*popout, getWidgetId(), false);
+            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*popout, getWidgetId(), false);
 
             this->handleMousePressed([this](ofMouseEventArgs e) {
                 getkeyPicker()->popoutFrom(this, PopoutDirection::DOWN);

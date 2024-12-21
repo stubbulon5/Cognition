@@ -3,9 +3,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
-#include "uiVizWidgetMenuCollection.h"
-#include "uiVizWidgetDialog.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetAerosLooperSong.h"
 
 
@@ -32,7 +30,7 @@ public:
     virtual void onChildWidgetsLoaded() override {
 
         if (!hookedEvents) {
-            TOOL_TABS = dynamic_cast<uiVizWidgetMenuCollection*>(getChildWidgetByPersistentId("TOOL_TABS"));
+            TOOL_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(getChildWidgetByPersistentId("TOOL_TABS"));
             ofAddListener(TOOL_TABS->menuItemSelected, this, &uiVizWidgetAerosLooper::onToolTabsMenuItemSelected);
 
 
@@ -111,7 +109,7 @@ public:
        ofRemoveListener(AEROS_SD_CARD_LOCATIONS->widgetEventReceived, this, &uiVizWidgetAerosLooper::onSDCardLocationsEventReceived);            
     }
     
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string parentWidgetId = args.sender.getParentPersistentId();
         string event = args.getFullEventName();
 
@@ -289,7 +287,7 @@ public:
 
     }    
 
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
         
         // if (mCurrentSDCardAlphaIncreasing) {
         //     mCurrentSDCardAlpha = scaleAnimation(getWidgetId() + "_sd_card_in", mCurrentSDCardAlpha, 1.0f, 3.0f);

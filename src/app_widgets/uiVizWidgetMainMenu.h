@@ -26,26 +26,10 @@
 #include "uiVizWidgetNotifications.h"
 
 
-#include "../uiViz/widget/uiVizWidgetSettings.h"
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
-#include "../uiViz/widget/uiVizWidgetMatrix.h"
-#include "../uiViz/widget/uiVizWidgetSequencer.h"
-#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
-#include "../uiViz/widget/uiVizWidgetVideoPlayer.h"
-#include "../uiViz/widget/uiVizWidgetVideoGrabber.h"
-#include "../uiViz/widget/uiVizWidgetSoundPlayer.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/system/uiVizWidgetFileExplorer.h"
-#include "../uiViz/widget/system/uiVizWidgetFileLoad.h"
-#include "../uiViz/widget/system/uiVizWidgetFileSave.h"
-#include "../uiViz/widget/system/uiVizWidgetThemeEditor.h"
-
-#include "../uiViz/widget/uiVizWidgetMenuCollection.h"
-//#include "uiVizWidgetAerosLooper.h"
+#include "ofxAquamarine.h"
 
 
-class uiVizWidgetMainMenu : public uiVizWidgetMenuCollection {
+class uiVizWidgetMainMenu : public Aquamarine::uiVizWidgetMenuCollection {
     
 public:
     uiVizWidgetMainMenu(string persistentId, string widgetXML) : uiVizWidgetMenuCollection(persistentId, widgetXML) {
@@ -58,12 +42,12 @@ public:
     }
     
     void clearExistingWidgets() {
-        uiVizWidgetManager::removeAllWidgetsExcept(this);
+        Aquamarine::uiVizWidgetManager::removeAllWidgetsExcept(this);
     }
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
         switch(menuTag) {
-            case uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
                 return fileMenu;
             default:
                 return nullptr;
@@ -75,12 +59,12 @@ public:
         string classType = APP_CONSTANTS::WIDGET_CLASS_GET_STARTED;
         string widgetPersistentId = "GET_STARTED";
 
-        uiVizWidgetGetStarted* w = dynamic_cast<uiVizWidgetGetStarted*>(uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/getStarted.xml"));
+        uiVizWidgetGetStarted* w = dynamic_cast<uiVizWidgetGetStarted*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/getStarted.xml"));
 
         w->setGetStartedCallback([w, this](string XML) {
             cout << XML;
-            uiVizWidgetManager::removeAllWidgetsExceptMultiple({this, w});
-            uiVizWidgetManager::initWidgetManager(
+            Aquamarine::uiVizWidgetManager::removeAllWidgetsExceptMultiple({this, w});
+            Aquamarine::uiVizWidgetManager::initWidgetManager(
                 APP_CONSTANTS::APPLICATION_NAME,
                 APP_CONSTANTS::APPLICATION_VERSION,
                 APP_CONSTANTS::APPLICATION_FILE_EXTENSION
@@ -95,13 +79,13 @@ public:
             string value = mWidgetXML.getAttribute("new", "value", "");
             if (type == "file") {
                 string filePath = ofToDataPath(value, true);
-                if (uiVizWidgetManager::load(filePath, true, w)) {
+                if (Aquamarine::uiVizWidgetManager::load(filePath, true, w)) {
 
-                    for(uiVizWidget &widget:uiVizWidgetManager::getWidgets()) {
+                    for(uiVizWidget &widget:Aquamarine::uiVizWidgetManager::getWidgets()) {
                         // do things here
                         
                     }
-                    uiVizWidgetManager::setProjectProperties("Untitled Project", "untitled.jam");                
+                    Aquamarine::uiVizWidgetManager::setProjectProperties("Untitled Project", "untitled.jam");                
 
                 }
                 
@@ -110,20 +94,20 @@ public:
 // content ideas -- triads (3x inversions - see book)
             }
         });
-        uiVizWidgetManager::showModal(w, true);  
+        Aquamarine::uiVizWidgetManager::showModal(w, true);  
     }
                                                                       
     void saveProject(bool saveAs) {
-        uiVizWidgetManager::ProjectProperties existingProject = uiVizWidgetManager::getCurrentProjectProperties();
+        Aquamarine::uiVizWidgetManager::ProjectProperties existingProject = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties();
         string proposedFileName = "";
-        string currFileName = uiVizWidgetManager::getCurrentProjectProperties().fileName;
+        string currFileName = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties().fileName;
         
         if (saveAs || currFileName == "untitled.jam") {
 
-            string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_SAVE;
-            string widgetPersistentId = uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+            string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_FILE_SAVE;
+            string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
 
-            uiVizWidgetFileSave* w = dynamic_cast<uiVizWidgetFileSave*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            Aquamarine::uiVizWidgetFileSave* w = dynamic_cast<Aquamarine::uiVizWidgetFileSave*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
                 <widget>
                 <bounds widthExpr="${WINDOW.WIDTH}/2" heightExpr="${WINDOW.HEIGHT}/2" minWidth="75" minHeight="75"  />
                 </widget>
@@ -133,28 +117,28 @@ public:
 
             w->setSavePathSelectedCallback([&, w](string filePath) {
   
-                filePath = uiVizShared::removeFileExtension(filePath);
+                filePath = Aquamarine::uiVizShared::removeFileExtension(filePath);
                 filePath += ".jam";
 
-                if (uiVizWidgetManager::save(filePath)) {
+                if (Aquamarine::uiVizWidgetManager::save(filePath)) {
                     // Success...
                 }
             });
 
-            string recentDir = uiVizWidgetFileLocationsList::getMostRecentDirectory();
+            string recentDir = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentDirectory();
             
             w->setPath(recentDir);
-            uiVizWidgetManager::showModal(w, true);     
+            Aquamarine::uiVizWidgetManager::showModal(w, true);     
 
             //ofFileDialogResult r = ofSystemSaveDialog(existingProject.fileName, "Save Project (.jam file)");
             //RegularExpression rex(".*.[jam|JAM]");
             
         } else {
-            proposedFileName = uiVizWidgetManager::getCurrentProjectProperties().absolutePath;
+            proposedFileName = Aquamarine::uiVizWidgetManager::getCurrentProjectProperties().absolutePath;
         }
         
         if (proposedFileName != "") {
-            if (uiVizWidgetManager::save(proposedFileName)) {
+            if (Aquamarine::uiVizWidgetManager::save(proposedFileName)) {
                     // Success...
             }
         }
@@ -162,23 +146,23 @@ public:
 
                                                      
     void loadProject() {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_FILE_LOAD;
-        string widgetPersistentId = uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+        string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_FILE_LOAD;
+        string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
 
-        uiVizWidgetFileLoad* w = dynamic_cast<uiVizWidgetFileLoad*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        Aquamarine::uiVizWidgetFileLoad* w = dynamic_cast<Aquamarine::uiVizWidgetFileLoad*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds widthExpr="${WINDOW.WIDTH}/2" heightExpr="${WINDOW.HEIGHT}/2" minWidth="75" minHeight="75"  />
             </widget>
             )"));
 
         w->setPathSelectedCallback([w](string filePath) {
-            uiVizWidgetManager::load(filePath, true, w);
+            Aquamarine::uiVizWidgetManager::load(filePath, true, w);
         });
 
 
-        string recentDir = uiVizWidgetFileLocationsList::getMostRecentDirectory();
+        string recentDir = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentDirectory();
         w->setPath(recentDir);
-        uiVizWidgetManager::showModal(w, true);     
+        Aquamarine::uiVizWidgetManager::showModal(w, true);     
     }    
 
     void licence() {
@@ -186,16 +170,16 @@ public:
         string widgetPersistentId = "LICENCE";
 
         uiVizWidgetLicence* w = dynamic_cast<uiVizWidgetLicence*>(
-            uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+            Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="300" height="450" minWidth="75" minHeight="75"  />
             </widget>
         )"));
 
-        uiVizWidgetManager::addWidget(*w, true);
+        Aquamarine::uiVizWidgetManager::addWidget(*w, true);
         w->setWidgetSize(600, 500, false);
 
-      //  uiVizWidgetManager::showModal(w, true);     
+      //  Aquamarine::uiVizWidgetManager::showModal(w, true);     
 
 
                                                                   
@@ -206,16 +190,16 @@ public:
     }
 
     void settings() {
-        string classType = uiVizWidgetManager::WIDGET_CLASS_SETTINGS;
+        string classType = Aquamarine::uiVizWidgetManager::WIDGET_CLASS_SETTINGS;
         string widgetPersistentId = "APP_SETTINGS";
-        uiVizWidgetSettings* w = dynamic_cast<uiVizWidgetSettings*>(uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+        Aquamarine::uiVizWidgetSettings* w = dynamic_cast<Aquamarine::uiVizWidgetSettings*>(Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="150" height="150" minWidth="75" minHeight="75"  />
             </widget>
             )"));
     
-        uiVizWidgetManager::addWidget(*w, false);  
-        uiVizWidgetManager::centerWidget(w);                                                     
+        Aquamarine::uiVizWidgetManager::addWidget(*w, false);  
+        Aquamarine::uiVizWidgetManager::centerWidget(w);                                                     
     }
 
     void tutorials() {
@@ -225,14 +209,14 @@ public:
     void about(int displayType) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_ABOUT;
         string widgetPersistentId = "APP_ABOUT";        
-        uiVizWidgetAbout* w = dynamic_cast<uiVizWidgetAbout*>(uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
+        uiVizWidgetAbout* w = dynamic_cast<uiVizWidgetAbout*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
         w->setTitleStyle(uiVizWidget::TitleStyle::TOP_STATIC);
         w->setWidgetSize(600, 600, false);
         w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
 
         switch(displayType) {
             case 1: { // Regular
-                uiVizWidgetManager::addWidget(*w, false); 
+                Aquamarine::uiVizWidgetManager::addWidget(*w, false); 
                 w->setIsVisible(true);  
                 w->setWidgetSize(600, 500, false);   
                  w->setWidgetPosition(300, 300, false);                                                         
@@ -240,7 +224,7 @@ public:
             }
 
             case 2: { // Popout
-                uiVizWidgetManager::addWidget(*w, false); 
+                Aquamarine::uiVizWidgetManager::addWidget(*w, false); 
                 w->setWidgetSize(600, 500, false);                                             
                 w->popoutFrom(200, 300, PopoutDirection::RIGHT);
                 w->setIsResizable(true);                
@@ -248,7 +232,7 @@ public:
             }
 
             case 3: { // Modal
-                uiVizWidgetManager::showModal(w, true); 
+                Aquamarine::uiVizWidgetManager::showModal(w, true); 
                 break;
             }                        
 
@@ -259,10 +243,10 @@ public:
 
     }
     
-    virtual void onMenuItemSelected(uiVizWidgetMenuCollectionArgs & args) override {
+    virtual void onMenuItemSelected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) override {
         if (args.menuTag == MENU_FILE) {
             switch(args.activeMenuTabId) {
-                case uiVizIconCache::IconTag::WIDGET_SETTINGS:
+                case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
                     switch(args.menuItem->uniqueID) {
                         case 0: // New
                             newProject(); break;
@@ -284,7 +268,7 @@ public:
             }
         } else if (args.menuTag == MENU_HELP) {
             switch(args.activeMenuTabId) {
-                case uiVizIconCache::IconTag::BOOK_CONTENT:
+                case Aquamarine::uiVizIconCache::IconTag::BOOK_CONTENT:
                     switch(args.menuItem->uniqueID) {
                         case 0: // tutorials
                             tutorials(); break;
@@ -300,42 +284,42 @@ public:
                 break;
             }
         } else if (args.menuTag == MENU_DEBUG) {
-            uiVizWidgetManager::drawDebugInfo(true); 
+            Aquamarine::uiVizWidgetManager::drawDebugInfo(true); 
         }
 
     }
 
 
-    virtual void onMenuItemUnselected(uiVizWidgetMenuCollectionArgs & args) override {
+    virtual void onMenuItemUnselected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) override {
         if (args.menuTag == MENU_DEBUG) {
-            uiVizWidgetManager::drawDebugInfo(false); 
+            Aquamarine::uiVizWidgetManager::drawDebugInfo(false); 
         }
     }    
 
     // enter licence key, about this app - loses ...
-    void onOmniMenuCellCelected(uiVizWidgetTableArgs &args) {
+    void onOmniMenuCellCelected(Aquamarine::uiVizWidgetTableArgs &args) {
         clearSelectedSlice();
         args.sender.clearSelectedRows();
         args.sender.setIsVisible(false);
     }    
 
-    void onNotificationItemsChanged(uiVizWidgetEventArgs &args) {
+    void onNotificationItemsChanged(Aquamarine::uiVizWidgetEventArgs &args) {
         if (notificationMenu) setMenuItem_RequiresAttention(MENU_NOTIFICATION, notificationMenu->getNewItemsFound());
     }
 
-	virtual void onWidgetOwnedWidgetClosed(uiVizWidgetBase* closedWidget) override {
+	virtual void onWidgetOwnedWidgetClosed(Aquamarine::uiVizWidgetBase* closedWidget) override {
         clearSelectedSlice();
         if (notificationMenu) setMenuItem_RequiresAttention(MENU_NOTIFICATION, notificationMenu->getNewItemsFound());
 	}     
 
 private:
-    uiVizWidgetMenu *fileMenu = nullptr;
+    Aquamarine::uiVizWidgetMenu *fileMenu = nullptr;
     uiVizWidgetOmniMenuLinks *omniMenu = nullptr;
-    uiVizWidgetMenu *helpMenu = nullptr;    
+    Aquamarine::uiVizWidgetMenu *helpMenu = nullptr;    
     uiVizWidgetLicence *licenceMenu = nullptr;
     uiVizWidgetNotifications* notificationMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
-    uiVizIcon mainMenuIcon = uiVizIcon("", uiVizCoord::vizBounds(0,0,0,0), 1.0f, uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
+    Aquamarine::uiVizIcon mainMenuIcon = Aquamarine::uiVizIcon("", Aquamarine::uiVizCoord::vizBounds(0,0,0,0), 1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
 
     const string MENU_FILE = "FILE";
     const string MENU_ADD = "ADD";
@@ -344,14 +328,14 @@ private:
     const string MENU_DEBUG = "DEBUG";
     
     bool loaded = false;
-    uiVizWidgetTheme theme;
+    Aquamarine::uiVizWidgetTheme theme;
 
     void overrideAlpha() {
         getTheme().UnhoveredWidgetAlpha = getTheme().HoveredWidgetAlpha;
     }
 
-    virtual void onWidgetThemeChanged(uiVizWidgetEventArgs args) override {
-        uiVizWidgetMenuCollection::onWidgetThemeChanged(args);
+    virtual void onWidgetThemeChanged(Aquamarine::uiVizWidgetEventArgs args) override {
+        Aquamarine::uiVizWidgetMenuCollection::onWidgetThemeChanged(args);
         overrideAlpha();
         applyMenuThemeColor();
     }                  
@@ -376,19 +360,19 @@ private:
         // setIgnoreThemeChanges(true);   
         
         if (!loaded) {
-            fileMenu = new uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_FILE", "<widget></widget>", getWidgetId()
-                , uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
+            fileMenu = new Aquamarine::uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_FILE", "<widget></widget>", getWidgetId()
+                , Aquamarine::uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
                 // ----------------------------------------------------------------------------
                 // File Menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab("File", uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                    uiVizIconCache::IconTag::WIDGET_SETTINGS, {
-                        uiVizWidgetMenuItem("New", 0),
-                        uiVizWidgetMenuItem("Save", 1),
-                        uiVizWidgetMenuItem("Save as...", 2),
-                        uiVizWidgetMenuItem("Load...", 3),
-                        uiVizWidgetMenuItem("Settings...", 4),
-                        uiVizWidgetMenuItem("Exit", -1000)
+                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
+                    Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, {
+                        Aquamarine::uiVizWidgetMenuItem("New", 0),
+                        Aquamarine::uiVizWidgetMenuItem("Save", 1),
+                        Aquamarine::uiVizWidgetMenuItem("Save as...", 2),
+                        Aquamarine::uiVizWidgetMenuItem("Load...", 3),
+                        Aquamarine::uiVizWidgetMenuItem("Settings...", 4),
+                        Aquamarine::uiVizWidgetMenuItem("Exit", -1000)
                     })
                 });
 
@@ -398,18 +382,18 @@ private:
             ofAddListener(omniMenu->cellSelected, this,  &uiVizWidgetMainMenu::onOmniMenuCellCelected);
             omniMenu->setTheme(theme);
             
-            helpMenu = new uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_HELP", "<widget></widget>", getWidgetId()
-                , uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
+            helpMenu = new Aquamarine::uiVizWidgetMenu(getWidgetId() + "_MAIN_MENU_HELP", "<widget></widget>", getWidgetId()
+                , Aquamarine::uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
                 // ----------------------------------------------------------------------------
                 // File Menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab("File", uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                    uiVizIconCache::IconTag::BOOK_CONTENT, {
-                        uiVizWidgetMenuItem("Tutorials", 0),
-                        uiVizWidgetMenuItem("Enter Licence Key...", 1),                        
-                        uiVizWidgetMenuItem("About (reg)", 2),
-                        uiVizWidgetMenuItem("About (popout)", 3),
-                        uiVizWidgetMenuItem("About (modal)", 4)                                                
+                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
+                    Aquamarine::uiVizIconCache::IconTag::BOOK_CONTENT, {
+                        Aquamarine::uiVizWidgetMenuItem("Tutorials", 0),
+                        Aquamarine::uiVizWidgetMenuItem("Enter Licence Key...", 1),                        
+                        Aquamarine::uiVizWidgetMenuItem("About (reg)", 2),
+                        Aquamarine::uiVizWidgetMenuItem("About (popout)", 3),
+                        Aquamarine::uiVizWidgetMenuItem("About (modal)", 4)                                                
                     })
                 });
             helpMenu->setTheme(theme);
@@ -436,15 +420,15 @@ private:
 
             /* Let the fun begin... */
             setMenuCollection({
-                uiVizWidgetMenuCollectionItem(MENU_FILE, fileMenu, "File"),
-                uiVizWidgetMenuCollectionItem(MENU_ADD, omniMenu, "Add...", uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_FILE, fileMenu, "File"),
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, omniMenu, "Add...", Aquamarine::uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::LEFT, VerticalAlign::CENTER)),
-                uiVizWidgetMenuCollectionItem(MENU_HELP, helpMenu, "Help"),                    
-                uiVizWidgetMenuCollectionItem(MENU_ADD, licenceMenu, uiVizIconCache::getIcon("REG_USER"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_HELP, helpMenu, "Help"),                    
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, licenceMenu, Aquamarine::uiVizIconCache::getIcon("REG_USER"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20))),
-                uiVizWidgetMenuCollectionItem(MENU_NOTIFICATION, notificationMenu, uiVizIconCache::getIcon("REG_DOT"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_NOTIFICATION, notificationMenu, Aquamarine::uiVizIconCache::getIcon("REG_DOT"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20))),                    
-                uiVizWidgetMenuCollectionItem(MENU_DEBUG, nullptr, uiVizIconCache::getIcon("REG_BUG"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_DEBUG, nullptr, Aquamarine::uiVizIconCache::getIcon("REG_BUG"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20)))
             });
 
@@ -452,9 +436,9 @@ private:
 
             bool loadedLastProj = false;
             if (getViz()->getAutoLoadMostRecentProject()) {
-                string mostRecentProject = uiVizWidgetFileLocationsList::getMostRecentProject();
+                string mostRecentProject = Aquamarine::uiVizWidgetFileLocationsList::getMostRecentProject();
                 if (mostRecentProject != "") { 
-                    loadedLastProj = uiVizWidgetManager::load(mostRecentProject, true, this);
+                    loadedLastProj = Aquamarine::uiVizWidgetManager::load(mostRecentProject, true, this);
 
                 }
             }

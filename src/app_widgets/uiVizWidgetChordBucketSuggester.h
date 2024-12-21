@@ -58,7 +58,7 @@ private:
     uiVizWidgetScalePicker *scalePicker = nullptr;
 
     void initWidget() override {
-        setTitle(uiVizShared::lang("CHORD_BUCKET_SUGGESTER"));
+        setTitle(Aquamarine::uiVizShared::lang("CHORD_BUCKET_SUGGESTER"));
 
         if (!scalePicker)
         {

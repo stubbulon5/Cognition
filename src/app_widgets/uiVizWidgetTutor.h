@@ -4,8 +4,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
-#include "../uiViz/widget/uiVizWidgetMenu.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetMusical.h"
 
 
@@ -41,7 +40,7 @@ public:
         
     }
     
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         // To be overridden in derived classes
         //uiVizWidgetManager::load("layout-3.xml", true);
     }

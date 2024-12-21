@@ -1,9 +1,9 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetOmniMenuSearchResults.h"
 #include "uiVizWidgetOmniMenuLinks.h"
 
-class uiVizWidgetOmniMenu : public uiVizWidget {
+class uiVizWidgetOmniMenu : public Aquamarine::uiVizWidget {
     
 public:
 
@@ -20,15 +20,15 @@ public:
     virtual ~uiVizWidgetOmniMenu() {
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
     }
 
     
 private:
-    uiVizWidgetElmTextbox *omniSearchBox = nullptr;
+    Aquamarine::uiVizWidgetElmTextbox *omniSearchBox = nullptr;
     uiVizWidgetOmniMenuSearchResults *omniSearchResults = nullptr;
     uiVizWidgetOmniMenuLinks *omniLinks = nullptr;
 
@@ -42,7 +42,7 @@ private:
          string omniLinksId = getPersistentId() +  "_OMNI_LINKS";
 
         if (!omniSearchBox && 1==2) {
-            omniSearchBox = dynamic_cast<uiVizWidgetElmTextbox*>(addOrLoadWidgetElement(omniSearchBox, WIDGET_ELM_CLASS::TEXTBOX, omniSearchBoxId, R"(
+            omniSearchBox = dynamic_cast<Aquamarine::uiVizWidgetElmTextbox*>(addOrLoadWidgetElement(omniSearchBox, Aquamarine::WIDGET_ELM_CLASS::TEXTBOX, omniSearchBoxId, R"(
                 <element>
                 </element>
                 )"));

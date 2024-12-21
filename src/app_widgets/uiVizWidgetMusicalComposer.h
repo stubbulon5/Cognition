@@ -1,8 +1,6 @@
 
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
-#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
-#include "uiVizWidgetMenuCollection.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetMusicalComposerSidebar.h"
 
 class uiVizWidgetMusicalComposer : public uiVizWidgetMusical {
@@ -49,23 +47,23 @@ public:
             ofRemoveListener(pianoRollChorus->widgetEventReceived, this, &uiVizWidgetMusicalComposer::onPianoRollChorusEventReceived);            
     };
 
-    virtual void onTopMenuItemSelected(uiVizWidgetMenuCollectionArgs & args) {
+    virtual void onTopMenuItemSelected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) {
 
     }
 
-    virtual void onPianoRollChorusEventReceived(uiVizWidgetEventArgs &args) {
+    virtual void onPianoRollChorusEventReceived(Aquamarine::uiVizWidgetEventArgs &args) {
         string event = args.getFullEventName();
     }
 
-    virtual void onSidebarEventReceived(uiVizWidgetEventArgs &args) {
+    virtual void onSidebarEventReceived(Aquamarine::uiVizWidgetEventArgs &args) {
         string event = args.getFullEventName();
     }
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string event = args.getFullEventName();
     }
 
-    virtual void setTheme(uiVizWidgetTheme val) override {
+    virtual void setTheme(Aquamarine::uiVizWidgetTheme val) override {
         uiVizWidgetMusical::setTheme(val);
 
         // Theme overrides...
@@ -83,12 +81,12 @@ public:
 protected:
 
 private:
-    uiVizWidgetMenuCollection* topMenu = nullptr;;
+    Aquamarine::uiVizWidgetMenuCollection* topMenu = nullptr;;
 
     uiVizWidgetMusicalComposerSidebar* sidebar = nullptr;;
 
-    uiVizWidgetPianoRoll *pianoRollChorus = nullptr;
-    uiVizWidgetElmBreadcrumb *breadcrumb = nullptr;
+    Aquamarine::uiVizWidgetPianoRoll *pianoRollChorus = nullptr;
+    Aquamarine::uiVizWidgetElmBreadcrumb *breadcrumb = nullptr;
 
     void initWidget() override {
         setMinWidth(400);
@@ -116,7 +114,7 @@ private:
 
 
         if (!breadcrumb) {
-            breadcrumb = dynamic_cast<uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(breadcrumb, WIDGET_ELM_CLASS::BREADCRUMB, breadcrumbId, R"(
+            breadcrumb = dynamic_cast<Aquamarine::uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(breadcrumb, Aquamarine::WIDGET_ELM_CLASS::BREADCRUMB, breadcrumbId, R"(
                 <element></element>
                 )"));
 
@@ -131,7 +129,7 @@ private:
 
 
         if (!pianoRollChorus) {
-            pianoRollChorus = new uiVizWidgetPianoRoll(pianoRollChorusId, R"(
+            pianoRollChorus = new Aquamarine::uiVizWidgetPianoRoll(pianoRollChorusId, R"(
                 <widget></widget>
                 )");
 
@@ -150,7 +148,7 @@ private:
         if (!topMenu) {
             // getSidebarWidth() =
 
-           topMenu = new uiVizWidgetMenuCollection("TOP_MENU", R"(
+           topMenu = new Aquamarine::uiVizWidgetMenuCollection("TOP_MENU", R"(
                 <widget>
                     <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.WIDTH}-${PADDING}*2"  />
                     <properties menuType="TAB" />
@@ -159,14 +157,14 @@ private:
 
 
             
-            uiVizIcon i = uiVizIconCache::getIcon("REG_QUEUE_MUSIC");
+            Aquamarine::uiVizIcon i = Aquamarine::uiVizIconCache::getIcon("REG_QUEUE_MUSIC");
 
             topMenu->setMenuCollection( {
-                uiVizWidgetMenuCollectionItem("VERSE", nullptr, "Verse", i),
-                uiVizWidgetMenuCollectionItem("PRE", nullptr, "Pre Chorus", i),
-                uiVizWidgetMenuCollectionItem("CHORUS", pianoRollChorus, "Chorus", i),
-                uiVizWidgetMenuCollectionItem("BRIDGE", nullptr, "Bridge", i),
-                uiVizWidgetMenuCollectionItem("DROP", nullptr, "Drop", i)
+                Aquamarine::uiVizWidgetMenuCollectionItem("VERSE", nullptr, "Verse", i),
+                Aquamarine::uiVizWidgetMenuCollectionItem("PRE", nullptr, "Pre Chorus", i),
+                Aquamarine::uiVizWidgetMenuCollectionItem("CHORUS", pianoRollChorus, "Chorus", i),
+                Aquamarine::uiVizWidgetMenuCollectionItem("BRIDGE", nullptr, "Bridge", i),
+                Aquamarine::uiVizWidgetMenuCollectionItem("DROP", nullptr, "Drop", i)
             });  
 
             topMenu->setItemXExpression("${PARENT.ABSOLUTE_USABLE_X}+${"+sidebarId+".WIDTH}");

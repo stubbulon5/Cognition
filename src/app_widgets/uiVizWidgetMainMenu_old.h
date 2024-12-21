@@ -22,21 +22,7 @@
 #include "uiVizWidgetScaleTable.h"
 #include "uiVizWidgetOmniMenu.h"
 
-#include "../uiViz/widget/uiVizWidgetSettings.h"
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
-#include "../uiViz/widget/uiVizWidgetMatrix.h"
-#include "../uiViz/widget/uiVizWidgetSequencer.h"
-#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
-#include "../uiViz/widget/uiVizWidgetVideoPlayer.h"
-#include "../uiViz/widget/uiVizWidgetVideoGrabber.h"
-#include "../uiViz/widget/uiVizWidgetSoundPlayer.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/system/uiVizWidgetFileExplorer.h"
-#include "../uiViz/widget/system/uiVizWidgetFileLoad.h"
-#include "../uiViz/widget/system/uiVizWidgetFileSave.h"
-#include "../uiViz/widget/system/uiVizWidgetThemeEditor.h"
-
+#include "ofxAquamarine.h"
 #include "../core/gp_parser/gp_parser.h"
 
 
@@ -67,7 +53,7 @@ public:
         return mWidgetXML;
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
         mainMenuIcon.setScaledPos(scale(getX()), scale(getY()));
         
         if (parent()) {
@@ -75,7 +61,7 @@ public:
         }
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
        
         mainMenuIcon.drawSvg();
 
@@ -149,7 +135,7 @@ public:
         }
     }
 
-    void onMenuItemSelected(uiVizWidgetMenuItemArgs & args) {
+    void onMenuItemSelected(Aquamarine::uiVizWidgetMenuItemArgs & args) {
         bool clearSelection = true;
 
         switch(args.activeMenuTabId) {
@@ -992,7 +978,7 @@ private:
             // ----------------------------------------------------------------------------
             // Omni Menu
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab(uiVizShared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+            uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
                             12345,
                             omniMenuMenuItem
                             ),          
@@ -1055,7 +1041,7 @@ private:
         });
             contextMenu->setIsPermanentWidget(true);
             
-            ofAddListener(dynamic_cast<uiVizWidgetMenu*>(contextMenu)->menuItemSelected, this, &uiVizWidgetMainMenu_old::onMenuItemSelected);
+            ofAddListener(dynamic_cast<Aquamarine::uiVizWidgetMenu*>(contextMenu)->menuItemSelected, this, &uiVizWidgetMainMenu_old::onMenuItemSelected);
     
             contextMenu->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
             contextMenu->setIgnoreThemeChanges(true);

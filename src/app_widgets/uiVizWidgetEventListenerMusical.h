@@ -1,9 +1,9 @@
 
 #pragma once
-#include "../uiViz/widget/uiVizWidgetEventListener.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetKeyPicker.h"
 
-class uiVizWidgetEventListenerMusical : public uiVizWidgetEventListener {
+class uiVizWidgetEventListenerMusical : public Aquamarine::uiVizWidgetEventListener {
     
 public:
     
@@ -14,7 +14,7 @@ public:
     virtual ~uiVizWidgetEventListenerMusical() {
     }
 
-    virtual void update(uiVizWidgetContext context) override {    
+    virtual void update(Aquamarine::uiVizWidgetContext context) override {    
         uiVizWidgetEventListener::update(context);
     }
 
@@ -22,38 +22,38 @@ public:
     
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
 
 
         if(context.isInitialDraw) {
-            uiVizWidgetEventListener::onWidgetWasJustInitialized();
+            Aquamarine::uiVizWidgetEventListener::onWidgetWasJustInitialized();
 
-            uiVizWidgetMenu* settingsMenu = getSettingsMenu();
+            Aquamarine::uiVizWidgetMenu* settingsMenu = getSettingsMenu();
             if (settingsMenu != nullptr) {
                 settingsMenu->addOrUpdateMenuTab(
                     // ----------------------------------------------------------------------------
                     // Label mode menu
                     // ----------------------------------------------------------------------------
-                    uiVizWidgetMenuTab(uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
+                    Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
                     keyPickerMenuItem
                     // {
-                    //     uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
-                    //     uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
-                    //     uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
-                    //     uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
+                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
+                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
+                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
                     // }
                     )
                 );
             }                
         }
 
-        uiVizWidgetEventListener::draw(context);
+        Aquamarine::uiVizWidgetEventListener::draw(context);
     }
 
-    void onMenuItemSelected(uiVizWidgetMenuItemArgs &args) override
+    void onMenuItemSelected(Aquamarine::uiVizWidgetMenuItemArgs &args) override
     {
 
-        uiVizWidgetEventListener::onMenuItemSelected(args);
+        Aquamarine::uiVizWidgetEventListener::onMenuItemSelected(args);
 
         uiVizWidget* owner = getOwnerWidget();
         if(!owner) return;
@@ -109,11 +109,11 @@ public:
     //             // ----------------------------------------------------------------------------
     //             // Label mode menu
     //             // ----------------------------------------------------------------------------
-    //             uiVizWidgetMenuTab(uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
-    //                 uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
-    //                 uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
-    //                 uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
-    //                 uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+    //             uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
+    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
+    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
+    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
     //             })
     //         );
     //     }        

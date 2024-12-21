@@ -1,9 +1,6 @@
 #pragma once
 #include <string>
-#include "../uiViz/uiVizShared.h"
-#include "../uiViz/uiVizWidgetManager.h"
-
-
+#include "ofxAquamarine.h"
 
 //------------------------------ APP CONSTANTS --------------------------------
 
@@ -69,9 +66,9 @@ public:
     static const int ICON_WIDGET_CLASS_GUITAR;
     static const int ICON_WIDGET_CLASS_CHORD_BUCKET;
     
-    static uiVizWidgetManager::widget_map_type getAppWidgetMap();
+    static Aquamarine::uiVizWidgetManager::widget_map_type getAppWidgetMap();
     
-    static std::map<std::string, uiVizIcon*> getIconCacheMap(float scale);
+    static std::map<std::string, Aquamarine::uiVizIcon*> getIconCacheMap(float scale);
 
 #ifdef TARGET_OF_IOS
     static void setIOSGetDocumentsDirectory(std::string val);

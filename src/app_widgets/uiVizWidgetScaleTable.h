@@ -4,9 +4,9 @@
 //
 //
 #pragma once
-#include "uiVizWidgetTable.h"
+#include "ofxAquamarine.h"
 
-class uiVizWidgetScaleTable : public uiVizWidgetTable {
+class uiVizWidgetScaleTable : public Aquamarine::uiVizWidgetTable {
 public:
     uiVizWidgetScaleTable(string persistentId, string widgetXML) : uiVizWidgetTable(persistentId, widgetXML) {
         initWidget();
@@ -23,14 +23,14 @@ public:
         
     vector<string> scales = MusicTheory::Scale::getAllScalesData();
 
-        uiVizWidgetTableRow headerRow = uiVizWidgetTableRow("Header", {
-            uiVizWidgetTableCell("scale", "Scale", "center"),
-            uiVizWidgetTableCell("origin", "Origin"),
-            uiVizWidgetTableCell("notes", "Notes"),
-            uiVizWidgetTableCell("numNotes", "#")
+        Aquamarine::uiVizWidgetTableRow headerRow = Aquamarine::uiVizWidgetTableRow("Header", {
+            Aquamarine::uiVizWidgetTableCell("scale", "Scale", "center"),
+            Aquamarine::uiVizWidgetTableCell("origin", "Origin"),
+            Aquamarine::uiVizWidgetTableCell("notes", "Notes"),
+            Aquamarine::uiVizWidgetTableCell("numNotes", "#")
         });
 
-        vector<uiVizWidgetTableRow> tableRows = vector<uiVizWidgetTableRow>();
+        vector<Aquamarine::uiVizWidgetTableRow> tableRows = vector<Aquamarine::uiVizWidgetTableRow>();
         
         int rowIndex=0;
         for (string scale:scales) {
@@ -47,11 +47,11 @@ public:
             if (scaleId != "" && scaleId != "???" && notes != "???") {
 
                 tableRows.push_back(
-                    uiVizWidgetTableRow(scaleId, {
-                        uiVizWidgetTableCell("", scaleName, "center"),
-                        uiVizWidgetTableCell("", origin),
-                        uiVizWidgetTableCell("", notes),
-                        uiVizWidgetTableCell("", numNotes)
+                    Aquamarine::uiVizWidgetTableRow(scaleId, {
+                        Aquamarine::uiVizWidgetTableCell("", scaleName, "center"),
+                        Aquamarine::uiVizWidgetTableCell("", origin),
+                        Aquamarine::uiVizWidgetTableCell("", notes),
+                        Aquamarine::uiVizWidgetTableCell("", numNotes)
                     })
                 );
                 rowIndex++;
@@ -74,12 +74,12 @@ public:
     };
  
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         uiVizWidgetTable::onWidgetEventReceived(args);
         string event = args.getFullEventName();
         if (args.sender.getPersistentId() == getPersistentId()) {
-            if (args.eventName == WIDGET_EVENT::TABLE_CELL_SELECTED) {
-                uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
+            if (args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_SELECTED) {
+                Aquamarine::uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
                 mSelectedScale = vizScale("C", eventRow->key, 3);
                 setDragData(mSelectedScale.getXML());
             }

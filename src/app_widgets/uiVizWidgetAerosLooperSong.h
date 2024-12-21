@@ -3,9 +3,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
-#include "uiVizWidgetMenuCollection.h"
-#include "uiVizWidgetDialog.h"
+#include "ofxAquamarine.h"
 
 #include "../core/aerosSong/song.pb.h"
 #include "../core/AudioFile/AudioFile.h"
@@ -37,7 +35,7 @@ public:
 
     }
     
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string parentWidgetId = args.sender.getParentPersistentId();
         string event = args.getFullEventName();
 
@@ -434,7 +432,7 @@ drawColumnNVG(const string& text,
         return "Success";
     }
 
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
 
     }
 
@@ -445,7 +443,7 @@ drawColumnNVG(const string& text,
     virtual void onChildWidgetsLoaded() override {
 
         if (!hookedEvents) {
-            TOOL_TABS = dynamic_cast<uiVizWidgetMenuCollection*>(getChildWidgetByPersistentId("TOOL_TABS"));
+            TOOL_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(getChildWidgetByPersistentId("TOOL_TABS"));
             ofAddListener(TOOL_TABS->menuItemSelected, this, &uiVizWidgetAerosLooperSong::onToolTabsMenuItemSelected);
 
 

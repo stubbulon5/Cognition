@@ -5,7 +5,7 @@
 //  Created by Stuart Barnes on 12/04/2019.
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "appConstants.h"
 
 
@@ -85,11 +85,11 @@ struct Licence {
                 LICENCE_str = licence_parts[2];
             }
             
-            licence.allowedAppMajorVersion = uiVizWidgetManager::getAppMajorVersion(LICENCE_valid_until_version);
-            licence.allowedAppMinorVersion = uiVizWidgetManager::getAppMinorVersion(LICENCE_valid_until_version);
+            licence.allowedAppMajorVersion = Aquamarine::uiVizWidgetManager::getAppMajorVersion(LICENCE_valid_until_version);
+            licence.allowedAppMinorVersion = Aquamarine::uiVizWidgetManager::getAppMinorVersion(LICENCE_valid_until_version);
             
-            int currentAppMajorVersion = uiVizWidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
-            int currentAppMinorVersion = uiVizWidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
+            int currentAppMajorVersion = Aquamarine::uiVizWidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
+            int currentAppMinorVersion = Aquamarine::uiVizWidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
             
             if (licence.allowedAppMajorVersion < currentAppMajorVersion ||
                 (licence.allowedAppMajorVersion == currentAppMajorVersion && licence.allowedAppMinorVersion < currentAppMinorVersion)) {
@@ -231,17 +231,17 @@ struct Licence {
         
         string licence_raw_xml =
         "<licence>"
-        "<username>" + uiVizShared::encodeForXML(username) + "</username>"
-        "<password>" + uiVizShared::encodeForXML(password) + "</password>"
-        "<issued_licence>" + uiVizShared::encodeForXML(issued_licence) + "</issued_licence>"
-        "<machineid>" + uiVizShared::encodeForXML(uiVizShared::getMachineId()) + "</machineid>"
-        "<token>" + uiVizShared::encodeForXML(token) + "</token>"
+        "<username>" + Aquamarine::uiVizShared::encodeForXML(username) + "</username>"
+        "<password>" + Aquamarine::uiVizShared::encodeForXML(password) + "</password>"
+        "<issued_licence>" + Aquamarine::uiVizShared::encodeForXML(issued_licence) + "</issued_licence>"
+        "<machineid>" + Aquamarine::uiVizShared::encodeForXML(Aquamarine::uiVizShared::getMachineId()) + "</machineid>"
+        "<token>" + Aquamarine::uiVizShared::encodeForXML(token) + "</token>"
         "<reauthorize>" + ofToString(reauthorize_epoch) + "</reauthorize>"
         "</licence>";
         
-        string encryptedLicenceXML = uiVizShared::XOR_Encryption(licence_raw_xml, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string encryptedLicenceXML = Aquamarine::uiVizShared::XOR_Encryption(licence_raw_xml, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         //cout << "\n\nencrypted:" << encryptedLicenceXML;
-        //string decryptedLicenceXML = uiVizShared::XOR_Encryption(encryptedLicenceXML, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        //string decryptedLicenceXML = Aquamarine::uiVizShared::XOR_Encryption(encryptedLicenceXML, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         //cout << "\n\ndecrypted:" << decryptedLicenceXML;
         ofBuffer encXMLBuff(encryptedLicenceXML.c_str(), encryptedLicenceXML.length());
         ofBufferToFile(APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE(), encXMLBuff);
@@ -249,7 +249,7 @@ struct Licence {
     
     static Licence getLicence() {
         string licenceEnc = Licence::loadLicenceFromFile();
-        string licenceXML = uiVizShared::XOR_Encryption(licenceEnc, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string licenceXML = Aquamarine::uiVizShared::XOR_Encryption(licenceEnc, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
         
         bool verified = false;
         if (licenceXML.size() > 10) {
@@ -322,7 +322,7 @@ struct Licence {
 };
 
 
-class uiVizWidgetLicence : public uiVizWidget {
+class uiVizWidgetLicence : public Aquamarine::uiVizWidget {
     
 public:
 
@@ -333,24 +333,24 @@ public:
     virtual ~uiVizWidgetLicence() {
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
         if (keyIcon.getIsVisible()) {
             mUIIconScale = scaleAnimationForUI(getWidgetId() + "_main_menu_left_in", mUIIconScale, 2.0f, 1.0f);
             keyIcon.setScaledPos(scale(getUsableX()), scale(getUsableY()));
-            uiVizCoord::vizBounds iconBounds = keyIcon.getScaledBounds();
+            Aquamarine::uiVizCoord::vizBounds iconBounds = keyIcon.getScaledBounds();
             keyIcon.scaleSvg(mUIIconScale, mUIIconScale);
             keyIcon.drawSvg();
         } 
     }
 
-     virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+     virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
 
         string event = args.getFullEventName();
         
-        if (event == "OK." + WIDGET_EVENT::CLICK) {
+        if (event == "OK." + Aquamarine::WIDGET_EVENT::CLICK) {
             
             PGS_VALIDATION_RESULT->setIsProgressing(true);
 
@@ -383,18 +383,18 @@ public:
             } else {
                 // there was a problem with the form!!
             }
-        } else if (event == "PGS_VALIDATION_RESULT." + WIDGET_EVENT::VALUE_CHANGED) {
+        } else if (event == "PGS_VALIDATION_RESULT." + Aquamarine::WIDGET_EVENT::VALUE_CHANGED) {
             ofColor c = PGS_VALIDATION_RESULT->getTheme().ElementForegroundColor;
             int percCol = min(255, (int)(255.0f*PGS_VALIDATION_RESULT->getPerc())+100);
             PGS_VALIDATION_RESULT->getTheme().ElementForegroundColor = ofColor(c.r, c.g, c.b, percCol);            
-        } else if (event == "CANCEL." + WIDGET_EVENT::CLICK) {
+        } else if (event == "CANCEL." + Aquamarine::WIDGET_EVENT::CLICK) {
             closeThisWidget();      
         }               
           
     };
     
     void displayValidationResult(Licence licence) {
-        uiVizWidgetElmLabel* LBL_VALIDATION_RESULT = getLabel("LBL_VALIDATION_RESULT");
+        Aquamarine::uiVizWidgetElmLabel* LBL_VALIDATION_RESULT = getLabel("LBL_VALIDATION_RESULT");
         if (licence.isValid) {
             LBL_VALIDATION_RESULT->setValue("Valid licence key");
         } else {
@@ -413,23 +413,23 @@ public:
 private:
     
     bool loaded = false;
-    uiVizIcon keyIcon;
+    Aquamarine::uiVizIcon keyIcon;
     float mUIIconScale = 1.0f;
     
-    uiVizWidgetElmTextbox* TXT_USERNAME;
-    uiVizWidgetElmTextbox* TXT_PASSWORD;
-    uiVizWidgetElmTextbox* TXT_LICENCE;
-    uiVizWidgetElmProgressBar* PGS_VALIDATION_RESULT;
+    Aquamarine::uiVizWidgetElmTextbox* TXT_USERNAME;
+    Aquamarine::uiVizWidgetElmTextbox* TXT_PASSWORD;
+    Aquamarine::uiVizWidgetElmTextbox* TXT_LICENCE;
+    Aquamarine::uiVizWidgetElmProgressBar* PGS_VALIDATION_RESULT;
 
     void initWidget() override {
         if (loaded) return;
         
-        keyIcon = uiVizIconCache::getIcon("MED_MENU");
+        keyIcon = Aquamarine::uiVizIconCache::getIcon("MED_MENU");
         keyIcon.setColor(ofColor(255, 255, 255, 200));
         keyIcon.setIsVisible(false);
         
         if (!loaded) {
-            uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/licence.xml", *this);
+            Aquamarine::uiVizWidgetManager::loadWidgetFromFileToExisting("ui/widgets/licence.xml", *this);
             loaded = true;            
         }
         

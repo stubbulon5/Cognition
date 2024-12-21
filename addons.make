@@ -10,3 +10,4 @@ ofxExternalDrop
 ofxOsc
 ofxTinyMidiPlayer
 ofxAnimatable
+ofxAquamarine

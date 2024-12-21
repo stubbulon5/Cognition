@@ -1,6 +1,6 @@
 
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetKeyPicker.h"
 #include "uiVizWidgetScaleTable.h"
 #include "uiVizWidgetChordDesigner.h"
@@ -42,7 +42,7 @@ public:
          
     };
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string event = args.getFullEventName();
     }
 
@@ -50,22 +50,22 @@ public:
 protected:
 
 private:
-    uiVizWidgetTable *tablePartPicker = nullptr;
-    uiVizWidgetTable *tableVariatPicker = nullptr;
+    Aquamarine::uiVizWidgetTable *tablePartPicker = nullptr;
+    Aquamarine::uiVizWidgetTable *tableVariatPicker = nullptr;
     uiVizWidgetKeyPicker *keyPicker = nullptr;
     uiVizWidgetScaleTable *scaleTable = nullptr;
     uiVizWidgetChordDesigner *chordDesigner = nullptr; 
 
 
-    uiVizWidgetElmButton *b1 = nullptr;
-    uiVizWidgetElmButton *b2 = nullptr;
-    uiVizWidgetElmButton *b3 = nullptr;
+    Aquamarine::uiVizWidgetElmButton *b1 = nullptr;
+    Aquamarine::uiVizWidgetElmButton *b2 = nullptr;
+    Aquamarine::uiVizWidgetElmButton *b3 = nullptr;
 
     void initWidget() override {
 
         if (!tablePartPicker) {
 
-           tablePartPicker = new uiVizWidgetTable("TABLE_PART_PICKER", R"(
+           tablePartPicker = new Aquamarine::uiVizWidgetTable("TABLE_PART_PICKER", R"(
                 <widget><bounds width="200" height="150" />
                     <properties autoResizeHeight="1" autoResizeWidth="1">
                         <header>
@@ -90,7 +90,7 @@ private:
                 </widget>
                 )");
 
-            uiVizWidgetManager::addWidgetForPopout(*scaleTable, getWidgetId(), false);
+            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*scaleTable, getWidgetId(), false);
 
         }   
 
@@ -103,7 +103,7 @@ private:
                 </widget>
                 )");
 
-            uiVizWidgetManager::addWidgetForPopout(*chordDesigner, getWidgetId(), true);
+            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*chordDesigner, getWidgetId(), true);
 
         }
 
@@ -114,11 +114,11 @@ private:
                 </widget>
                 )");
 
-             uiVizWidgetManager::addWidgetForPopout(*keyPicker, getWidgetId(), true);
+             Aquamarine::uiVizWidgetManager::addWidgetForPopout(*keyPicker, getWidgetId(), true);
         }                                 
 
         if(!b1) {
-            b1 = dynamic_cast<uiVizWidgetElmButton*>(addOrLoadWidgetElement(b1, WIDGET_ELM_CLASS::BUTTON, "B1", R"(
+            b1 = dynamic_cast<Aquamarine::uiVizWidgetElmButton*>(addOrLoadWidgetElement(b1, Aquamarine::WIDGET_ELM_CLASS::BUTTON, "B1", R"(
                 <element>
                 <bounds x="0" y="50" />
                 </element>
@@ -130,7 +130,7 @@ private:
         }
 
         if(!b2) {
-            b2 = dynamic_cast<uiVizWidgetElmButton*>(addOrLoadWidgetElement(b2, WIDGET_ELM_CLASS::BUTTON, "B2", R"(
+            b2 = dynamic_cast<Aquamarine::uiVizWidgetElmButton*>(addOrLoadWidgetElement(b2, Aquamarine::WIDGET_ELM_CLASS::BUTTON, "B2", R"(
                 <element>
                 <bounds x="150" y="150" />
                 </element>
@@ -142,7 +142,7 @@ private:
         }
 
         if(!b3) {
-            b3 = dynamic_cast<uiVizWidgetElmButton*>(addOrLoadWidgetElement(b3, WIDGET_ELM_CLASS::BUTTON, "B3", R"(
+            b3 = dynamic_cast<Aquamarine::uiVizWidgetElmButton*>(addOrLoadWidgetElement(b3, Aquamarine::WIDGET_ELM_CLASS::BUTTON, "B3", R"(
                 <element>
                 <bounds x="150" y="250" />
                 </element>

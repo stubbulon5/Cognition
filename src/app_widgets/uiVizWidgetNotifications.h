@@ -1,11 +1,10 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetSettings.h"
+#include "ofxAquamarine.h"
 
-class uiVizWidgetNotifications : public uiVizWidgetTable {
+class uiVizWidgetNotifications : public Aquamarine::uiVizWidgetTable {
     
 public:
-    ofEvent<uiVizWidgetEventArgs>     notificationItemsChanged;
+    ofEvent<Aquamarine::uiVizWidgetEventArgs>     notificationItemsChanged;
 
     struct notificationItem {
         string type = "";
@@ -44,22 +43,22 @@ public:
         std::vector<notificationItem> allNotifications(appUpdates);
         allNotifications.insert(allNotifications.end(), links.begin(), links.end());        
 
-        std::vector<uiVizWidgetTableRow> rows;         
+        std::vector<Aquamarine::uiVizWidgetTableRow> rows;         
 
         for (notificationItem item:allNotifications) {
 
             if(item.deleted) continue;
 
-            uiVizWidgetTableRow row(item.id, {
-                uiVizWidgetTableCell(
+            Aquamarine::uiVizWidgetTableRow row(item.id, {
+                Aquamarine::uiVizWidgetTableCell(
                     "", 
                     ""
                 ),            
-                uiVizWidgetTableCell(
+                Aquamarine::uiVizWidgetTableCell(
                     "", 
                     item.title
                 ),
-                uiVizWidgetTableCell(
+                Aquamarine::uiVizWidgetTableCell(
                     "", 
                     ""
                 )               
@@ -76,19 +75,19 @@ public:
                 
         }
 
-        setHeaderRow(uiVizWidgetTableRow("HEADER", {
-            uiVizWidgetTableCell(
+        setHeaderRow(Aquamarine::uiVizWidgetTableRow("HEADER", {
+            Aquamarine::uiVizWidgetTableCell(
                 "ICON",
                 "",
                 60
             ),            
-            uiVizWidgetTableCell(
+            Aquamarine::uiVizWidgetTableCell(
                 "ITEM",
                 "", 
                 100, 
                 250
             ),
-            uiVizWidgetTableCell(
+            Aquamarine::uiVizWidgetTableCell(
                 "DELETE",
                 "",
                 60
@@ -100,7 +99,7 @@ public:
         setTableRows(rows);
 
         // Notify any listeners...
-        uiVizWidgetEventArgs args = uiVizWidgetEventArgs(getWidgetId(), *this);
+        Aquamarine::uiVizWidgetEventArgs args = Aquamarine::uiVizWidgetEventArgs(getWidgetId(), *this);
         ofNotifyEvent(notificationItemsChanged, args);
 
         return mNewItemsFound;
@@ -170,7 +169,7 @@ public:
 
     static vector<notificationItem> getNotifications(string notificationType) {
         vector<notificationItem> notifications;        
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
@@ -199,7 +198,7 @@ public:
     }
 
     static uint64_t getNotificationLastChecked(string notificationType) {
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();        
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();        
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
@@ -212,19 +211,19 @@ public:
     }
 
     static void setNotificationLastChecked(string notificationType) {
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();        
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();        
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
                 settings.pushTag("notifications");
             }
             settings.setAttribute(notificationType, "dateLastChecked", ofToString(ofGetUnixTime()), 0);    
-            settings.saveFile(uiVizShared::getSettingsFileFullPath() );        
+            settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );        
         }        
     }
 
     static bool acknowledgeNotification(string id, string notificationType, bool deleteItem) {
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
@@ -241,7 +240,7 @@ public:
                 if (existingId == id) { 
                     settings.setAttribute("item", "acknowledged", "1", j);  
                     if (deleteItem) settings.setAttribute("item", "deleted", "1", j);                       
-                    settings.saveFile(uiVizShared::getSettingsFileFullPath() );
+                    settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );
                     return true;
                 }
             }
@@ -250,7 +249,7 @@ public:
     }
 
     static void addNotification(string id, string title, string data, string pubDate, string notificationType) {
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
@@ -279,13 +278,13 @@ public:
                 settings.setAttribute("item", "deleted", "0", itemCount);  
                 settings.setAttribute("item", "dateAdded", ofToString(ofGetUnixTime()), itemCount);
                 settings.setAttribute("item", "datePublished", pubDate, itemCount);                          
-                settings.saveFile(uiVizShared::getSettingsFileFullPath() );                
+                settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );                
             }
         }
     }
 
     static void pruneNotifications(int maxItems, string notificationType) {
-        ofxXmlSettings settings = uiVizWidgetSettings::getSettings();
+        ofxXmlSettings settings = Aquamarine::uiVizWidgetSettings::getSettings();
         if (settings.pushTag("settings")) {
             if (!settings.pushTag("notifications")) {
                 settings.addTag("notifications");
@@ -301,20 +300,20 @@ public:
             for(int j=from; j<total; j++) {
                 settings.removeTag("item", j);
             }
-            settings.saveFile(uiVizShared::getSettingsFileFullPath() );                
+            settings.saveFile(Aquamarine::uiVizShared::getSettingsFileFullPath() );                
 
         }
     }     
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string event = args.getFullEventName();
         if (args.sender.getPersistentId() == getPersistentId()) {
-            if (args.eventName == WIDGET_EVENT::TABLE_CELL_SELECTED) {
-                uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
-                uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
+            if (args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_SELECTED) {
+                Aquamarine::uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
+                Aquamarine::uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
                 if (!eventRow || !eventCell) return;
 
-                uiVizCoord::vizPoint p = getTableRowAndColForEvent(args.eventXML);
+                Aquamarine::uiVizCoord::vizPoint p = getTableRowAndColForEvent(args.eventXML);
 
                 string type = eventRow->getMetadata("TYPE");
                 string id = eventRow->getMetadata("ID");
@@ -351,7 +350,7 @@ public:
 
 // theme change
 
-    virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, uiVizWidgetTableRow& row, uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
+    virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
 
         bool acknowledged = row.getMetadata("acknowledged") == "1";
         float alpha = (acknowledged ? 0.7f : 1.0f);
@@ -381,7 +380,7 @@ public:
                 absoluteScaledX+(scaledWidth-iconClose.getScaledBounds().width)/2.0f, 
                 absoluteScaledY+(scaledHeight-iconClose.getScaledBounds().height)/2.0f
             );
-            uiVizElm vizElm_cell;
+            Aquamarine::uiVizElm vizElm_cell;
             vizElm_cell.setRectangle(absoluteScaledX, absoluteScaledY, scaledWidth, scaledHeight);
             if(vizElm_cell.isHovered_Rect()) {
                 vizElm_cell.setColor(ofColor(255, 0, 0, 180));
@@ -395,8 +394,8 @@ public:
         }
     }    
 
-    virtual void drawCellHighlight_Selected(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, uiVizWidgetTableRow& row, uiVizWidgetTableCell& cell, int rowIndex, int colIndex) {
-        uiVizElm vizElm_cell;
+    virtual void drawCellHighlight_Selected(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) {
+        Aquamarine::uiVizElm vizElm_cell;
         vizElm_cell.setRectangle(
             absoluteScaledX, absoluteScaledY,
             scaledWidth, scaledHeight,
@@ -408,14 +407,14 @@ public:
 
     
 private:
-    uiVizIcon iconLink, iconDownload, iconClose; 
+    Aquamarine::uiVizIcon iconLink, iconDownload, iconClose; 
     bool mNewItemsFound = false;
 
     void initWidget() override {  
 
-        iconLink = uiVizIconCache::getIcon("REG_INFO");
-        iconDownload = uiVizIconCache::getIcon("REG_NEW_RELEASE"); 
-        iconClose = uiVizIconCache::getIcon("REG_WIDGET_CLOSE"); 
+        iconLink = Aquamarine::uiVizIconCache::getIcon("REG_INFO");
+        iconDownload = Aquamarine::uiVizIconCache::getIcon("REG_NEW_RELEASE"); 
+        iconClose = Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_CLOSE"); 
 
         iconLink.scaleSvg(2, 2); 
         iconDownload.scaleSvg(2, 2); 

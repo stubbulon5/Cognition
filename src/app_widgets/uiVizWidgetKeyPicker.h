@@ -4,7 +4,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetMusical.h"
 
 //------------------------------ Key Picker widget --------------------------------
@@ -12,7 +12,7 @@
 class uiVizWidgetKeyPickerSlice {
 public:
     vizNote note;
-	uiVizElm path;
+	Aquamarine::uiVizElm path;
     ofPoint labelPoint;
     ofColor regularColor;
     ofColor selectedColor;
@@ -62,7 +62,7 @@ public:
 
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
         font = getFontSizedForDimensions(getUsableWidth(), getUsableHeight());
         fontLargeLabel = getLargeFontSizedForDimensions(getUsableWidth(), getUsableHeight());
         rectFontHitArea = font->rect("G#");
@@ -127,7 +127,7 @@ public:
         circleInnerPoint.set(circX, circY);
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
         // Draw the slices
 		bool anyNoteHovered = false;
         for(uiVizWidgetKeyPickerSlice& slice:circleSlices){
@@ -282,7 +282,7 @@ private:
     
     
     ofPath circleInner;
-	uiVizElm vizElm_circleInner;
+	Aquamarine::uiVizElm vizElm_circleInner;
     ofRectangle rectLargeLabel;
     ofColor largeLabelColor;
     ofRectangle rectFontHitArea;

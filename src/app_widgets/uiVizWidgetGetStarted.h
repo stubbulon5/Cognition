@@ -5,11 +5,10 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetLicence.h"
-#include "uiVizWidgetMenuCollection.h"
 
-class uiVizWidgetGetStarted : public uiVizWidget {
+class uiVizWidgetGetStarted : public Aquamarine::uiVizWidget {
     
 public:
     
@@ -20,14 +19,14 @@ public:
 
     virtual void onChildWidgetsLoaded() override {
         if (!loaded) {
-            GETTING_STARTED_TABS = dynamic_cast<uiVizWidgetMenuCollection*>(uiVizWidgetManager::getWidgetByPersistentId(this, "GETTING_STARTED_TABS"));
-            GENERAL_TAB_TABLE = dynamic_cast<uiVizWidgetTable*>(uiVizWidgetManager::getWidgetByPersistentId(this, "GENERAL_TAB_TABLE"));            
-            GUITAR_TAB_TABLE = dynamic_cast<uiVizWidgetTable*>(uiVizWidgetManager::getWidgetByPersistentId(this, "GUITAR_TAB_TABLE"));
-            BASS_TAB_TABLE = dynamic_cast<uiVizWidgetTable*>(uiVizWidgetManager::getWidgetByPersistentId(this, "BASS_TAB_TABLE"));
+            GETTING_STARTED_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GETTING_STARTED_TABS"));
+            GENERAL_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GENERAL_TAB_TABLE"));            
+            GUITAR_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "GUITAR_TAB_TABLE"));
+            BASS_TAB_TABLE = dynamic_cast<Aquamarine::uiVizWidgetTable*>(Aquamarine::uiVizWidgetManager::getWidgetByPersistentId(this, "BASS_TAB_TABLE"));
 
 
-            settingsWidget = dynamic_cast<uiVizWidget*>(uiVizWidgetManager::loadWidgetFromFile(APP_CONSTANTS::WIDGET_CLASS, "getStartedSettings", "ui/widgets/getStartedSettings.xml"));
-            uiVizWidgetManager::addWidgetForPopout(*settingsWidget, getWidgetId(), false);
+            settingsWidget = dynamic_cast<uiVizWidget*>(Aquamarine::uiVizWidgetManager::loadWidgetFromFile(APP_CONSTANTS::WIDGET_CLASS, "getStartedSettings", "ui/widgets/getStartedSettings.xml"));
+            Aquamarine::uiVizWidgetManager::addWidgetForPopout(*settingsWidget, getWidgetId(), false);
             settingsWidget->setShouldCloseIfOtherWidgetClicked(true);
 
             SETTINGS = getButton("SETTINGS");
@@ -36,7 +35,7 @@ public:
 
             settingsWidget->getButton("OK")->handlePressed([this]() {
 
-                uiVizWidgetMenuCollection* GETTING_STARTED_TABS = dynamic_cast<uiVizWidgetMenuCollection*>(settingsWidget->getChildWidgetByPersistentId("GETTING_STARTED_TABS"));
+                Aquamarine::uiVizWidgetMenuCollection* GETTING_STARTED_TABS = dynamic_cast<Aquamarine::uiVizWidgetMenuCollection*>(settingsWidget->getChildWidgetByPersistentId("GETTING_STARTED_TABS"));
                 uiVizWidgetKeyPicker* settingsWidgetKey = dynamic_cast<uiVizWidgetKeyPicker*>(GETTING_STARTED_TABS->getWidgetForTag("key"));
                 uiVizWidgetChordTable* settingsWidgetChordTable = dynamic_cast<uiVizWidgetChordTable*>(GETTING_STARTED_TABS->getWidgetForTag("chord"));
                 uiVizWidgetScaleTable* settingsWidgetScaleTable = dynamic_cast<uiVizWidgetScaleTable*>(GETTING_STARTED_TABS->getWidgetForTag("scale"));
@@ -77,7 +76,7 @@ public:
             );
     }
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string parentWidgetId = args.sender.getParentPersistentId();
         string event = args.getFullEventName();
 
@@ -95,9 +94,9 @@ public:
             //cout << "zzz";
             //add content
         } else if (args.sender.matchesWidgetOrChildOf(this)) {
-            if (event == "CANCEL." + WIDGET_EVENT::CLICK) {
+            if (event == "CANCEL." + Aquamarine::WIDGET_EVENT::CLICK) {
                 closeThisWidget();
-            } else  if (event == "OK." + WIDGET_EVENT::CLICK) {
+            } else  if (event == "OK." + Aquamarine::WIDGET_EVENT::CLICK) {
 
 
                 if (selectedTag == "general") {
@@ -123,16 +122,16 @@ public:
             }            
         }
 
-        uiVizWidgetElmButton* OK = getButton("OK");
+        Aquamarine::uiVizWidgetElmButton* OK = getButton("OK");
         if (OK) OK->setIsVisible(anyRowSelected());
 
-        uiVizWidgetElmButton* SETTINGS = getButton("SETTINGS");
+        Aquamarine::uiVizWidgetElmButton* SETTINGS = getButton("SETTINGS");
         if (SETTINGS) SETTINGS->setIsVisible(anyRowSelected() && stringedInstrument);
 
 
     }
 
-    virtual void onGettingStartedTabsMenuItemSelected(uiVizWidgetMenuCollectionArgs &args) {
+    virtual void onGettingStartedTabsMenuItemSelected(Aquamarine::uiVizWidgetMenuCollectionArgs &args) {
         cout << args.activeMenuTabId;
 
     }  
@@ -144,12 +143,12 @@ public:
 
     
 private:
-    uiVizWidgetMenuCollection* GETTING_STARTED_TABS = nullptr;
-    uiVizWidgetTable* GENERAL_TAB_TABLE = nullptr;
-    uiVizWidgetTable* GUITAR_TAB_TABLE = nullptr;
-    uiVizWidgetTable* BASS_TAB_TABLE = nullptr;
-    uiVizWidgetElmButton* SETTINGS = nullptr;
-    uiVizWidget* settingsWidget = nullptr;
+    Aquamarine::uiVizWidgetMenuCollection* GETTING_STARTED_TABS = nullptr;
+    Aquamarine::uiVizWidgetTable* GENERAL_TAB_TABLE = nullptr;
+    Aquamarine::uiVizWidgetTable* GUITAR_TAB_TABLE = nullptr;
+    Aquamarine::uiVizWidgetTable* BASS_TAB_TABLE = nullptr;
+    Aquamarine::uiVizWidgetElmButton* SETTINGS = nullptr;
+    Aquamarine::uiVizWidget* settingsWidget = nullptr;
     bool loaded = false;
     std::function<void(const string &)> mGetStartedCallback;   
 

@@ -1,5 +1,8 @@
 #include "ofApp.h"
-//--------------------------------------------------------------
+
+
+using namespace Aquamarine;
+
 void ofApp::setup(){
 
     //---------- SETTINGS ----------

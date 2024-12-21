@@ -4,9 +4,9 @@
 //
 //
 #pragma once
-#include "uiVizWidgetTable.h"
+#include "ofxAquamarine.h"
 
-class uiVizWidgetChordTable : public uiVizWidgetTable {
+class uiVizWidgetChordTable : public Aquamarine::uiVizWidgetTable {
 public:
     uiVizWidgetChordTable(string persistentId, string widgetXML) : uiVizWidgetTable(persistentId, widgetXML) {
         initWidget();
@@ -23,19 +23,19 @@ public:
         
     vector<string> scales = MusicTheory::Scale::getAllScalesData();
 
-        uiVizWidgetTableRow headerRow = uiVizWidgetTableRow("Header", {
-            uiVizWidgetTableCell("chord", "Chord", "center")
+        Aquamarine::uiVizWidgetTableRow headerRow = Aquamarine::uiVizWidgetTableRow("Header", {
+            Aquamarine::uiVizWidgetTableCell("chord", "Chord", "center")
         });
 
         vector<string> chords = MusicTheory::Chord::getAllKnownChords();
         
-        vector<uiVizWidgetTableRow> tableRows = vector<uiVizWidgetTableRow>();
+        vector<Aquamarine::uiVizWidgetTableRow> tableRows = vector<Aquamarine::uiVizWidgetTableRow>();
         
         int rowIndex=0;
         for (string chord:chords) {
             tableRows.push_back(
-                uiVizWidgetTableRow(chord, {
-                    uiVizWidgetTableCell("", chord, "center")
+                Aquamarine::uiVizWidgetTableRow(chord, {
+                    Aquamarine::uiVizWidgetTableCell("", chord, "center")
                 })
             );
             rowIndex++;
@@ -57,12 +57,12 @@ public:
     };
  
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         uiVizWidgetTable::onWidgetEventReceived(args);
         string event = args.getFullEventName();
         if (args.sender.getPersistentId() == getPersistentId()) {
-            if (args.eventName == WIDGET_EVENT::TABLE_CELL_SELECTED) {
-                uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
+            if (args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_SELECTED) {
+                Aquamarine::uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
                 mSelectedChord = vizChord("C"+eventRow->key);
                 setDragData(mSelectedChord.getXML());
             }

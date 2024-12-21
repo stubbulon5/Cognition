@@ -1,14 +1,7 @@
-//
-//  uiVizWidgetMusical.h
-//  bloom-macos
-//
-//
+
 #pragma once
-// UI stuff
-#include "../uiViz/widget/uiVizWidget.h"
-#include "../uiViz/widget/uiVizWidgetMenu.h"
-#include "../uiViz/widget/system/uiVizWidgetDialog.h"
-#include "../uiViz/widget/uiVizWidgetEventListener.h"
+
+#include "ofxAquamarine.h"
 
 #include "uiVizTheory.h"
 #include "appConstants.h"
@@ -66,7 +59,7 @@ public:
     vizChord chord;
 };
 
-class uiVizWidgetMusical :  public uiVizWidget {
+class uiVizWidgetMusical :  public Aquamarine::uiVizWidget {
     
 public:
     
@@ -301,9 +294,9 @@ public:
     };
 
 
-    uiVizWidgetElmBreadcrumb* getWidgetBreadCrumbBar() {
+    Aquamarine::uiVizWidgetElmBreadcrumb* getWidgetBreadCrumbBar() {
         if (mWidgetElmBreadcrumb == nullptr && getBreadcrumbItemItems().size() > 0) {
-            mWidgetElmBreadcrumb = dynamic_cast<uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(mWidgetElmBreadcrumb, WIDGET_ELM_CLASS::BREADCRUMB, "_widgetBreadcrumb", R"(
+            mWidgetElmBreadcrumb = dynamic_cast<Aquamarine::uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(mWidgetElmBreadcrumb, Aquamarine::WIDGET_ELM_CLASS::BREADCRUMB, "_widgetBreadcrumb", R"(
                 <element id="___TOP_BREADCRUMB" class="uiVizWidgetElmBreadcrumb" shouldPersist="0">
                 <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP_FIXED}" widthExpr="${PARENT.USABLE_WIDTH}" />
                 </element>
@@ -314,25 +307,25 @@ public:
         return mWidgetElmBreadcrumb;
     };
 
-    void setBreadcrumbItemItems(vector<uiVizWidgetElmBreadcrumbItem> items) {
+    void setBreadcrumbItemItems(vector<Aquamarine::Aquamarine::uiVizWidgetElmBreadcrumbItem> items) {
         mBreadcrumbItemItems = items;
         getWidgetBreadCrumbBar()->setBreadcrumbItemItems(items);
     }
 
     void setBreadcrumbItemItemsVisibility(bool visible) {
-        uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
+        Aquamarine::uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
         if(bar) {
             bar->setIsVisible(visible);
         }
     }    
 
-    vector<uiVizWidgetElmBreadcrumbItem> getBreadcrumbItemItems() {
+    vector<Aquamarine::Aquamarine::uiVizWidgetElmBreadcrumbItem> getBreadcrumbItemItems() {
         return mBreadcrumbItemItems;
     }   
 
-    uiVizWidgetEventListener* getWidgetEventListenerConfig() {
+    Aquamarine::uiVizWidgetEventListener* getWidgetEventListenerConfig() {
         if (mWidgetEventListenerConfig == nullptr) {
-            mWidgetEventListenerConfig = new uiVizWidgetEventListener(
+            mWidgetEventListenerConfig = new Aquamarine::uiVizWidgetEventListener(
                 getWidgetId() + "_EVENT_LISTENER_CONFIG",
                 "<widget ownerWidgetId='" + getWidgetId() + "'><bounds minWidth='500' minHeight='200' width='500'/><appearance /></widget>"
                 );
@@ -344,26 +337,26 @@ public:
       
 
     int getUsableHeight() override {
-        uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
+        Aquamarine::uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
         if(bar && bar->getIsVisible() && !getIsMinimized()) {
-            return uiVizWidget::getUsableHeight() - bar->getHeight() - getScaledPadding();
+            return Aquamarine::uiVizWidget::getUsableHeight() - bar->getHeight() - getScaledPadding();
         } else {
-            return uiVizWidget::getUsableHeight();
+            return Aquamarine::uiVizWidget::getUsableHeight();
         }
     }
 
     int getUsableY() override {
-        uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
+        Aquamarine::uiVizWidgetElmBreadcrumb* bar = getWidgetBreadCrumbBar();
         if(bar && bar->getIsVisible() && !getIsMinimized()) {
-            return uiVizWidget::getUsableY() + bar->getHeight() + getScaledPadding();
+            return Aquamarine::uiVizWidget::getUsableY() + bar->getHeight() + getScaledPadding();
         } else {
-            return uiVizWidget::getUsableY();
+            return Aquamarine::uiVizWidget::getUsableY();
         }
     }    
 
      
     virtual bool loadState(string widgetXML) override {
-        uiVizWidget::loadState(widgetXML);
+        Aquamarine::uiVizWidget::loadState(widgetXML);
         
         ofxXmlSettings settings = ofxXmlSettings();
         if (!settings.loadFromBuffer(widgetXML.c_str())) {
@@ -571,7 +564,7 @@ public:
     void appendInstrumentRulesToXMLNode(ofxXmlSettings* xml, int index) {
         ofxXmlSettings rules = getInstrumentRules();
         TiXmlElement* rulesElm = rules.doc.RootElement();
-        uiVizShared::appendXMLToTarget(rulesElm, xml, true);
+        Aquamarine::uiVizShared::appendXMLToTarget(rulesElm, xml, true);
     }
 
     virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) {
@@ -1864,9 +1857,9 @@ public:
      }
      */
     
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         string event = args.eventName;
-        if (event == WIDGET_EVENT::RECEIVE_DRAG_AND_DROP_DATA) {
+        if (event == Aquamarine::WIDGET_EVENT::RECEIVE_DRAG_AND_DROP_DATA) {
             populateTargetMusicalWidget(this, args.getXMLString(true));
         } else if (event == APP_WIDGET_EVENT::SET_SELECTED_KEY) {
             populateTargetMusicalWidget(this, args.getXMLString(true));
@@ -1890,8 +1883,8 @@ public:
         //cout << "[" << getPersistentId() << "->" << widgetTarget->getPersistentId() << 
         //    "] RECEIVING DRAG DATA:\n" << dragData;   
 
-        uiVizWidget* widgetTarget = uiVizWidgetManager::getWidget(getTargetDropWidgetId());
-        uiVizWidgetMusical* musicalWidgetTarget = dynamic_cast<uiVizWidgetMusical*>(uiVizWidgetManager::getWidget(getTargetDropWidgetId()));
+        uiVizWidget* widgetTarget = Aquamarine::uiVizWidgetManager::getWidget(getTargetDropWidgetId());
+        uiVizWidgetMusical* musicalWidgetTarget = dynamic_cast<uiVizWidgetMusical*>(Aquamarine::uiVizWidgetManager::getWidget(getTargetDropWidgetId()));
         if (musicalWidgetTarget == NULL) return;
 
         populateTargetMusicalWidget(musicalWidgetTarget, dragData);
@@ -1955,7 +1948,7 @@ public:
                     musicalWidgetTarget->setIsUserEditing(false);
                     musicalWidgetTarget->setSelectedKey(draggedNote);
                     musicalWidgetTarget->onKeyChanged(draggedNote);
-                    uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
                 }
             }
 
@@ -1990,7 +1983,7 @@ public:
                     }
                     
                     musicalWidgetTarget->setNeedsUpdate(true);
-                    uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
                 }                
             }            
 
@@ -2016,7 +2009,7 @@ public:
                     musicalWidgetTarget->setSelectedScale(draggedScale, true);
 
                     musicalWidgetTarget->setNeedsUpdate(true);
-                    uiVizWidgetManager::setCurrentProjectIsDirty(true);
+                    Aquamarine::uiVizWidgetManager::setCurrentProjectIsDirty(true);
                 }                  
             }
           
@@ -2252,7 +2245,7 @@ public:
             rulesTarget.removeTag(tagName, 0);
         }
 
-        uiVizShared::appendXMLToTarget(rules, &rulesTarget, true);
+        Aquamarine::uiVizShared::appendXMLToTarget(rules, &rulesTarget, true);
 
         rulesTarget.popTag();
         setInstrumentRules(rulesTarget, fireEvent);  
@@ -2353,10 +2346,10 @@ public:
         }
     }
     
-    uiVizWidgetMenu* getPopoutMenu(int menuTag) {
+    Aquamarine::uiVizWidgetMenu* getPopoutMenu(int menuTag) {
         uiVizWidget* widget = getPopoutWidgetForMenuTag(menuTag);
         if (widget == nullptr) return nullptr;
-        uiVizWidgetMenu* widgetMenu = dynamic_cast<uiVizWidgetMenu*>(widget);
+        Aquamarine::uiVizWidgetMenu* widgetMenu = dynamic_cast<Aquamarine::uiVizWidgetMenu*>(widget);
         return widgetMenu;
     }
 
@@ -2384,34 +2377,34 @@ public:
         mShowSettingsIcon = val;
     }    
 
-    virtual vector<uiVizIcon> getWidgetTitleIcons() override {
-        vector<uiVizIcon> icons = uiVizWidget::getWidgetTitleIcons();
+    virtual vector<Aquamarine::uiVizIcon> getWidgetTitleIcons() override {
+        vector<Aquamarine::uiVizIcon> icons = uiVizWidget::getWidgetTitleIcons();
 
         if (getShowHelpIcon()) {
-            icons.push_back(uiVizIconCache::getIcon("REG_WIDGET_HELP"));
+            icons.push_back(Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_HELP"));
         }
 
         if (getShowSettingsIcon()) {
-            icons.push_back(uiVizIconCache::getIcon("REG_WIDGET_SETTINGS"));
+            icons.push_back(Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_SETTINGS"));
         }        
         
         return icons;
     }    
 
 
-    virtual void titleIconClicked(int iconTag, uiVizCoord::vizBounds deScaledClickBounds) override {
+    virtual void titleIconClicked(int iconTag, Aquamarine::uiVizCoord::vizBounds deScaledClickBounds) override {
 
-        uiVizCoord::vizBounds iconBounds = getPopoutScaledBoundsForTitleIcon(iconTag);            
+        Aquamarine::uiVizCoord::vizBounds iconBounds = getPopoutScaledBoundsForTitleIcon(iconTag);            
 
-        if (iconTag == uiVizIconCache::IconTag::WIDGET_HELP) {
+        if (iconTag == Aquamarine::uiVizIconCache::IconTag::WIDGET_HELP) {
             if (mWidgetTextEditorHelp == nullptr) {
-                mWidgetTextEditorHelp = new uiVizWidgetDialog(getPersistentId() + "__HELP", R"(
+                mWidgetTextEditorHelp = new Aquamarine::uiVizWidgetDialog(getPersistentId() + "__HELP", R"(
                 <widget>
                     <bounds width="500" height="300" />
                 </widget>
                 )");   
 
-                uiVizWidgetManager::addWidgetForPopout(*mWidgetTextEditorHelp, getWidgetId(), true);
+                Aquamarine::uiVizWidgetManager::addWidgetForPopout(*mWidgetTextEditorHelp, getWidgetId(), true);
             }
             
             mWidgetTextEditorHelp->setTitle("Help");  
@@ -2483,11 +2476,11 @@ private:
     int mPlayingChordIndex = -1;
     int mPlayingChordIndexPrev = -1;
 
-    uiVizWidgetElmBreadcrumb *mWidgetElmBreadcrumb = nullptr;
-    vector<uiVizWidgetElmBreadcrumbItem> mBreadcrumbItemItems;
+    Aquamarine::uiVizWidgetElmBreadcrumb *mWidgetElmBreadcrumb = nullptr;
+    vector<Aquamarine::Aquamarine::uiVizWidgetElmBreadcrumbItem> mBreadcrumbItemItems;
 
-    uiVizWidgetDialog *mWidgetTextEditorHelp = nullptr;
-    uiVizWidgetEventListener *mWidgetEventListenerConfig = nullptr;
+    Aquamarine::uiVizWidgetDialog *mWidgetTextEditorHelp = nullptr;
+    Aquamarine::uiVizWidgetEventListener *mWidgetEventListenerConfig = nullptr;
     
     std::function<void(vizNote &)> m_KeyChangedFunc = [this](vizNote &){};
     

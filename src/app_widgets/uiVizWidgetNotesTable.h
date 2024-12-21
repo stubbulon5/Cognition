@@ -4,9 +4,9 @@
 //
 //
 #pragma once
-#include "uiVizWidgetTable.h"
+#include "ofxAquamarine.h"
 
-class uiVizWidgetNotesTable : public uiVizWidgetTable {
+class uiVizWidgetNotesTable : public Aquamarine::uiVizWidgetTable {
 public:
     uiVizWidgetNotesTable(string persistentId, string widgetXML) : uiVizWidgetTable(persistentId, widgetXML) {
         initWidget();
@@ -21,12 +21,12 @@ public:
             return false;
         }
 
-        uiVizWidgetTableRow headerRow = uiVizWidgetTableRow("Header", {
-            uiVizWidgetTableCell("note", "Note", "center"),
-            uiVizWidgetTableCell("octave", "Octave", "center")
+        Aquamarine::uiVizWidgetTableRow headerRow = Aquamarine::uiVizWidgetTableRow("Header", {
+            Aquamarine::uiVizWidgetTableCell("note", "Note", "center"),
+            Aquamarine::uiVizWidgetTableCell("octave", "Octave", "center")
         });
 
-        vector<uiVizWidgetTableRow> tableRows = vector<uiVizWidgetTableRow>();
+        vector<Aquamarine::uiVizWidgetTableRow> tableRows = vector<Aquamarine::uiVizWidgetTableRow>();
         
         int rowIndex=0;
         for (int octave=0; octave<=5; octave++) {
@@ -34,9 +34,9 @@ public:
 
             for (string note:vizTheory::getChromaticScaleSharps()) {
                 tableRows.push_back(
-                    uiVizWidgetTableRow(note + "_" + strOctave, {
-                        uiVizWidgetTableCell(note, note, "center"),
-                        uiVizWidgetTableCell(strOctave, strOctave, "center")
+                    Aquamarine::uiVizWidgetTableRow(note + "_" + strOctave, {
+                        Aquamarine::uiVizWidgetTableCell(note, note, "center"),
+                        Aquamarine::uiVizWidgetTableCell(strOctave, strOctave, "center")
                     })
                 );
                 rowIndex++;
@@ -60,11 +60,11 @@ public:
     };
 
 
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
         uiVizWidgetTable::onWidgetEventReceived(args);
         string event = args.getFullEventName();
         if (args.sender.getPersistentId() == getPersistentId()) {
-            if (args.eventName == WIDGET_EVENT::TABLE_CELL_SELECTED) {
+            if (args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_SELECTED) {
                 vizNote note = getSelectedNotes()[0];
                 setSelectedNote(note, false, false);
                 note.audition(vizTheory::GeneralMidiInstrument::Acoustic_Grand_Piano);
@@ -80,9 +80,9 @@ public:
 
     vector<vizNote> getSelectedNotes() {
         if (getSelectedRows().size() > 0) {
-            uiVizWidgetTableRow row = getSelectedRows()[0];
-            uiVizWidgetTableCell cellNote = row.cells[0];
-            uiVizWidgetTableCell cellOctave = row.cells[1];
+            Aquamarine::uiVizWidgetTableRow row = getSelectedRows()[0];
+            Aquamarine::uiVizWidgetTableCell cellNote = row.cells[0];
+            Aquamarine::uiVizWidgetTableCell cellOctave = row.cells[1];
             vizNote note(cellNote.key, ofToInt(cellOctave.key), 1);
             return {note};
         }

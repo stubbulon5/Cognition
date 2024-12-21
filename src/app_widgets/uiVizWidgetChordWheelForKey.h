@@ -4,8 +4,7 @@
 //
 //
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
-#include "../uiViz/widget/uiVizWidgetMenu.h"
+#include "ofxAquamarine.h"
 #include "uiVizWidgetMusical.h"
 #include "uiVizWidgetChordDesigner.h"
 
@@ -15,7 +14,7 @@ class uiVizWidgetChordWheelForKeySlice {
 public:
     vizChord chord;
     vizChord originalChord;
-	uiVizElm path;
+	Aquamarine::uiVizElm path;
     string label;
     string parentKey = "";
     string originalParentKey = "";
@@ -310,7 +309,7 @@ public:
 		slice->distanceFromCentre = distanceFromCentre;
     }
 
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
         
         font = getSmallFontSizedForDimensions(getUsableWidth() * 0.3, getUsableHeight()  * 0.3);
         fontMediumLabel = getFontSizedForDimensions(getUsableWidth() * 0.8, getUsableHeight() * 0.8);        
@@ -486,7 +485,7 @@ public:
         return needsUpdate;
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
                 
         // Draw the slices
         // for(int i=1; i<=circleSlicesT3.size(); i++){
@@ -549,7 +548,7 @@ public:
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
         switch(menuTag) {
-            case uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
                 return chordWheelContextMenu;
             default:
                 return nullptr;
@@ -562,7 +561,7 @@ public:
             vizChord hoveredChord = getHoveredChord();
             chordDesignerMenuItem->addSelectedChord(hoveredChord, true, true);
 
-            showContextMenu(uiVizIconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
+            showContextMenu(Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
         }
     }
     
@@ -631,7 +630,7 @@ private:
     
     
     ofPath circleInner;
-	uiVizElm vizElm_circleInner;
+	Aquamarine::uiVizElm vizElm_circleInner;
     ofRectangle rectLargeLabel;
     ofRectangle rectScaleNameLabel;
     ofColor largeLabelColor;
@@ -962,63 +961,63 @@ private:
                 );
 
 
-            chordWheelContextMenu = new uiVizWidgetMenu(getWidgetId() + "_CP_MENU1", "<widget><bounds width='100' height='300'/></widget>", getWidgetId()
-                , uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
+            chordWheelContextMenu = new Aquamarine::uiVizWidgetMenu(getWidgetId() + "_CP_MENU1", "<widget><bounds width='100' height='300'/></widget>", getWidgetId()
+                , Aquamarine::uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
                 // ----------------------------------------------------------------------------
                 // Label mode menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
-                    uiVizWidgetMenuItem(uiVizShared::lang("NONE"), (int)TheoryVizLabelMode::NONE),
-                    uiVizWidgetMenuItem(uiVizShared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true),
-                    uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES),
-                    uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), (int)TheoryVizLabelMode::NONE),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
                 }),
                 
                 // ----------------------------------------------------------------------------
                 // Color mode menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("COLOR"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
-                    uiVizWidgetMenuItem(uiVizShared::lang("NONE"), (int)TheoryVizColorMode::NONE),
-                    uiVizWidgetMenuItem(uiVizShared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true),
-                    uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES),
-                    uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
-                    //uiVizWidgetMenuItem("Scale", (int)TheoryVizColorMode::SCALES)
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("COLOR"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), (int)TheoryVizColorMode::NONE),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                    //Aquamarine::uiVizWidgetMenuItem("Scale", (int)TheoryVizColorMode::SCALES)
                 }),
                     
                 // ----------------------------------------------------------------------------
                 // Note mode menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("NOTE_MODE"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_NOTE_MODE, {
-                    uiVizWidgetMenuItem(uiVizShared::lang("DEFAULT"), (int)TheoryVizNoteMode::DEFAULT, false, true),
-                    uiVizWidgetMenuItem(uiVizShared::lang("SHARP"), (int)TheoryVizNoteMode::SHARP),
-                    uiVizWidgetMenuItem(uiVizShared::lang("FLAT"), (int)TheoryVizNoteMode::FLAT)
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("NOTE_MODE"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_NOTE_MODE, {
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEFAULT"), (int)TheoryVizNoteMode::DEFAULT, false, true),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("SHARP"), (int)TheoryVizNoteMode::SHARP),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("FLAT"), (int)TheoryVizNoteMode::FLAT)
                 }),
 
                 // ----------------------------------------------------------------------------
                 // Scale / menu mode
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab("Modes Tabs", uiVizIconCache::getIcon("MED_CONTENT_THEORY_SCALE"), MENU_GROUP_1::MENU_TAB_CHORD_SCALE, {
-                    uiVizWidgetMenuItem("Ionian", 1, false, true),
-                    uiVizWidgetMenuItem("Dorian", 2),
-                    uiVizWidgetMenuItem("Phrygian", 3),
-                    uiVizWidgetMenuItem("Lydian", 4),
-                    uiVizWidgetMenuItem("Mixolydian", 5),
-                    uiVizWidgetMenuItem("Aeolian", 6),
-                    uiVizWidgetMenuItem("Locrian", 7),
+                Aquamarine::uiVizWidgetMenuTab("Modes Tabs", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_SCALE"), MENU_GROUP_1::MENU_TAB_CHORD_SCALE, {
+                    Aquamarine::uiVizWidgetMenuItem("Ionian", 1, false, true),
+                    Aquamarine::uiVizWidgetMenuItem("Dorian", 2),
+                    Aquamarine::uiVizWidgetMenuItem("Phrygian", 3),
+                    Aquamarine::uiVizWidgetMenuItem("Lydian", 4),
+                    Aquamarine::uiVizWidgetMenuItem("Mixolydian", 5),
+                    Aquamarine::uiVizWidgetMenuItem("Aeolian", 6),
+                    Aquamarine::uiVizWidgetMenuItem("Locrian", 7),
                     // ADD DIVIDER, and set degree color for hover state
-                    uiVizWidgetMenuItem("Melodic Minor", 8),
-                    uiVizWidgetMenuItem("Melodic Minor II", 9),
-                    uiVizWidgetMenuItem("Melodic Minor III", 10),
-                    uiVizWidgetMenuItem("Melodic Minor IV", 11),
-                    uiVizWidgetMenuItem("Melodic Minor V", 12),
-                    uiVizWidgetMenuItem("Melodic Minor VI", 13),
-                    uiVizWidgetMenuItem("Melodic Minor VII", 14)
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor", 8),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor II", 9),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor III", 10),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor IV", 11),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor V", 12),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor VI", 13),
+                    Aquamarine::uiVizWidgetMenuItem("Melodic Minor VII", 14)
                 }),
 
                // ----------------------------------------------------------------------------
                 // Chord Designer menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("CHORD_DESIGNER"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"),
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("CHORD_DESIGNER"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"),
                                 MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER,
                                 chordDesignerMenuItem
                                 ),                
@@ -1026,16 +1025,16 @@ private:
                 // ----------------------------------------------------------------------------
                 // Settings menu
                 // ----------------------------------------------------------------------------
-                uiVizWidgetMenuTab(uiVizShared::lang("SETTINGS"), uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {
-                    uiVizWidgetMenuItem(uiVizShared::lang("SOUND"), 1, true, true),
-                    uiVizWidgetMenuItem(uiVizShared::lang("SAVE"), 2)
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("SETTINGS"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("SOUND"), 1, true, true),
+                    Aquamarine::uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("SAVE"), 2)
                 })
                 
             });
 
-            ofAddListener(dynamic_cast<uiVizWidgetMenu*>(chordWheelContextMenu)->menuItemSelected, this, &uiVizWidgetChordWheelForKey::onMenuItemSelected);
+            ofAddListener(dynamic_cast<Aquamarine::uiVizWidgetMenu*>(chordWheelContextMenu)->menuItemSelected, this, &uiVizWidgetChordWheelForKey::onMenuItemSelected);
             
-            uiVizWidgetManager::addWidget(*chordWheelContextMenu, false, getWidgetId());
+            Aquamarine::uiVizWidgetManager::addWidget(*chordWheelContextMenu, false, getWidgetId());
         }
         
         //move the above block to widget manager method :
@@ -1057,7 +1056,7 @@ private:
         }
     }
 
-    void onMenuItemSelected(uiVizWidgetMenuItemArgs & args) {
+    void onMenuItemSelected(Aquamarine::uiVizWidgetMenuItemArgs & args) {
 
         switch(args.activeMenuTabId) {
                 

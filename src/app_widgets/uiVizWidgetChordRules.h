@@ -97,7 +97,7 @@ public:
 
     start thinking about some launch content (eg how chords are constructed from scales scales). uiVizWidgetTutuor -> ownerWidgetId
 */
-    virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
+    virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
 
         string event = args.getFullEventName();
         bool ruleChanged = false;
@@ -202,7 +202,7 @@ public:
         switch(getTheoryVizInstrumentTheoryContentMode()) {
             case TheoryVizInstrumentTheoryContentMode::CHORD: {
                 SLD_notesPerString->setIsVisible(false);
-                title = uiVizShared::lang("CHORD_RULES");
+                title = Aquamarine::uiVizShared::lang("CHORD_RULES");
                 setTitle(title);
                 break;
             }
@@ -212,7 +212,7 @@ public:
                 CHK_strictExtendedNotes->setIsVisible(false);
                 SLD_startingInversion->setIsVisible(false);
                 CHK_exactOctaveMatch->setIsVisible(false);
-                title = uiVizShared::lang("SCALE_RULES"); 
+                title = Aquamarine::uiVizShared::lang("SCALE_RULES"); 
                 setTitle(title);             
                 break;
             }            
@@ -229,13 +229,13 @@ protected:
 
 
 private:
-    uiVizWidgetElmBreadcrumb *breadcrumb = nullptr;
-    uiVizWidgetElmSlider* SLD_startingInversion = nullptr;  
-    uiVizWidgetElmCheckbox* CHK_allowNoteRepetition = nullptr; 
-    uiVizWidgetElmCheckbox* CHK_exactOctaveMatch = nullptr;
-    uiVizWidgetElmCheckbox* CHK_showExtendedNoteNames = nullptr; 
-    uiVizWidgetElmCheckbox* CHK_strictExtendedNotes = nullptr;    
-    uiVizWidgetElmSlider* SLD_notesPerString = nullptr;   
+    Aquamarine::uiVizWidgetElmBreadcrumb *breadcrumb = nullptr;
+    Aquamarine::uiVizWidgetElmSlider* SLD_startingInversion = nullptr;  
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_allowNoteRepetition = nullptr; 
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_exactOctaveMatch = nullptr;
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_showExtendedNoteNames = nullptr; 
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_strictExtendedNotes = nullptr;    
+    Aquamarine::uiVizWidgetElmSlider* SLD_notesPerString = nullptr;   
     string title = "";
     
 
@@ -316,7 +316,7 @@ private:
          
 
         if (!breadcrumb) {
-            breadcrumb = dynamic_cast<uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(breadcrumb, WIDGET_ELM_CLASS::BREADCRUMB, breadcrumbId, R"(
+            breadcrumb = dynamic_cast<Aquamarine::uiVizWidgetElmBreadcrumb*>(addOrLoadWidgetElement(breadcrumb, Aquamarine::WIDGET_ELM_CLASS::BREADCRUMB, breadcrumbId, R"(
                 <element>
                 </element>
                 )"));
@@ -331,7 +331,7 @@ private:
 
         if (!SLD_startingInversion) {
 
-            SLD_startingInversion = dynamic_cast<uiVizWidgetElmSlider*>(addOrLoadWidgetElement(SLD_startingInversion, WIDGET_ELM_CLASS::SLIDER, SLD_startingInversionId, R"(
+            SLD_startingInversion = dynamic_cast<Aquamarine::uiVizWidgetElmSlider*>(addOrLoadWidgetElement(SLD_startingInversion, Aquamarine::WIDGET_ELM_CLASS::SLIDER, SLD_startingInversionId, R"(
                 <element>
                 <title>Any Inversion</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -346,7 +346,7 @@ private:
 
         if (!CHK_allowNoteRepetition) {
 
-            CHK_allowNoteRepetition = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_allowNoteRepetition, WIDGET_ELM_CLASS::CHECKBOX, CHK_allowNoteRepetitionId, R"(
+            CHK_allowNoteRepetition = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_allowNoteRepetition, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, CHK_allowNoteRepetitionId, R"(
                 <element>
                 <title>Note Repetition</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -360,7 +360,7 @@ private:
 
         if (!CHK_exactOctaveMatch) {
 
-            CHK_exactOctaveMatch = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_exactOctaveMatch, WIDGET_ELM_CLASS::CHECKBOX, CHK_exactOctaveMatchId, R"(
+            CHK_exactOctaveMatch = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_exactOctaveMatch, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, CHK_exactOctaveMatchId, R"(
                 <element>
                 <title>Exact Octave Match</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -375,7 +375,7 @@ private:
 
         if (!CHK_showExtendedNoteNames) {
 
-            CHK_showExtendedNoteNames = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_showExtendedNoteNames, WIDGET_ELM_CLASS::CHECKBOX, CHK_showExtendedNoteNamesId, R"(
+            CHK_showExtendedNoteNames = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_showExtendedNoteNames, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, CHK_showExtendedNoteNamesId, R"(
                 <element>
                 <title>Extended Note Names</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -392,7 +392,7 @@ private:
 
         if (!CHK_strictExtendedNotes) {
 
-            CHK_strictExtendedNotes = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_strictExtendedNotes, WIDGET_ELM_CLASS::CHECKBOX, CHK_strictExtendedNotesId, R"(
+            CHK_strictExtendedNotes = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_strictExtendedNotes, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, CHK_strictExtendedNotesId, R"(
                 <element>
                 <title>Strict Extended Notes</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -410,7 +410,7 @@ private:
 
         if (!SLD_notesPerString) {
 
-            SLD_notesPerString = dynamic_cast<uiVizWidgetElmSlider*>(addOrLoadWidgetElement(SLD_notesPerString, WIDGET_ELM_CLASS::SLIDER, SLD_notesPerStringId, R"(
+            SLD_notesPerString = dynamic_cast<Aquamarine::uiVizWidgetElmSlider*>(addOrLoadWidgetElement(SLD_notesPerString, Aquamarine::WIDGET_ELM_CLASS::SLIDER, SLD_notesPerStringId, R"(
                 <element>
                 <title>Notes per string</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -423,7 +423,7 @@ private:
             SLD_notesPerString->setValue(rule_notesPerString, false);
         } 
 
-       if (title == "") title = uiVizShared::lang("CHORD_RULES");
+       if (title == "") title = Aquamarine::uiVizShared::lang("CHORD_RULES");
        setTitle(title);
     }
     

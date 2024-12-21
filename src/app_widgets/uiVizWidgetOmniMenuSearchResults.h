@@ -1,7 +1,7 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 
-class uiVizWidgetOmniMenuSearchResults : public uiVizWidget {
+class uiVizWidgetOmniMenuSearchResults : public Aquamarine::uiVizWidget {
     
 public:
 
@@ -18,10 +18,10 @@ public:
     virtual ~uiVizWidgetOmniMenuSearchResults() {
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
     }
 
     

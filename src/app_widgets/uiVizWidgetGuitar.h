@@ -1,6 +1,6 @@
 
 #pragma once
-#include "../uiViz/widget/uiVizWidget.h"
+#include "ofxAquamarine.h"
 #include "uiVizWigetStringedInstrument.h"
 
 
@@ -40,11 +40,11 @@ public:
     virtual ~uiVizWidgetGuitar() {
     }
     
-    void update(uiVizWidgetContext context) override {
+    void update(Aquamarine::uiVizWidgetContext context) override {
         uiVizWigetStringedInstrument::update(context);
     }
     
-    void draw(uiVizWidgetContext context) override {
+    void draw(Aquamarine::uiVizWidgetContext context) override {
         uiVizWigetStringedInstrument::draw(context);
     }
     

@@ -34,8 +34,8 @@ public:
                     APP_WIDGET_EVENT::ADD_SELECTED_NOTE,
                     APP_WIDGET_EVENT::SET_SELECTED_SCALE,
                     APP_WIDGET_EVENT::SET_HOVERED_CHORD,
-                    WIDGET_EVENT::RECEIVE_DRAG_AND_DROP_DATA,
-                    WIDGET_EVENT::DRAG_AND_DROP_DATA_SET                    
+                    Aquamarine::WIDGET_EVENT::RECEIVE_DRAG_AND_DROP_DATA,
+                    Aquamarine::WIDGET_EVENT::DRAG_AND_DROP_DATA_SET                    
                 }
             );
 

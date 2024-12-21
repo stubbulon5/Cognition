@@ -9,7 +9,7 @@
 
 // Sound stuff
 #include "sdMidiShared.h"
-#include "../uiViz/uiVizShared.h"
+#include "ofxAquamarine.h"
 #include "ofxXmlSettings.h"
 
 #include "../core/midifile/include/Binasc.h"
@@ -384,7 +384,7 @@ public:
     static ofColor getDefaultScaleDegreeColor(int degree) {
         degree = std::min(11, degree);
         degree = std::max(0, degree);
-        return uiVizWidgetTheme::getColor_fromRGBAHex(
+        return Aquamarine::uiVizWidgetTheme::getColor_fromRGBAHex(
                 getDefaultScaleDegreeHexColorsChromatic()[degree]
         );
     }
@@ -756,7 +756,7 @@ public:
     void appendInstrumentRulesToXMLNode(ofxXmlSettings* xml, int index) {
         ofxXmlSettings rules = getInstrumentRules();
         TiXmlElement* rulesElm = rules.doc.RootElement();
-        uiVizShared::appendXMLToTarget(rulesElm, xml, true);
+        Aquamarine::uiVizShared::appendXMLToTarget(rulesElm, xml, true);
     }
 
     bool getFboNeedsUpdate() {

@@ -1,13 +1,9 @@
 #pragma once
-#include "../uiViz/widget/uiVizWidgetTable.h"
-#include "../uiViz/widget/uiVizWidgetMediaPlayerBase.h"
-#include "../uiViz/widget/uiVizWidgetImageView.h"
-#include "../uiViz/widget/uiVizWidgetTextEditor.h"
+#include "ofxAquamarine.h"
 
 
 
-
-class uiVizWidgetOmniMenuLinks : public uiVizWidgetTable {
+class uiVizWidgetOmniMenuLinks : public Aquamarine::uiVizWidgetTable {
     
 public:
 
@@ -25,12 +21,12 @@ public:
     }
 
     void populateLinks() {
-        std::vector<uiVizWidgetTableRow> rows;
+        std::vector<Aquamarine::uiVizWidgetTableRow> rows;
 
         // Header
-        vector<uiVizWidgetTableCell> headerCells = vector<uiVizWidgetTableCell>(); 
+        vector<Aquamarine::uiVizWidgetTableCell> headerCells = vector<Aquamarine::uiVizWidgetTableCell>(); 
         headerCells.push_back(
-            uiVizWidgetTableCell(
+            Aquamarine::uiVizWidgetTableCell(
                 "ICON",
                 "", 
                 ICON_WIDTH
@@ -59,9 +55,9 @@ public:
                 }
             }
 
-            uiVizWidgetTableCell cell(
+            Aquamarine::uiVizWidgetTableCell cell(
                 widgetClassTypeRaw, 
-                uiVizWidgetManager::getWidgetPrettyName(widgetClassType), 
+                Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClassType), 
                 "center"
             );
 
@@ -73,7 +69,7 @@ public:
                     if (widgetClassTypeVals.size() > 2) {
                         string numStrings  = widgetClassTypeVals[2];
                         cell.setMetadata("NUM_STRINGS", numStrings);
-                        cell.label = uiVizWidgetManager::getWidgetPrettyName(widgetClassType) + " ("+numStrings+")";
+                        cell.label = Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClassType) + " ("+numStrings+")";
                     }
                 } else if(widgetClassType == APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET) {
                     if (widgetClassTypeVals.size() > 2) {
@@ -99,12 +95,12 @@ public:
                 }
             }
 
-            rows.push_back(uiVizWidgetTableRow("", {cell}));            
+            rows.push_back(Aquamarine::uiVizWidgetTableRow("", {cell}));            
             it++;
         }
 
-        setHeaderRow(uiVizWidgetTableRow("Icons", headerCells));
-        rows.push_back(uiVizWidgetTableRow("", headerCells)); 
+        setHeaderRow(Aquamarine::uiVizWidgetTableRow("Icons", headerCells));
+        rows.push_back(Aquamarine::uiVizWidgetTableRow("", headerCells)); 
 
         setTableRows(rows);
         wrapRows(ICON_WIDTH, ICON_HEIGHT);
@@ -116,17 +112,17 @@ public:
         wrapRows(ICON_WIDTH, ICON_HEIGHT);
     }
 
-    virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, uiVizWidgetTableRow& row, uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
-        uiVizIcon img = uiVizIconCache::getIcon(cell.key);
+    virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
+        Aquamarine::uiVizIcon img = Aquamarine::uiVizIconCache::getIcon(cell.key);
         
-        if (img.getTag() == uiVizIconCache::IconTag::NOT_FOUND) {
+        if (img.getTag() == Aquamarine::uiVizIconCache::IconTag::NOT_FOUND) {
                 if (mImgCacheMap.find(cell.key) == mImgCacheMap.end()) {
-                    uiVizWidgetCacheData cacheData = cacheMusicalWidgetIcon(cell.key, cell.getMetadata("DRAG_DATA"), 600, 600, false);
+                    Aquamarine::uiVizWidgetCacheData cacheData = cacheMusicalWidgetIcon(cell.key, cell.getMetadata("DRAG_DATA"), 600, 600, false);
 
-                    img = uiVizIcon(
+                    img = Aquamarine::uiVizIcon(
                         cacheData.imagePath, 
-                        uiVizCoord::vizBounds(0, 0, 600, 600), 
-                        1.0f, uiVizIcon::IconSize::REGULAR , ofColor::white, -1
+                        Aquamarine::uiVizCoord::vizBounds(0, 0, 600, 600), 
+                        1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR , ofColor::white, -1
                     );
                     mImgCacheMap[cell.key] = img;
                 } else {
@@ -141,7 +137,7 @@ public:
         
         ofPushStyle();
         ofSetColor(cell.cellSlice.isHovered() ? getCellLabelSelectedColor() : getCellLabelColor());
-        uiVizCoord::vizPoint p = getAlignmentPointForCellLabel(cell, absoluteScaledLabelX, absoluteScaledLabelY + scale(35), scaledWidth, scaledHeight);
+        Aquamarine::uiVizCoord::vizPoint p = getAlignmentPointForCellLabel(cell, absoluteScaledLabelX, absoluteScaledLabelY + scale(35), scaledWidth, scaledHeight);
         getFont()->draw(cell.label, p.x, p.y);
         ofPopStyle();
     }      
@@ -151,7 +147,7 @@ public:
         while (it != widgetsToCache.end()) {
             string widgetClass = it->first;
 
-            uiVizWidget* w = uiVizWidgetManager::loadWidget(widgetClass, "WIDGET_ICON_CACHE", R"(
+            uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(widgetClass, "WIDGET_ICON_CACHE", R"(
                 <widget><bounds width="200" height="200" maxWidth="200" maxHeight="200"/>
                     <properties>
                         <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="NONE" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0"/>
@@ -159,10 +155,10 @@ public:
                 </widget>
             )");  
         
-            uiVizWidgetManager::addWidget(*w, false);
+            Aquamarine::uiVizWidgetManager::addWidget(*w, false);
             string f = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), widgetClass+".png");
-            w->saveWidgetContentsToImageFile(f, uiVizWidgetContext::THUMBNAIL);
-            uiVizWidgetManager::removeWidget(*w);
+            w->saveWidgetContentsToImageFile(f, Aquamarine::uiVizWidgetContext::THUMBNAIL);
+            Aquamarine::uiVizWidgetManager::removeWidget(*w);
             it++;
         }
     }
@@ -182,8 +178,8 @@ public:
         return filename + "_" + ofToString(width) + "x" + ofToString(height) + ".png";
     }
 
-    uiVizWidgetCacheData cacheMusicalWidgetIcon(string widgetClass, string dragData, int width, int height, bool forceCache) { 
-        uiVizWidgetCacheData cacheData;
+    Aquamarine::uiVizWidgetCacheData cacheMusicalWidgetIcon(string widgetClass, string dragData, int width, int height, bool forceCache) { 
+        Aquamarine::uiVizWidgetCacheData cacheData;
         widgetClass = ofSplitString(widgetClass, "|")[0];
         string theoryType = uiVizWidgetMusical::getTheoryTypeForDragData(dragData);                
         string fileName;
@@ -203,11 +199,11 @@ public:
         string p = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), fileName);
         if (!forceCache && ofFile::doesFileExist(p, false)) {
             //cout <<ofToDataPath(p, true); 
-            cacheData = uiVizWidgetCacheData(p, widgetClass, uiVizWidgetManager::getWidgetPrettyName(widgetClass));
+            cacheData = Aquamarine::uiVizWidgetCacheData(p, widgetClass, Aquamarine::uiVizWidgetManager::getWidgetPrettyName(widgetClass));
             return cacheData;
         }
 
-        uiVizWidget* w = uiVizWidgetManager::loadWidget(widgetClass, "MUSICAL_WIDGET_ICON_CACHE", R"(
+        uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(widgetClass, "MUSICAL_WIDGET_ICON_CACHE", R"(
             <widget>
                 <properties>
                     <musicData colorMode="KEYS" colorAlternateMode="NONE" labelMode="NONE" labelAlternateMode="NONE" noteMode="DEFAULT" labelShowOctave="0"/>
@@ -218,7 +214,7 @@ public:
         w->setX(width*-1);
         w->setY(height*-1);
         w->setWidgetSize(width, height, false);
-        uiVizWidgetManager::addWidget(*w, false);
+        Aquamarine::uiVizWidgetManager::addWidget(*w, false);
 
 
         if (dynamic_cast<uiVizWidgetMusical*>(w)) {
@@ -226,22 +222,22 @@ public:
         }
 
         string f = ofToDataPath(p, true);
-        w->saveWidgetContentsToImageFile(f, uiVizWidgetContext::THUMBNAIL);
-        cacheData = uiVizWidgetCacheData(f, widgetClass, w->getWidgetPrettyName());
-        uiVizWidgetManager::removeWidget(*w);
+        w->saveWidgetContentsToImageFile(f, Aquamarine::uiVizWidgetContext::THUMBNAIL);
+        cacheData = Aquamarine::uiVizWidgetCacheData(f, widgetClass, w->getWidgetPrettyName());
+        Aquamarine::uiVizWidgetManager::removeWidget(*w);
         return cacheData;
     }    
 
 
-   virtual void onWidgetEventReceived(uiVizWidgetEventArgs &args) override {
-        if (args.sender.getPersistentId() == getPersistentId() && args.eventName == WIDGET_EVENT::TABLE_CELL_CLICKED) {
-            uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
-            uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
+   virtual void onWidgetEventReceived(Aquamarine::uiVizWidgetEventArgs &args) override {
+        if (args.sender.getPersistentId() == getPersistentId() && args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_CLICKED) {
+            Aquamarine::uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
+            Aquamarine::uiVizWidgetTableCell* eventCell = getTableCell(args.eventXML);
             if (eventCell) {
                 string classType = ofSplitString(eventCell->key, "|")[0];
-                string widgetPersistentId = uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
+                string widgetPersistentId = Aquamarine::uiVizWidgetManager::getSuggestedNewWidgetPersistentId(classType);
                 
-                uiVizWidget* w = uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
+                uiVizWidget* w = Aquamarine::uiVizWidgetManager::loadWidget(classType, widgetPersistentId, R"(
                     <widget>
                     <bounds width="250" height="250" minWidth="75" minHeight="75"  />
                     </widget>
@@ -271,20 +267,20 @@ public:
                         b->setSize(500, 400);
                         b->setTheoryVizInstrumentChordViewMode(uiVizWidgetMusical::TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM);
                     }                              
-                } else if (classType == uiVizWidgetManager::WIDGET_CLASS_SOUND_PLAYER || classType == uiVizWidgetManager::WIDGET_CLASS_VIDEO_PLAYER) {
+                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_SOUND_PLAYER || classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_VIDEO_PLAYER) {
                     
-                    uiVizWidgetMediaPlayerBase* player = dynamic_cast<uiVizWidgetMediaPlayerBase*>(w);
+                    Aquamarine::uiVizWidgetMediaPlayerBase* player = dynamic_cast<Aquamarine::uiVizWidgetMediaPlayerBase*>(w);
                     if (player != nullptr) {
                         player->setDoesRespondToFileDrop(true);    
                     }
 
-                } else if (classType == uiVizWidgetManager::WIDGET_CLASS_IMAGE_VIEW) {
-                    uiVizWidgetImageView* img = dynamic_cast<uiVizWidgetImageView*>(w);
+                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_IMAGE_VIEW) {
+                    Aquamarine::uiVizWidgetImageView* img = dynamic_cast<Aquamarine::uiVizWidgetImageView*>(w);
                     if (img != nullptr) {
                         img->setDoesRespondToFileDrop(true);    
                     }                    
-                } else if (classType == uiVizWidgetManager::WIDGET_CLASS_TEXT_EDITOR) {
-                    uiVizWidgetTextEditor* txt = dynamic_cast<uiVizWidgetTextEditor*>(w);
+                } else if (classType == Aquamarine::uiVizWidgetManager::WIDGET_CLASS_TEXT_EDITOR) {
+                   Aquamarine::uiVizWidgetTextEditor* txt = dynamic_cast<Aquamarine::uiVizWidgetTextEditor*>(w);
                     if (txt != nullptr) {
                         txt->setDoesRespondToFileDrop(true);    
                     }                    
@@ -292,7 +288,7 @@ public:
 
 
 
-                uiVizWidgetManager::addWidget(*w, true);
+                Aquamarine::uiVizWidgetManager::addWidget(*w, true);
 
                 // Populate it with drag data (if any)
                 string dragData = eventCell->getMetadata("DRAG_DATA");
@@ -305,9 +301,9 @@ public:
                     ofMouseEventArgs e(ofMouseEventArgs::Type::Dragged, 0, 0, OF_MOUSE_BUTTON_LEFT, 0);                    
                     w->onWidgetMouseContentDragReleased(e, dragData);
                 }
-                uiVizWidgetManager::centerWidget(w);
+                Aquamarine::uiVizWidgetManager::centerWidget(w);
             }
-        } else if(omniSearchBox && args.sender.getPersistentId() == omniSearchBox->getPersistentId() && args.eventName == WIDGET_EVENT::VALUE_CHANGED) {
+        } else if(omniSearchBox && args.sender.getPersistentId() == omniSearchBox->getPersistentId() && args.eventName == Aquamarine::WIDGET_EVENT::VALUE_CHANGED) {
 
             widgetsSearchResults = widgetsToCacheInitial;
             if (omniSearchBox->getValue() != "") {
@@ -343,7 +339,7 @@ public:
                     string widgetName = widgetClass;
                     //ofStringReplace(widgetName, "uiVizWidget", "");
                     if (ofIsStringInString(ofToLower(widgetClass), searchVal) 
-                        && widgetClass != uiVizWidgetManager::WIDGET_CLASS_DEBUG
+                        && widgetClass != Aquamarine::uiVizWidgetManager::WIDGET_CLASS_DEBUG
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU
                         && widgetClass != APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT
@@ -356,28 +352,28 @@ public:
                 widgetsToCache = widgetsToCacheInitial;
             }
             populateLinks();
-        } else if (args.eventName == WIDGET_EVENT::TABLE_CELL_HOVERED && args.sender.getPersistentId() == getPersistentId()) {
-            uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
-            uiVizWidgetTableCell* eventCell = getTableCell( args.eventXML);
+        } else if (args.eventName == Aquamarine::WIDGET_EVENT::TABLE_CELL_HOVERED && args.sender.getPersistentId() == getPersistentId()) {
+            Aquamarine::uiVizWidgetTableRow* eventRow = getTableRow(args.eventXML);
+            Aquamarine::uiVizWidgetTableCell* eventCell = getTableCell( args.eventXML);
             if (eventCell) {
                 setDragData(eventCell->getMetadata("DRAG_DATA"));
             }
         }
     }       
 
-    virtual void setTheme(uiVizWidgetTheme val) override {
-        uiVizWidgetTable::setTheme(val);
+    virtual void setTheme(Aquamarine::uiVizWidgetTheme val) override {
+        Aquamarine::uiVizWidgetTable::setTheme(val);
         setCellHoverColor(getTheme().WidgetAccentHighContrast1Color_withAlpha(getTheme().GenericSelectedAlpha));
     }    
     
 private:
-    uiVizWidgetManager::widget_map_type widgetMap;
-    vector<uiVizWidgetTableRow> rows = vector<uiVizWidgetTableRow>();
-    uiVizWidgetElmTextbox *omniSearchBox = nullptr;
+    Aquamarine::uiVizWidgetManager::widget_map_type widgetMap;
+    vector<Aquamarine::uiVizWidgetTableRow> rows = vector<Aquamarine::uiVizWidgetTableRow>();
+    Aquamarine::uiVizWidgetElmTextbox *omniSearchBox = nullptr;
     vector<string> searchHints = {"C Major", "Gb Minor", "D#m", "Ionian Scale", "Minor Scale"};   
     string omniSearchBoxId; 
 
-    std::map<std::string, uiVizIcon> mImgCacheMap;
+    std::map<std::string, Aquamarine::uiVizIcon> mImgCacheMap;
 
 
     map<string, string> widgetsToCache;
@@ -406,9 +402,9 @@ private:
     int ICON_WIDTH = 150;
     int ICON_HEIGHT = 100;
 
-    uiVizWidgetMenuCollection* menuItemTypeTabs = nullptr;  
-    uiVizWidgetElmCheckbox* CHK_INSTR_DIAGRAM_MODE = nullptr;  
-    uiVizWidgetElmCheckbox* CHK_INSTR_VERTICAL = nullptr;
+    Aquamarine::uiVizWidgetMenuCollection* menuItemTypeTabs = nullptr;  
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_INSTR_DIAGRAM_MODE = nullptr;  
+    Aquamarine::uiVizWidgetElmCheckbox* CHK_INSTR_VERTICAL = nullptr;
 
 
     void calculateTableBounds() {
@@ -440,7 +436,7 @@ private:
         
     }
 
-    virtual void onMenuItemSelected(uiVizWidgetMenuCollectionArgs & args) {   
+    virtual void onMenuItemSelected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) {   
         populateLinks(); 
         calculateTableBounds();
     }
@@ -454,14 +450,14 @@ private:
     }
 
 
-    virtual void drawCellHeaderRow(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, uiVizWidgetTableRow& row, uiVizWidgetTableCell& cell, int colIndex) override {
+    virtual void drawCellHeaderRow(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int colIndex) override {
         // Draw nothing!
     }  
 
-    virtual void drawCellFooterRow(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, uiVizWidgetTableRow& row, uiVizWidgetTableCell& cell, int colIndex) {
+    virtual void drawCellFooterRow(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int colIndex) {
         if (colIndex == 0) {
             
-            uiVizElm vizElm_cell;
+            Aquamarine::uiVizElm vizElm_cell;
             vizElm_cell.setRectangle(
                 absoluteScaledX,
                 absoluteScaledY,
@@ -477,21 +473,21 @@ private:
 
 // Add horizontal, Left, Diagram mode radio buttons to bottom of INSTRUMENTS tab ....
 
-    virtual void onWidgetAddedAsChild(uiVizWidgetEventArgs args) override {     
+    virtual void onWidgetAddedAsChild(Aquamarine::uiVizWidgetEventArgs args) override {     
         populateLinks();
     }
 
     void initWidget() override {  
 
         widgetsToCache = widgetsToCacheInitial;
-        widgetMap = uiVizWidgetManager::getWidgetMap();
+        widgetMap = Aquamarine::uiVizWidgetManager::getWidgetMap();
 
         populateLinks();
 
         omniSearchBoxId = getPersistentId() +  "_OMNI_SEARCH_BOX_TEXT";
 
         if (!omniSearchBox) {
-            omniSearchBox = dynamic_cast<uiVizWidgetElmTextbox*>(addOrLoadWidgetElement(omniSearchBox, WIDGET_ELM_CLASS::TEXTBOX, omniSearchBoxId, R"(
+            omniSearchBox = dynamic_cast<Aquamarine::uiVizWidgetElmTextbox*>(addOrLoadWidgetElement(omniSearchBox, Aquamarine::WIDGET_ELM_CLASS::TEXTBOX, omniSearchBoxId, R"(
                 <element>
                 </element>
                 )"));
@@ -512,7 +508,7 @@ private:
 
 
         if (!CHK_INSTR_DIAGRAM_MODE) {
-            CHK_INSTR_DIAGRAM_MODE = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_INSTR_DIAGRAM_MODE, WIDGET_ELM_CLASS::CHECKBOX, getWidgetId()+"_CHK_INSTR_DIAGRAM_MODE", R"(
+            CHK_INSTR_DIAGRAM_MODE = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_INSTR_DIAGRAM_MODE, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, getWidgetId()+"_CHK_INSTR_DIAGRAM_MODE", R"(
                 <element>
                 <title>Diagram Mode</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -529,7 +525,7 @@ private:
 
 
         if (!CHK_INSTR_VERTICAL) {
-            CHK_INSTR_VERTICAL = dynamic_cast<uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_INSTR_VERTICAL, WIDGET_ELM_CLASS::CHECKBOX, getWidgetId()+"_CHK_INSTR_VERTICAL", R"(
+            CHK_INSTR_VERTICAL = dynamic_cast<Aquamarine::uiVizWidgetElmCheckbox*>(addOrLoadWidgetElement(CHK_INSTR_VERTICAL, Aquamarine::WIDGET_ELM_CLASS::CHECKBOX, getWidgetId()+"_CHK_INSTR_VERTICAL", R"(
                 <element>
                 <title>Vertical Mode</title>
                 <bounds widthExpr="${PARENT.USABLE_WIDTH} - ${PADDING}*2" />
@@ -546,7 +542,7 @@ private:
 
         // This should always come last ...
         if (!menuItemTypeTabs) {
-            menuItemTypeTabs = new uiVizWidgetMenuCollection("LINK_TYPE_TAGS", R"(
+            menuItemTypeTabs = new Aquamarine::uiVizWidgetMenuCollection("LINK_TYPE_TAGS", R"(
                 <widget>
                     <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.USABLE_WIDTH}"  />
                     <properties menuType="TAB" />
@@ -556,9 +552,9 @@ private:
                             
             menuItemTypeTabs->setIsRoundedRectangle(false);            
             menuItemTypeTabs->setMenuCollection( {
-                uiVizWidgetMenuCollectionItem("GENERAL", nullptr, "General", uiVizIconCache::getIcon("REG_BUG")),         
-                uiVizWidgetMenuCollectionItem("INSTRUMENT", nullptr, "Instruments", uiVizIconCache::getIcon("REG_BUG")),
-                uiVizWidgetMenuCollectionItem("SEARCH", nullptr, "Search...", uiVizIconCache::getIcon("REG_BUG"))
+                Aquamarine::uiVizWidgetMenuCollectionItem("GENERAL", nullptr, "General", Aquamarine::uiVizIconCache::getIcon("REG_BUG")),         
+                Aquamarine::uiVizWidgetMenuCollectionItem("INSTRUMENT", nullptr, "Instruments", Aquamarine::uiVizIconCache::getIcon("REG_BUG")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("SEARCH", nullptr, "Search...", Aquamarine::uiVizIconCache::getIcon("REG_BUG"))
             });
             addChildWidget(*menuItemTypeTabs, true); 
             ofAddListener(menuItemTypeTabs->menuItemSelected, this, &uiVizWidgetOmniMenuLinks::onMenuItemSelected);  
