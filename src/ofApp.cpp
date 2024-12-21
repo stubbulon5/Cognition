@@ -53,7 +53,7 @@ void ofApp::initAquamarine() {
     Aquamarine::WidgetManager::removeAllWidgets();
     
     /* Add the main menu */
-    Aquamarine::uiVizWidget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
+    Aquamarine::Widget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
     Aquamarine::WidgetManager::addWidget(*mainMenuWidget, false);
 }
 

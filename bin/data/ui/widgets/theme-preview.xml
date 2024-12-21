@@ -4,47 +4,47 @@
 <bounds minWidth="400" minHeight="400" />
 
 <elements>
-<element id="OK" class="uiVizWidgetElmButton">
+<element id="OK" class="WidgetElmButton">
 <title>Sign In</title>
 <bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" />
 </element>
-<element id="CANCEL" class="uiVizWidgetElmButton">
+<element id="CANCEL" class="WidgetElmButton">
 <title>Cancel</title>
 <bounds width="100" height="35" xExpr="${PARENT.LEFT}" yExpr="${PARENT.BOTTOM}" />
 </element>
 
-<element id="IMG_AVATAR" class="uiVizWidgetElmImage">
+<element id="IMG_AVATAR" class="WidgetElmImage">
 <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" width="100" height="100" />
 <properties file="ui/images/default_avatar.jpg" />
 </element>
 
-<element id="TXT_USERNAME" class="uiVizWidgetElmTextbox">
+<element id="TXT_USERNAME" class="WidgetElmTextbox">
 <title>username</title>
 <bounds xExpr="${IMG_AVATAR.RIGHT}+${PADDING}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}-${IMG_AVATAR.RIGHT}" />
 </element>
 
-<element id="TXT_PASSWORD" class="uiVizWidgetElmTextbox" type="PASSWORD" >
+<element id="TXT_PASSWORD" class="WidgetElmTextbox" type="PASSWORD" >
 <title>password</title>
 <bounds xExpr="${IMG_AVATAR.RIGHT}+${PADDING}" yExpr="${TXT_USERNAME.BOTTOM} + ${PADDING}" widthExpr="${PARENT.USABLE_WIDTH}-${IMG_AVATAR.RIGHT}" />
 </element>
 
-<element id="TXT_LICENCE" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+<element id="TXT_LICENCE" class="WidgetElmTextbox" type="MULTI_LINE">
 <title>enter licence here...</title>
 <bounds xExpr="${IMG_AVATAR.RIGHT}+${PADDING}" yExpr="${TXT_PASSWORD.BOTTOM} + ${PADDING}" widthExpr="${PARENT.USABLE_WIDTH}-${IMG_AVATAR.RIGHT}" />
 </element>
 
-<element id="PGS_VALIDATION_RESULT" class="uiVizWidgetElmProgressBar" isAsyncProgressBar="1" isProgressing="1">
+<element id="PGS_VALIDATION_RESULT" class="WidgetElmProgressBar" isAsyncProgressBar="1" isProgressing="1">
 <bounds xExpr="${PARENT.LEFT}" yExpr="${TXT_LICENCE.BOTTOM} + ${PADDING}" widthExpr="${PARENT.USABLE_WIDTH}" height="10" />
 </element>
 
-<element id="LBL_VALIDATION_RESULT" class="uiVizWidgetElmLabel">
+<element id="LBL_VALIDATION_RESULT" class="WidgetElmLabel">
 <title>Validation Result</title>
 <bounds xExpr="${PARENT.LEFT}" yExpr="${PGS_VALIDATION_RESULT.BOTTOM} + ${PADDING} + 20" widthExpr="${PARENT.USABLE_WIDTH}" />
 </element>
 </elements>
 
 <childWidgets>
-    <widget id="THEME_PREVIEW_TABLE" class="uiVizWidgetTable">
+    <widget id="THEME_PREVIEW_TABLE" class="WidgetTable">
         <title style="NONE"/>
         <bounds height="160" xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PGS_VALIDATION_RESULT.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}"  />
         <properties>

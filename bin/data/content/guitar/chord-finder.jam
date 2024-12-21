@@ -1,5 +1,5 @@
 <widgets version="1.0.0" title="TODO (SAVED...)">
-    <widget id="CHORDWHEEL_245276" class="uiVizWidgetChordWheel">
+    <widget id="CHORDWHEEL_245276" class="WidgetChordWheel">
         <title style="TOP_STATIC" autohide="0" staticSize="20">Phrygian</title>
         <bounds x="433" y="51" width="629" height="408" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -24,7 +24,7 @@
         </properties>
         <elements />
     </widget>
-    <widget id="CHORDBUCKET_686995" class="uiVizWidgetChordBucket">
+    <widget id="CHORDBUCKET_686995" class="WidgetChordBucket">
         <title style="TOP_STATIC" autohide="0" staticSize="20">Chord Bucket</title>
         <bounds x="1074" y="51" width="344" height="413" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -159,7 +159,7 @@
         </listenEvents>
         <elements />
     </widget>
-    <widget id="GUITAR_1777" class="uiVizWidgetGuitar">
+    <widget id="GUITAR_1777" class="WidgetGuitar">
         <title style="TOP_OVERLAY" autohide="0">Ebmaj - 0 to 7 [Standard]</title>
         <bounds height="238" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" xExpr="0" yExpr="${WINDOW.HEIGHT} - ${SELF.HEIGHT}" widthExpr="${WINDOW.WIDTH}" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -211,7 +211,7 @@
         </listenEvents>
         <elements />
     </widget>
-    <widget id="CHORDDESIGNER_960675" class="uiVizWidgetChordDesigner">
+    <widget id="CHORDDESIGNER_960675" class="WidgetChordDesigner">
         <title style="TOP_STATIC" autohide="0" staticSize="20">Ebmaj</title>
         <bounds x="15" y="52" width="406" height="406" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />

@@ -4,35 +4,35 @@
 <bounds minWidth="500" minHeight="600" />
 
 <elements>
-<element id="OK" class="uiVizWidgetElmButton">
+<element id="OK" class="WidgetElmButton">
 <title>OK</title>
 <bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" />
 </element>
 
-<element id="CANCEL" class="uiVizWidgetElmButton">
+<element id="CANCEL" class="WidgetElmButton">
 <title>Cancel</title>
 <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.BOTTOM}" />
 </element>
 
-<element id="SETTINGS" class="uiVizWidgetElmButton">
+<element id="SETTINGS" class="WidgetElmButton">
 <title>Settings</title>
 <bounds xExpr="${CANCEL.RIGHT}+${PADDING}" yExpr="${PARENT.BOTTOM}" />
 </element>
 
-<element id="IMG_LOGO" class="uiVizWidgetElmImage">
+<element id="IMG_LOGO" class="WidgetElmImage">
 <bounds xExpr="${PARENT.USABLE_WIDTH}/2-200" yExpr="${PARENT.TOP}+10" widthExpr="400" heightExpr="170" />
 <properties file="ui/images/cognition-logo-01.png" />
 </element>
 </elements>
 
 <childWidgets>
-    <widget id="GETTING_STARTED_TABS" class="uiVizWidgetMenuCollection">
+    <widget id="GETTING_STARTED_TABS" class="WidgetMenuCollection">
         <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${IMG_LOGO.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}"  />
             <properties menuType="TAB" itemYExpression="${GETTING_STARTED_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${GETTING_STARTED_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${OK.HEIGHT}">
             <items>
                 <item tag="general" label="General" icon="ui/svg/ic_bug_report_48px.svg" isSelected="1">
 
-                    <widget id="GENERAL_TAB_TABLE" class="uiVizWidgetTable">
+                    <widget id="GENERAL_TAB_TABLE" class="WidgetTable">
                         <title style="NONE"/>
                         <appearance visible="0"/>
                         <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
@@ -51,7 +51,7 @@
                 </item>      
 
                 <item tag="guitar" label="Guitar" icon="ui/music-icons/electric-guitar.svg">
-                    <widget id="GUITAR_TAB_TABLE" class="uiVizWidgetTable">
+                    <widget id="GUITAR_TAB_TABLE" class="WidgetTable">
                         <title style="NONE"/>
                         <appearance visible="0"/>
                         <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
@@ -69,7 +69,7 @@
                 </item>
 
                 <item tag="bass" label="Bass" icon="ui/music-icons/bass-guitar.svg">
-                    <widget id="BASS_TAB_TABLE" class="uiVizWidgetTable">
+                    <widget id="BASS_TAB_TABLE" class="WidgetTable">
                         <title style="NONE"/>
                         <appearance visible="0"/>
                         <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />

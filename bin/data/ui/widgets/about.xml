@@ -4,26 +4,26 @@
 <bounds minWidth="400" minHeight="400" />
 
 <elements>
-<element id="OK" class="uiVizWidgetElmButton">
+<element id="OK" class="WidgetElmButton">
 <title>OK</title>
 <bounds xExpr="${PARENT.RIGHT}" yExpr="${PARENT.BOTTOM}" />
 </element>
 
-<element id="IMG_LOGO" class="uiVizWidgetElmImage">
+<element id="IMG_LOGO" class="WidgetElmImage">
 <bounds xExpr="${PARENT.USABLE_WIDTH}/2-200" yExpr="${PARENT.TOP}" widthExpr="400" heightExpr="170" />
 <properties file="ui/images/cognition-logo-01.png" />
 </element>
 </elements>
 
 <childWidgets>
-    <widget id="ABOUT_TABS" class="uiVizWidgetMenuCollection">
+    <widget id="ABOUT_TABS" class="WidgetMenuCollection">
         <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${IMG_LOGO.BOTTOM}" widthExpr="${PARENT.USABLE_WIDTH}"  />
             <properties menuType="TAB" itemYExpression="${ABOUT_TABS.BOTTOM}+${PADDING}" itemHeightExpression="${ABOUT_TABS.BOTTOM_USABLE_HEIGHT}-${PADDING}*2-${OK.HEIGHT}">
             <items>
 
 
                 <item tag="sampleRecursive" label="Recursive!" icon="ui/svg/ic_bug_report_48px.svg">
-                    <widget id="ABOUT_TAB_R_A" class="uiVizWidget">
+                    <widget id="ABOUT_TAB_R_A" class="Widget">
                         <bounds  xExpr="${PARENT.ABSOLUTE_USABLE_X}" yExpr="${PARENT.ABSOLUTE_USABLE_Y}" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" minWidth="75" minHeight="75" />
 
                         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -33,12 +33,12 @@
                             </appearance>
                             <elements>
        
-                            <element id="ABOUT_TAB_R_A_L" class="uiVizWidgetElmBreadcrumb">
+                            <element id="ABOUT_TAB_R_A_L" class="WidgetElmBreadcrumb">
                             <items><item key="Item_A1">Item A1</item><item key="Item_A2">Item A2</item><item key="Item_A3">Item A3</item></items>
                             <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
                             </element>                            
                             
-                            <element id="ABOUT_TAB_R_A_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                            <element id="ABOUT_TAB_R_A_T" class="WidgetElmTextbox" type="MULTI_LINE">
                             <title>Child A</title>
                             <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_A_L.BOTTOM} + ${PADDING}" />
                             </element>
@@ -46,7 +46,7 @@
 
                         <childWidgets>
 
-                            <widget id="ABOUT_TAB_R_B" class="uiVizWidget">
+                            <widget id="ABOUT_TAB_R_B" class="Widget">
                                 <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
 
                                 <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -56,12 +56,12 @@
                                     </appearance>
                                     <elements>
             
-                                    <element id="ABOUT_TAB_R_B_L" class="uiVizWidgetElmBreadcrumb">
+                                    <element id="ABOUT_TAB_R_B_L" class="WidgetElmBreadcrumb">
                                     <items><item key="Item_B1">Item B1</item><item key="Item_B2">Item B2</item><item key="Item_B3">Item B3</item></items>
                                     <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
                                     </element>                            
                                     
-                                    <element id="ABOUT_TAB_R_B_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                                    <element id="ABOUT_TAB_R_B_T" class="WidgetElmTextbox" type="MULTI_LINE">
                                     <title>Child B</title>
                                     <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_B_L.BOTTOM} + ${PADDING}" />
                                     </element>
@@ -69,7 +69,7 @@
 
                                 <childWidgets>
 
-                                    <widget id="ABOUT_TAB_R_C" class="uiVizWidget">
+                                    <widget id="ABOUT_TAB_R_C" class="Widget">
                                             <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
 
                                             <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -79,12 +79,12 @@
                                                 </appearance>
                                                 <elements>
                         
-                                                <element id="ABOUT_TAB_R_C_L" class="uiVizWidgetElmBreadcrumb">
+                                                <element id="ABOUT_TAB_R_C_L" class="WidgetElmBreadcrumb">
                                                 <items><item key="Item_C1">Item C1</item><item key="Item_C2">Item C2</item><item key="Item_C3">Item C3</item></items>
                                                 <bounds xExpr="${PARENT.LEFT}" yExpr="${PARENT.TOP}" widthExpr="${PARENT.USABLE_WIDTH}" />
                                                 </element>                            
                                                 
-                                                <element id="ABOUT_TAB_R_C_T" class="uiVizWidgetElmTextbox" type="MULTI_LINE">
+                                                <element id="ABOUT_TAB_R_C_T" class="WidgetElmTextbox" type="MULTI_LINE">
                                                 <title>Child C</title>
                                                 <bounds xExpr="${PARENT.LEFT}" yExpr="${ABOUT_TAB_R_C_L.BOTTOM} + ${PADDING}" />
                                                 </element>
@@ -92,7 +92,7 @@
 
                                             <childWidgets>
 
-                                                <widget id="ABOUT_TAB_SCALE_PICKER1" class="uiVizWidgetChordDesigner">
+                                                <widget id="ABOUT_TAB_SCALE_PICKER1" class="WidgetChordDesigner">
                                                 <bounds xExpr="${PARENT.ABSOLUTE_USABLE_X}+40" yExpr="${PARENT.ABSOLUTE_USABLE_Y}+80" widthExpr="${PARENT.USABLE_WIDTH}-40" heightExpr="${PARENT.USABLE_HEIGHT}-80" minWidth="75" minHeight="75" />
                                                 </widget>
 
@@ -112,7 +112,7 @@
 
                 <item tag="sampleWidget" label="Sample Widget" icon="ui/svg/ic_bug_report_48px.svg">
 
-                    <widget id="ABOUT_TAB_SCALE_PICKER1" class="uiVizWidgetScalePicker">
+                    <widget id="ABOUT_TAB_SCALE_PICKER1" class="WidgetScalePicker">
                         <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
                         <bounds x="477" y="235" width="400" height="400" maxWidth="26880" maxHeight="16800" minWidth="75" minHeight="75" />
                         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -141,10 +141,10 @@
                 </item>
 
                 <item tag="about" label="About" icon="ui/svg/ic_bug_report_48px.svg" isSelected="1">
-                   <widget id="ABOUT_TAB_TEXT_HOLDER" class="uiVizWidget">
+                   <widget id="ABOUT_TAB_TEXT_HOLDER" class="Widget">
                         <title style="TOP_STATIC" autohide="0" staticSize="20">ionian</title>
                         <elements>
-                            <element id="TXT_ABOUT" class="uiVizWidgetElmTextarea">
+                            <element id="TXT_ABOUT" class="WidgetElmTextarea">
                             <title>enter licence here...</title>
                             <bounds x="0" y="0" widthExpr="${PARENT.WIDTH}" heightExpr="${PARENT.HEIGHT}" />
                             <behaviour draggable="0" resizable="0" />
@@ -176,7 +176,7 @@
                 </item>
                 <item tag="attributions" label="Attributions" icon="ui/images/default_avatar.jpg">
 
-                    <widget id="ABOUT_TAB_ATTRIBUTIONS" class="uiVizWidgetTable">
+                    <widget id="ABOUT_TAB_ATTRIBUTIONS" class="WidgetTable">
                         <title style="NONE"/>
                         <appearance visible="0"/>
                         <bounds x="0" y="0" widthExpr="${PARENT.USABLE_WIDTH}" heightExpr="${PARENT.USABLE_HEIGHT}" />
@@ -191,7 +191,7 @@
                 </item>
                 <item tag="contact" label="Contact us" icon="ui/svg/ic_ac_unit_48px.svg">
 
-                    <widget id="ABOUT_TAB_CONTACT_MENU" class="uiVizWidgetMenu">
+                    <widget id="ABOUT_TAB_CONTACT_MENU" class="WidgetMenu">
                         <title titlestyle="NONE"/>
                         <properties>
                             <tabs>
@@ -201,10 +201,10 @@
                                     <item id="3" tag="contact"  label="Contact us"></item>
                                 </tab>
                                 <tab tag="licence" label="Licence" icon="ui/svg/ic_bug_report_48px.svg">
-                                    <widget id="ABOUT_LICENCE" class="uiVizWidgetLicence"/>
+                                    <widget id="ABOUT_LICENCE" class="WidgetLicence"/>
                                 </tab>   
                                 <tab tag="licence" label="Licence" icon="ui/svg/ic_bug_report_48px.svg">
-                                    <widget id="ABOUT_CONTACT_US" class="uiVizWidgetLicence"/>
+                                    <widget id="ABOUT_CONTACT_US" class="WidgetLicence"/>
                                 </tab>                                                       
                             </tabs>
                         </properties>

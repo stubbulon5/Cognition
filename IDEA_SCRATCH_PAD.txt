@@ -1,6 +1,6 @@
 
         
-        // TODO : port rest of uiVizWidget to use Elm
+        // TODO : port rest of Widget to use Elm
         // PORT KEYPICKER and CHORDPICKER...
         
         // TODO::
@@ -42,10 +42,10 @@
         // Dragging from 1080 -> Retina, the UI is too big. Resizing the window then makes it right. Investigate!
         // Selected state color
         // Menu implementation
-        // 0.6) Do menu using ONE instance of uiVizWidget (using offsets!!)
+        // 0.6) Do menu using ONE instance of Widget (using offsets!!)
         // 3.) Animation scaling needs fixing when on hi-dpi displays - CLOSE
         // 8.) When moving from really low dpi to high dpi the widgets gewt too small. solution : automatically tweak the m_userscale setting up or down (based on a calculation). have a usersetting to disable / enable this smart functionality!!!!
-        // 9.) uiVizDockedWidget.h  ---- add dockable behaviour (derrived oof uiVizWidget.h)
+        // 9.) uiVizDockedWidget.h  ---- add dockable behaviour (derrived oof Widget.h)
 
         
         // Bug : full hove rover widget title - if keep toggling viz minimized state, the animation slows down to a crawl! - relative to framerate - red herring? - does it at 60 to 20!.
@@ -122,7 +122,7 @@ problems:
 
 
 1.) roll outsetSelectedKey
-chord and scale (uiVizWidgetMusical)
+chord and scale (WidgetMusical)
 
 2.) Roll out 
 
@@ -144,16 +144,16 @@ https://www.makeplayingcards.com/ - degrees relativitu - with a
 https://www.qr-code-generator.com/a1/?ut_source=google_c&ut_medium=cpc&ut_campaign=en_top_kw&ut_content=qr_generator_exact&ut_term=qr%20code%20generator_e&gclid=CjwKCAjw_-D3BRBIEiwAjVMy7Dvy39F5sgG9iYde7KhSb5S46yPhomH8vxC7t5iB-PbMGryIEYW0qBoCKesQAvD_BwE
 +++++++++++++++++++++++++++++++++++++++++++++++++
 
-Sequencer: (with 2 cols : col 1 config, col 2 draw : uiVizWidgetTrack)
-collection of uiVizWidgetTrack
+Sequencer: (with 2 cols : col 1 config, col 2 draw : WidgetTrack)
+collection of WidgetTrack
 
-uiVizWidgetTrack
-    uiVizWidgetTrackAudio
+WidgetTrack
+    WidgetTrackAudio
         vector<audioClip>   : audioClip : [start, end]
-    uiVizWidgetTrackVideo
+    WidgetTrackVideo
 
 
-uiVizWidgetElmAudioClip
+WidgetElmAudioClip
     prperties:
     audioClip
     update - renders waveform / vbo

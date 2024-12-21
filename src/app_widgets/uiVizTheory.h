@@ -384,7 +384,7 @@ public:
     static ofColor getDefaultScaleDegreeColor(int degree) {
         degree = std::min(11, degree);
         degree = std::max(0, degree);
-        return Aquamarine::uiVizWidgetTheme::getColor_fromRGBAHex(
+        return Aquamarine::WidgetTheme::getColor_fromRGBAHex(
                 getDefaultScaleDegreeHexColorsChromatic()[degree]
         );
     }

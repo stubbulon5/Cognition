@@ -1,11 +1,11 @@
 <LANGUAGE>
-    <uiVizWidgetMusical>
+    <WidgetMusical>
         Musical Widget
-    </uiVizWidgetMusical>
-    <uiVizWidgetMusicalComposer>
+    </WidgetMusical>
+    <WidgetMusicalComposer>
         Musical Composer
-    </uiVizWidgetMusicalComposer>
-    <uiVizWidgetChordWheel>
+    </WidgetMusicalComposer>
+    <WidgetChordWheel>
 <![CDATA[
 <xxlarge><br/></xxlarge>
 <xlarge>Chord Wheel</xlarge><large><br/><br/></large>
@@ -24,8 +24,8 @@
 
 <large><br/><br/><br/><br/>-</large>
 ]]>
-    </uiVizWidgetChordWheel>
-    <uiVizWidgetChordProgression>
+    </WidgetChordWheel>
+    <WidgetChordProgression>
         <![CDATA[
         <xxlarge><br/></xxlarge>
         <xlarge>Chord Progression</xlarge><large><br/><br/></large>
@@ -38,8 +38,8 @@
                 
         <large><br/><br/><br/><br/>-</large>
         ]]>
-    </uiVizWidgetChordProgression>    
-    <uiVizWidgetChordBucket>
+    </WidgetChordProgression>    
+    <WidgetChordBucket>
 <![CDATA[
 <xxlarge><br/></xxlarge>
 <xlarge>Chord Bucket</xlarge><large><br/><br/></large>
@@ -58,29 +58,29 @@
 
 <large><br/><br/><br/><br/>-</large>
 ]]>        
-    </uiVizWidgetChordBucket>
-    <uiVizWidgetChordDesigner>
+    </WidgetChordBucket>
+    <WidgetChordDesigner>
         Chord Designer
-    </uiVizWidgetChordDesigner>
-    <uiVizWidgetChordRules>
+    </WidgetChordDesigner>
+    <WidgetChordRules>
         Chord Rules
-    </uiVizWidgetChordRules>
-    <uiVizWidgetScalePicker>
+    </WidgetChordRules>
+    <WidgetScalePicker>
         Scale Picker
-    </uiVizWidgetScalePicker>
-    <uiVizWidgetScaleTable>
+    </WidgetScalePicker>
+    <WidgetScaleTable>
         Scale Table
-    </uiVizWidgetScaleTable>
-    <uiVizWidgetChordTable>
+    </WidgetScaleTable>
+    <WidgetChordTable>
         Chord Table
-    </uiVizWidgetChordTable>    
-    <uiVizWidgetKeyPicker>
+    </WidgetChordTable>    
+    <WidgetKeyPicker>
         Circle of Fifths
-    </uiVizWidgetKeyPicker>
-    <uiVizWigetStringedInstrument>
+    </WidgetKeyPicker>
+    <WidgetStringedInstrument>
         Stringed Instrument
-    </uiVizWigetStringedInstrument>
-    <uiVizWidgetGuitar>
+    </WidgetStringedInstrument>
+    <WidgetGuitar>
 <![CDATA[
 <xxlarge><br/></xxlarge>
 <xlarge>Guitar</xlarge><large><br/><br/></large>
@@ -99,8 +99,8 @@
 
 <large><br/><br/><br/><br/>-</large>
 ]]>
-    </uiVizWidgetGuitar>
-    <uiVizWidgetBassGuitar>
+    </WidgetGuitar>
+    <WidgetBassGuitar>
 <![CDATA[
 <xxlarge><br/></xxlarge>
 <xlarge>Bass</xlarge><large><br/><br/></large>
@@ -119,32 +119,32 @@
 
 <large><br/><br/><br/><br/>-</large>
 ]]>
-    </uiVizWidgetBassGuitar>
-    <uiVizWidgetTutor>
+    </WidgetBassGuitar>
+    <WidgetTutor>
         Tutor
-    </uiVizWidgetTutor>
-    <uiVizWidgetUnitTests>
+    </WidgetTutor>
+    <WidgetUnitTests>
         Unit Tests
-    </uiVizWidgetUnitTests>
-    <uiVizWidgetMainMenu>
+    </WidgetUnitTests>
+    <WidgetMainMenu>
         Main Menu
-    </uiVizWidgetMainMenu>
-    <uiVizWidgetOmniMenu>
+    </WidgetMainMenu>
+    <WidgetOmniMenu>
         Omni Menu
-    </uiVizWidgetOmniMenu>
-    <uiVizWidgetOmniMenuSearchResults>
+    </WidgetOmniMenu>
+    <WidgetOmniMenuSearchResults>
         Omni Menu Results
-    </uiVizWidgetOmniMenuSearchResults>
-    <uiVizWidgetOmniMenuLinks>
+    </WidgetOmniMenuSearchResults>
+    <WidgetOmniMenuLinks>
         Omni Menu Links
-    </uiVizWidgetOmniMenuLinks>
-    <uiVizWidgetLicence>
+    </WidgetOmniMenuLinks>
+    <WidgetLicence>
         Licence
-    </uiVizWidgetLicence>
-    <uiVizWidgetGetStarted>
+    </WidgetLicence>
+    <WidgetGetStarted>
         Get Started
-    </uiVizWidgetGetStarted>
-    <uiVizWidgetNotifications>
+    </WidgetGetStarted>
+    <WidgetNotifications>
         Notifications
-    </uiVizWidgetNotifications>
+    </WidgetNotifications>
 </LANGUAGE>    

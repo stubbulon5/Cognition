@@ -1,5 +1,5 @@
 <widgets version="1.0.0" title="TODO (SAVED...)">
-    <widget id="CHORDPROGRESSION_925834" class="uiVizWidgetChordWheel" shouldPersist="1">
+    <widget id="CHORDPROGRESSION_925834" class="WidgetChordWheel" shouldPersist="1">
         <title style="TOP_STATIC" autohide="0" staticSize="20">Ionian</title>
         <bounds x="673" y="63" width="807" height="524" maxWidth="27520" maxHeight="11520" minWidth="75" minHeight="75" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />
@@ -15,7 +15,7 @@
         </properties>
         <elements />
     </widget>
-    <widget id="CHORDWHEEL_402032" class="uiVizWidgetChordWheel" shouldPersist="1">
+    <widget id="CHORDWHEEL_402032" class="WidgetChordWheel" shouldPersist="1">
         <title style="TOP_STATIC" autohide="0" staticSize="20">Ionian</title>
         <bounds x="11" y="56" width="627" height="407" maxWidth="28660" maxHeight="17920" minWidth="75" minHeight="75" />
         <behaviour draggable="1" resizable="1" drawWidgetChrome="1" drawWidgetTitle="1" />

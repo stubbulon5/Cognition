@@ -111,122 +111,122 @@ const std::string APP_CONSTANTS::DEFAULT_LANGUAGE_XML = ""
     "<CHORD_BUCKET_SUGGESTER>Chord Suggester</CHORD_BUCKET_SUGGESTER>"    
     
     // <!-- System widgets -->
-    "<WIDGET_NAME_uiVizWidget>Widget</WIDGET_NAME_uiVizWidget>"
-    "<WIDGET_NAME_uiVizWidgetMenu>Menu</WIDGET_NAME_uiVizWidgetMenu>"
-    "<WIDGET_NAME_uiVizWidgetTable>Table</WIDGET_NAME_uiVizWidgetTable>"
-    "<WIDGET_NAME_uiVizWidgetMatrix>Matrix</WIDGET_NAME_uiVizWidgetMatrix>"
-    "<WIDGET_NAME_uiVizWidgetSequencer>Sequencer</WIDGET_NAME_uiVizWidgetSequencer>"
-    "<WIDGET_NAME_uiVizWidgetPianoRoll>Piano Roll</WIDGET_NAME_uiVizWidgetPianoRoll>"
-    "<WIDGET_NAME_uiVizWidgetVideoPlayer>Video Player</WIDGET_NAME_uiVizWidgetVideoPlayer>"
-    "<WIDGET_NAME_uiVizWidgetVideoGrabber>Video Grabber</WIDGET_NAME_uiVizWidgetVideoGrabber>"
-    "<WIDGET_NAME_uiVizWidgetSoundPlayer>Sound Player</WIDGET_NAME_uiVizWidgetSoundPlayer>"
-    "<WIDGET_NAME_uiVizWidgetImageView>Image View</WIDGET_NAME_uiVizWidgetImageView>"
-    "<WIDGET_NAME_uiVizWidgetDebug>Debug</WIDGET_NAME_uiVizWidgetDebug>"
-    "<WIDGET_NAME_uiVizWidgetEventListener>Event Listener</WIDGET_NAME_uiVizWidgetEventListener>"
-    "<WIDGET_NAME_uiVizWidgetClipboardMenu>Clipboard</WIDGET_NAME_uiVizWidgetClipboardMenu>"
-    "<WIDGET_NAME_uiVizWidgetSettings>Settings</WIDGET_NAME_uiVizWidgetSettings>"
-    "<WIDGET_NAME_uiVizWidgetTextEditor>Text Editor</WIDGET_NAME_uiVizWidgetTextEditor>"
-    "<WIDGET_NAME_uiVizWidgetFileList>File List</WIDGET_NAME_uiVizWidgetFileList>"
-    "<WIDGET_NAME_uiVizWidgetFileLocationsList>File Locations</WIDGET_NAME_uiVizWidgetFileLocationsList>"
-    "<WIDGET_NAME_uiVizWidgetFileExplorer>File Explorer</WIDGET_NAME_uiVizWidgetFileExplorer>"
-    "<WIDGET_NAME_uiVizWidgetFileLoad>File Load</WIDGET_NAME_uiVizWidgetFileLoad>"
-    "<WIDGET_NAME_uiVizWidgetFileSave>File Save</WIDGET_NAME_uiVizWidgetFileSave>"
-    "<WIDGET_NAME_uiVizWidgetThemeEditor>Theme Editor</WIDGET_NAME_uiVizWidgetThemeEditor>"
-    "<WIDGET_NAME_uiVizWidgetThemePreview>Theme Preview</WIDGET_NAME_uiVizWidgetThemePreview>"    
-    "<WIDGET_NAME_uiVizWidgetWidgetList>Widget List</WIDGET_NAME_uiVizWidgetWidgetList>"
-    "<WIDGET_NAME_uiVizWidgetDialog>Dialog</WIDGET_NAME_uiVizWidgetDialog>"
-    "<WIDGET_NAME_uiVizWidgetEventListener>Listener config</WIDGET_NAME_uiVizWidgetEventListener>"
+    "<WIDGET_NAME_Widget>Widget</WIDGET_NAME_Widget>"
+    "<WIDGET_NAME_WidgetMenu>Menu</WIDGET_NAME_WidgetMenu>"
+    "<WIDGET_NAME_WidgetTable>Table</WIDGET_NAME_WidgetTable>"
+    "<WIDGET_NAME_WidgetMatrix>Matrix</WIDGET_NAME_WidgetMatrix>"
+    "<WIDGET_NAME_WidgetSequencer>Sequencer</WIDGET_NAME_WidgetSequencer>"
+    "<WIDGET_NAME_WidgetPianoRoll>Piano Roll</WIDGET_NAME_WidgetPianoRoll>"
+    "<WIDGET_NAME_WidgetVideoPlayer>Video Player</WIDGET_NAME_WidgetVideoPlayer>"
+    "<WIDGET_NAME_WidgetVideoGrabber>Video Grabber</WIDGET_NAME_WidgetVideoGrabber>"
+    "<WIDGET_NAME_WidgetSoundPlayer>Sound Player</WIDGET_NAME_WidgetSoundPlayer>"
+    "<WIDGET_NAME_WidgetImageView>Image View</WIDGET_NAME_WidgetImageView>"
+    "<WIDGET_NAME_WidgetDebug>Debug</WIDGET_NAME_WidgetDebug>"
+    "<WIDGET_NAME_WidgetEventListener>Event Listener</WIDGET_NAME_WidgetEventListener>"
+    "<WIDGET_NAME_WidgetClipboardMenu>Clipboard</WIDGET_NAME_WidgetClipboardMenu>"
+    "<WIDGET_NAME_WidgetSettings>Settings</WIDGET_NAME_WidgetSettings>"
+    "<WIDGET_NAME_WidgetTextEditor>Text Editor</WIDGET_NAME_WidgetTextEditor>"
+    "<WIDGET_NAME_WidgetFileList>File List</WIDGET_NAME_WidgetFileList>"
+    "<WIDGET_NAME_WidgetFileLocationsList>File Locations</WIDGET_NAME_WidgetFileLocationsList>"
+    "<WIDGET_NAME_WidgetFileExplorer>File Explorer</WIDGET_NAME_WidgetFileExplorer>"
+    "<WIDGET_NAME_WidgetFileLoad>File Load</WIDGET_NAME_WidgetFileLoad>"
+    "<WIDGET_NAME_WidgetFileSave>File Save</WIDGET_NAME_WidgetFileSave>"
+    "<WIDGET_NAME_WidgetThemeEditor>Theme Editor</WIDGET_NAME_WidgetThemeEditor>"
+    "<WIDGET_NAME_WidgetThemePreview>Theme Preview</WIDGET_NAME_WidgetThemePreview>"    
+    "<WIDGET_NAME_WidgetWidgetList>Widget List</WIDGET_NAME_WidgetWidgetList>"
+    "<WIDGET_NAME_WidgetDialog>Dialog</WIDGET_NAME_WidgetDialog>"
+    "<WIDGET_NAME_WidgetEventListener>Listener config</WIDGET_NAME_WidgetEventListener>"
 
     // <!-- App Widgets -->
-    "<WIDGET_NAME_uiVizWidgetMusical>Musical Widget</WIDGET_NAME_uiVizWidgetMusical>"
-    "<WIDGET_NAME_uiVizWidgetMusicalComposer>Musical Composer</WIDGET_NAME_uiVizWidgetMusicalComposer>"
-    "<WIDGET_NAME_uiVizWidgetChordWheel>Chord Wheel</WIDGET_NAME_uiVizWidgetChordWheel>"
-    "<WIDGET_NAME_uiVizWidgetChordProgression>Chord Progression</WIDGET_NAME_uiVizWidgetChordProgression>"    
-    "<WIDGET_NAME_uiVizWidgetChordBucket>Chord Bucket</WIDGET_NAME_uiVizWidgetChordBucket>"
-    "<WIDGET_NAME_uiVizWidgetChordDesigner>Chord Designer</WIDGET_NAME_uiVizWidgetChordDesigner>"
-    "<WIDGET_NAME_uiVizWidgetChordRules>Chord Rules</WIDGET_NAME_uiVizWidgetChordRules>"
-    "<WIDGET_NAME_uiVizWidgetScalePicker>Scale Picker</WIDGET_NAME_uiVizWidgetScalePicker>"
-    "<WIDGET_NAME_uiVizWidgetScaleTable>Scale Table</WIDGET_NAME_uiVizWidgetScaleTable>"
-    "<WIDGET_NAME_uiVizWidgetChordTable>Chord Table</WIDGET_NAME_uiVizWidgetChordTable>"    
-    "<WIDGET_NAME_uiVizWidgetKeyPicker>Circle of Fifths</WIDGET_NAME_uiVizWidgetKeyPicker>"
-    "<WIDGET_NAME_uiVizWigetStringedInstrument>Stringed Instrument</WIDGET_NAME_uiVizWigetStringedInstrument>"
-    "<WIDGET_NAME_uiVizWidgetGuitar>Guitar</WIDGET_NAME_uiVizWidgetGuitar>"
-    "<WIDGET_NAME_uiVizWidgetBassGuitar>Bass Guitar</WIDGET_NAME_uiVizWidgetBassGuitar>"
-    "<WIDGET_NAME_uiVizWidgetTutor>Tutor</WIDGET_NAME_uiVizWidgetTutor>"
-    "<WIDGET_NAME_uiVizWidgetUnitTests>Unit Tests</WIDGET_NAME_uiVizWidgetUnitTests>"
-    "<WIDGET_NAME_uiVizWidgetMainMenu>Main Menu</WIDGET_NAME_uiVizWidgetMainMenu>"
-    "<WIDGET_NAME_uiVizWidgetOmniMenu>Omni Menu</WIDGET_NAME_uiVizWidgetOmniMenu>"
-    "<WIDGET_NAME_uiVizWidgetOmniMenuSearchResults>Omni Menu Results</WIDGET_NAME_uiVizWidgetOmniMenuSearchResults>"
-    "<WIDGET_NAME_uiVizWidgetOmniMenuLinks>Omni Menu Links</WIDGET_NAME_uiVizWidgetOmniMenuLinks>"
-    "<WIDGET_NAME_uiVizWidgetLicence>Licence</WIDGET_NAME_uiVizWidgetLicence>"
-    "<WIDGET_NAME_uiVizWidgetGetStarted>Get Started</WIDGET_NAME_uiVizWidgetGetStarted>"
-    "<WIDGET_NAME_uiVizWidgetNotifications>Notifications</WIDGET_NAME_uiVizWidgetNotifications>"
-    "<WIDGET_NAME_uiVizWidgetEventListenerMusical>Musical Listener config</WIDGET_NAME_uiVizWidgetEventListenerMusical>"
+    "<WIDGET_NAME_WidgetMusical>Musical Widget</WIDGET_NAME_WidgetMusical>"
+    "<WIDGET_NAME_WidgetMusicalComposer>Musical Composer</WIDGET_NAME_WidgetMusicalComposer>"
+    "<WIDGET_NAME_WidgetChordWheel>Chord Wheel</WIDGET_NAME_WidgetChordWheel>"
+    "<WIDGET_NAME_WidgetChordProgression>Chord Progression</WIDGET_NAME_WidgetChordProgression>"    
+    "<WIDGET_NAME_WidgetChordBucket>Chord Bucket</WIDGET_NAME_WidgetChordBucket>"
+    "<WIDGET_NAME_WidgetChordDesigner>Chord Designer</WIDGET_NAME_WidgetChordDesigner>"
+    "<WIDGET_NAME_WidgetChordRules>Chord Rules</WIDGET_NAME_WidgetChordRules>"
+    "<WIDGET_NAME_WidgetScalePicker>Scale Picker</WIDGET_NAME_WidgetScalePicker>"
+    "<WIDGET_NAME_WidgetScaleTable>Scale Table</WIDGET_NAME_WidgetScaleTable>"
+    "<WIDGET_NAME_WidgetChordTable>Chord Table</WIDGET_NAME_WidgetChordTable>"    
+    "<WIDGET_NAME_WidgetKeyPicker>Circle of Fifths</WIDGET_NAME_WidgetKeyPicker>"
+    "<WIDGET_NAME_WidgetStringedInstrument>Stringed Instrument</WIDGET_NAME_WidgetStringedInstrument>"
+    "<WIDGET_NAME_WidgetGuitar>Guitar</WIDGET_NAME_WidgetGuitar>"
+    "<WIDGET_NAME_WidgetBassGuitar>Bass Guitar</WIDGET_NAME_WidgetBassGuitar>"
+    "<WIDGET_NAME_WidgetTutor>Tutor</WIDGET_NAME_WidgetTutor>"
+    "<WIDGET_NAME_WidgetUnitTests>Unit Tests</WIDGET_NAME_WidgetUnitTests>"
+    "<WIDGET_NAME_WidgetMainMenu>Main Menu</WIDGET_NAME_WidgetMainMenu>"
+    "<WIDGET_NAME_WidgetOmniMenu>Omni Menu</WIDGET_NAME_WidgetOmniMenu>"
+    "<WIDGET_NAME_WidgetOmniMenuSearchResults>Omni Menu Results</WIDGET_NAME_WidgetOmniMenuSearchResults>"
+    "<WIDGET_NAME_WidgetOmniMenuLinks>Omni Menu Links</WIDGET_NAME_WidgetOmniMenuLinks>"
+    "<WIDGET_NAME_WidgetLicence>Licence</WIDGET_NAME_WidgetLicence>"
+    "<WIDGET_NAME_WidgetGetStarted>Get Started</WIDGET_NAME_WidgetGetStarted>"
+    "<WIDGET_NAME_WidgetNotifications>Notifications</WIDGET_NAME_WidgetNotifications>"
+    "<WIDGET_NAME_WidgetEventListenerMusical>Musical Listener config</WIDGET_NAME_WidgetEventListenerMusical>"
 
 
 "</LANGUAGE>";
 
 /* IMPORT ALL SUPPORTED WIDGET CLASSES HERE */
-#include "../uiViz/widget/uiVizWidget.h"
+#include "../uiViz/widget/Widget.h"
 
 /* -------> YOU OWN WIDGETS HERE <------- */
-#include "uiVizWidgetMusical.h"
-#include "uiVizWidgetEventListenerMusical.h"
-#include "uiVizWidgetMusicalComposer.h"
-#include "uiVizWidgetChordWheel.h"
-#include "uiVizWidgetChordWheelForKey.h"
-#include "uiVizWidgetChordProgression.h"
-#include "uiVizWidgetChordBucket.h"
-#include "uiVizWidgetChordBucketSuggester.h"
-#include "uiVizWidgetChordDesigner.h"
-#include "uiVizWidgetChordRules.h"
-#include "uiVizWidgetScalePicker.h"
-#include "uiVizWidgetScaleTable.h"
-#include "uiVizWidgetChordTable.h"
-#include "uiVizWidgetNotesTable.h"
-#include "uiVizWidgetKeyPicker.h"
-#include "uiVizWidgetKeyPickerPopout.h"
-#include "uiVizWigetStringedInstrument.h"
-#include "uiVizWidgetGuitar.h"
-#include "uiVizWidgetBassGuitar.h"
-#include "uiVizWidgetTutor.h"
-#include "uiVizWidgetUnitTests.h"
-#include "uiVizWidgetMainMenu.h"
-#include "uiVizWidgetLicence.h"
+#include "WidgetMusical.h"
+#include "WidgetEventListenerMusical.h"
+#include "WidgetMusicalComposer.h"
+#include "WidgetChordWheel.h"
+#include "WidgetChordWheelForKey.h"
+#include "WidgetChordProgression.h"
+#include "WidgetChordBucket.h"
+#include "WidgetChordBucketSuggester.h"
+#include "WidgetChordDesigner.h"
+#include "WidgetChordRules.h"
+#include "WidgetScalePicker.h"
+#include "WidgetScaleTable.h"
+#include "WidgetChordTable.h"
+#include "WidgetNotesTable.h"
+#include "WidgetKeyPicker.h"
+#include "WidgetKeyPickerPopout.h"
+#include "WidgetStringedInstrument.h"
+#include "WidgetGuitar.h"
+#include "WidgetBassGuitar.h"
+#include "WidgetTutor.h"
+#include "WidgetUnitTests.h"
+#include "WidgetMainMenu.h"
+#include "WidgetLicence.h"
 
 /* DEFINE ALL SUPPORTED WIDGET CLASS NAME HERE */
-//const string WidgetManager::WIDGET_CLASS_BASE = "uiVizWidgetBase";
-const std::string APP_CONSTANTS::WIDGET_CLASS = "uiVizWidget";
-const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL = "uiVizWidgetMusical";
-const std::string APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL = "uiVizWidgetEventListenerMusical";
-const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER = "uiVizWidgetMusicalComposer";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL = "uiVizWidgetChordWheel";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY = "uiVizWidgetChordWheelForKey";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION = "uiVizWidgetChordProgression";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET = "uiVizWidgetChordBucket";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER = "uiVizWidgetChordBucketSuggester";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_DESIGNER = "uiVizWidgetChordDesigner";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_RULES = "uiVizWidgetChordRules";
-const std::string APP_CONSTANTS::WIDGET_CLASS_SCALE_PICKER = "uiVizWidgetScalePicker";
-const std::string APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE = "uiVizWidgetScaleTable";
-const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_TABLE = "uiVizWidgetChordTable";
-const std::string APP_CONSTANTS::WIDGET_CLASS_NOTES_TABLE = "uiVizWidgetNotesTable";
-const std::string APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER = "uiVizWidgetKeyPicker";
-const std::string APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER_POPOUT = "uiVizWidgetKeyPickerPopout";
-const std::string APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT = "uiVizWigetStringedInstrument";
-const std::string APP_CONSTANTS::WIDGET_CLASS_GUITAR = "uiVizWidgetGuitar";
-const std::string APP_CONSTANTS::WIDGET_CLASS_BASS_GUITAR = "uiVizWidgetBassGuitar";
-const std::string APP_CONSTANTS::WIDGET_CLASS_TUTOR = "uiVizWidgetTutor";
-const std::string APP_CONSTANTS::WIDGET_CLASS_ABOUT = "uiVizWidgetAbout";
-const std::string APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS = "uiVizWidgetUnitTests";
-const std::string APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU = "uiVizWidgetMainMenu";
-const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU = "uiVizWidgetOmniMenu";
-const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_SEARCH_RESULTS = "uiVizWidgetOmniMenuSearchResults";
-const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_LINKS = "uiVizWidgetOmniMenuLinks";
-const std::string APP_CONSTANTS::WIDGET_CLASS_LICENCE = "uiVizWidgetLicence";
-const std::string APP_CONSTANTS::WIDGET_CLASS_GET_STARTED = "uiVizWidgetGetStarted";
-const std::string APP_CONSTANTS::WIDGET_CLASS_NOTIFICATIONS = "uiVizWidgetNotifications";
-const std::string APP_CONSTANTS::WIDGET_CLASS_TEXT_EDITOR = "uiVizWidgetTextEditor";
+//const string WidgetManager::WIDGET_CLASS_BASE = "WidgetBase";
+const std::string APP_CONSTANTS::WIDGET_CLASS = "Widget";
+const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL = "WidgetMusical";
+const std::string APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL = "WidgetEventListenerMusical";
+const std::string APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER = "WidgetMusicalComposer";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL = "WidgetChordWheel";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY = "WidgetChordWheelForKey";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION = "WidgetChordProgression";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET = "WidgetChordBucket";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER = "WidgetChordBucketSuggester";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_DESIGNER = "WidgetChordDesigner";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_RULES = "WidgetChordRules";
+const std::string APP_CONSTANTS::WIDGET_CLASS_SCALE_PICKER = "WidgetScalePicker";
+const std::string APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE = "WidgetScaleTable";
+const std::string APP_CONSTANTS::WIDGET_CLASS_CHORD_TABLE = "WidgetChordTable";
+const std::string APP_CONSTANTS::WIDGET_CLASS_NOTES_TABLE = "WidgetNotesTable";
+const std::string APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER = "WidgetKeyPicker";
+const std::string APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER_POPOUT = "WidgetKeyPickerPopout";
+const std::string APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT = "WidgetStringedInstrument";
+const std::string APP_CONSTANTS::WIDGET_CLASS_GUITAR = "WidgetGuitar";
+const std::string APP_CONSTANTS::WIDGET_CLASS_BASS_GUITAR = "WidgetBassGuitar";
+const std::string APP_CONSTANTS::WIDGET_CLASS_TUTOR = "WidgetTutor";
+const std::string APP_CONSTANTS::WIDGET_CLASS_ABOUT = "WidgetAbout";
+const std::string APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS = "WidgetUnitTests";
+const std::string APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU = "WidgetMainMenu";
+const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU = "WidgetOmniMenu";
+const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_SEARCH_RESULTS = "WidgetOmniMenuSearchResults";
+const std::string APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_LINKS = "WidgetOmniMenuLinks";
+const std::string APP_CONSTANTS::WIDGET_CLASS_LICENCE = "WidgetLicence";
+const std::string APP_CONSTANTS::WIDGET_CLASS_GET_STARTED = "WidgetGetStarted";
+const std::string APP_CONSTANTS::WIDGET_CLASS_NOTIFICATIONS = "WidgetNotifications";
+const std::string APP_CONSTANTS::WIDGET_CLASS_TEXT_EDITOR = "WidgetTextEditor";
 
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER = -5000;
 const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL = -5001;
@@ -238,43 +238,43 @@ const int APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET = -5005;
 
 
 
-template<typename T> Aquamarine::uiVizWidget * createWidget(string persistentId, string widgetXML) { return new T(persistentId, widgetXML); }
-typedef std::map<std::string, Aquamarine::uiVizWidget*(*)(string persistentId, string widgetXML)> widget_map_type;
+template<typename T> Aquamarine::Widget * createWidget(string persistentId, string widgetXML) { return new T(persistentId, widgetXML); }
+typedef std::map<std::string, Aquamarine::Widget*(*)(string persistentId, string widgetXML)> widget_map_type;
 
 Aquamarine::WidgetManager::widget_map_type APP_CONSTANTS::getAppWidgetMap() {
     
     Aquamarine::WidgetManager::widget_map_type appWidgetMap;
     
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS] = &createWidget<Aquamarine::uiVizWidget>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MUSICAL] = &createWidget<uiVizWidgetMusical>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL] = &createWidget<uiVizWidgetEventListenerMusical>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER] = &createWidget<uiVizWidgetMusicalComposer>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL] = &createWidget<uiVizWidgetChordWheel>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY] = &createWidget<uiVizWidgetChordWheelForKey>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION] = &createWidget<uiVizWidgetChordProgression>;    
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET] = &createWidget<uiVizWidgetChordBucket>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER] = &createWidget<uiVizWidgetChordBucketSuggester>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_DESIGNER] = &createWidget<uiVizWidgetChordDesigner>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_RULES] = &createWidget<uiVizWidgetChordRules>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_SCALE_PICKER] = &createWidget<uiVizWidgetScalePicker>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE] = &createWidget<uiVizWidgetScaleTable>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_TABLE] = &createWidget<uiVizWidgetChordTable>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_NOTES_TABLE] = &createWidget<uiVizWidgetNotesTable>;    
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER] = &createWidget<uiVizWidgetKeyPicker>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER_POPOUT] = &createWidget<uiVizWidgetKeyPickerPopout>;    
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT] = &createWidget<uiVizWigetStringedInstrument>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_GUITAR] = &createWidget<uiVizWidgetGuitar>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_BASS_GUITAR] = &createWidget<uiVizWidgetBassGuitar>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_TUTOR] = &createWidget<uiVizWidgetTutor>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_ABOUT] = &createWidget<uiVizWidgetAbout>;    
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS] = &createWidget<uiVizWidgetUnitTests>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU] = &createWidget<uiVizWidgetMainMenu>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU] = &createWidget<uiVizWidgetOmniMenu>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_SEARCH_RESULTS] = &createWidget<uiVizWidgetOmniMenuSearchResults>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_LINKS] = &createWidget<uiVizWidgetOmniMenuLinks>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_LICENCE] = &createWidget<uiVizWidgetLicence>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_GET_STARTED] = &createWidget<uiVizWidgetGetStarted>;
-    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_NOTIFICATIONS] = &createWidget<uiVizWidgetNotifications>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS] = &createWidget<Aquamarine::Widget>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MUSICAL] = &createWidget<WidgetMusical>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_EVENT_LISTENER_MUSICAL] = &createWidget<WidgetEventListenerMusical>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MUSICAL_COMPOSER] = &createWidget<WidgetMusicalComposer>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL] = &createWidget<WidgetChordWheel>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_WHEEL_FOR_KEY] = &createWidget<WidgetChordWheelForKey>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_PROGRESSION] = &createWidget<WidgetChordProgression>;    
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET] = &createWidget<WidgetChordBucket>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_BUCKET_SUGGESTER] = &createWidget<WidgetChordBucketSuggester>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_DESIGNER] = &createWidget<WidgetChordDesigner>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_RULES] = &createWidget<WidgetChordRules>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_SCALE_PICKER] = &createWidget<WidgetScalePicker>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_SCALE_TABLE] = &createWidget<WidgetScaleTable>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_CHORD_TABLE] = &createWidget<WidgetChordTable>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_NOTES_TABLE] = &createWidget<WidgetNotesTable>;    
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER] = &createWidget<WidgetKeyPicker>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_KEY_PICKER_POPOUT] = &createWidget<WidgetKeyPickerPopout>;    
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_STRINGED_INSTRUMENT] = &createWidget<WidgetStringedInstrument>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_GUITAR] = &createWidget<WidgetGuitar>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_BASS_GUITAR] = &createWidget<WidgetBassGuitar>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_TUTOR] = &createWidget<WidgetTutor>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_ABOUT] = &createWidget<WidgetAbout>;    
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_UNIT_TESTS] = &createWidget<WidgetUnitTests>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU] = &createWidget<WidgetMainMenu>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU] = &createWidget<WidgetOmniMenu>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_SEARCH_RESULTS] = &createWidget<WidgetOmniMenuSearchResults>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_OMNI_MENU_LINKS] = &createWidget<WidgetOmniMenuLinks>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_LICENCE] = &createWidget<WidgetLicence>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_GET_STARTED] = &createWidget<WidgetGetStarted>;
+    appWidgetMap[APP_CONSTANTS::WIDGET_CLASS_NOTIFICATIONS] = &createWidget<WidgetNotifications>;
     
     return appWidgetMap;
 }
@@ -312,14 +312,14 @@ std::map<std::string, Aquamarine::Icon*> APP_CONSTANTS::getIconCacheMap(float sc
     iconCacheMap["MED_INST_ELECTRIC_GUIT"] = new Aquamarine::Icon("ui/music-icons/electric-guitar.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, 0);
 
     /* Icon images for Widgets - If a custom image / ico is required for a widget, specify it here */
-    iconCacheMap["uiVizWidgetGuitar"] = new Aquamarine::Icon("ui/images/uiVizWidgetGuitar.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_GUITAR);
+    iconCacheMap["WidgetGuitar"] = new Aquamarine::Icon("ui/images/WidgetGuitar.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_GUITAR);
 /*    
-    iconCacheMap["uiVizWidgetChordDesigner"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordDesigner.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER);
-    iconCacheMap["uiVizWidgetChordWheel"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordWheel.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL);
-    iconCacheMap["uiVizWidgetKeyPicker"] = new Aquamarine::Icon("ui/images/uiVizWidgetKeyPicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_KEY_PICKER);
-    iconCacheMap["uiVizWidgetScalePicker"] = new Aquamarine::Icon("ui/images/uiVizWidgetScalePicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_SCALE_PICKER);    
+    iconCacheMap["WidgetChordDesigner"] = new Aquamarine::Icon("ui/images/WidgetChordDesigner.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER);
+    iconCacheMap["WidgetChordWheel"] = new Aquamarine::Icon("ui/images/WidgetChordWheel.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL);
+    iconCacheMap["WidgetKeyPicker"] = new Aquamarine::Icon("ui/images/WidgetKeyPicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_KEY_PICKER);
+    iconCacheMap["WidgetScalePicker"] = new Aquamarine::Icon("ui/images/WidgetScalePicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_SCALE_PICKER);    
 */
-    iconCacheMap["uiVizWidgetChordBucket"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordBucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
+    iconCacheMap["WidgetChordBucket"] = new Aquamarine::Icon("ui/images/WidgetChordBucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
     iconCacheMap["MED_CONTENT_BUCKET"] = new Aquamarine::Icon("ui/images/bucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
 
 
