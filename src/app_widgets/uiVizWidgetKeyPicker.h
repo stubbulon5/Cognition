@@ -12,7 +12,7 @@
 class uiVizWidgetKeyPickerSlice {
 public:
     vizNote note;
-	Aquamarine::uiVizElm path;
+	Aquamarine::Elm path;
     ofPoint labelPoint;
     ofColor regularColor;
     ofColor selectedColor;
@@ -282,7 +282,7 @@ private:
     
     
     ofPath circleInner;
-	Aquamarine::uiVizElm vizElm_circleInner;
+	Aquamarine::Elm vizElm_circleInner;
     ofRectangle rectLargeLabel;
     ofColor largeLabelColor;
     ofRectangle rectFontHitArea;

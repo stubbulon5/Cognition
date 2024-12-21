@@ -91,7 +91,7 @@ public:
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
         switch(menuTag) {
-            case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case Aquamarine::IconCache::IconTag::WIDGET_SETTINGS:
                 return contextMenu;
             default:
                 return nullptr;
@@ -100,13 +100,13 @@ public:
     
     void onWidgetMousePressed(ofMouseEventArgs &e) override {
         if (e.button == OF_MOUSE_BUTTON_RIGHT) {
-            showContextMenu(Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
+            showContextMenu(Aquamarine::IconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
         }
     }
     
     void onMenuItemSelected(Aquamarine::uiVizWidgetMenuItemArgs & args) {
         switch(args.activeMenuTabId) {
-            case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS: {
+            case Aquamarine::IconCache::IconTag::WIDGET_SETTINGS: {
 
                 switch (args.menuItem->uniqueID) {
                     case 1: testAllChordTypesOnGuitar(); break;
@@ -120,7 +120,7 @@ public:
     void testAllChordTypesOnGuitar() {
         clearExistingWidgets();
         uiVizWidgetGuitar* guitar1 = addGuitar1();
-        Aquamarine::uiVizWidgetMenu* menu = guitar1->getPopoutMenu(Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
+        Aquamarine::uiVizWidgetMenu* menu = guitar1->getPopoutMenu(Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
         
         
         int tabSliceIndex = menu->getIndexForTabMenu(guitar1->MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER);
@@ -132,7 +132,7 @@ public:
         dynamic_cast<uiVizWidgetChordDesigner*>(menu->getMenuTabs()[tabSliceIndex].tabWidget);
         
         
-        Aquamarine::uiVizWidgetMenu* chordDesignerMenu = associatedChordDesigner->getPopoutMenu(Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
+        Aquamarine::uiVizWidgetMenu* chordDesignerMenu = associatedChordDesigner->getPopoutMenu(Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
         chordDesignerMenu->setIsVisible(true);
         
         for (int i=0; i<=10; i++) {
@@ -192,8 +192,8 @@ private:
                 // ----------------------------------------------------------------------------
                 // Unit Tests menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab("Unit Tests", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                    Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, {
+                Aquamarine::uiVizWidgetMenuTab("Unit Tests", Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"),
+                    Aquamarine::IconCache::IconTag::WIDGET_SETTINGS, {
                     Aquamarine::uiVizWidgetMenuItem("Guitar: All chords", 1),
                     Aquamarine::uiVizWidgetMenuItem("Test 2", 2)
                 })

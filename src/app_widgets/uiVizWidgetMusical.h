@@ -2377,15 +2377,15 @@ public:
         mShowSettingsIcon = val;
     }    
 
-    virtual vector<Aquamarine::uiVizIcon> getWidgetTitleIcons() override {
-        vector<Aquamarine::uiVizIcon> icons = uiVizWidget::getWidgetTitleIcons();
+    virtual vector<Aquamarine::Icon> getWidgetTitleIcons() override {
+        vector<Aquamarine::Icon> icons = uiVizWidget::getWidgetTitleIcons();
 
         if (getShowHelpIcon()) {
-            icons.push_back(Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_HELP"));
+            icons.push_back(Aquamarine::IconCache::getIcon("REG_WIDGET_HELP"));
         }
 
         if (getShowSettingsIcon()) {
-            icons.push_back(Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_SETTINGS"));
+            icons.push_back(Aquamarine::IconCache::getIcon("REG_WIDGET_SETTINGS"));
         }        
         
         return icons;
@@ -2396,7 +2396,7 @@ public:
 
         Aquamarine::Coord::vizBounds iconBounds = getPopoutScaledBoundsForTitleIcon(iconTag);            
 
-        if (iconTag == Aquamarine::uiVizIconCache::IconTag::WIDGET_HELP) {
+        if (iconTag == Aquamarine::IconCache::IconTag::WIDGET_HELP) {
             if (mWidgetTextEditorHelp == nullptr) {
                 mWidgetTextEditorHelp = new Aquamarine::uiVizWidgetDialog(getPersistentId() + "__HELP", R"(
                 <widget>
@@ -2417,7 +2417,7 @@ public:
                 getSuggestedPopoutDirectionFromWidgetTitleBar()
             );
             mWidgetTextEditorHelp->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));
-        } else {  // eg iconTag == uiVizIconCache::IconTag::WIDGET_SETTINGS
+        } else {  // eg iconTag == IconCache::IconTag::WIDGET_SETTINGS
             uiVizWidget* w = getPopoutWidgetForMenuTag(iconTag);
             if (w != nullptr) {
                 w->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));          

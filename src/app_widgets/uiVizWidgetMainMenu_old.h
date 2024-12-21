@@ -122,7 +122,7 @@ public:
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
         switch(menuTag) {
-            case uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case IconCache::IconTag::WIDGET_SETTINGS:
                 return contextMenu;
             default:
                 return nullptr;
@@ -131,7 +131,7 @@ public:
     
     void onWidgetMousePressed(ofMouseEventArgs &e) override {
         if (e.button == OF_MOUSE_BUTTON_RIGHT) {
-            showContextMenu(uiVizIconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
+            showContextMenu(IconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX())-20, deScale(ofGetMouseY())-20);
         }
     }
 
@@ -140,7 +140,7 @@ public:
 
         switch(args.activeMenuTabId) {
                 
-            case uiVizIconCache::IconTag::ADD_CIRCLE:
+            case IconCache::IconTag::ADD_CIRCLE:
                 switch(args.menuItem->uniqueID) {
                     case 0:
                         addKeyPicker(false); break; // Circle of Fifths
@@ -189,7 +189,7 @@ public:
                 }
                 break;
 
-            case uiVizIconCache::IconTag::BOOK_CONTENT:
+            case IconCache::IconTag::BOOK_CONTENT:
                 clearSelection = false;
                 switch(args.menuItem->uniqueID) {
                     case 4:
@@ -199,7 +199,7 @@ public:
                 }
                 break;
                 
-            case uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case IconCache::IconTag::WIDGET_SETTINGS:
                 switch(args.menuItem->uniqueID) {
                     case 0: // New
                         newProject(); break;
@@ -932,7 +932,7 @@ public:
 private:
     uiVizWidgetMenu *contextMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
-    uiVizIcon mainMenuIcon = uiVizIcon("", Coord::vizBounds(0,0,0,0), 1.0f, uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
+    Icon mainMenuIcon = Icon("", Coord::vizBounds(0,0,0,0), 1.0f, Icon::IconSize::REGULAR, ofColor::white, 0);;
     bool mMenuHasBeenHovered = false;
     float mUICurrentMenuLeft = 0.0f;
     
@@ -948,7 +948,7 @@ private:
         setIgnoreThemeChanges(true);
         setIsRoundedRectangle(false);
         
-        mainMenuIcon = uiVizIconCache::getIcon("MED_MENU");
+        mainMenuIcon = IconCache::getIcon("MED_MENU");
         mainMenuIcon.setScaledPos(scale(getUsableX()), scale(getUsableY()));
         mainMenuIcon.setColor(getTheme().TypographyPrimaryColor_withAlpha(getTheme().HoveredTitleAlpha));
         
@@ -980,7 +980,7 @@ private:
             // ----------------------------------------------------------------------------
             // Omni Menu
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab(Aquamarine::Shared::lang("NewFunc"), uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+            uiVizWidgetMenuTab(Aquamarine::Shared::lang("NewFunc"), IconCache::getIcon("MED_ADD_CIRCLE"),
                             12345,
                             omniMenuMenuItem
                             ),          
@@ -988,8 +988,8 @@ private:
             // ----------------------------------------------------------------------------
             // Add... (to be deprecated...)
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab("Add", uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
-                                uiVizIconCache::IconTag::ADD_CIRCLE, {
+            uiVizWidgetMenuTab("Add", IconCache::getIcon("MED_ADD_CIRCLE"),
+                                IconCache::IconTag::ADD_CIRCLE, {
                                     uiVizWidgetMenuItem("Circle of Fifths", 0),
                                     uiVizWidgetMenuItem("Chord Factory", 1),
                                     uiVizWidgetMenuItem("Scale Picker", 8),
@@ -1017,8 +1017,8 @@ private:
             // ----------------------------------------------------------------------------
             // Content...
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab("Content", uiVizIconCache::getIcon("MED_BOOK_CONTENT"),
-                                uiVizIconCache::IconTag::BOOK_CONTENT, { // <---- TODO
+            uiVizWidgetMenuTab("Content", IconCache::getIcon("MED_BOOK_CONTENT"),
+                                IconCache::IconTag::BOOK_CONTENT, { // <---- TODO
                                     uiVizWidgetMenuItem("About the Color system...", 1),
                                     uiVizWidgetMenuItem("Borrowed Chords", 2),
                                     uiVizWidgetMenuItem("bla", 3),
@@ -1028,8 +1028,8 @@ private:
             // ----------------------------------------------------------------------------
             // Main Menu
             // ----------------------------------------------------------------------------
-            uiVizWidgetMenuTab("File", uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                                uiVizIconCache::IconTag::WIDGET_SETTINGS, {
+            uiVizWidgetMenuTab("File", IconCache::getIcon("MED_CONTENT_SETTINGS"),
+                                IconCache::IconTag::WIDGET_SETTINGS, {
                                     uiVizWidgetMenuItem("New", 0),
                                     uiVizWidgetMenuItem("Save", 1),
                                     uiVizWidgetMenuItem("Save as...", 2),

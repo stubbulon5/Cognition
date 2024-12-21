@@ -72,7 +72,7 @@ public:
     
     static Aquamarine::WidgetManager::widget_map_type getAppWidgetMap();
     
-    static std::map<std::string, Aquamarine::uiVizIcon*> getIconCacheMap(float scale);
+    static std::map<std::string, Aquamarine::Icon*> getIconCacheMap(float scale);
 
 #ifdef TARGET_OF_IOS
     static void setIOSGetDocumentsDirectory(std::string val);

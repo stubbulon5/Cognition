@@ -34,7 +34,7 @@ public:
                     // ----------------------------------------------------------------------------
                     // Label mode menu
                     // ----------------------------------------------------------------------------
-                    Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
+                    Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
                     keyPickerMenuItem
                     // {
                     //     uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), 1), 
@@ -109,7 +109,7 @@ public:
     //             // ----------------------------------------------------------------------------
     //             // Label mode menu
     //             // ----------------------------------------------------------------------------
-    //             uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+    //             uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
     //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), 1), 
     //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), 1, false, true), 
     //                 uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), 1), 

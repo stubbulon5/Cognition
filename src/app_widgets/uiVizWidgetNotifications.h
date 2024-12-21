@@ -375,7 +375,7 @@ public:
                 absoluteScaledX+(scaledWidth-iconClose.getScaledBounds().width)/2.0f, 
                 absoluteScaledY+(scaledHeight-iconClose.getScaledBounds().height)/2.0f
             );
-            Aquamarine::uiVizElm vizElm_cell;
+            Aquamarine::Elm vizElm_cell;
             vizElm_cell.setRectangle(absoluteScaledX, absoluteScaledY, scaledWidth, scaledHeight);
             if(vizElm_cell.isHovered_Rect()) {
                 vizElm_cell.setColor(ofColor(255, 0, 0, 180));
@@ -390,7 +390,7 @@ public:
     }    
 
     virtual void drawCellHighlight_Selected(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) {
-        Aquamarine::uiVizElm vizElm_cell;
+        Aquamarine::Elm vizElm_cell;
         vizElm_cell.setRectangle(
             absoluteScaledX, absoluteScaledY,
             scaledWidth, scaledHeight,
@@ -402,14 +402,14 @@ public:
 
     
 private:
-    Aquamarine::uiVizIcon iconLink, iconDownload, iconClose; 
+    Aquamarine::Icon iconLink, iconDownload, iconClose; 
     bool mNewItemsFound = false;
 
     void initWidget() override {  
 
-        iconLink = Aquamarine::uiVizIconCache::getIcon("REG_INFO");
-        iconDownload = Aquamarine::uiVizIconCache::getIcon("REG_NEW_RELEASE"); 
-        iconClose = Aquamarine::uiVizIconCache::getIcon("REG_WIDGET_CLOSE"); 
+        iconLink = Aquamarine::IconCache::getIcon("REG_INFO");
+        iconDownload = Aquamarine::IconCache::getIcon("REG_NEW_RELEASE"); 
+        iconClose = Aquamarine::IconCache::getIcon("REG_WIDGET_CLOSE"); 
 
         iconLink.scaleSvg(2, 2); 
         iconDownload.scaleSvg(2, 2); 

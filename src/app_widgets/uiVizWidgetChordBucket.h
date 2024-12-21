@@ -16,7 +16,7 @@ public:
     Aquamarine::Coord::vizPoint labelPoint = Aquamarine::Coord::vizPoint(0, 0);
     Aquamarine::Coord::vizBounds bounds = Aquamarine::Coord::vizBounds(0, 0, 0, 0);
     string label;
-    Aquamarine::uiVizElm path;
+    Aquamarine::Elm path;
 
     /*
     ofColor regularColor;
@@ -42,7 +42,7 @@ public:
     Aquamarine::Coord::vizBounds bounds = Aquamarine::Coord::vizBounds(0, 0, 0, 0);
     ofRectangle chordFontRect;
     string label;
-    Aquamarine::uiVizElm path;
+    Aquamarine::Elm path;
 
     ofFbo fbo;
 
@@ -313,7 +313,7 @@ public:
     {
         switch (menuTag)
         {
-        case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
+        case Aquamarine::IconCache::IconTag::WIDGET_SETTINGS:
             return chordBucketContextMenu;
         default:
             return nullptr;
@@ -368,7 +368,7 @@ public:
 
                         }
 
-                        showContextMenu(Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX()) - 20, deScale(ofGetMouseY()) - 20);
+                        showContextMenu(Aquamarine::IconCache::IconTag::WIDGET_SETTINGS, deScale(ofGetMouseX()) - 20, deScale(ofGetMouseY()) - 20);
                     }
                 }
             }
@@ -710,7 +710,7 @@ public:
 
             if (i == getHoveredChordIndex() || (i == getPlayingChordIndex() && isPlaying())) {
                 int p = getScaledPadding()*0.75f;
-                Aquamarine::uiVizElm highlight;
+                Aquamarine::Elm highlight;
                 highlight.setRectRounded(
                     chordSlice.path.getRectangle().x-p,
                     chordSlice.path.getRectangle().y-p,
@@ -810,7 +810,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Layout
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LAYOUT"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_LAYOUT, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LAYOUT"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_LAYOUT, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("SIDEBAR"), 0, true, false), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("SMALLER_DIAGRAMS"), 1, true, false),
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("BLACK_AND_WHITE"), 2, true, false)
@@ -819,7 +819,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Label mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizLabelMode::NONE), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES), 
@@ -829,7 +829,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Color mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizColorMode::NONE), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES), 
@@ -840,7 +840,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Chord view mode
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("REGULAR"), (int)TheoryVizInstrumentChordViewMode::UNSET), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("STRINGED_CHORD_DIAGRAM"), (int)TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM),
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES, true, false)
@@ -874,7 +874,7 @@ public:
             ofAddListener(chordRulesMenuItem->rulesChanged, this,  &uiVizWidgetChordBucket::onChordBucketRulesChanged);
 
             chordBucketToolsMenu = new Aquamarine::uiVizWidgetMenu(getWidgetId() + "_CB_TOOLS_MENU", "<widget><bounds width='100' height='300'/></widget>", getWidgetId(), Aquamarine::uiVizWidgetMenu::PreferredPopoutDirection::DOWN, {
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("SETTINGS"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("SETTINGS"), Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("EXPORT_PNG"), 5), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("EXPORT_HTML"), 6)
                 })
@@ -887,7 +887,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Label mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE_INSTR, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE_INSTR, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizLabelMode::NONE), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES)
@@ -896,7 +896,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Color mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE_INSTR, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE_INSTR, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizColorMode::NONE), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES)
@@ -906,7 +906,7 @@ public:
                 // ----------------------------------------------------------------------------
                 // Chord Rules
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_RULES"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_RULES"),
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_RULES"), Aquamarine::IconCache::getIcon("MED_CONTENT_RULES"),
                                 0,
                                 chordRulesMenuItem
                     ),
@@ -914,12 +914,12 @@ public:
                 // ----------------------------------------------------------------------------
                 // Strings menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("STRINGS"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_STRINGS, !stringedInstrument ? vector<Aquamarine::uiVizWidgetMenuItem>() : stringedInstrument->getStringsMenuItems()),
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("STRINGS"), Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_STRINGS, !stringedInstrument ? vector<Aquamarine::uiVizWidgetMenuItem>() : stringedInstrument->getStringsMenuItems()),
 
                 // ----------------------------------------------------------------------------
                 // Chord view mode
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("STRINGED_CHORD_DIAGRAM") + " " + ofToString(3), 3), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("STRINGED_CHORD_DIAGRAM") + " " + ofToString(4), 4), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("STRINGED_CHORD_DIAGRAM") + " " + ofToString(5), 5), 
@@ -934,13 +934,13 @@ public:
 
             topMenu->setIsRoundedRectangle(false);            
             topMenu->setMenuCollection( {
-                Aquamarine::uiVizWidgetMenuCollectionItem("TOOLS", chordBucketToolsMenu, "Tools", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("VIEW", chordBucketContextMenu2, "View", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_VIEW")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("GUITAR", stringedBucketContextMenu, "Stringed", Aquamarine::uiVizIconCache::getIcon("MED_INST_ELECTRIC_GUIT")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("SCALE_PICKER", scalePickerMenuItem, Aquamarine::uiVizIconCache::getIcon("MED_ADD_CIRCLE")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("TEMPO", nullptr, Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("PLAY_BUTTON", nullptr, Aquamarine::uiVizIconCache::getIcon("REG_REG_PLAY_BUTTON")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("STOP_BUTTON", nullptr, Aquamarine::uiVizIconCache::getIcon("REG_REG_STOP_BUTTON"))                
+                Aquamarine::uiVizWidgetMenuCollectionItem("TOOLS", chordBucketToolsMenu, "Tools", Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("VIEW", chordBucketContextMenu2, "View", Aquamarine::IconCache::getIcon("MED_CONTENT_VIEW")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("GUITAR", stringedBucketContextMenu, "Stringed", Aquamarine::IconCache::getIcon("MED_INST_ELECTRIC_GUIT")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("SCALE_PICKER", scalePickerMenuItem, Aquamarine::IconCache::getIcon("MED_ADD_CIRCLE")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("TEMPO", nullptr, Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("PLAY_BUTTON", nullptr, Aquamarine::IconCache::getIcon("REG_REG_PLAY_BUTTON")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("STOP_BUTTON", nullptr, Aquamarine::IconCache::getIcon("REG_REG_STOP_BUTTON"))                
 
             });      
 
@@ -1094,7 +1094,7 @@ private:
 
     vector<uiVizChordSlice> chordSlices;
     int mContextMenuChordIndex = -1;
-    Aquamarine::uiVizIcon bucketIcon;
+    Aquamarine::Icon bucketIcon;
 
     bool mShouldChangePlayingChord = false;
 
@@ -1126,7 +1126,7 @@ private:
 
     void initWidget() override
     {
-        bucketIcon = Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_BUCKET");
+        bucketIcon = Aquamarine::IconCache::getIcon("MED_CONTENT_BUCKET");
 
         setTitle(Aquamarine::Shared::lang("CHORD_BUCKET"));
         setScrollAction(ScrollAction::SCROLL);
@@ -1171,7 +1171,7 @@ private:
                 // ----------------------------------------------------------------------------
                 // Layout
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LAYOUT"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_LAYOUT, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LAYOUT"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_LAYOUT, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("SIDEBAR"), 0, true, false), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("SMALLER_DIAGRAMS"), 1, true, false),
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("BLACK_AND_WHITE"), 2, true, false)
@@ -1180,7 +1180,7 @@ private:
                 // ----------------------------------------------------------------------------
                 // Label mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizLabelMode::NONE), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES), 
@@ -1190,7 +1190,7 @@ private:
                 // ----------------------------------------------------------------------------
                 // Color mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE, {
                                                                                                                                                                 Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizColorMode::NONE), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
                                                                                                                                                                 // Aquamarine:://uiVizWidgetMenuItem("Scale", (int)TheoryVizColorMode::SCALES)
                                                                                                                                                             }),
@@ -1198,12 +1198,12 @@ private:
                 // ----------------------------------------------------------------------------
                 // Label mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE_INSTR, {Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizLabelMode::NONE), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES)}),
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("LABEL"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE_INSTR, {Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizLabelMode::NONE), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizLabelMode::KEYS, false, true), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizLabelMode::DEGREES)}),
 
                 // ----------------------------------------------------------------------------
                 // Color mode menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE_INSTR, {
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("COLOR"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_COLOR"), MENU_GROUP_1::MENU_TAB_THEORY_COLOR_MODE_INSTR, {
                                                                                                                                                                         Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("NONE"), (int)TheoryVizColorMode::NONE), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("KEY"), (int)TheoryVizColorMode::KEYS, false, true), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES)
                                                                                                                                                                         // Aquamarine:://uiVizWidgetMenuItem("Scale", (int)TheoryVizColorMode::SCALES)
                                                                                                                                                                     }),
@@ -1211,7 +1211,7 @@ private:
                 // ----------------------------------------------------------------------------
                 // Chord view mode
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, 
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD_VIEW"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_VIEW_MODE, 
                     {Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("REGULAR"), (int)TheoryVizInstrumentChordViewMode::UNSET), 
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("STRINGED_CHORD_DIAGRAM"), (int)TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM),
                     Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DEGREE"), (int)TheoryVizColorMode::DEGREES, false, false)
@@ -1221,18 +1221,18 @@ private:
                 // ----------------------------------------------------------------------------
                 // Chord Designer menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER, chordDesignerMenuItem),
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER, chordDesignerMenuItem),
 
 
                 // ----------------------------------------------------------------------------
                 // Chord Designer menu (stringed)
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER_STRINGED, chordDesignerMenuItemStringed),                
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("CHORD"), Aquamarine::IconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_CHORD_DESIGNER_STRINGED, chordDesignerMenuItemStringed),                
 
                 // ----------------------------------------------------------------------------
                 // Settings menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("SETTINGS"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("LEFT_HAND"), 0, true, false), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DELETE"), 1)})
+                Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("SETTINGS"), Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"), MENU_GROUP_1::MENU_TAB_SETTINGS, {Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("LEFT_HAND"), 0, true, false), Aquamarine::uiVizWidgetMenuItem(Aquamarine::Shared::lang("DELETE"), 1)})
 
             });
             ofAddListener(dynamic_cast<Aquamarine::uiVizWidgetMenu *>(chordBucketContextMenu)->menuItemSelected, this, &uiVizWidgetChordBucket::onMenuItemSelected);
@@ -1317,7 +1317,7 @@ private:
 
             if (stringedInstrument != nullptr && stringedBucketContextMenu != nullptr) {            
                     stringedBucketContextMenu->addOrUpdateMenuTab(
-                        Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("STRINGS"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"), 
+                        Aquamarine::uiVizWidgetMenuTab(Aquamarine::Shared::lang("STRINGS"), Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"), 
                         MENU_GROUP_1::MENU_TAB_STRINGS,  stringedInstrument->getStringsMenuItems())                    
                     );
             }

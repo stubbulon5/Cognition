@@ -113,16 +113,16 @@ public:
     }
 
     virtual void drawCellContent(bool isRowSelected, bool isRowHovered, bool isCellHovered, int absoluteScaledX, int absoluteScaledY, int absoluteScaledLabelX, int absoluteScaledLabelY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int rowIndex, int colIndex) override {
-        Aquamarine::uiVizIcon img = Aquamarine::uiVizIconCache::getIcon(cell.key);
+        Aquamarine::Icon img = Aquamarine::IconCache::getIcon(cell.key);
         
-        if (img.getTag() == Aquamarine::uiVizIconCache::IconTag::NOT_FOUND) {
+        if (img.getTag() == Aquamarine::IconCache::IconTag::NOT_FOUND) {
                 if (mImgCacheMap.find(cell.key) == mImgCacheMap.end()) {
                     Aquamarine::uiVizWidgetCacheData cacheData = cacheMusicalWidgetIcon(cell.key, cell.getMetadata("DRAG_DATA"), 600, 600, false);
 
-                    img = Aquamarine::uiVizIcon(
+                    img = Aquamarine::Icon(
                         cacheData.imagePath, 
                         Aquamarine::Coord::vizBounds(0, 0, 600, 600), 
-                        1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR , ofColor::white, -1
+                        1.0f, Aquamarine::Icon::IconSize::REGULAR , ofColor::white, -1
                     );
                     mImgCacheMap[cell.key] = img;
                 } else {
@@ -373,7 +373,7 @@ private:
     vector<string> searchHints = {"C Major", "Gb Minor", "D#m", "Ionian Scale", "Minor Scale"};   
     string omniSearchBoxId; 
 
-    std::map<std::string, Aquamarine::uiVizIcon> mImgCacheMap;
+    std::map<std::string, Aquamarine::Icon> mImgCacheMap;
 
 
     map<string, string> widgetsToCache;
@@ -457,7 +457,7 @@ private:
     virtual void drawCellFooterRow(bool isRowSelected, bool isRowHovered, int absoluteScaledX, int absoluteScaledY, int scaledWidth, int scaledHeight, Aquamarine::uiVizWidgetTableRow& row, Aquamarine::uiVizWidgetTableCell& cell, int colIndex) {
         if (colIndex == 0) {
             
-            Aquamarine::uiVizElm vizElm_cell;
+            Aquamarine::Elm vizElm_cell;
             vizElm_cell.setRectangle(
                 absoluteScaledX,
                 absoluteScaledY,
@@ -552,9 +552,9 @@ private:
                             
             menuItemTypeTabs->setIsRoundedRectangle(false);            
             menuItemTypeTabs->setMenuCollection( {
-                Aquamarine::uiVizWidgetMenuCollectionItem("GENERAL", nullptr, "General", Aquamarine::uiVizIconCache::getIcon("REG_BUG")),         
-                Aquamarine::uiVizWidgetMenuCollectionItem("INSTRUMENT", nullptr, "Instruments", Aquamarine::uiVizIconCache::getIcon("REG_BUG")),
-                Aquamarine::uiVizWidgetMenuCollectionItem("SEARCH", nullptr, "Search...", Aquamarine::uiVizIconCache::getIcon("REG_BUG"))
+                Aquamarine::uiVizWidgetMenuCollectionItem("GENERAL", nullptr, "General", Aquamarine::IconCache::getIcon("REG_BUG")),         
+                Aquamarine::uiVizWidgetMenuCollectionItem("INSTRUMENT", nullptr, "Instruments", Aquamarine::IconCache::getIcon("REG_BUG")),
+                Aquamarine::uiVizWidgetMenuCollectionItem("SEARCH", nullptr, "Search...", Aquamarine::IconCache::getIcon("REG_BUG"))
             });
             addChildWidget(*menuItemTypeTabs, true); 
             ofAddListener(menuItemTypeTabs->menuItemSelected, this, &uiVizWidgetOmniMenuLinks::onMenuItemSelected);  

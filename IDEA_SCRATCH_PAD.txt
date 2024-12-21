@@ -1,6 +1,6 @@
 
         
-        // TODO : port rest of uiVizWidget to use uiVizElm
+        // TODO : port rest of uiVizWidget to use Elm
         // PORT KEYPICKER and CHORDPICKER...
         
         // TODO::

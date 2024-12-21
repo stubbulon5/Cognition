@@ -43,7 +43,7 @@ void APP_CONSTANTS::BOOTSTRAP_APP() {
     );
     
     Aquamarine::WidgetManager::bootstrapWidgetMap(APP_CONSTANTS::getAppWidgetMap());
-    Aquamarine::uiVizIconCache::bootstrapIconMap(Aquamarine::Shared::getViz()->getScale(), APP_CONSTANTS::getIconCacheMap(Aquamarine::Shared::getViz()->getScale()));
+    Aquamarine::IconCache::bootstrapIconMap(Aquamarine::Shared::getViz()->getScale(), APP_CONSTANTS::getIconCacheMap(Aquamarine::Shared::getViz()->getScale()));
 }
 
 int APP_CONSTANTS::getAppMajorVersion() {
@@ -279,9 +279,9 @@ Aquamarine::WidgetManager::widget_map_type APP_CONSTANTS::getAppWidgetMap() {
     return appWidgetMap;
 }
 
-std::map<std::string, Aquamarine::uiVizIcon*> APP_CONSTANTS::getIconCacheMap(float scale) {
+std::map<std::string, Aquamarine::Icon*> APP_CONSTANTS::getIconCacheMap(float scale) {
     
-    std::map<std::string, Aquamarine::uiVizIcon*> iconCacheMap;
+    std::map<std::string, Aquamarine::Icon*> iconCacheMap;
     
     int iconSizeFromFile = 48; // The files we are sourcing are sized at 48x48px
     
@@ -297,30 +297,30 @@ std::map<std::string, Aquamarine::uiVizIcon*> APP_CONSTANTS::getIconCacheMap(flo
     int iconSizeMedScaledSize = iconSizeFromFile * (float)iconSizeMedScale;
     int iconSizeLrgScaledSize = iconSizeFromFile * (float)iconSizeLrgScale;
     
-    iconCacheMap["MED_CONTENT_THEORY_LABEL"] = new Aquamarine::uiVizIcon("ui/svg/ic_info_outline_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
-    iconCacheMap["MED_CONTENT_THEORY_COLOR"] = new Aquamarine::uiVizIcon("ui/svg/ic_color_lens_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
-    iconCacheMap["MED_CONTENT_THEORY_SCALE"] = new Aquamarine::uiVizIcon("ui/svg/ic_tonality_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
-    iconCacheMap["MED_CONTENT_SETTINGS"] = new Aquamarine::uiVizIcon("ui/svg/ic_settings_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS);
-    iconCacheMap["MED_CONTENT_VIEW"] = new Aquamarine::uiVizIcon("ui/svg/ic_view_compact_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, 0);
-    iconCacheMap["MED_ADD_CIRCLE"] = new Aquamarine::uiVizIcon("ui/svg/ic_add_circle_outline_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::ADD_CIRCLE);
-    iconCacheMap["MED_MENU"] = new Aquamarine::uiVizIcon("ui/svg/ic_apps_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::MENU);
-    iconCacheMap["MED_KEY"] = new Aquamarine::uiVizIcon("ui/svg/ic_vpn_key_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::MED_KEY);
-    iconCacheMap["MED_CONTENT_RULES"] = new Aquamarine::uiVizIcon("ui/svg/ic_tune_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::MED_KEY);
-    iconCacheMap["MED_CONTENT_EDIT"] = new Aquamarine::uiVizIcon("ui/svg/ic_edit_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::MED_KEY);
-    iconCacheMap["MED_CONTENT_TICK"] = new Aquamarine::uiVizIcon("ui/svg/ic_check_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, Aquamarine::uiVizIconCache::IconTag::MED_KEY);
+    iconCacheMap["MED_CONTENT_THEORY_LABEL"] = new Aquamarine::Icon("ui/svg/ic_info_outline_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
+    iconCacheMap["MED_CONTENT_THEORY_COLOR"] = new Aquamarine::Icon("ui/svg/ic_color_lens_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
+    iconCacheMap["MED_CONTENT_THEORY_SCALE"] = new Aquamarine::Icon("ui/svg/ic_tonality_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
+    iconCacheMap["MED_CONTENT_SETTINGS"] = new Aquamarine::Icon("ui/svg/ic_settings_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::WIDGET_SETTINGS);
+    iconCacheMap["MED_CONTENT_VIEW"] = new Aquamarine::Icon("ui/svg/ic_view_compact_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, 0);
+    iconCacheMap["MED_ADD_CIRCLE"] = new Aquamarine::Icon("ui/svg/ic_add_circle_outline_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::ADD_CIRCLE);
+    iconCacheMap["MED_MENU"] = new Aquamarine::Icon("ui/svg/ic_apps_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::MENU);
+    iconCacheMap["MED_KEY"] = new Aquamarine::Icon("ui/svg/ic_vpn_key_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::MED_KEY);
+    iconCacheMap["MED_CONTENT_RULES"] = new Aquamarine::Icon("ui/svg/ic_tune_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::MED_KEY);
+    iconCacheMap["MED_CONTENT_EDIT"] = new Aquamarine::Icon("ui/svg/ic_edit_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::MED_KEY);
+    iconCacheMap["MED_CONTENT_TICK"] = new Aquamarine::Icon("ui/svg/ic_check_"+ofToString(iconSizeFromFile)+"px.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, Aquamarine::IconCache::IconTag::MED_KEY);
 
-    iconCacheMap["MED_INST_ELECTRIC_GUIT"] = new Aquamarine::uiVizIcon("ui/music-icons/electric-guitar.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, 0);
+    iconCacheMap["MED_INST_ELECTRIC_GUIT"] = new Aquamarine::Icon("ui/music-icons/electric-guitar.svg", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, 0);
 
     /* Icon images for Widgets - If a custom image / ico is required for a widget, specify it here */
-    iconCacheMap["uiVizWidgetGuitar"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetGuitar.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_GUITAR);
+    iconCacheMap["uiVizWidgetGuitar"] = new Aquamarine::Icon("ui/images/uiVizWidgetGuitar.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_GUITAR);
 /*    
-    iconCacheMap["uiVizWidgetChordDesigner"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetChordDesigner.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER);
-    iconCacheMap["uiVizWidgetChordWheel"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetChordWheel.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL);
-    iconCacheMap["uiVizWidgetKeyPicker"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetKeyPicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_KEY_PICKER);
-    iconCacheMap["uiVizWidgetScalePicker"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetScalePicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_SCALE_PICKER);    
+    iconCacheMap["uiVizWidgetChordDesigner"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordDesigner.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_DESIGNER);
+    iconCacheMap["uiVizWidgetChordWheel"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordWheel.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_WHEEL);
+    iconCacheMap["uiVizWidgetKeyPicker"] = new Aquamarine::Icon("ui/images/uiVizWidgetKeyPicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_KEY_PICKER);
+    iconCacheMap["uiVizWidgetScalePicker"] = new Aquamarine::Icon("ui/images/uiVizWidgetScalePicker.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_SCALE_PICKER);    
 */
-    iconCacheMap["uiVizWidgetChordBucket"] = new Aquamarine::uiVizIcon("ui/images/uiVizWidgetChordBucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
-    iconCacheMap["MED_CONTENT_BUCKET"] = new Aquamarine::uiVizIcon("ui/images/bucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::uiVizIcon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
+    iconCacheMap["uiVizWidgetChordBucket"] = new Aquamarine::Icon("ui/images/uiVizWidgetChordBucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
+    iconCacheMap["MED_CONTENT_BUCKET"] = new Aquamarine::Icon("ui/images/bucket.png", Aquamarine::Coord::vizBounds(0, 0, iconSizeMedScaledSize, iconSizeMedScaledSize), (float)iconSizeMedScale, Aquamarine::Icon::IconSize::MEDIUM, ofColor::white, APP_CONSTANTS::ICON_WIDGET_CLASS_CHORD_BUCKET);
 
 
 

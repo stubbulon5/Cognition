@@ -487,7 +487,7 @@ private:
 
     uiVizWidgetTable* TABLE_PARTS = nullptr;
 
-    uiVizIcon addIcon = uiVizIconCache::getIcon("MED_ADD_CIRCLE");
+    Icon addIcon = IconCache::getIcon("MED_ADD_CIRCLE");
 
     void initWidget() override {
       

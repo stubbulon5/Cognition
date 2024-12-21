@@ -47,7 +47,7 @@ public:
     
     uiVizWidget* getPopoutWidgetForMenuTag(int menuTag) override {
         switch(menuTag) {
-            case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
+            case Aquamarine::IconCache::IconTag::WIDGET_SETTINGS:
                 return fileMenu;
             default:
                 return nullptr;
@@ -247,7 +247,7 @@ public:
     virtual void onMenuItemSelected(Aquamarine::uiVizWidgetMenuCollectionArgs & args) override {
         if (args.menuTag == MENU_FILE) {
             switch(args.activeMenuTabId) {
-                case Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS:
+                case Aquamarine::IconCache::IconTag::WIDGET_SETTINGS:
                     switch(args.menuItem->uniqueID) {
                         case 0: // New
                             newProject(); break;
@@ -269,7 +269,7 @@ public:
             }
         } else if (args.menuTag == MENU_HELP) {
             switch(args.activeMenuTabId) {
-                case Aquamarine::uiVizIconCache::IconTag::BOOK_CONTENT:
+                case Aquamarine::IconCache::IconTag::BOOK_CONTENT:
                     switch(args.menuItem->uniqueID) {
                         case 0: // tutorials
                             tutorials(); break;
@@ -320,7 +320,7 @@ private:
     uiVizWidgetLicence *licenceMenu = nullptr;
     uiVizWidgetNotifications* notificationMenu = nullptr;
     uiVizWidgetOmniMenu *omniMenuMenuItem = nullptr;
-    Aquamarine::uiVizIcon mainMenuIcon = Aquamarine::uiVizIcon("", Aquamarine::Coord::vizBounds(0,0,0,0), 1.0f, Aquamarine::uiVizIcon::IconSize::REGULAR, ofColor::white, 0);;
+    Aquamarine::Icon mainMenuIcon = Aquamarine::Icon("", Aquamarine::Coord::vizBounds(0,0,0,0), 1.0f, Aquamarine::Icon::IconSize::REGULAR, ofColor::white, 0);;
 
     const string MENU_FILE = "FILE";
     const string MENU_ADD = "ADD";
@@ -366,8 +366,8 @@ private:
                 // ----------------------------------------------------------------------------
                 // File Menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                    Aquamarine::uiVizIconCache::IconTag::WIDGET_SETTINGS, {
+                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"),
+                    Aquamarine::IconCache::IconTag::WIDGET_SETTINGS, {
                         Aquamarine::uiVizWidgetMenuItem("New", 0),
                         Aquamarine::uiVizWidgetMenuItem("Save", 1),
                         Aquamarine::uiVizWidgetMenuItem("Save as...", 2),
@@ -388,8 +388,8 @@ private:
                 // ----------------------------------------------------------------------------
                 // File Menu
                 // ----------------------------------------------------------------------------
-                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_SETTINGS"),
-                    Aquamarine::uiVizIconCache::IconTag::BOOK_CONTENT, {
+                Aquamarine::uiVizWidgetMenuTab("File", Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"),
+                    Aquamarine::IconCache::IconTag::BOOK_CONTENT, {
                         Aquamarine::uiVizWidgetMenuItem("Tutorials", 0),
                         Aquamarine::uiVizWidgetMenuItem("Enter Licence Key...", 1),                        
                         Aquamarine::uiVizWidgetMenuItem("About (reg)", 2),
@@ -422,14 +422,14 @@ private:
             /* Let the fun begin... */
             setMenuCollection({
                 Aquamarine::uiVizWidgetMenuCollectionItem(MENU_FILE, fileMenu, "File"),
-                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, omniMenu, "Add...", Aquamarine::uiVizIconCache::getIcon("MED_ADD_CIRCLE"),
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, omniMenu, "Add...", Aquamarine::IconCache::getIcon("MED_ADD_CIRCLE"),
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::LEFT, VerticalAlign::CENTER)),
                 Aquamarine::uiVizWidgetMenuCollectionItem(MENU_HELP, helpMenu, "Help"),                    
-                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, licenceMenu, Aquamarine::uiVizIconCache::getIcon("REG_USER"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_ADD, licenceMenu, Aquamarine::IconCache::getIcon("REG_USER"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20))),
-                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_NOTIFICATION, notificationMenu, Aquamarine::uiVizIconCache::getIcon("REG_DOT"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_NOTIFICATION, notificationMenu, Aquamarine::IconCache::getIcon("REG_DOT"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20))),                    
-                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_DEBUG, nullptr, Aquamarine::uiVizIconCache::getIcon("REG_BUG"), 
+                Aquamarine::uiVizWidgetMenuCollectionItem(MENU_DEBUG, nullptr, Aquamarine::IconCache::getIcon("REG_BUG"), 
                     DisplayOptions(DisplayType::POPOUT, HorizontalAlign::RIGHT, VerticalAlign::CENTER, NonScaledPadding(0, 20, 0, 20)))
             });
 

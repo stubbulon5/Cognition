@@ -344,7 +344,7 @@ public:
 private:
     
     bool loaded = false;
-    Aquamarine::uiVizIcon keyIcon;
+    Aquamarine::Icon keyIcon;
     float mUIIconScale = 1.0f;
     
     Aquamarine::uiVizWidgetElmTextbox* TXT_USERNAME;
@@ -355,7 +355,7 @@ private:
     void initWidget() override {
         if (loaded) return;
         
-        keyIcon = Aquamarine::uiVizIconCache::getIcon("MED_MENU");
+        keyIcon = Aquamarine::IconCache::getIcon("MED_MENU");
         keyIcon.setColor(ofColor(255, 255, 255, 200));
         keyIcon.setIsVisible(false);
         

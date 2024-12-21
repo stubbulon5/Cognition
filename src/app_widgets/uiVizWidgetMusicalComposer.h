@@ -157,7 +157,7 @@ private:
 
 
             
-            Aquamarine::uiVizIcon i = Aquamarine::uiVizIconCache::getIcon("REG_QUEUE_MUSIC");
+            Aquamarine::Icon i = Aquamarine::IconCache::getIcon("REG_QUEUE_MUSIC");
 
             topMenu->setMenuCollection( {
                 Aquamarine::uiVizWidgetMenuCollectionItem("VERSE", nullptr, "Verse", i),
