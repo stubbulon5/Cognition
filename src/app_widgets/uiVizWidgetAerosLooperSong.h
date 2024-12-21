@@ -3,7 +3,9 @@
 //
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
+#include "uiVizWidgetMenuCollection.h"
+#include "uiVizWidgetDialog.h"
 
 #include "../core/aerosSong/song.pb.h"
 #include "../core/AudioFile/AudioFile.h"

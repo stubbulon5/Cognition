@@ -1,6 +1,6 @@
 
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
 #include "uiVizWidgetKeyPicker.h"
 #include "uiVizWidgetScaleTable.h"
 #include "uiVizWidgetChordDesigner.h"

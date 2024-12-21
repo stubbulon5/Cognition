@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 
-using namespace Aquamarine;
+// using namespace Aquamarine;
 
 void ofApp::setup(){
 
@@ -23,15 +23,15 @@ void ofApp::setup(){
     #endif  
 
     ofxXmlSettings settings = 
-        uiVizShared::initSettingsFile(
+        Aquamarine::uiVizShared::initSettingsFile(
             APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(),
             APP_CONSTANTS::APPLICATION_SETTINGS_FILE()
         );
 
-    uiVizShared::configure(
-        settings.getValue("settings:userInterfaceScaling", uiVizShared::getDefaultScaling()),
+    Aquamarine::uiVizShared::configure(
+        settings.getValue("settings:userInterfaceScaling", Aquamarine::uiVizShared::getDefaultScaling()),
         settings.getValue("settings:language", "english"),
-        settings.getValue("settings:userExperience", uiVizShared::getDefaultFPS()),
+        settings.getValue("settings:userExperience", Aquamarine::uiVizShared::getDefaultFPS()),
         settings.getValue("settings:useFbo", true),
         settings.getValue("settings:showFps", false),
         settings.getValue("settings:fontPath", "fonts/Verdana.ttf"),
@@ -39,7 +39,7 @@ void ofApp::setup(){
         settings.getValue("settings:themeName", "Aqumarine")
     );
 
-    uiVizShared::langLoadXML(APP_CONSTANTS::DEFAULT_LANGUAGE_XML);
+    Aquamarine::uiVizShared::langLoadXML(APP_CONSTANTS::DEFAULT_LANGUAGE_XML);
     APP_CONSTANTS::BOOTSTRAP_APP();
     
 	// Midi initialize - make it configurable too...
@@ -53,11 +53,11 @@ void ofApp::setup(){
 }
 
 void ofApp::initAquamarine() {
-    uiVizWidgetManager::removeAllWidgets();
+    Aquamarine::uiVizWidgetManager::removeAllWidgets();
     
     /* Add the main menu */
-    uiVizWidget* mainMenuWidget = uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
-    uiVizWidgetManager::addWidget(*mainMenuWidget, false);
+    Aquamarine::uiVizWidget* mainMenuWidget = Aquamarine::uiVizWidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
+    Aquamarine::uiVizWidgetManager::addWidget(*mainMenuWidget, false);
 }
 
 //------------------------------ DRAW & UPDATE--------------------------------
@@ -66,7 +66,7 @@ void ofApp::update() {
 
 void ofApp::draw() {
 	// vizBG->draw();
-    uiVizWidgetManager::drawWidgets();
+    Aquamarine::uiVizWidgetManager::drawWidgets();
 }
 
 //--------------------------------------------------------------
@@ -97,24 +97,24 @@ void ofApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
     // TODO : make this a user setting!
-    if (uiVizShared::getViz() != nullptr && !uiVizShared::getViz()->getIsAnyWidgetDraggingOrResizing()) {
-        uiVizShared::revertThrottleUserExperience();
+    if (Aquamarine::uiVizShared::getViz() != nullptr && !Aquamarine::uiVizShared::getViz()->getIsAnyWidgetDraggingOrResizing()) {
+        Aquamarine::uiVizShared::revertThrottleUserExperience();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
     // TODO : make this a user setting!
-    if (uiVizShared::getViz() != nullptr && !uiVizShared::getViz()->getIsAnyWidgetDraggingOrResizing()) {
-        uiVizShared::throttleUserExperience();
+    if (Aquamarine::uiVizShared::getViz() != nullptr && !Aquamarine::uiVizShared::getViz()->getIsAnyWidgetDraggingOrResizing()) {
+        Aquamarine::uiVizShared::throttleUserExperience();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-    if (uiVizShared::getViz() != nullptr) {
-        uiVizShared::setResolutionMultiplier();
-        uiVizShared::setUserScale(uiVizShared::getViz()->getUserScale());
+    if (Aquamarine::uiVizShared::getViz() != nullptr) {
+        Aquamarine::uiVizShared::setResolutionMultiplier();
+        Aquamarine::uiVizShared::setUserScale(Aquamarine::uiVizShared::getViz()->getUserScale());
     }
 }
 

@@ -38,7 +38,9 @@ void APP_CONSTANTS::BOOTSTRAP_APP() {
     Aquamarine::uiVizWidgetManager::initWidgetManager(
       APP_CONSTANTS::APPLICATION_NAME,
       APP_CONSTANTS::APPLICATION_VERSION,
-      APP_CONSTANTS::APPLICATION_FILE_EXTENSION);
+      APP_CONSTANTS::APPLICATION_FILE_EXTENSION,
+      false
+    );
     
     Aquamarine::uiVizWidgetManager::bootstrapWidgetMap(APP_CONSTANTS::getAppWidgetMap());
     Aquamarine::uiVizIconCache::bootstrapIconMap(Aquamarine::uiVizShared::getViz()->getScale(), APP_CONSTANTS::getIconCacheMap(Aquamarine::uiVizShared::getViz()->getScale()));

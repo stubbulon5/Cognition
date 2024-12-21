@@ -1,5 +1,6 @@
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidgetTable.h"
+#include "../uiViz/widget/uiVizWidgetSettings.h"
 
 class uiVizWidgetNotifications : public Aquamarine::uiVizWidgetTable {
     

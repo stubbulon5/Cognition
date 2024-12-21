@@ -4,10 +4,11 @@
 //
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidgetMenu.h"
 #include "uiVizWidgetMusical.h"
 #include "uiVizWidgetChordDesigner.h"
 #include "uiVizWidgetGuitar.h"
+#include "uiVizWidgetMenuCollection.h"
 #include "uiVizWidgetKeyPickerPopout.h"
 
 class uiVizNoteSlice

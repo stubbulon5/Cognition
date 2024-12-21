@@ -5,7 +5,10 @@
 // UI Stuff
 #include "ofxXmlSettings.h"
 //#include "ofxVST3.h"
-#include "ofxAquamarine.h"
+#include "uiViz/uiVizShared.h"
+#include "uiViz/uiVizWidgetManager.h"
+#include "uiViz/widget/uiVizWidget.h"
+
 #include "app_widgets/sdMidiShared.h"
 #include "app_widgets/appConstants.h"
 

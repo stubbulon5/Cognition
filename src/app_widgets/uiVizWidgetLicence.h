@@ -5,7 +5,7 @@
 //  Created by Stuart Barnes on 12/04/2019.
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
 #include "appConstants.h"
 
 

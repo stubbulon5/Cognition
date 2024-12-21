@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
-#include "ofxAquamarine.h"
+#include "../uiViz/uiVizShared.h"
+#include "../uiViz/uiVizWidgetManager.h"
+
+
 
 //------------------------------ APP CONSTANTS --------------------------------
 

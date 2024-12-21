@@ -1,5 +1,5 @@
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
 
 class uiVizWidgetOmniMenuSearchResults : public Aquamarine::uiVizWidget {
     

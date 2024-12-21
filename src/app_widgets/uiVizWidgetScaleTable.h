@@ -4,7 +4,7 @@
 //
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "uiVizWidgetTable.h"
 
 class uiVizWidgetScaleTable : public Aquamarine::uiVizWidgetTable {
 public:

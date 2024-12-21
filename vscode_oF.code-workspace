@@ -126,7 +126,11 @@
             "__bits": "cpp",
             "csignal": "cpp",
             "compare": "cpp",
-            "span": "cpp"
+            "span": "cpp",
+            "__verbose_abort": "cpp",
+            "any": "cpp",
+            "execution": "cpp",
+            "print": "cpp"
         }
 	}
 }

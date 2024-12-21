@@ -1,6 +1,6 @@
 
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidgetEventListener.h"
 #include "uiVizWidgetKeyPicker.h"
 
 class uiVizWidgetEventListenerMusical : public Aquamarine::uiVizWidgetEventListener {
@@ -37,10 +37,10 @@ public:
                     Aquamarine::uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), Aquamarine::uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, 
                     keyPickerMenuItem
                     // {
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
-                    //     uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
+                    //     uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
                     // }
                     )
                 );
@@ -110,10 +110,10 @@ public:
     //             // Label mode menu
     //             // ----------------------------------------------------------------------------
     //             uiVizWidgetMenuTab(Aquamarine::uiVizShared::lang("LABEL"), uiVizIconCache::getIcon("MED_CONTENT_THEORY_LABEL"), MENU_GROUP_1::MENU_TAB_THEORY_LABEL_MODE, {
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("NONE"), 1), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("KEY"), 1, false, true), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("DEGREE"), 1), 
-    //                 uiVizWidgetMenuItem(Aquamarine::uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
+    //                 uiVizWidgetMenuItem(uiVizShared::lang("NONE"), 1), 
+    //                 uiVizWidgetMenuItem(uiVizShared::lang("KEY"), 1, false, true), 
+    //                 uiVizWidgetMenuItem(uiVizShared::lang("DEGREE"), 1), 
+    //                 uiVizWidgetMenuItem(uiVizShared::lang("ALTERNATE_KEYS_DEGREES"), -1000)
     //             })
     //         );
     //     }        

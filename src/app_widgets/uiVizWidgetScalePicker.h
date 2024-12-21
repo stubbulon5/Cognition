@@ -4,7 +4,8 @@
 //
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidgetMenu.h"
+#include "../uiViz/widget/uiVizWidgetTable.h"
 #include "uiVizWidgetMusical.h"
 #include "uiVizWidgetScaleTable.h"
 #include "uiVizWidgetChordRules.h"

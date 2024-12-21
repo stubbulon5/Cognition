@@ -1,11 +1,13 @@
 
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
+#include "../uiViz/widget/uiVizWidgetMenu.h"
 #include "uiVizWidgetMusical.h"
 #include "uiVizWidgetKeyPicker.h"
 #include "uiVizWidgetScalePicker.h"
 #include "uiVizWidgetChordWheel.h"
 #include "uiVizWidgetChordDesigner.h"
+#include "uiVizWidgetDialog.h"
 #include "uiVizWidgetNotesTable.h"
 #include "uiVizWidgetMusicalHelper.h"
 

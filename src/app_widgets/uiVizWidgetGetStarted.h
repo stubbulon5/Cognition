@@ -5,8 +5,9 @@
 //
 //
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
 #include "uiVizWidgetLicence.h"
+#include "uiVizWidgetMenuCollection.h"
 
 class uiVizWidgetGetStarted : public Aquamarine::uiVizWidget {
     

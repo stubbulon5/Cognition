@@ -1,6 +1,8 @@
 
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
+#include "../uiViz/widget/uiVizWidgetPianoRoll.h"
+#include "uiVizWidgetMenuCollection.h"
 #include "uiVizWidgetMusicalComposerSidebar.h"
 
 class uiVizWidgetMusicalComposer : public uiVizWidgetMusical {

@@ -1,6 +1,6 @@
 
 #pragma once
-#include "ofxAquamarine.h"
+#include "../uiViz/widget/uiVizWidget.h"
 #include "uiVizWigetStringedInstrument.h"
 
 //------------------------------ Bass Guitar fretboard --------------------------------
