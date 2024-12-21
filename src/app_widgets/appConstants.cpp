@@ -167,7 +167,7 @@ const std::string APP_CONSTANTS::DEFAULT_LANGUAGE_XML = ""
 "</LANGUAGE>";
 
 /* IMPORT ALL SUPPORTED WIDGET CLASSES HERE */
-#include "../uiViz/widget/Widget.h"
+#include "../viz/widget/Widget.h"
 
 /* -------> YOU OWN WIDGETS HERE <------- */
 #include "WidgetMusical.h"

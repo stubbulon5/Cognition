@@ -5,7 +5,7 @@
 class WidgetChordRules : public WidgetMusical {
 public:
 
-    ofEvent<uiVizInstrumentRuleArgs>     rulesChanged;
+    ofEvent<vizInstrumentRuleArgs>     rulesChanged;
 
     WidgetChordRules(string persistentId, string widgetXML) : WidgetMusical(persistentId, widgetXML) {
         initWidget();
@@ -155,7 +155,7 @@ public:
             setInstrumentRule("general", "strictExtendedNotes", CHK_strictExtendedNotes->getValue());
             setInstrumentRule("stringed", "notesPerString", SLD_notesPerString->getValue());
 
-            uiVizInstrumentRuleArgs ruleArgs = uiVizInstrumentRuleArgs(getInstrumentRules());
+            vizInstrumentRuleArgs ruleArgs = vizInstrumentRuleArgs(getInstrumentRules());
             ofNotifyEvent(rulesChanged, ruleArgs);
         } 
 
@@ -189,7 +189,7 @@ public:
 
         
         if (fireEvent) {
-            uiVizInstrumentRuleArgs ruleArgs = uiVizInstrumentRuleArgs(getInstrumentRules());
+            vizInstrumentRuleArgs ruleArgs = vizInstrumentRuleArgs(getInstrumentRules());
             ofNotifyEvent(rulesChanged, ruleArgs);            
         }
     }

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "../uiViz/Shared.h"
-#include "../uiViz/WidgetManager.h"
+#include "../viz/Shared.h"
+#include "../viz/WidgetManager.h"
 
 // #include "ofxAquamarine.h"
 

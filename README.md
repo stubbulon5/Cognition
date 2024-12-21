@@ -67,5 +67,5 @@ cd doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ..
 
 # Generate  Aquamarine UI Documentation
 ``` 
-cd src/uiViz/doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ../../../
+cd src/viz/doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ../../../
 ```

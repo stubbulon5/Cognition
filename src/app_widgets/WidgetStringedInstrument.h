@@ -1307,7 +1307,7 @@ public:
     void updateRules(ofxXmlSettings rules, bool updateInstrument, bool notify, string optionalReasonDesc)
     {
 
-        uiVizInstrumentRuleArgs args(rules);
+        vizInstrumentRuleArgs args(rules);
 
         /*
 over here - append instrument rules instead of set
@@ -1384,7 +1384,7 @@ append so that when stuff is dragged, full rules persist!
             ofNotifyEvent(rulesChanged, args);
     }
 
-    virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) override
+    virtual void onRulesChanged(vizInstrumentRuleArgs &args) override
     {
         updateRules(args.rules, true, true, "onRulesChanged");
     }
@@ -2813,12 +2813,12 @@ append so that when stuff is dragged, full rules persist!
         setNeedsUpdate(true);
     }
 
-    void onKeyPickerMenuKeySelected(uiVizNoteSelectedArgs &args)
+    void onKeyPickerMenuKeySelected(vizNoteSelectedArgs &args)
     {
         onKeyChanged(args.note);
     }
 
-    void onChordDesignerMenuNoteSelected(uiVizNoteSelectedArgs &args)
+    void onChordDesignerMenuNoteSelected(vizNoteSelectedArgs &args)
     {
         // Add / remove selected Note
         setUserDefinedChordName("");
@@ -2848,7 +2848,7 @@ append so that when stuff is dragged, full rules persist!
         }
     }
 
-    void onUserDefinedChordNameChanged(uiVizTextChangedArgs &args)
+    void onUserDefinedChordNameChanged(vizTextChangedArgs &args)
     {
         setUserDefinedChordName(args.text);
         string calculatedChordName = getCalculatedChordName();
@@ -2856,7 +2856,7 @@ append so that when stuff is dragged, full rules persist!
         setTitle(titleName + " - " + ofToString(getLowestStartingFret()) + " to " + ofToString(getHighestEndingFret()) + " [" + getTuningName(false) + "]");
     }
 
-    void onScalePickerMenuNoteSelected(uiVizNoteSelectedArgs &args)
+    void onScalePickerMenuNoteSelected(vizNoteSelectedArgs &args)
     {
         vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName(), 3);
         setSelectedScale(scale, true);

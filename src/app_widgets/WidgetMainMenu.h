@@ -1,11 +1,11 @@
 //
-//  uiVizMainMenu.h
+//  vizMainMenu.h
 //  bloom-macos
 //
 //  Created by Stuart Barnes on 12/04/2019.
 //
 #pragma once
-#include "../uiViz/widget/Widget.h"
+#include "../viz/widget/Widget.h"
 
 #include "WidgetChordWheel.h"
 #include "WidgetChordBucket.h"

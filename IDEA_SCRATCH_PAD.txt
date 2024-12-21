@@ -45,7 +45,7 @@
         // 0.6) Do menu using ONE instance of Widget (using offsets!!)
         // 3.) Animation scaling needs fixing when on hi-dpi displays - CLOSE
         // 8.) When moving from really low dpi to high dpi the widgets gewt too small. solution : automatically tweak the m_userscale setting up or down (based on a calculation). have a usersetting to disable / enable this smart functionality!!!!
-        // 9.) uiVizDockedWidget.h  ---- add dockable behaviour (derrived oof Widget.h)
+        // 9.) vizDockedWidget.h  ---- add dockable behaviour (derrived oof Widget.h)
 
         
         // Bug : full hove rover widget title - if keep toggling viz minimized state, the animation slows down to a crawl! - relative to framerate - red herring? - does it at 60 to 20!.

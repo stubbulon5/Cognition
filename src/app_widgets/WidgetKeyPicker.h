@@ -149,7 +149,7 @@ public:
                     
                     if (didSelectKey) {
                         setSelectedKey(slice.note);
-                        uiVizNoteSelectedArgs args("Key Picker", slice.note);
+                        vizNoteSelectedArgs args("Key Picker", slice.note);
                         ofNotifyEvent(keySelected, args);
                     }
                 } else {

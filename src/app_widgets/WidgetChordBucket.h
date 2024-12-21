@@ -1,5 +1,5 @@
 //
-//  uiVizChordBucket_h
+//  vizChordBucket_h
 //  bloom-macos
 //
 //
@@ -10,7 +10,7 @@
 #include "WidgetGuitar.h"
 #include "WidgetKeyPickerPopout.h"
 
-class uiVizNoteSlice
+class vizNoteSlice
 {
 public:
     Aquamarine::Coord::vizPoint labelPoint = Aquamarine::Coord::vizPoint(0, 0);
@@ -29,12 +29,12 @@ public:
     ofColor hoveredFontColor;
      */
 
-    ~uiVizNoteSlice()
+    ~vizNoteSlice()
     {
     }
 };
 
-class uiVizChordSlice
+class vizChordSlice
 {
 public:
     vizChord chord;
@@ -56,7 +56,7 @@ public:
      ofColor selectedFontColor;
      ofColor hoveredFontColor;
      */
-    std::vector<uiVizNoteSlice> notes;
+    std::vector<vizNoteSlice> notes;
 
     std::vector<Aquamarine::Coord::vizPoint> subLabelPoints;
     ofxFontStash2::Style chordFontStyle;
@@ -115,7 +115,7 @@ public:
 
         if (showNoteNames)
         {
-            for (uiVizNoteSlice note : notes)
+            for (vizNoteSlice note : notes)
             {
                 note.path.draw();
                 notesFontStyle.color = note.regularFontColor;
@@ -150,7 +150,7 @@ public:
 
     }
 
-    ~uiVizChordSlice()
+    ~vizChordSlice()
     {
     }
 };
@@ -343,7 +343,7 @@ public:
 
             for (int i = 0; i < chordSlices.size(); i++)
             {
-                uiVizChordSlice chordSlice = chordSlices[i];
+                vizChordSlice chordSlice = chordSlices[i];
                 // chordSlice.draw();
 
                 if (getIsActiveWidget() && !getIsDragging())
@@ -454,7 +454,7 @@ public:
         int calculatedWidth = 0;
         int calculatedHeight = chordHeight;
 
-        vector<uiVizChordSlice> chordSlices_current = chordSlices;
+        vector<vizChordSlice> chordSlices_current = chordSlices;
 
         chordSlices.clear();
 
@@ -472,7 +472,7 @@ public:
             vizChord *chord = getSelectedChordByIndexRef(chordIndex);
 
             //chordIndex++;
-            uiVizChordSlice chordSlice;
+            vizChordSlice chordSlice;
 
             switch (getTheoryVizInstrumentChordViewMode())
             {
@@ -588,7 +588,7 @@ public:
             {
 
                 vizNote note = chord->getNotes()[i];
-                uiVizNoteSlice noteSlice;
+                vizNoteSlice noteSlice;
 
                 string chordRootName = chord->getChordRoot();
 
@@ -706,7 +706,7 @@ public:
 
         for (int i = 0; i < chordSlices.size(); i++)
         {
-            uiVizChordSlice chordSlice = chordSlices[i];
+            vizChordSlice chordSlice = chordSlices[i];
 
             if (i == getHoveredChordIndex() || (i == getPlayingChordIndex() && isPlaying())) {
                 int p = getScaledPadding()*0.75f;
@@ -965,7 +965,7 @@ public:
 
     }    
 
-    virtual void onChordBucketRulesChanged(uiVizInstrumentRuleArgs &args) {
+    virtual void onChordBucketRulesChanged(vizInstrumentRuleArgs &args) {
         for (int i=0; i< getSelectedChords().size(); i++) {
             vizChord *chord = getSelectedChordByIndexRef(i);
             chord->setInstrumentRules(args.rules);
@@ -1004,7 +1004,7 @@ public:
     }        
     
 
-    void onUserDefinedChordNameChanged(uiVizTextChangedArgs &args)
+    void onUserDefinedChordNameChanged(vizTextChangedArgs &args)
     {
         vizChord *chord = getSelectedChordByIndexRef(mContextMenuChordIndex);
         if (chord)
@@ -1092,7 +1092,7 @@ private:
     bool mIsSmallerDiagrams = false;
     bool mUserSelectedDegreesLabelMode = false;
 
-    vector<uiVizChordSlice> chordSlices;
+    vector<vizChordSlice> chordSlices;
     int mContextMenuChordIndex = -1;
     Aquamarine::Icon bucketIcon;
 
@@ -1115,7 +1115,7 @@ private:
         }            
     }
 
-    void onScalePickerMenuNoteSelected(uiVizNoteSelectedArgs &args) {
+    void onScalePickerMenuNoteSelected(vizNoteSelectedArgs &args) {
         vizScale scale = vizScale(scalePickerMenuItem->getSelectedKey().getNoteName(), scalePickerMenuItem->getCalculatedScaleName(), 3);
         addChordsFromScale(scale);
     }

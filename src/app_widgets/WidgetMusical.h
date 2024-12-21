@@ -11,9 +11,9 @@
 
 
 //------------------------------ EVENT ARGS  (Rules) --------------------------------
-class uiVizInstrumentRuleArgs : public ofEventArgs {
+class vizInstrumentRuleArgs : public ofEventArgs {
 public:
-    uiVizInstrumentRuleArgs(ofxXmlSettings rules) : rules(rules) {}
+    vizInstrumentRuleArgs(ofxXmlSettings rules) : rules(rules) {}
     ofxXmlSettings rules;
     string getXMLString() {
         string retVal = "";
@@ -29,9 +29,9 @@ public:
 
 //------------------------------ EVENT ARGS (move this to WidgetBaseMusic ) --------------------------------
 
-class uiVizTextChangedArgs : public ofEventArgs {
+class vizTextChangedArgs : public ofEventArgs {
 public:
-    uiVizTextChangedArgs(string widgetId, string text)
+    vizTextChangedArgs(string widgetId, string text)
     :widgetId(widgetId)
     ,text(text){}
     
@@ -39,9 +39,9 @@ public:
     string text;
 };
 
-class uiVizNoteSelectedArgs : public ofEventArgs {
+class vizNoteSelectedArgs : public ofEventArgs {
 public:
-    uiVizNoteSelectedArgs(string widgetId, vizNote note)
+    vizNoteSelectedArgs(string widgetId, vizNote note)
     :widgetId(widgetId)
     ,note(note){}
     
@@ -49,9 +49,9 @@ public:
     vizNote note;
 };
 
-class uiVizChordSelectedArgs : public ofEventArgs {
+class vizChordSelectedArgs : public ofEventArgs {
 public:
-    uiVizChordSelectedArgs(string widgetId, vizChord chord)
+    vizChordSelectedArgs(string widgetId, vizChord chord)
     :widgetId(widgetId)
     ,chord(chord){}
     
@@ -64,11 +64,11 @@ class WidgetMusical :  public Aquamarine::Widget {
 public:
     
     // Events
-    ofEvent<uiVizInstrumentRuleArgs>    rulesChanged;    
-    ofEvent<uiVizNoteSelectedArgs>      keySelected;
-    ofEvent<uiVizNoteSelectedArgs>      noteSelected;
-    ofEvent<uiVizChordSelectedArgs>     chordSelected;
-    ofEvent<uiVizTextChangedArgs>       userDefinedChordNameChanged;
+    ofEvent<vizInstrumentRuleArgs>    rulesChanged;    
+    ofEvent<vizNoteSelectedArgs>      keySelected;
+    ofEvent<vizNoteSelectedArgs>      noteSelected;
+    ofEvent<vizChordSelectedArgs>     chordSelected;
+    ofEvent<vizTextChangedArgs>       userDefinedChordNameChanged;
     
     enum class TheoryMode {
         KEY_CENTRIC,    // One distinct color for each DEGREE
@@ -523,7 +523,7 @@ public:
 
             if(scale.isScaleValid()) {
                 setSelectedScale(scale, false);
-                uiVizInstrumentRuleArgs ruleArgs = uiVizInstrumentRuleArgs(scale.getInstrumentRules());
+                vizInstrumentRuleArgs ruleArgs = vizInstrumentRuleArgs(scale.getInstrumentRules());
                 onRulesChanged(ruleArgs);
             }
 
@@ -551,7 +551,7 @@ public:
 
                 // We only want to apply rules if getIsUserDefinedPoints is false 
                 if (!chord.getIsUserDefinedPoints()) {
-                    uiVizInstrumentRuleArgs ruleArgs = uiVizInstrumentRuleArgs(chord.getInstrumentRules());
+                    vizInstrumentRuleArgs ruleArgs = vizInstrumentRuleArgs(chord.getInstrumentRules());
                     onRulesChanged(ruleArgs);                    
                 }
 
@@ -567,7 +567,7 @@ public:
         Aquamarine::Shared::appendXMLToTarget(rulesElm, xml, true);
     }
 
-    virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) {
+    virtual void onRulesChanged(vizInstrumentRuleArgs &args) {
         // Descendent widgets can respond to rules being changed!
     }
 
@@ -679,7 +679,7 @@ public:
             settings.popTag(); // selectedKeys
         }
         
-        // vizScale - make compatible with uiVizChordPicker
+        // vizScale - make compatible with vizChordPicker
         
         // nuke getSelectedNote ??
         
@@ -839,7 +839,7 @@ public:
     virtual void setUserDefinedChordName(string val) {
         if (val != "") {
             mUserDefinedChordName = val;
-            uiVizTextChangedArgs args(getWidgetId(), mUserDefinedChordName);
+            vizTextChangedArgs args(getWidgetId(), mUserDefinedChordName);
             ofNotifyEvent(userDefinedChordNameChanged, args);
         } else {
             mUserDefinedChordName = val;
@@ -2218,7 +2218,7 @@ public:
         }
 
         if(fireEvent) {
-            uiVizInstrumentRuleArgs ruleArgs = uiVizInstrumentRuleArgs(rules);
+            vizInstrumentRuleArgs ruleArgs = vizInstrumentRuleArgs(rules);
             ofNotifyEvent(rulesChanged, ruleArgs);
         }         
     }

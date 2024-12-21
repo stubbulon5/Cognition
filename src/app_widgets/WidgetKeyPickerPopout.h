@@ -56,7 +56,7 @@ public:
         }
     } 
 
-    void onKeyPickerMenuKeySelected(uiVizNoteSelectedArgs &args) {
+    void onKeyPickerMenuKeySelected(vizNoteSelectedArgs &args) {
         WidgetKeyPicker::setSelectedKey(args.note);
         setNeedsUpdate(true); 
         if(!getkeyPicker()->getIsWidgetPinned()) getkeyPicker()->closeThisWidget();

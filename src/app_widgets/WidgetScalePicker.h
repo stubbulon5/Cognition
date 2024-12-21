@@ -364,7 +364,7 @@ public:
         scaleRulesMenuItem->setInstrumentRules(rules, fireEvent);
     }
 
-    virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) override {
+    virtual void onRulesChanged(vizInstrumentRuleArgs &args) override {
         setInstrumentRules(args.rules, false);
         // This will correctly set the drag data (incl rules)
         setCalculatedScaleName(getScaleNameFromSelectedNotesPretty(getSelectedKey(), false, false));
@@ -400,7 +400,7 @@ public:
                             
                             if (getIsMousePressedAndReleasedOverWidget(false)) {
                                 setSelectedKey(slice.note);
-                                uiVizNoteSelectedArgs args("Scale Picker", slice.note);
+                                vizNoteSelectedArgs args("Scale Picker", slice.note);
                                 ofNotifyEvent(keySelected, args);
                                 ofNotifyEvent(noteSelected, args);
                             }
@@ -416,7 +416,7 @@ public:
                                 setNeedsUpdate(true);
                                 
                                 
-                                uiVizNoteSelectedArgs args("Scale Picker", slice.note);
+                                vizNoteSelectedArgs args("Scale Picker", slice.note);
                                 ofNotifyEvent(noteSelected, args);
                             }
                         }
@@ -626,7 +626,7 @@ public:
 
 
         if (notifyEvents) {
-            uiVizNoteSelectedArgs args("Scale Picker", getSelectedKey());
+            vizNoteSelectedArgs args("Scale Picker", getSelectedKey());
             ofNotifyEvent(keySelected, args);
             ofNotifyEvent(noteSelected, args);
         }

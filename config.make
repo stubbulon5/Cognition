@@ -89,7 +89,7 @@
 #   Note: Leave a leading space when adding list items with the += operator
 ################################################################################
 PROJECT_DEFINES = VIZ_DEBUG_LEVEL=2
-# VIZ_DEBUG_LEVEL: see uiViz/README.md
+# VIZ_DEBUG_LEVEL: see viz/README.md
 # todo make c_cpp_properties.json get injected here...
 # TRACY_ENABLE TRACY_NO_BROADCAST
 

@@ -49,7 +49,7 @@ public:
 //yodo : add multiple scale selectors
     }
 
-    void onScalePickerNoteSelected(uiVizNoteSelectedArgs &args) {
+    void onScalePickerNoteSelected(vizNoteSelectedArgs &args) {
         vizScale scale = vizScale(scalePicker->getSelectedKey().getNoteName(), scalePicker->getCalculatedScaleName(), 3);
         setSelectedScale(scale, true);
     }

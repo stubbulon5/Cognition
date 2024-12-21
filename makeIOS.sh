@@ -22,7 +22,7 @@ SOURCE_CODE_TARGET="/Users/zabba/projects/of_v0.11.2_ios_release/apps/myApps/${A
 echo "Updating core source code in iOS target project [${SOURCE_CODE_TARGET}/src]..."
 cp -r ./src/app_widgets $SOURCE_CODE_TARGET/src
 cp -r ./src/core $SOURCE_CODE_TARGET/src
-cp -r ./src/uiViz $SOURCE_CODE_TARGET/src
+cp -r ./src/viz $SOURCE_CODE_TARGET/src
 
 cd ${SOURCE_CODE_TARGET}
 #xcodebuild -list -project Cognition.xcodeproj/

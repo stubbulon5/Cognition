@@ -1,5 +1,5 @@
 //
-//  uiVizChordDesigner_h
+//  vizChordDesigner_h
 //  bloom-macos
 //
 //
@@ -409,7 +409,7 @@ public:
         chordRulesMenuItem->setInstrumentRules(rules, fireEvent);
     }
 
-    virtual void onRulesChanged(uiVizInstrumentRuleArgs &args) override {
+    virtual void onRulesChanged(vizInstrumentRuleArgs &args) override {
         setInstrumentRules(args.rules, false);
 
         // This will correctly set the drag data (incl rules)
@@ -452,7 +452,7 @@ public:
                             
                             if (getUserCanSetSelectedKey() && getIsMousePressedAndReleasedOverWidget(false)) {
                                 setSelectedKey(slice.note);
-                                uiVizNoteSelectedArgs args("Chord Designer", slice.note);
+                                vizNoteSelectedArgs args("Chord Designer", slice.note);
                                 ofNotifyEvent(keySelected, args);
                                 ofNotifyEvent(noteSelected, args);
                             }
@@ -474,7 +474,7 @@ public:
                                 setCalculatedChordName(getChordNameFromSelectedNotesPretty(getSelectedKey(), false, true, true));
                                 setNeedsUpdate(true);
                                 
-                                uiVizNoteSelectedArgs args("Chord Designer", slice.note);
+                                vizNoteSelectedArgs args("Chord Designer", slice.note);
                                 ofNotifyEvent(noteSelected, args);
                             }
                         }
@@ -850,7 +850,7 @@ public:
         calculateExtendedNotesFromCurrentNotes();
         setCalculatedChordName(getChordNameFromSelectedNotesPretty(getSelectedKey(), false, true, true));
         if (notifyEvents) {
-            uiVizNoteSelectedArgs args("Chord Designer", getSelectedKey());
+            vizNoteSelectedArgs args("Chord Designer", getSelectedKey());
             ofNotifyEvent(keySelected, args);
             ofNotifyEvent(noteSelected, args);
         }
