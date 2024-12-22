@@ -28,7 +28,8 @@ struct Licence {
     string licenceXML = "";
     
     Licence(bool isValid) : isValid(isValid) {};
-    
+
+
     static bool validateLicence(Licence& licence, bool fullValidation) {
 
         /*******************************************************
@@ -88,8 +89,8 @@ struct Licence {
             licence.allowedAppMajorVersion = Aquamarine::WidgetManager::getAppMajorVersion(LICENCE_valid_until_version);
             licence.allowedAppMinorVersion = Aquamarine::WidgetManager::getAppMinorVersion(LICENCE_valid_until_version);
             
-            int currentAppMajorVersion = Aquamarine::WidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
-            int currentAppMinorVersion = Aquamarine::WidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
+            int currentAppMajorVersion = Aquamarine::WidgetManager::getAppMajorVersion(Aquamarine::App::APPLICATION_VERSION());
+            int currentAppMinorVersion = Aquamarine::WidgetManager::getAppMinorVersion(Aquamarine::App::APPLICATION_VERSION());
             
             if (licence.allowedAppMajorVersion < currentAppMajorVersion ||
                 (licence.allowedAppMajorVersion == currentAppMajorVersion && licence.allowedAppMinorVersion < currentAppMinorVersion)) {
@@ -170,17 +171,17 @@ struct Licence {
         "<reauthorize>" + ofToString(reauthorize_epoch) + "</reauthorize>"
         "</licence>";
         
-        string encryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(licence_raw_xml, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string encryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(licence_raw_xml, ENC_KEY(), true);
         //cout << "\n\nencrypted:" << encryptedLicenceXML;
-        //string decryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(encryptedLicenceXML, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        //string decryptedLicenceXML = Aquamarine::Shared::XOR_Encryption(encryptedLicenceXML, ENC_KEY(), true);
         //cout << "\n\ndecrypted:" << decryptedLicenceXML;
         ofBuffer encXMLBuff(encryptedLicenceXML.c_str(), encryptedLicenceXML.length());
-        ofBufferToFile(APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE(), encXMLBuff);
+        ofBufferToFile(ENC_KEY_FILE(), encXMLBuff);
     }
     
     static Licence getLicence() {
         string licenceEnc = Licence::loadLicenceFromFile();
-        string licenceXML = Aquamarine::Shared::XOR_Encryption(licenceEnc, APP_CONSTANTS::APPLICATION_LIC_ENC_KEY, true);
+        string licenceXML = Aquamarine::Shared::XOR_Encryption(licenceEnc, ENC_KEY(), true);
         
         bool verified = false;
         if (licenceXML.size() > 10) {
@@ -198,8 +199,8 @@ struct Licence {
     }
     
     static string loadLicenceFromFile() {
-        if (!ofFile::doesFileExist(APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE(), true)) return "";
-        ofBuffer keyBuff = ofBufferFromFile(APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE(), true);
+        if (!ofFile::doesFileExist(ENC_KEY_FILE(), true)) return "";
+        ofBuffer keyBuff = ofBufferFromFile(ENC_KEY_FILE(), true);
         return keyBuff.getText();
     }
 
@@ -248,7 +249,16 @@ struct Licence {
         licence.detailedErrorMessage = ""; // POST result
         // todo, validate licence and check machineid's
         return false;
-    }      
+    }     
+
+    static string ENC_KEY() {
+        return "DuYZL7n7B6Uj2gEfhsdY65PD5ARU3AdwENmfKjcXeH7SAnJvqy5keKP9VgTNGHaW873ugQg79ZAmcVFdjAppVNpGUS7scSdaPRuGhnr4cQeZBw4xG4KuGJLttHvvrkvR";
+    }
+    
+    static string ENC_KEY_FILE() {
+        return "key.txt";         
+    }
+    
     
 };
 

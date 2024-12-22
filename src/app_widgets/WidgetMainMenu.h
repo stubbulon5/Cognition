@@ -66,9 +66,9 @@ public:
             
             Aquamarine::WidgetManager::removeAllWidgetsExceptMultiple({this, w});
             Aquamarine::WidgetManager::initWidgetManager(
-                APP_CONSTANTS::APPLICATION_NAME,
-                APP_CONSTANTS::APPLICATION_VERSION,
-                APP_CONSTANTS::APPLICATION_FILE_EXTENSION,
+                Aquamarine::App::APPLICATION_NAME(),
+                Aquamarine::App::APPLICATION_VERSION(),
+                Aquamarine::App::DOCUMENT_FILE_EXTENSION(),
                 true
             );
 

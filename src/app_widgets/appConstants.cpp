@@ -1,62 +1,7 @@
 #include "appConstants.h"
 
-const std::string APP_CONSTANTS::APPLICATION_NAME = "cognition";
-const std::string APP_CONSTANTS::APPLICATION_VERSION = "1.0.0"; /* Major.Minor.Patch*/
-const std::string APP_CONSTANTS::APPLICATION_FILE_EXTENSION = "jam";
-const std::string APP_CONSTANTS::APPLICATION_LIC_ENC_KEY = "DuYZL7n7B6Uj2gEfhsdY65PD5ARU3AdwENmfKjcXeH7SAnJvqy5keKP9VgTNGHaW873ugQg79ZAmcVFdjAppVNpGUS7scSdaPRuGhnr4cQeZBw4xG4KuGJLttHvvrkvR";
-const std::string APP_CONSTANTS::APPLICATION_WEBSITE = "https://www.harmonyframeworks.com";
 
-const std::string APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER() {
-    #ifdef TARGET_OF_IOS
-        return ofFilePath::join(getIOSGetDocumentsDirectory(), "." + APP_CONSTANTS::APPLICATION_NAME); // eg ~/.cognition
-    #else
-        return ofFilePath::join(ofFilePath::getUserHomeDir(), "." + APP_CONSTANTS::APPLICATION_NAME); // eg ~/.cognition
-    #endif
-}
-
-const std::string APP_CONSTANTS::APPLICATION_CACHE_FOLDER() {
-    return ofFilePath::join(APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(), "cache"); // eg ~/.cognition/cache
-}
-
-const std::string APP_CONSTANTS::APPLICATION_SETTINGS_FILE() {
-    return "settings.xml";
-}
-
-const std::string APP_CONSTANTS::APPLICATION_SETTINGS_FILE_FULL_PATH() {
-    return ofFilePath::join(APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(), APP_CONSTANTS::APPLICATION_SETTINGS_FILE()); // eg ~/.cognition/settings.xml
-}
-
-const std::string APP_CONSTANTS::APPLICATION_LIC_ENC_KEY_FILE() {
-    return ofFilePath::join(APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(), "key.txt"); // eg ~/.cognition/key.txt
-}
-
-void APP_CONSTANTS::BOOTSTRAP_APP() {
-
-    ofDirectory::createDirectory(APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(), true, false);
-    ofDirectory::createDirectory(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), true, false);
-
-    Aquamarine::WidgetManager::initWidgetManager(
-      APP_CONSTANTS::APPLICATION_NAME,
-      APP_CONSTANTS::APPLICATION_VERSION,
-      APP_CONSTANTS::APPLICATION_FILE_EXTENSION,
-      true
-    );
-    
-    Aquamarine::WidgetManager::bootstrapWidgetMap(APP_CONSTANTS::getAppWidgetMap());
-    Aquamarine::IconCache::bootstrapIconMap(Aquamarine::Shared::getViz()->getScale(), APP_CONSTANTS::getIconCacheMap(Aquamarine::Shared::getViz()->getScale()));
-}
-
-int APP_CONSTANTS::getAppMajorVersion() {
-    return Aquamarine::WidgetManager::getAppMajorVersion(APP_CONSTANTS::APPLICATION_VERSION);
-}
-
-int APP_CONSTANTS::getAppMinorVersion() {
-    return Aquamarine::WidgetManager::getAppMinorVersion(APP_CONSTANTS::APPLICATION_VERSION);
-}
-
-int APP_CONSTANTS::getAppPointVersion() {
-    return Aquamarine::WidgetManager::getAppPointVersion(APP_CONSTANTS::APPLICATION_VERSION);
-}
+const std::string APP_CONSTANTS::APPLICATION_WEBSITE = "https://www.cognitionviz.com";
 
 const std::string APP_CONSTANTS::DEFAULT_LANGUAGE_XML = ""
 "<LANGUAGE name='english'>"

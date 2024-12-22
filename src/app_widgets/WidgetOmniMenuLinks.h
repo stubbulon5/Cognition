@@ -156,7 +156,7 @@ public:
             )");  
         
             Aquamarine::WidgetManager::addWidget(*w, false);
-            string f = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), widgetClass+".png");
+            string f = ofFilePath::join(Aquamarine::App::APPLICATION_CACHE_FOLDER(), widgetClass+".png");
             w->saveWidgetContentsToImageFile(f, Aquamarine::WidgetContext::THUMBNAIL);
             Aquamarine::WidgetManager::removeWidget(*w);
             it++;
@@ -196,7 +196,7 @@ public:
             fileName = widgetClass + "_" + ofToString(width) + "x" + ofToString(height) + ".png";
         }
         
-        string p = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), fileName);
+        string p = ofFilePath::join(Aquamarine::App::APPLICATION_CACHE_FOLDER(), fileName);
         if (!forceCache && ofFile::doesFileExist(p, false)) {
             //cout <<ofToDataPath(p, true); 
             cacheData = Aquamarine::WidgetCacheData(p, widgetClass, Aquamarine::WidgetManager::getWidgetPrettyName(widgetClass));

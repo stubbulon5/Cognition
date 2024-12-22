@@ -4,31 +4,10 @@
 #include "../viz/WidgetManager.h"
 #include "ofxAquamarine.h"
 
-// #include "ofxAquamarine.h"
-
-
-//------------------------------ APP CONSTANTS --------------------------------
-
 class APP_CONSTANTS {
 public:
-    static void BOOTSTRAP_APP();
-    
-    static int getAppMajorVersion();
-    static int getAppMinorVersion();
-    static int getAppPointVersion();
-    
-    static const std::string APPLICATION_NAME;
-    static const std::string APPLICATION_VERSION;
-    static const std::string APPLICATION_FILE_EXTENSION;
-    static const std::string APPLICATION_LIC_ENC_KEY;
-    static const std::string APPLICATION_WEBSITE;    
 
-    static const std::string APPLICATION_SETTINGS_FOLDER();
-    static const std::string APPLICATION_CACHE_FOLDER();
-    static const std::string APPLICATION_SETTINGS_FILE();
-    static const std::string APPLICATION_SETTINGS_FILE_FULL_PATH();  
-    static const std::string APPLICATION_LIC_ENC_KEY_FILE();
-
+    static const std::string APPLICATION_WEBSITE;
     static const std::string DEFAULT_LANGUAGE_XML;
     
     static const std::string WIDGET_CLASS;

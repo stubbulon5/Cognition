@@ -34,7 +34,7 @@ public:
             if(TXT_ABOUT) {
                 string replaceText = TXT_ABOUT->getValue();
                 Licence licence = Licence::getLicence();
-                ofStringReplace(replaceText, "${APP_VER}", APP_CONSTANTS::APPLICATION_VERSION);
+                ofStringReplace(replaceText, "${APP_VER}", Aquamarine::App::APPLICATION_VERSION());
                 ofStringReplace(replaceText, "${REGISTERED_TO}", licence.isValid ? "Registered to " + licence.username : "No valid licence found");
                 TXT_ABOUT->setValue(replaceText);                
             }

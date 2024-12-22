@@ -699,7 +699,7 @@ public:
         WidgetManager::initWidgetManager(
             APP_CONSTANTS::APPLICATION_NAME,
             APP_CONSTANTS::APPLICATION_VERSION,
-            APP_CONSTANTS::APPLICATION_FILE_EXTENSION
+            APP_CONSTANTS::DOCUMENT_FILE_EXTENSION
             true,
         );
     }

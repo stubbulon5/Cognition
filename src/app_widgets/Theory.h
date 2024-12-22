@@ -1777,7 +1777,7 @@ public:
     string saveToMidiFile() {  
         vizNote rootNote = getChordRootNote();
 
-        string proposedFileName = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(
+        string proposedFileName = ofFilePath::join(Aquamarine::App::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(
             getChordName_UserDefined() != "" ? rootNote.getNoteName() + getChordName_UserDefined() : getChordNameSimplified(false)) + ".mid");   
 
         vector<vizNote> notes = getNotes();        
@@ -2133,7 +2133,7 @@ public:
 
 
     string saveToMidiFile() {
-        string proposedFileName = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(getKey().getNoteName() + "_" + getName()) + ".mid");     
+        string proposedFileName = ofFilePath::join(Aquamarine::App::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(getKey().getNoteName() + "_" + getName()) + ".mid");     
         vizNote rootNote = getKey();
         vizNote rootNoteOctaveHigher = vizNote(rootNote.getNoteName(), rootNote.getNoteOctave()+1, 1);
         vector<vizNote> notes = getNotes();
@@ -2453,7 +2453,7 @@ public:
 
 
     string saveToMidiFile() {
-        string proposedFileName = ofFilePath::join(APP_CONSTANTS::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(getKey().getNoteName() + "_" + getName()) + ".mid");     
+        string proposedFileName = ofFilePath::join(Aquamarine::App::APPLICATION_CACHE_FOLDER(), vizTheory::extractFileSystemSafeName(getKey().getNoteName() + "_" + getName()) + ".mid");     
         vizNote rootNote = getKey();
         
         vector<vizNote> notes = getNotes();

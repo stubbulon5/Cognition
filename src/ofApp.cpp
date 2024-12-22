@@ -6,20 +6,19 @@ void ofApp::setup(){
     //---------- SETTINGS ----------
     ofSetEscapeQuitsApp(false);
 
-    #ifdef TARGET_OSX  
-        // Use the "internal" data folder if it exitst
-        string dataPathRoot = ofFilePath::getCurrentExeDir() + "data/";
-        if (ofDirectory::doesDirectoryExist(dataPathRoot, false)) {
-            ofSetDataPathRoot(dataPathRoot);
-        }
-    #endif 
 
-    #if VIZ_DEBUG_LEVEL > -1
-        ofSetLogLevel(ofLogLevel::OF_LOG_NOTICE);
-    #else
-        ofSetLogLevel(ofLogLevel::OF_LOG_SILENT);    
-    #endif  
 
+
+
+    Aquamarine::App::BOOTSTRAP(
+        "cognition",
+        APP_CONSTANTS::getAppWidgetMap(),
+        APP_CONSTANTS::getIconCacheMap(1.0),
+        "1.0.0",
+        "jam",
+        APP_CONSTANTS::DEFAULT_LANGUAGE_XML
+    );
+/*
     ofxXmlSettings settings = 
         Aquamarine::Shared::initSettingsFile(
             APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(),
@@ -39,6 +38,7 @@ void ofApp::setup(){
     
     Aquamarine::Shared::langLoadXML(APP_CONSTANTS::DEFAULT_LANGUAGE_XML);
     APP_CONSTANTS::BOOTSTRAP_APP();
+    */
     
 	// Midi initialize - make it configurable too...
 	MidiShared::configure();
