@@ -12,3 +12,5 @@ bin/libs-macOS/libs/
 .gitignore.swp
 bin/Cognition_debug*
 doc/html*
+bin/data/ui/images/aquamarine-logo.png
+bin/data/ui/widgets/aquamarine-about.xml

@@ -1,30 +1,16 @@
 # Cognition
 
-Source code for Cognition - Music Visualization application written on top of the awesome [openFrameworks](https://openframeworks.cc/) and using my UI Framework passion project ofxAquamarine.
+Hey there :-) Cognition is a Music Theory Visualization application written on top of the awesome [openFrameworks](https://openframeworks.cc/) and using my UI Framework passion project [ofxAquamarine](https://github.com/stubbulon5/ofxAquamarine). This is a sole development, but I welcome collaboration and input from music enthusiasts! 
 
-## Set-up
-### The openFrameworks setup guides reside [here](https://openframeworks.cc/download/)
+Have a feature request? You can maybe tempt me with coffee :-) [Buy me a coffee!](buymeacoffee.com/stubbulon5)
 
+## Project set up
+VSCode is the IDE of choice, but feel free to use your own, though please note, all instructions are written based on the assumption that VSCode is being used. 
+- Install openFrameworks. The openFrameworks setup guides reside [here](https://openframeworks.cc/download/)
+- Clone the [Cognition](https://github.com/stubbulon5/Cognition) repo to `/<OF_ROOT>/apps/myApps/` folder (ie. `of_v0.12.0_osx_release/apps/myApps/Cognition`)
+- Clone the [Cognition-addons](https://github.com/stubbulon5/Cognition-addons) repo to `/<OF_ROOT>/apps/addons/` folder (ie. `of_v0.12.0_osx_release/addons`)
 
-### Project code:
-Must be cloned to a folder named "Cognition" due to the VSCode build environment. ie
-This folder should reside in /<OF_ROOT>/apps/myApps/Cognition
-also, with MSYS2, the new version of C:\msys64\usr\bin\make.exe is incompatible. Downgrading to 4.2.1 fixes. (find in bin\resources\win\make.exe)
-also, sometimes the Debug build does not run properly, bur release is fine.
-
-```
-git clone git@github.com:stubbulon5/Cognition.git
-```
-
-This is the platform independent /src code folder which is shared across platform specific build setups (ie Windows, macOS, Linux)
-
-and the addons folder should reside in /<OF_ROOT>/addons
-```
-git clone git@github.com:stubbulon5/Cognition-addons.git addons
-```
-
-
-## Build
+## Build it!
 There is a corresponding build script for each platform:
 ```
 ./makeLinux.sh -r <debug|release>
@@ -33,10 +19,13 @@ and
 makeWin.bat <debug|release>
 ```
 
-VSCode is the ideal IDE for use too see .vscode/tasks.json), simply hitting ctrl-shift-b will bring up the build command palette with build choices.
+## A word on setup and Intellisense
+Using macOs, set `"compilerPath": "/usr/bin/clang"`, the inside the `.vscode/c_cpp_properties.json`. 
+
+I found this to be the most stable, but it's not perfect!
 
 
-Packaging up for distribution:
+## Packaging up for distribution:
 ```
 ./makeLinux_INSTALLER.sh
 ./makeMacOs_INSTALLER.sh
@@ -45,9 +34,7 @@ and
 makeWin_INSTALLER.bat
 ```
 
-# Documentation setup (Doxygen and GraphViz)
-Instructions followed from https://www.youtube.com/watch?v=LZ5E4vEhsKs
-https://www.doxygen.nl/manual/starting.html
+## Documentation setup (Doxygen and GraphViz)
 Install tools:
 ```
 # macOs
@@ -55,17 +42,11 @@ brew install doxygen
 brew install graphviz
 
 # Linux
- sudo apt-get install doxygen
- sudo apt-get install graphviz
+sudo apt-get install doxygen
+sudo apt-get install graphviz
  ```
 
-# Generate App Documentation
+## Generate App Documentation
 ``` 
 cd doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ..
-```
-
-
-# Generate  Aquamarine UI Documentation
-``` 
-cd src/viz/doc/ && doxygen && x-www-browser file://`pwd`/html/index.html && cd ../../../
 ```

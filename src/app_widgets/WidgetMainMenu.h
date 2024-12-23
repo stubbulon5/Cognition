@@ -236,14 +236,23 @@ public:
             case 3: { // Modal
                 Aquamarine::WidgetManager::showModal(w, true); 
                 break;
-            }                        
-
-            
+            }
         }
-
-
-
     }
+
+    void aboutAquamarine() {
+        string classType = Aquamarine::WidgetManager::WIDGET_CLASS_AQUAMARINE_ABOUT;
+        string widgetPersistentId = "APP_AQUAMARINE_ABOUT";        
+        Aquamarine::WidgetAquamarineAbout* w = dynamic_cast<Aquamarine::WidgetAquamarineAbout*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/aquamarine-about.xml"));
+        w->setTitleStyle(Widget::TitleStyle::TOP_STATIC);
+        w->setWidgetSize(600, 600, false);
+        w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+
+        Aquamarine::WidgetManager::addWidget(*w, false); 
+        w->setIsVisible(true);  
+        w->setWidgetSize(600, 600, false);   
+        w->setWidgetPosition(300, 300, false);   
+    }    
     
     virtual void onMenuItemSelected(Aquamarine::WidgetMenuCollectionArgs & args) override {
         if (args.menuTag == MENU_FILE) {
@@ -281,7 +290,9 @@ public:
                         case 3: // about
                             about(2); break;    
                         case 4: // about
-                            about(3); break;                                                         
+                            about(3); break;                 
+                        case 5: // about aquamarine
+                            aboutAquamarine(); break;
                     }
                 break;
             }
@@ -392,10 +403,11 @@ private:
                 Aquamarine::WidgetMenuTab("File", Aquamarine::IconCache::getIcon("MED_CONTENT_SETTINGS"),
                     Aquamarine::IconCache::IconTag::BOOK_CONTENT, {
                         Aquamarine::WidgetMenuItem("Tutorials", 0),
-                        Aquamarine::WidgetMenuItem("Enter Licence Key...", 1),                        
-                        Aquamarine::WidgetMenuItem("About (reg)", 2),
-                        Aquamarine::WidgetMenuItem("About (popout)", 3),
-                        Aquamarine::WidgetMenuItem("About (modal)", 4)                                                
+                        // Aquamarine::WidgetMenuItem("Enter Licence Key...", 1),                        
+                        // Aquamarine::WidgetMenuItem("About (reg)", 2),
+                        // Aquamarine::WidgetMenuItem("About (popout)", 3),
+                        Aquamarine::WidgetMenuItem("About", 4),
+                        Aquamarine::WidgetMenuItem("About Aquamarine UI", 5)
                     })
                 });
             helpMenu->setTheme(theme);

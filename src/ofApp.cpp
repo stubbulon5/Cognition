@@ -6,10 +6,6 @@ void ofApp::setup(){
     //---------- SETTINGS ----------
     ofSetEscapeQuitsApp(false);
 
-
-
-
-
     Aquamarine::App::BOOTSTRAP(
         "cognition",
         APP_CONSTANTS::getAppWidgetMap(),
@@ -18,28 +14,7 @@ void ofApp::setup(){
         "jam",
         APP_CONSTANTS::DEFAULT_LANGUAGE_XML
     );
-/*
-    ofxXmlSettings settings = 
-        Aquamarine::Shared::initSettingsFile(
-            APP_CONSTANTS::APPLICATION_SETTINGS_FOLDER(),
-            APP_CONSTANTS::APPLICATION_SETTINGS_FILE()
-        );
 
-    Aquamarine::Shared::configure(
-        settings.getValue("settings:userInterfaceScaling", Aquamarine::Shared::getDefaultScaling()),
-        settings.getValue("settings:language", "english"),
-        settings.getValue("settings:userExperience", Aquamarine::Shared::getDefaultFPS()),
-        settings.getValue("settings:useFbo", true),
-        settings.getValue("settings:showFps", false),
-        settings.getValue("settings:fontPath", "fonts/Verdana.ttf"),
-        settings.getValue("settings:autoLoadMostRecentProject", true),
-        settings.getValue("settings:themeName", "Aqumarine")
-    );
-    
-    Aquamarine::Shared::langLoadXML(APP_CONSTANTS::DEFAULT_LANGUAGE_XML);
-    APP_CONSTANTS::BOOTSTRAP_APP();
-    */
-    
 	// Midi initialize - make it configurable too...
 	MidiShared::configure();
 

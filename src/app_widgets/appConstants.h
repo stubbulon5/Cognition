@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "../viz/Shared.h"
 #include "../viz/WidgetManager.h"
 #include "ofxAquamarine.h"
 
