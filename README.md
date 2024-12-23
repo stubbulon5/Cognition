@@ -2,7 +2,7 @@
 
 Hey there :-) Cognition is a Music Theory Visualization application written on top of the awesome [openFrameworks](https://openframeworks.cc/) and using my UI Framework passion project [ofxAquamarine](https://github.com/stubbulon5/ofxAquamarine). This is a sole development, but I welcome collaboration and input from music enthusiasts! 
 
-Have a feature request? You can maybe tempt me with coffee :-) [Buy me a coffee!](buymeacoffee.com/stubbulon5)
+Have a feature request? You can maybe tempt me with coffee :-) [Buy me a coffee!](https://buymeacoffee.com/stubbulon5)
 
 ## Project set up
 VSCode is the IDE of choice, but feel free to use your own, though please note, all instructions are written based on the assumption that VSCode is being used. 
