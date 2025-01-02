@@ -547,7 +547,7 @@ public:
                 getScaledPadding(),
                 chord->getChordColor());
 
-            chordSlice.chordFontStyle = getViz()->getLargeStyleFontSizedForDimensions(scale(chordWidth), scale(chordWidth));
+            chordSlice.chordFontStyle = Aquamarine::Shared::getViz()->getLargeStyleFontSizedForDimensions(scale(chordWidth), scale(chordWidth));
 
             if (getTheoryVizLabelModeChordLabel() == TheoryVizLabelMode::DEGREES) {
                 chordSlice.label = chord->getChordNameRoman(getSelectedKey().getNoteName());
@@ -558,7 +558,7 @@ public:
 
             chordSlice.regularFontColor = ofColor::fromHsb(chord->getChordColor().getHue(), 180, 140);
             ofRectangle chordFontRect =
-                getViz()->getFonts()->getTextBounds(chordSlice.label, chordSlice.chordFontStyle, chordSlice.path.getRectangle().x, chordSlice.path.getRectangle().y);
+                Aquamarine::Shared::getViz()->getFonts()->getTextBounds(chordSlice.label, chordSlice.chordFontStyle, chordSlice.path.getRectangle().x, chordSlice.path.getRectangle().y);
 
             chordSlice.chordFontRect = chordFontRect;
 
@@ -576,7 +576,7 @@ public:
                     break;
 
                 case TheoryVizInstrumentChordViewMode::STRINGED_CHORD_DIAGRAM:
-                    if (getViz()->getResolutionMultiplier() > 1) {
+                    if (Aquamarine::Shared::getViz()->getResolutionMultiplier() > 1) {
                         notesHeight = notesHeight * 0.5f; // want even less height if stringed diagram... 
                     }
                     // ^^ for some reason it's too small if not using higher resolution...
@@ -600,7 +600,7 @@ public:
 
                 if (!notesFontStyleCalculated)
                 {
-                    chordSlice.notesFontStyle = getViz()->getLargeStyleFontSizedForDimensions(scale(notesWidth), scale(notesWidth));
+                    chordSlice.notesFontStyle = Aquamarine::Shared::getViz()->getLargeStyleFontSizedForDimensions(scale(notesWidth), scale(notesWidth));
                     notesFontStyleCalculated = true;
                 }
 
@@ -632,7 +632,7 @@ public:
 
                 //noteSlice.label =  note.getNoteName();
                 ofRectangle noteFontRect =
-                    getViz()->getFonts()->getTextBounds(noteSlice.label, chordSlice.notesFontStyle, noteSlice.path.getRectangle().x, noteSlice.path.getRectangle().y);
+                    Aquamarine::Shared::getViz()->getFonts()->getTextBounds(noteSlice.label, chordSlice.notesFontStyle, noteSlice.path.getRectangle().x, noteSlice.path.getRectangle().y);
 
                 noteSlice.labelPoint = Aquamarine::Coord::vizPoint(
                     noteSlice.path.getRectangle().x + (noteSlice.path.getRectangle().width - noteFontRect.width) / 2,

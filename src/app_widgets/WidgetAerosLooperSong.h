@@ -690,7 +690,7 @@ private:
                 </widget>
                 )");
 
-            TBL_NUMBER_PICKER->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+            TBL_NUMBER_PICKER->setTheme(Shared::getViz()->getThemeManager()->getSystemThemeDark(true));
             TBL_NUMBER_PICKER->setCellSelectionColor(ofColor::red);
             TBL_NUMBER_PICKER->setCellLabelSelectedColor(ofColor::blue);
             WidgetManager::addWidgetForPopout(*TBL_NUMBER_PICKER, getWidgetId(), true);

@@ -47,8 +47,8 @@ public:
         debugInfo = debugTemplate;
         setTitle("UNIT TESTS INFO: [....]");
 
-        //ofStringReplace(debugInfo, "${ACTIVE}", getViz()->getActiveWidgetId());
-        //ofStringReplace(debugInfo, "${PRIOR}", getViz()->getPriorActiveWidgetId());
+        //ofStringReplace(debugInfo, "${ACTIVE}", Aquamarine::Shared::getViz()->getActiveWidgetId());
+        //ofStringReplace(debugInfo, "${PRIOR}", Aquamarine::Shared::getViz()->getPriorActiveWidgetId());
         
         debugInfo += "<small-mono>TEST                    STATUS     </small-mono><br/>";
     }
@@ -58,11 +58,11 @@ public:
         ofPushStyle();   
         ofSetColor(ofColor::black);
         
-        ofRectangle r = getViz()->getFonts(getTheme())->drawFormattedColumn(
+        ofRectangle r = Aquamarine::Shared::getViz()->getFonts(getTheme())->drawFormattedColumn(
             debugInfo,
-            getViz()->scale(getUsableX()),
-            getViz()->scale(getUsableY()),
-            getViz()->scale(getUsableWidth() - getViz()->getNonScaledPadding()*2.0f)
+            Aquamarine::Shared::getViz()->scale(getUsableX()),
+            Aquamarine::Shared::getViz()->scale(getUsableY()),
+            Aquamarine::Shared::getViz()->scale(getUsableWidth() - Aquamarine::Shared::getViz()->getNonScaledPadding()*2.0f)
             );
         
         setContentBoundsScaled(Aquamarine::Coord::vizBounds(
@@ -177,7 +177,7 @@ private:
     void initWidget() override {
         setWidth(250);
         setHeight(200);
-        defaultStyle = getViz()->getSmallFontStyleMono();
+        defaultStyle = Aquamarine::Shared::getViz()->getSmallFontStyleMono();
         setScrollAction(ScrollAction::SCROLL);
         setEnableScrollYPositive(true);
         setEnableScrollYNegative(true);

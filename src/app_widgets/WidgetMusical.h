@@ -2408,7 +2408,7 @@ public:
             }
             
             mWidgetTextEditorHelp->setTitle("Help");  
-            mWidgetTextEditorHelp->setMessage(getViz()->langHelp(getWidgetClassType()), true);
+            mWidgetTextEditorHelp->setMessage(Aquamarine::Shared::getViz()->langHelp(getWidgetClassType()), true);
             mWidgetTextEditorHelp->setButtons("Close", "BTN_CANCEL");
 
             mWidgetTextEditorHelp->popoutFrom(
@@ -2416,11 +2416,11 @@ public:
                 deScale(iconBounds.y), 
                 getSuggestedPopoutDirectionFromWidgetTitleBar()
             );
-            mWidgetTextEditorHelp->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));
+            mWidgetTextEditorHelp->setTheme(Aquamarine::Shared::getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));
         } else {  // eg iconTag == IconCache::IconTag::WIDGET_SETTINGS
             Widget* w = getPopoutWidgetForMenuTag(iconTag);
             if (w != nullptr) {
-                w->setTheme(getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));          
+                w->setTheme(Aquamarine::Shared::getViz()->getThemeManager()->getContrastingSystemTheme(getTheme(), true));          
                 w->popoutFrom(
                     deScale(iconBounds.x), 
                     deScale(iconBounds.y), 

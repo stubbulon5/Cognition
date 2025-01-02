@@ -499,7 +499,7 @@ private:
                 )");
 
             WidgetManager::addWidgetForPopout(*AEROS_SD_CARD_LOCATIONS, getWidgetId(), true);
-            AEROS_SD_CARD_LOCATIONS->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));            
+            AEROS_SD_CARD_LOCATIONS->setTheme(Shared::getViz()->getThemeManager()->getSystemThemeLight(true));            
             AEROS_SD_CARD_LOCATIONS->setRowBGColor(ofColor(0,0,0,0));
             AEROS_SD_CARD_LOCATIONS->setRowAltBGColor(ofColor(0,0,0,0));
             //AEROS_SD_CARD_LOCATIONS->setTitleStyle(TitleStyle::NONE);
@@ -523,7 +523,7 @@ private:
             WidgetManager::loadWidgetFromFileToExisting("ui/widgets/WidgetAerosLooperSong.xml", *AEROS_SONG);
             AEROS_SONG->setTitleStyle(Widget::TitleStyle::TOP_STATIC);
             AEROS_SONG->setWidgetSize(500, 300, false);
-            AEROS_SONG->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));
+            AEROS_SONG->setTheme(Shared::getViz()->getThemeManager()->getSystemThemeLight(true));
             AEROS_SONG->getTheme().UnhoveredWidgetAlpha = 0.95f;
             AEROS_SONG->getTheme().HoveredWidgetAlpha = 0.95f;
             WidgetManager::addWidgetForPopout(*AEROS_SONG, getWidgetId(), true);
@@ -542,7 +542,7 @@ private:
             WidgetManager::addWidgetForPopout(*FILE_EXPLORER, getWidgetId(), true);
             FILE_EXPLORER->setWidth(500);
             FILE_EXPLORER->setHeight(300);
-            FILE_EXPLORER->setTheme(getViz()->getThemeManager()->getSystemThemeLight(true));
+            FILE_EXPLORER->setTheme(Shared::getViz()->getThemeManager()->getSystemThemeLight(true));
             FILE_EXPLORER->setFileExtensionFilter("|.wav|");
             
         }    

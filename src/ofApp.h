@@ -8,6 +8,8 @@
 #include "app_widgets/MidiShared.h"
 #include "app_widgets/appConstants.h"
 
+#include "AppCognition.h"
+
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
@@ -28,4 +30,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         void initAquamarine();
+        Aquamarine::AppCognition* cognition;
+        
 };

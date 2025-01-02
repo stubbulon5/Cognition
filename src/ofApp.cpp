@@ -1,24 +1,22 @@
 #include "ofApp.h"
 
-
 void ofApp::setup(){
 
     //---------- SETTINGS ----------
     ofSetEscapeQuitsApp(false);
 
-    Aquamarine::App::BOOTSTRAP(
-        "cognition",
-        APP_CONSTANTS::getAppWidgetMap(),
-        APP_CONSTANTS::getIconCacheMap(1.0),
-        "1.0.0",
-        "jam",
-        APP_CONSTANTS::DEFAULT_LANGUAGE_XML
-    );
+
+    // appWidgets = new Aquamarine::AppWidgets();
+
+    cognition = new Aquamarine::AppCognition();
+    cognition->BOOTSTRAP();
+
+    //Aquamarine::AppWidgets::registerCustomWidgets();
 
 	// Midi initialize - make it configurable too...
 	MidiShared::configure();
 
-    ofSetWindowTitle("cognition");
+    ofSetWindowTitle(Aquamarine::App::APPLICATION_NAME());
     ofSetWindowShape(ofGetScreenWidth() * 0.8f, ofGetScreenHeight() * 0.8f);
     ofSetWindowPosition(ofGetScreenWidth()/2 - ofGetWidth()/2, ofGetScreenHeight() / 2 - ofGetHeight() / 2);
 
@@ -29,13 +27,50 @@ void ofApp::initAquamarine() {
     Aquamarine::WidgetManager::removeAllWidgets();
     
     /* Add the main menu */
-    Aquamarine::Widget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
-    Aquamarine::WidgetManager::addWidget(*mainMenuWidget, false);
+    // Aquamarine::Widget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
+    // Aquamarine::WidgetManager::addWidget(*mainMenuWidget, false);
 
-    Aquamarine::Widget* picker = Aquamarine::WidgetManager::loadWidget(Aquamarine::WidgetManager::WIDGET_CLASS_COLOR_PICKER, "COLOR", "<widget></widget>");
 
-    picker->setWidgetSize(350, 350, false);
-    Aquamarine::WidgetManager::addWidget(*picker, false);    
+    //     Aquamarine::WidgetSettings* w = dynamic_cast<Aquamarine::WidgetSettings*>(Aquamarine::WidgetManager::loadWidget("WidgetSettings", "ZEE", R"(
+    //         <widget>
+    //         <bounds width="150" height="150" minWidth="75" minHeight="75"  />
+    //         </widget>
+    //         )"));
+    // Aquamarine::WidgetManager::addWidget(*w, false);
+
+        // Aquamarine::WidgetManager::loadAndAddWidget("WidgetSettings", "ZEE", R"(
+        //     <widget>
+        //     <bounds width="150" height="150" minWidth="75" minHeight="75"  />
+        //     </widget>
+        //     )", false);    
+
+        Aquamarine::WidgetManager::loadAndAddWidget("WidgetFileList", "ZOO", R"(
+            <widget>
+            <bounds width="150" height="150" minWidth="75" minHeight="75"  />
+            </widget>
+            )", false);    
+
+
+    // Aquamarine::Widget* wSettings = Aquamarine::WidgetManager::loadWidget("WidgetSettings", "STOO_SETT", "<widget></widget>");
+    // Aquamarine::WidgetSettings* castedSet = dynamic_cast<Aquamarine::WidgetSettings*>(wSettings);
+    // Aquamarine::WidgetManager::addWidget(*wSettings, false);
+
+
+
+
+
+    // DOESNT WORK - Casting as WidgetBase, not Widget!!!
+    // Aquamarine::Widget* w = Aquamarine::WidgetManager::loadWidgetFromFile("Widget", "ZOO", "ui/widgets/about.xml");
+    // Aquamarine::WidgetAbout* casted = dynamic_cast<Aquamarine::WidgetAbout*>(w);
+    // Aquamarine::WidgetManager::addWidget(*casted, false);
+
+
+    // WORKS ::::
+    // Aquamarine::Widget* w = Aquamarine::WidgetManager::loadWidgetFromFile("Widget", "ZOO", "ui/widgets/about.xml");
+    // Aquamarine::WidgetManager::addWidget(*w, false);
+
+
+
 
 
 

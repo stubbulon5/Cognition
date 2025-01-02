@@ -944,7 +944,7 @@ private:
         setX(0);
         setY(0);
 
-        setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+        setTheme(Shared::getViz()->getThemeManager()->getSystemThemeDark(true));
         setIgnoreThemeChanges(true);
         setIsRoundedRectangle(false);
         
@@ -1045,7 +1045,7 @@ private:
             
             ofAddListener(dynamic_cast<Aquamarine::WidgetMenu*>(contextMenu)->menuItemSelected, this, &WidgetMainMenu_old::onMenuItemSelected);
     
-            contextMenu->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+            contextMenu->setTheme(Shared::getViz()->getThemeManager()->getSystemThemeDark(true));
             contextMenu->setIgnoreThemeChanges(true);
             
             WidgetManager::addWidget(*contextMenu, false);
@@ -1064,7 +1064,7 @@ private:
         
 
         if (!loaded) {
-            if (getViz()->getAutoLoadMostRecentProject()) {
+            if (Shared::getViz()->getAutoLoadMostRecentProject()) {
                 string mostRecentProject = WidgetFileLocationsList::getMostRecentProject();
                 if (mostRecentProject != "") { 
                     WidgetManager::load(mostRecentProject, true, this);

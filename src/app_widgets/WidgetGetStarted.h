@@ -6,7 +6,6 @@
 //
 #pragma once
 #include "ofxAquamarine.h"
-#include "WidgetLicence.h"
 
 class WidgetGetStarted : public Aquamarine::Widget {
     
@@ -63,8 +62,11 @@ public:
 
 
     virtual ~WidgetGetStarted() {
-       // ofRemoveListener(GETTING_STARTED_TABS->widgetEventReceived, this, &WidgetGetStarted::onAboutTabsEventReceived);          
-       ofRemoveListener(GETTING_STARTED_TABS->menuItemSelected, this, &WidgetGetStarted::onGettingStartedTabsMenuItemSelected);                    
+       // ofRemoveListener(GETTING_STARTED_TABS->widgetEventReceived, this, &WidgetGetStarted::onAboutTabsEventReceived);         
+       if(loaded) {
+            ofRemoveListener(GETTING_STARTED_TABS->menuItemSelected, this, &WidgetGetStarted::onGettingStartedTabsMenuItemSelected);    
+       }
+       
     }
     
     bool anyRowSelected() {

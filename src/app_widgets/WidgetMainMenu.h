@@ -171,7 +171,7 @@ public:
         string classType = APP_CONSTANTS::WIDGET_CLASS_LICENCE;
         string widgetPersistentId = "LICENCE";
 
-        WidgetLicence* w = dynamic_cast<WidgetLicence*>(
+        Aquamarine::WidgetLicence* w = dynamic_cast<Aquamarine::WidgetLicence*>(
             Aquamarine::WidgetManager::loadWidget(classType, widgetPersistentId, R"(
             <widget>
             <bounds width="300" height="450" minWidth="75" minHeight="75"  />
@@ -211,10 +211,10 @@ public:
     void about(int displayType) {
         string classType = APP_CONSTANTS::WIDGET_CLASS_ABOUT;
         string widgetPersistentId = "APP_ABOUT";        
-        WidgetAbout* w = dynamic_cast<WidgetAbout*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
+        Aquamarine::WidgetAbout* w = dynamic_cast<Aquamarine::WidgetAbout*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/about.xml"));
         w->setTitleStyle(Widget::TitleStyle::TOP_STATIC);
         w->setWidgetSize(600, 600, false);
-        w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+        w->setTheme(Aquamarine::Shared::getViz()->getThemeManager()->getSystemThemeDark(true));
 
         switch(displayType) {
             case 1: { // Regular
@@ -246,7 +246,7 @@ public:
         Aquamarine::WidgetAquamarineAbout* w = dynamic_cast<Aquamarine::WidgetAquamarineAbout*>(Aquamarine::WidgetManager::loadWidgetFromFile(classType, widgetPersistentId, "ui/widgets/aquamarine-about.xml"));
         w->setTitleStyle(Widget::TitleStyle::TOP_STATIC);
         w->setWidgetSize(600, 600, false);
-        w->setTheme(getViz()->getThemeManager()->getSystemThemeDark(true));
+        w->setTheme(Aquamarine::Shared::getViz()->getThemeManager()->getSystemThemeDark(true));
 
         Aquamarine::WidgetManager::addWidget(*w, false); 
         w->setIsVisible(true);  
@@ -329,7 +329,7 @@ private:
     Aquamarine::WidgetMenu *fileMenu = nullptr;
     WidgetOmniMenuLinks *omniMenu = nullptr;
     Aquamarine::WidgetMenu *helpMenu = nullptr;    
-    WidgetLicence *licenceMenu = nullptr;
+    Aquamarine::WidgetLicence *licenceMenu = nullptr;
     WidgetNotifications* notificationMenu = nullptr;
     WidgetOmniMenu *omniMenuMenuItem = nullptr;
     Aquamarine::Icon mainMenuIcon = Aquamarine::Icon("", Aquamarine::Coord::vizBounds(0,0,0,0), 1.0f, Aquamarine::Icon::IconSize::REGULAR, ofColor::white, 0);;
@@ -354,7 +354,7 @@ private:
     }                  
 
     void applyMenuThemeColor() {
-        theme = getViz()->getThemeManager()->getThemeForMainMenu();
+        theme = Aquamarine::Shared::getViz()->getThemeManager()->getThemeForMainMenu();
         setTheme(theme);
 
         if (fileMenu != nullptr) fileMenu->setTheme(theme);
@@ -412,7 +412,7 @@ private:
                 });
             helpMenu->setTheme(theme);
 
-            licenceMenu = new WidgetLicence(getWidgetId() + "_LICENCE", R"(
+            licenceMenu = new Aquamarine::WidgetLicence(getWidgetId() + "_LICENCE", R"(
                 <widget>
                 <bounds width="300" height="300" minWidth="75" minHeight="75"  />
                 </widget>
@@ -449,7 +449,7 @@ private:
             setMenuItem_RequiresAttention(MENU_NOTIFICATION, notificationMenu->getNewItemsFound());
 
             bool loadedLastProj = false;
-            if (getViz()->getAutoLoadMostRecentProject()) {
+            if (Aquamarine::Shared::getViz()->getAutoLoadMostRecentProject()) {
                 string mostRecentProject = Aquamarine::WidgetFileLocationsList::getMostRecentProject();
                 if (mostRecentProject != "") { 
                     loadedLastProj = Aquamarine::WidgetManager::load(mostRecentProject, true, this);

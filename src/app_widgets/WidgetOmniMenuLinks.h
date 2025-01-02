@@ -334,7 +334,7 @@ public:
                 }
 
                 string searchVal = ofToLower(omniSearchBox->getValue());
-                for (auto it = widgetMap.begin(); it != widgetMap.end(); it++) {
+                for (auto it = Aquamarine::WidgetManager::getRegisteredWidgets().begin(); it != Aquamarine::WidgetManager::getRegisteredWidgets().end(); it++) {
                     string widgetClass = it->first;
                     string widgetName = widgetClass;
                     //ofStringReplace(widgetName, "Widget", "");
@@ -367,7 +367,7 @@ public:
     }    
     
 private:
-    Aquamarine::WidgetManager::widget_map_type widgetMap;
+    Aquamarine::widget_map_type widgetMap;
     vector<Aquamarine::WidgetTableRow> rows = vector<Aquamarine::WidgetTableRow>();
     Aquamarine::WidgetElmTextbox *omniSearchBox = nullptr;
     vector<string> searchHints = {"C Major", "Gb Minor", "D#m", "Ionian Scale", "Minor Scale"};   
@@ -480,7 +480,6 @@ private:
     void initWidget() override {  
 
         widgetsToCache = widgetsToCacheInitial;
-        widgetMap = Aquamarine::WidgetManager::getWidgetMap();
 
         populateLinks();
 
