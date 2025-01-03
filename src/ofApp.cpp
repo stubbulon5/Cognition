@@ -22,23 +22,16 @@ void ofApp::setup(){
     ofSetWindowShape(ofGetScreenWidth() * 0.8f, ofGetScreenHeight() * 0.8f);
     ofSetWindowPosition(ofGetScreenWidth()/2 - ofGetWidth()/2, ofGetScreenHeight() / 2 - ofGetHeight() / 2);
 
-    initAquamarine();
-}
-
-void ofApp::initAquamarine() {
-    Aquamarine::WidgetManager::removeAllWidgets();
-    
-    /* Add the main menu */
     Aquamarine::Widget* mainMenuWidget = Aquamarine::WidgetManager::loadWidget(APP_CONSTANTS::WIDGET_CLASS_MAIN_MENU, "APP_MAIN_MENU", "<widget></widget>");
     Aquamarine::WidgetManager::addWidget(*mainMenuWidget, false);
 
-    Aquamarine::Widget* picker = Aquamarine::WidgetManager::loadWidget(Aquamarine::WidgetManager::WIDGET_CLASS_COLOR_PICKER, "COLOR", "<widget></widget>");
+    // Aquamarine::Widget* picker = Aquamarine::WidgetManager::loadWidget(Aquamarine::WidgetManager::WIDGET_CLASS_COLOR_PICKER, "COLOR", "<widget></widget>");
 
-    picker->setWidgetSize(350, 350, false);
-    Aquamarine::WidgetManager::addWidget(*picker, false);    
+    // picker->setWidgetSize(350, 350, false);
+    // Aquamarine::WidgetManager::addWidget(*picker, false);    
 
-
-
+    // Aquamarine::Widget* settings = Aquamarine::WidgetManager::loadWidget("WidgetSettings", "zzz", "<widget></widget>");
+    // Aquamarine::WidgetManager::addWidget(*settings, false);
 }
 
 //------------------------------ DRAW & UPDATE--------------------------------
