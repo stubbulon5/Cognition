@@ -130,7 +130,9 @@
             "__verbose_abort": "cpp",
             "any": "cpp",
             "execution": "cpp",
-            "print": "cpp"
+            "print": "cpp",
+            "source_location": "cpp",
+            "*.compiler_flags": "cpp"
         }
 	}
 }

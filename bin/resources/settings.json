@@ -1,0 +1,17 @@
+{
+    "settings": {
+      "autoLoadMostRecentProject": true,
+      "favouriteLocations": null,
+      "fontPath": "fonts/Verdana.ttf",
+      "language": "english",
+      "notifications": null,
+      "recentDirectories": null,
+      "recentFiles": null,
+      "recentProjects": null,
+      "showFps": false,
+      "themeName": "System",
+      "useFbo": true,
+      "userExperience": 60.0,
+      "userInterfaceScaling": 1.0
+    }
+  }
