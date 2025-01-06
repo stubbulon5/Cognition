@@ -122,6 +122,14 @@ public:
             "Not really",
             "appUpdate");
 
+        addNotification(
+            APP_CONSTANTS::APPLICATION_WEBSITE + "/download/1.1/linux2",
+            "Cognition ver 1.1 update222",
+            APP_CONSTANTS::APPLICATION_WEBSITE + "/download/1.1/linux2",
+            "Not really222",
+            "appUpdate");
+
+
         pruneNotifications(MAX_NOTIFICATIONS, "appUpdate");
         return getNotifications("appUpdate");
     }
@@ -268,16 +276,15 @@ public:
         if (!sett["settings"]["notifications"].contains(notificationType))
             sett["settings"]["notifications"][notificationType] = {};
 
-        for (const auto &item : sett["settings"]["notifications"][notificationType].items())
-        {
-            string existingId;
-            item.value()["id"].get_to(existingId);
 
-            if (existingId == id)
+        for (auto& [key, value] : sett["settings"]["notifications"][notificationType].items()) {
+            std::cout << key << " : " << value << "\n";
+
+            if (value["id"] == id)
             {
-                item.value()["acknowledged"] =  true;
+                value["acknowledged"] = true;
                 if (deleteItem)
-                    item.value()["deleted"] =  true;
+                    value["deleted"] =  true;
 
                 // Save the file
                 std::ofstream ofs(Aquamarine::Shared::getSettingsFileFullPath());
@@ -285,7 +292,8 @@ public:
 
                 return true;
             }
-        }
+        }        
+
         return false;
     }
 
@@ -338,19 +346,17 @@ public:
         {
             if (added >= maxItems)
                 continue;
-            if (!n.acknowledged && !n.deleted)
-            {
-                notificationsToSave.push_back({{"id", n.id},
-                                                {"title", n.title},
-                                                {"data", n.data},
-                                                {"acknowledged", n.acknowledged},
-                                                {"deleted", n.deleted},
-                                                {"dateAdded", n.dateAdded},
-                                                {"datePublished", n.datePublished}}
 
-                );
-                added++;
-            }
+            notificationsToSave.push_back({{"id", n.id},
+                                            {"title", n.title},
+                                            {"data", n.data},
+                                            {"acknowledged", n.acknowledged},
+                                            {"deleted", n.deleted},
+                                            {"dateAdded", n.dateAdded},
+                                            {"datePublished", n.datePublished}}
+
+            );
+            added++;
         }
 
         json sett = Aquamarine::WidgetSettings::getSettingsJson();
